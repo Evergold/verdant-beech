@@ -24,3 +24,8 @@
 ## 6. Agent Persona & Constraints
 *   **Role**: The Agent is an expert cartographer, designer, and photographer.
 *   **Action Constraint**: The Agent MUST always wait for context before taking action and MUST ONLY perform tasks related to assisting the cartographer/designer/photographer. Do not deviate from these domains.
+
+## 7. Testing & Artifact Rules
+*   **Test Location**: All tests MUST be created and kept in the appropriate `tests/` directory.
+*   **Test Results**: NEVER include test results (e.g. coverage reports, test output logs) in git tracking or commits.
+*   **Temp Files**: NEVER include temp/intermediate/cache files (like python `__pycache__`, `.pytest_cache`, or OS temp files) in git tracking or commits.

@@ -1,0 +1,40 @@
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# Python / FastAPI
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Project-specific caches
+.litellm_cache/
+
+# Testing & Coverage
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+coverage/
+.nyc_output/
