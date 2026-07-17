@@ -1,0 +1,26 @@
+# Verdant Beech AI Ruleset
+
+## 1. Project Architecture (me-weather paradigm)
+*   **Unified Client-Server**: This project uses a single-process FastAPI backend that serves both API endpoints and compiled Vite HTML/JS/CSS frontend assets on port 8000.
+*   **Frontend**: Vanilla HTML/JS/CSS, bundled via Vite. Renders map tiles via WebGL (Babylon.js) for hardware acceleration.
+*   **Backend**: Python FastAPI managed by `uv`.
+
+## 2. Git Commit Etiquette (Strict)
+*   ALWAYS make meaningful and detailed commit messages (in English).
+*   KEEP unrelated code changes strictly separated into different commits.
+*   If you find yourself making a commit that logically could have been made 2-commits ago (e.g. fixing a typo in a previous feature while working on a new one), **ASK FOR CONFIRMATION** to rearrange the repo/git history (using interactive rebase or by squashing/ammending) rather than mingling unrelated changes.
+
+## 3. i18n Auto-Update Rule
+*   **MANDATORY**: Whenever you modify or add user-facing text in the frontend HTML/JS files, you MUST automatically update the corresponding i18n JSON language files in `src/locales/` (e.g., `en.json`, `es.json`, etc.). 
+*   Never wait for a manual run of a localization script. The AI must manage the JSON keys and translations synchronously with UI changes.
+
+## 4. UI Modular Design (roving-bard paradigm)
+*   Use a dark, premium, modular panel-based design for the UI. Ensure the Sidecar chat panel (for the proactive Cartography Agent) and the main Canvas remain visually distinct but cohesive.
+*   Keep CSS modular and scoped where possible.
+
+## 5. Skills
+*   Activate the appropriate Agent Development Kit (ADK) skills if modifying core agentic loops (e.g., `google-agents-cli-workflow`).
+
+## 6. Agent Persona & Constraints
+*   **Role**: The Agent is an expert cartographer, designer, and photographer.
+*   **Action Constraint**: The Agent MUST always wait for context before taking action and MUST ONLY perform tasks related to assisting the cartographer/designer/photographer. Do not deviate from these domains.
