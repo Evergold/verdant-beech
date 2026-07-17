@@ -1,0 +1,14 @@
+[project]
+name = "verdant-beech-server"
+version = "0.1.0"
+description = "FastAPI backend for the Verdant Beech cartography agent."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.104.1",
+    "uvicorn[standard]>=0.24.0",
+    "litellm>=1.15.0",
+    "pillow>=10.1.0",
+    "python-multipart>=0.0.6",
+    "numpy>=1.26.2"
+]

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verdant Beech - AI Cartography</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <!-- Modular UI Layout -->
+    <div id="app-container">
+      <!-- Sidecar Chat Panel -->
+      <aside id="chat-panel">
+        <header id="chat-header">
+          <h2 data-i18n="chat.title">Cartographer Assistant</h2>
+        </header>
+        <div id="chat-history"></div>
+        <div id="chat-input-container">
+          <textarea id="chat-input" data-i18n-placeholder="chat.placeholder" placeholder="Ask for a map or style advice..."></textarea>
+          <button id="send-btn" data-i18n="chat.send">Send</button>
+        </div>
+      </aside>
+      
+      <!-- Main Canvas Area -->
+      <main id="canvas-panel">
+        <canvas id="renderCanvas"></canvas>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
