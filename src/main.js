@@ -77,9 +77,30 @@ function initBabylon() {
   });
 }
 
+async function loadModels() {
+  try {
+    const res = await fetch("http://localhost:8001/api/models");
+    const data = await res.json();
+    const select = document.getElementById("model-select");
+    select.innerHTML = "";
+    
+    if (data.assistant_models) {
+      data.assistant_models.forEach(model => {
+        const opt = document.createElement("option");
+        opt.value = model.id;
+        opt.textContent = model.label;
+        select.appendChild(opt);
+      });
+    }
+  } catch (e) {
+    console.error("Failed to load models.yaml", e);
+  }
+}
+
 // App Entry Point
 async function main() {
   await initI18n();
+  await loadModels();
   initBabylon();
   console.log("Verdant Beech initialized successfully.");
 }
