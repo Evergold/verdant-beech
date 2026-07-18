@@ -15,7 +15,6 @@
   "dependencies": {
     "@babylonjs/core": "^9.17.0",
     "@babylonjs/materials": "^9.17.0",
-    "@babylonjs/procedural-textures": "^9.17.0",
     "i18next": "^23.7.11"
   }
 }

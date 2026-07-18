@@ -1,5 +1,4 @@
 import * as BABYLON from "@babylonjs/core";
-import { WoodProceduralTexture } from "@babylonjs/procedural-textures";
 import i18next from "i18next";
 import enTranslations from "./locales/en.json";
 
@@ -89,8 +88,10 @@ async function initBabylon() {
     // The Workshop Table (Large Ground)
     const table = BABYLON.MeshBuilder.CreateGround("workshopTable", {width: 60, height: 40}, scene);
     const tableMat = new BABYLON.StandardMaterial("tableMat", scene);
-    tableMat.diffuseTexture = new WoodProceduralTexture("woodTex", 1024, scene);
-    tableMat.diffuseTexture.woodColor = new BABYLON.Color3(0.3, 0.15, 0.05);
+    const woodTex = new BABYLON.Texture("/wood.jpg", scene);
+    woodTex.uScale = 4;
+    woodTex.vScale = 4;
+    tableMat.diffuseTexture = woodTex;
     tableMat.specularColor = new BABYLON.Color3(0.1, 0.05, 0.02);
     table.material = tableMat;
     table.receiveShadows = true;
