@@ -111,15 +111,22 @@ const chatHistory = document.getElementById("chat-history");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
 const modelSelect = document.getElementById("model-select");
-const reasoningTabs = document.getElementById("reasoning-tabs");
 const taskCountSpan = document.getElementById("task-count");
+const reasoningTabs = document.getElementById("reasoning-tabs");
+const tabLow = document.getElementById("tab-low");
+const tabMed = document.getElementById("tab-med");
+const tabHigh = document.getElementById("tab-high");
+const tabs = [tabLow, tabMed, tabHigh];
 
 let messages = [];
 let activeTasks = 0;
 let currentReasoning = "high";
 
+function levelsSupport(modelId) {
+  return modelId.includes("gemini-3.5-flash") || modelId.includes("gemini-3.1-pro");
+}
+
 function renderReasoningTabs(modelId) {
-  reasoningTabs.innerHTML = "";
   let levels = [];
   
   if (modelId.includes("gemini-3.5-flash")) {
@@ -128,30 +135,37 @@ function renderReasoningTabs(modelId) {
     levels = ["low", "high"];
   }
 
-  if (levels.length > 0) {
-    reasoningTabs.classList.remove("hidden");
-    modelSelect.classList.add("has-tabs");
-    levels.forEach(level => {
-      const tab = document.createElement("div");
-      tab.className = `reasoning-tab level-${level} ${level === currentReasoning ? "active" : ""}`;
-      tab.textContent = level.toUpperCase();
-      tab.onclick = () => {
-        currentReasoning = level;
-        renderReasoningTabs(modelId);
-      };
-      reasoningTabs.appendChild(tab);
-    });
-    if (!levels.includes(currentReasoning)) {
-      currentReasoning = "high";
-      renderReasoningTabs(modelId);
+  tabs.forEach(tab => {
+    const lvl = tab.dataset.level;
+    tab.disabled = !levels.includes(lvl);
+    
+    if (lvl === currentReasoning && !tab.disabled) {
+      tab.classList.add("active");
+    } else {
+      tab.classList.remove("active");
     }
-  } else {
-    reasoningTabs.classList.add("hidden");
-    modelSelect.classList.remove("has-tabs");
+  });
+
+  const activeTab = tabs.find(t => t.dataset.level === currentReasoning);
+  if (activeTab && activeTab.disabled) {
+    if (levels.includes("high")) currentReasoning = "high";
+    else if (levels.includes("low")) currentReasoning = "low";
+    
+    tabs.forEach(tab => {
+      if (tab.dataset.level === currentReasoning && !tab.disabled) tab.classList.add("active");
+    });
   }
 }
 
 modelSelect.addEventListener("change", () => renderReasoningTabs(modelSelect.value));
+
+tabs.forEach(tab => {
+  tab.onclick = () => {
+    if (tab.disabled) return;
+    currentReasoning = tab.dataset.level;
+    renderReasoningTabs(modelSelect.value);
+  };
+});
 
 function updateTaskCount(delta) {
   activeTasks += delta;
@@ -193,7 +207,7 @@ async function handleSend() {
       body: JSON.stringify({ 
         messages: messages,
         model_name: modelSelect.value,
-        reasoning: reasoningTabs.classList.contains("hidden") ? null : currentReasoning
+        reasoning: levelsSupport(modelSelect.value) ? currentReasoning : null
       })
     });
     const data = await res.json();

@@ -11,16 +11,20 @@
     <div id="app-container">
       <!-- Sidecar Chat Panel -->
       <aside id="chat-panel">
+        <div id="status-bar">
+          <div id="task-monitor">ACTIVE TASKS: <span id="task-count">0</span></div>
+        </div>
         <header id="chat-header">
           <h2 data-i18n="chat.title">Cartographer Assistant</h2>
-          <div class="header-controls">
-            <div class="model-selection-group">
-              <div id="reasoning-tabs" class="reasoning-tabs hidden"></div>
-              <select id="model-select">
-                <!-- Populated dynamically via models.yaml -->
-              </select>
+          <div class="model-selection-group">
+            <div id="reasoning-tabs" class="reasoning-tabs">
+              <button class="reasoning-tab level-low" id="tab-low" data-level="low">LOW</button>
+              <button class="reasoning-tab level-med" id="tab-med" data-level="med">MED</button>
+              <button class="reasoning-tab level-high active" id="tab-high" data-level="high">HIGH</button>
             </div>
-            <div id="task-monitor">Tasks: <span id="task-count">0</span></div>
+            <select id="model-select">
+              <!-- Populated dynamically via models.yaml -->
+            </select>
           </div>
         </header>
         <div id="chat-history"></div>
