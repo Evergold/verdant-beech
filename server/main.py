@@ -149,8 +149,8 @@ async def ollama_status():
                 "online": True,
                 "models": models,
                 "loaded_models": loaded_models,
-                "vram_mb": round(vram_bytes / (1024 * 1024), 1),
-                "ram_mb": round(ram_bytes / (1024 * 1024), 1)
+                "vram_gb": round(vram_bytes / (1024 * 1024 * 1024), 2),
+                "ram_gb": round(ram_bytes / (1024 * 1024 * 1024), 2)
             }
     except Exception as e:
         return {"online": False, "error": str(e)}

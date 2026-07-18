@@ -151,8 +151,8 @@ async function updateOllamaStatus() {
     const status = await res.json();
     if (status.online) {
       hwMonitor.classList.remove("hidden");
-      ramUse.textContent = status.ram_mb.toFixed(1);
-      vramUse.textContent = status.vram_mb.toFixed(1);
+      ramUse.textContent = status.ram_gb.toFixed(1);
+      vramUse.textContent = status.vram_gb.toFixed(1);
     } else {
       hwMonitor.classList.add("hidden");
     }
