@@ -29,9 +29,9 @@ We recommend models capable of highly complex spatial planning and strict schema
 - **Primary Local Choice (Default):** We **ALWAYS prefer QAT variants of Gemma 4** (e.g., `ollama_chat/gemma-4-e4b-qat` or `gemma4:e4b`). Quantization-Aware Training (QAT) allows massive memory savings without degrading the reasoning capability, which is critical for cartography planning.
 
 #### 🖥️ Hardware Requirements for Gemma 4 (4.5B)
-Running the default local assistant model (`gemma4:e4b`) requires:
-- **VRAM (GPU Memory)**: ~5 GB - 6 GB (Minimum 6GB GPU recommended for optimal performance)
-- **System RAM**: ~12 GB - 16 GB
+Running the default local assistant model (`gemma4:e4b`) is highly optimized thanks to QAT quantization. Actual observed resource usage is exceptionally light:
+- **VRAM (GPU Memory)**: ~3 GB
+- **System RAM**: ~6 GB
 - *Note: Our lazy-loading logic unloads the model from VRAM when not in use, preserving GPU memory for the heavy Babylon.js rendering scene.*
 
 ### Image Generation Models (Heavy Weight)
