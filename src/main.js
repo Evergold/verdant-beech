@@ -120,7 +120,7 @@ const tabs = [tabLow, tabMed, tabHigh];
 
 let messages = [];
 let activeTasks = 0;
-let currentReasoning = "high";
+let currentReasoning = "low";
 
 function levelsSupport(modelId) {
   return modelId.includes("gemini-3.5-flash") || modelId.includes("gemini-3.1-pro");
@@ -148,8 +148,8 @@ function renderReasoningTabs(modelId) {
 
   const activeTab = tabs.find(t => t.dataset.level === currentReasoning);
   if (activeTab && activeTab.disabled) {
-    if (levels.includes("high")) currentReasoning = "high";
-    else if (levels.includes("low")) currentReasoning = "low";
+    if (levels.includes("low")) currentReasoning = "low";
+    else if (levels.includes("high")) currentReasoning = "high";
     
     tabs.forEach(tab => {
       if (tab.dataset.level === currentReasoning && !tab.disabled) tab.classList.add("active");
