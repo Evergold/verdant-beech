@@ -60,16 +60,26 @@ async function initBabylon() {
     camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 3, 35, BABYLON.Vector3.Zero(), scene);
     camera.attachControl(canvas, true);
     camera.wheelPrecision = 20;
+    camera.lowerRadiusLimit = 10;
+    camera.upperRadiusLimit = 40;
 
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
     ambientLight.intensity = 0.5;
     ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
-    // Main Studio Lamp (SpotLight from top center/left)
-    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(-5, 20, -5), new BABYLON.Vector3(0.2, -1, 0.2), Math.PI / 2, 2, scene);
+    // Main Studio Lamp (SpotLight centered over the map)
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 18, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 2, scene);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
+
+    // Lamp Mesh (Visual Representation)
+    const lampMesh = BABYLON.MeshBuilder.CreateCylinder("lampMesh", {height: 2, diameterTop: 3, diameterBottom: 4}, scene);
+    lampMesh.position = new BABYLON.Vector3(0, 19, 0);
+    const lampMat = new BABYLON.StandardMaterial("lampMat", scene);
+    lampMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.1);
+    lampMat.emissiveColor = new BABYLON.Color3(0.5, 0.5, 0.4);
+    lampMesh.material = lampMat;
 
     // Candle Light (PointLight, flickering - disabled by default)
     const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(14, 1.5, 10), scene);
@@ -85,12 +95,13 @@ async function initBabylon() {
     const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
     candleShadows.usePercentageCloserFiltering = true;
 
-    // The Workshop Table (Large Ground)
-    const table = BABYLON.MeshBuilder.CreateGround("workshopTable", {width: 60, height: 40}, scene);
+    // The Workshop Table (Thick Box for 3D realism)
+    const table = BABYLON.MeshBuilder.CreateBox("workshopTable", {width: 34, height: 2, depth: 22}, scene);
+    table.position.y = -1; // Top surface at y=0
     const tableMat = new BABYLON.StandardMaterial("tableMat", scene);
     const woodTex = new BABYLON.Texture("/wood.jpg", scene);
-    woodTex.uScale = 4;
-    woodTex.vScale = 4;
+    woodTex.uScale = 2;
+    woodTex.vScale = 2;
     tableMat.diffuseTexture = woodTex;
     tableMat.specularColor = new BABYLON.Color3(0.1, 0.05, 0.02);
     table.material = tableMat;
@@ -98,7 +109,7 @@ async function initBabylon() {
 
     // The Map Canvas (Parchment Paper resting on table)
     baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 24, height: 16, subdivisions: 128}, scene);
-    baseMap.position.y = 0.05; // Hover slightly above table
+    baseMap.position.y = 0.02; // Hover slightly above table
     baseMat = new BABYLON.StandardMaterial("baseMat", scene);
     baseMat.diffuseColor = new BABYLON.Color3(0.94, 0.9, 0.82); // Parchment
     baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
@@ -108,23 +119,23 @@ async function initBabylon() {
     shadowGenerator.addShadowCaster(baseMap);
     candleShadows.addShadowCaster(baseMap);
 
-    // Cartography Props around the perimeter
+    // Cartography Props around the perimeter (adjusted for smaller table)
     const inkwell = BABYLON.MeshBuilder.CreateCylinder("inkwell", {height: 1.5, diameter: 1.0}, scene);
-    inkwell.position = new BABYLON.Vector3(14, 0.75, 10);
+    inkwell.position = new BABYLON.Vector3(14, 0.75, 8);
     const inkMat = new BABYLON.StandardMaterial("inkMat", scene);
     inkMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.15);
     inkMat.specularColor = new BABYLON.Color3(0.8, 0.8, 0.8);
     inkwell.material = inkMat;
 
     const ruler = BABYLON.MeshBuilder.CreateBox("ruler", {width: 10, height: 0.05, depth: 1}, scene);
-    ruler.position = new BABYLON.Vector3(-14, 0.025, -9);
+    ruler.position = new BABYLON.Vector3(-13, 0.025, -9);
     ruler.rotation.y = Math.PI / 6;
     const rulerMat = new BABYLON.StandardMaterial("rulerMat", scene);
     rulerMat.diffuseColor = new BABYLON.Color3(0.6, 0.5, 0.3); // Wood/brass
     ruler.material = rulerMat;
 
     const compass = BABYLON.MeshBuilder.CreateTorus("compass", {diameter: 2, thickness: 0.2}, scene);
-    compass.position = new BABYLON.Vector3(-13, 0.1, 9);
+    compass.position = new BABYLON.Vector3(-14, 0.1, 7);
     const compassMat = new BABYLON.StandardMaterial("compMat", scene);
     compassMat.diffuseColor = new BABYLON.Color3(0.8, 0.7, 0.2); // Brass
     compassMat.specularColor = new BABYLON.Color3(1, 1, 0.8);
@@ -167,11 +178,22 @@ async function initBabylon() {
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
         isLandscape = !isLandscape;
+        
+        // Reset and snap camera to perfectly frame the map
+        camera.setTarget(BABYLON.Vector3.Zero());
+        
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
+          camera.alpha = -Math.PI / 2;
+          camera.beta = Math.PI / 3;
+          camera.radius = 30;
         } else {
           // Portrait mode: scale X down, scale Z up
           baseMap.scaling = new BABYLON.Vector3(16/24, 1, 24/16);
+          // Snap camera to look perfectly straight down
+          camera.alpha = -Math.PI / 2;
+          camera.beta = 0.01; // Avoid exact 0 to prevent gimbal lock
+          camera.radius = 35;
         }
       });
     }
