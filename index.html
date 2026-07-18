@@ -11,9 +11,6 @@
     <div id="app-container">
       <!-- Sidecar Chat Panel -->
       <aside id="chat-panel">
-        <div id="status-bar">
-          <div id="task-monitor">ACTIVE TASKS: <span id="task-count">0</span></div>
-        </div>
         <header id="chat-header">
           <h2 data-i18n="chat.title">Cartographer Assistant</h2>
           <div class="model-selection-group">
@@ -26,12 +23,15 @@
               <!-- Populated dynamically via models.yaml -->
             </select>
           </div>
+          <div id="task-monitor">ACTIVE TASKS: <span id="task-count">0</span></div>
         </header>
-        <div id="chat-history"></div>
+
         <div id="chat-input-container">
           <textarea id="chat-input" data-i18n-placeholder="chat.placeholder" placeholder="Ask for a map or style advice..."></textarea>
           <button id="send-btn" data-i18n="chat.send">Send</button>
         </div>
+
+        <div id="chat-history"></div>
       </aside>
       
       <!-- Main Canvas Area -->

@@ -50,19 +50,12 @@ body {
   letter-spacing: 0.5px;
 }
 
-#status-bar {
-  background: var(--bg-color);
-  padding: 8px 16px;
-  border-bottom: 1px solid var(--border-color);
-  display: flex;
-  justify-content: flex-end;
-}
-
 #task-monitor {
   color: var(--accent-color);
   font-weight: 800;
   font-size: 0.9rem;
   letter-spacing: 1px;
+  margin-top: 14px;
 }
 
 .model-selection-group {
@@ -85,8 +78,8 @@ body {
 
 .reasoning-tab {
   flex: 1;
-  padding: 10px 0;
-  font-size: 0.85rem;
+  padding: 5px 0;
+  font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.5px;
   cursor: pointer;
@@ -165,10 +158,11 @@ body {
 
 #chat-input-container {
   padding: 16px;
-  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background-color: var(--panel-bg);
 }
 
 #chat-input {
