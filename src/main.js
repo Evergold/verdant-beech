@@ -733,3 +733,15 @@ if (createFolderBtn) {
 }
 
 main();
+
+// Handle Vite HMR to prevent Babylon.js WebGPU context leaks causing browser crashes
+if (import.meta.hot) {
+  import.meta.hot.dispose(() => {
+    if (engine) {
+      engine.dispose();
+    }
+    if (ollamaStatusInterval) {
+      clearInterval(ollamaStatusInterval);
+    }
+  });
+}
