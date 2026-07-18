@@ -9,8 +9,24 @@
   <body>
     <!-- Modular UI Layout -->
     <div id="app-container">
-      <!-- Sidecar Chat Panel -->
-      <aside id="chat-panel">
+      <!-- Left Toolbar -->
+      <nav id="side-toolbar">
+        <button id="nav-assistant" class="nav-btn active" title="Assistant Tool">
+          <span class="icon">🤖</span>
+          <span class="badge hidden" id="assistant-badge">!</span>
+        </button>
+        <button id="nav-library" class="nav-btn" title="Library Manager">
+          <span class="icon">📚</span>
+        </button>
+        <button id="nav-style" class="nav-btn" title="Style Guidelines">
+          <span class="icon">🎨</span>
+        </button>
+      </nav>
+
+      <!-- Panels Container -->
+      <div id="panel-container">
+        <!-- Sidecar Chat Panel -->
+        <aside id="assistant-panel" class="panel active">
         <header id="chat-header">
           <h2 data-i18n="chat.title">Assistant Tool</h2>
           <div class="model-selection-group">
@@ -49,7 +65,28 @@
           <textarea id="chat-input" data-i18n-placeholder="chat.placeholder" placeholder="Ask for a map or style advice..."></textarea>
           <button id="send-btn" data-i18n="chat.send">Send</button>
         </div>
-      </aside>
+        </aside>
+
+        <!-- Library Manager -->
+        <aside id="library-panel" class="panel">
+          <header class="panel-header">
+            <h2>Library Manager</h2>
+          </header>
+          <div class="panel-content">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Manage portfolios, tags, and assets here.</p>
+          </div>
+        </aside>
+
+        <!-- Style Guidelines -->
+        <aside id="style-panel" class="panel">
+          <header class="panel-header">
+            <h2>Style Guidelines</h2>
+          </header>
+          <div class="panel-content">
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Configure Verdant's generation rules.</p>
+          </div>
+        </aside>
+      </div>
       
       <!-- Main Canvas Area -->
       <main id="canvas-panel">

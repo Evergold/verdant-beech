@@ -38,3 +38,7 @@ blob-report/
 playwright/.cache/
 coverage/
 .nyc_output/
+
+# Library Manager
+library/*
+!library/.gitkeep

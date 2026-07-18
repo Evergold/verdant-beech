@@ -28,10 +28,27 @@ let particleSystem = null;
 let overlayMesh = null;
 let markers = [];
 
-// Initialize Babylon.js WebGL Engine
-function initBabylon() {
+// Initialize Babylon.js WebGL/WebGPU Engine
+async function initBabylon() {
   const canvas = document.getElementById("renderCanvas");
-  engine = new BABYLON.Engine(canvas, true);
+  
+  const webGPUSupported = await BABYLON.WebGPUEngine.IsSupportedAsync;
+  let useWebGPU = false;
+  if (webGPUSupported) {
+    try {
+      engine = new BABYLON.WebGPUEngine(canvas);
+      await engine.initAsync();
+      console.log("Babylon.js initialized with WebGPU");
+      useWebGPU = true;
+    } catch (e) {
+      console.warn("WebGPU initialization failed, falling back to WebGL:", e);
+    }
+  }
+  
+  if (!useWebGPU) {
+    engine = new BABYLON.Engine(canvas, true);
+    console.log("Babylon.js initialized with WebGL");
+  }
 
   const createScene = function () {
     scene = new BABYLON.Scene(engine);
@@ -152,7 +169,7 @@ async function loadModels() {
 async function main() {
   await initI18n();
   await loadModels();
-  initBabylon();
+  await initBabylon();
   console.log("Verdant Beech initialized successfully.");
 }
 
@@ -403,6 +420,16 @@ function appendMessage(role, content) {
   msgDiv.textContent = content; // Safely add text
   chatHistory.appendChild(msgDiv);
   chatHistory.scrollTop = chatHistory.scrollHeight;
+
+  // Show notification badge if the assistant panel isn't active and this is from the assistant
+  if (role === "assistant") {
+    const assistantBtn = document.getElementById("nav-assistant");
+    if (assistantBtn && !assistantBtn.classList.contains("active")) {
+      const badge = document.getElementById("assistant-badge");
+      if (badge) badge.classList.remove("hidden");
+    }
+  }
+
   if (role !== "system" && role !== "thinking") {
     messages.push({ role, content });
   }
@@ -629,5 +656,31 @@ function executeCanvasTools(toolCalls) {
     }
   });
 }
+
+// Navigation Logic
+const navBtns = document.querySelectorAll(".nav-btn");
+const panels = document.querySelectorAll(".panel");
+const assistantBadge = document.getElementById("assistant-badge");
+
+navBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    // Hide all panels and deactivate buttons
+    navBtns.forEach(b => b.classList.remove("active"));
+    panels.forEach(p => p.classList.remove("active"));
+    
+    // Activate clicked
+    btn.classList.add("active");
+    const panelId = btn.id.replace("nav-", "") + "-panel";
+    const targetPanel = document.getElementById(panelId);
+    if (targetPanel) {
+      targetPanel.classList.add("active");
+    }
+    
+    // Clear badge if assistant clicked
+    if (btn.id === "nav-assistant" && assistantBadge) {
+      assistantBadge.classList.add("hidden");
+    }
+  });
+});
 
 main();
