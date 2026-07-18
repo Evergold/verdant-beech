@@ -375,3 +375,32 @@ def test_rag_bad_json_in_tool():
         assert response.status_code == 200
         assert call_count == 2
 
+def test_library_folders():
+    import shutil
+    import os
+    from server.main import LIBRARY_DIR
+    
+    # Clean state
+    if os.path.exists(LIBRARY_DIR):
+        shutil.rmtree(LIBRARY_DIR)
+        
+    response = client.get("/api/library/folders")
+    assert response.status_code == 200
+    assert response.json().get("folders") == []
+    
+    response = client.post("/api/library/folders", json={"name": "test_portfolio_1"})
+    assert response.status_code == 200
+    assert response.json().get("status") == "success"
+    
+    # Test duplicate
+    response2 = client.post("/api/library/folders", json={"name": "test_portfolio_1"})
+    assert response2.json().get("error") == "Folder already exists"
+    
+    # Test invalid name
+    response3 = client.post("/api/library/folders", json={"name": "bad/name"})
+    assert response3.json().get("error") == "Invalid folder name"
+    
+    # Test list again
+    response4 = client.get("/api/library/folders")
+    assert response4.status_code == 200
+    assert "test_portfolio_1" in response4.json().get("folders", [])

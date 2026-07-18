@@ -73,7 +73,16 @@
             <h2>Library Manager</h2>
           </header>
           <div class="panel-content">
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Manage portfolios, tags, and assets here.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">Manage portfolios, tags, and assets here.</p>
+            
+            <div class="library-controls">
+              <input type="text" id="new-folder-input" placeholder="New Portfolio Name..." />
+              <button id="create-folder-btn">Create</button>
+            </div>
+            
+            <div id="library-folders-list" class="folder-list">
+              <!-- Folders populated via JS -->
+            </div>
           </div>
         </aside>
 

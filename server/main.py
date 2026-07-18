@@ -380,6 +380,46 @@ async def ollama_pull(req: Request):
                     
     return StreamingResponse(stream_pull(), media_type="application/x-ndjson")
 
+# --- Library Management Endpoints ---
+LIBRARY_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "library")
+
+@app.get("/api/library/folders")
+async def list_library_folders():
+    try:
+        if not os.path.exists(LIBRARY_DIR):
+            os.makedirs(LIBRARY_DIR)
+        folders = []
+        for entry in os.scandir(LIBRARY_DIR):
+            if entry.is_dir():
+                folders.append(entry.name)
+        return {"folders": sorted(folders)}
+    except Exception as e:
+        return {"error": str(e)}
+
+class CreateFolderRequest(BaseModel):
+    name: str
+
+@app.post("/api/library/folders")
+async def create_library_folder(req: CreateFolderRequest):
+    try:
+        if not req.name or "/" in req.name or "\\" in req.name or ".." in req.name:
+            return {"error": "Invalid folder name"}
+        
+        folder_path = os.path.join(LIBRARY_DIR, req.name)
+        if os.path.exists(folder_path):
+            return {"error": "Folder already exists"}
+            
+        os.makedirs(folder_path)
+        
+        # Create a default portfolio config
+        config_path = os.path.join(folder_path, "portfolio_config.yaml")
+        with open(config_path, "w") as f:
+            f.write(f"name: {req.name}\\ndescription: ''\\ntags: []\\n")
+            
+        return {"status": "success", "folder": req.name}
+    except Exception as e:
+        return {"error": str(e)}
+
 # --- Static File Serving (Single-Process Production Setup) ---
 # In production, we serve the Vite built files from ../dist
 DIST_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dist")

@@ -169,6 +169,7 @@ async function loadModels() {
 async function main() {
   await initI18n();
   await loadModels();
+  await loadLibraryFolders();
   await initBabylon();
   console.log("Verdant Beech initialized successfully.");
 }
@@ -682,5 +683,53 @@ navBtns.forEach(btn => {
     }
   });
 });
+
+// --- Library Management ---
+async function loadLibraryFolders() {
+  const listEl = document.getElementById("library-folders-list");
+  if (!listEl) return;
+  
+  try {
+    const res = await fetch("http://localhost:8001/api/library/folders");
+    const data = await res.json();
+    if (data.folders) {
+      listEl.innerHTML = "";
+      data.folders.forEach(folder => {
+        const div = document.createElement("div");
+        div.className = "folder-item";
+        div.innerHTML = `<span class="folder-icon">📁</span><span>${folder}</span>`;
+        listEl.appendChild(div);
+      });
+    }
+  } catch(e) {
+    console.error("Failed to load library folders", e);
+  }
+}
+
+const createFolderBtn = document.getElementById("create-folder-btn");
+if (createFolderBtn) {
+  createFolderBtn.addEventListener("click", async () => {
+    const input = document.getElementById("new-folder-input");
+    const name = input.value.trim();
+    if (!name) return;
+    
+    try {
+      const res = await fetch("http://localhost:8001/api/library/folders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      const data = await res.json();
+      if (data.status === "success") {
+        input.value = "";
+        loadLibraryFolders();
+      } else {
+        showToast(data.error || "Failed to create folder", "error");
+      }
+    } catch(e) {
+      showToast("Connection error", "error");
+    }
+  });
+}
 
 main();
