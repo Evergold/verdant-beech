@@ -1,4 +1,4 @@
-# Verdant Beech - AI Cartography Agent 🗺️
+# Verdant Beech - Cartography Assistant 🗺️
 
 Verdant Beech is a next-generation map-making application powered by Agentic AI. It features a hardware-accelerated Babylon.js map canvas for massive map viewing and 2.5D displacement, a unified FastAPI + Vite architecture, and seamless multi-modal AI integration.
 
