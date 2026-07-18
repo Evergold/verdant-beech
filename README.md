@@ -7,6 +7,7 @@ Verdant Beech is a next-generation map-making application powered by Agentic AI.
 - **Hardware-Accelerated WebGL**: Uses Babylon.js for buttery-smooth panning and zooming across massive stitched 4K textures.
 - **Non-Destructive Layers**: Paint features onto the map on separate transparent layers, allowing for reversible Photoshop-style editing.
 - **Real-Time VLM Sync**: A debounced local Vision-Language Model watches your canvas strokes to provide instant, context-aware feedback.
+- **Ecosystem Agnostic**: Choose your assistant backend! Configured out-of-the-box for **Gemini 1.5 Flash/Pro**, **Gemma 4 E4B (4.5B Local)**, and **Llama 3** variants.
 
 ## Setup Instructions
 

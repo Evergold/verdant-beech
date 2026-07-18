@@ -88,7 +88,16 @@ async function main() {
 const chatHistory = document.getElementById("chat-history");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
+const modelSelect = document.getElementById("model-select");
+const taskCountSpan = document.getElementById("task-count");
+
 let messages = [];
+let activeTasks = 0;
+
+function updateTaskCount(delta) {
+  activeTasks += delta;
+  taskCountSpan.textContent = activeTasks;
+}
 
 function appendMessage(role, content) {
   const msgDiv = document.createElement("div");
@@ -117,11 +126,15 @@ async function handleSend() {
   chatHistory.appendChild(thinkingDiv);
   chatHistory.scrollTop = chatHistory.scrollHeight;
 
+  updateTaskCount(1);
   try {
     const res = await fetch("http://localhost:8001/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ messages: messages })
+      body: JSON.stringify({ 
+        messages: messages,
+        model_name: modelSelect.value
+      })
     });
     const data = await res.json();
     
@@ -130,6 +143,8 @@ async function handleSend() {
   } catch (err) {
     document.getElementById(thinkingId).remove();
     appendMessage("assistant", "Connection error. Make sure the backend is running on port 8001.");
+  } finally {
+    updateTaskCount(-1);
   }
 }
 

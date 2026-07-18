@@ -30,6 +30,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
+    model_name: str = "gemini/gemini-1.5-flash-latest"
 
 CARTOGRAPHER_PROMPT = """You are Verdant Beech, an expert cartographer, designer, and photographer. 
 You assist the user in building maps, advising on style, color theory, typography, and procedural generation. 
@@ -42,7 +43,7 @@ async def chat_endpoint(req: ChatRequest):
     
     try:
         response = litellm.completion(
-            model="gemini/gemini-1.5-flash",
+            model=req.model_name,
             messages=messages
         )
         return {"reply": response.choices[0].message.content}

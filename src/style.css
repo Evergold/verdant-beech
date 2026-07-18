@@ -50,6 +50,33 @@ body {
   letter-spacing: 0.5px;
 }
 
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.85rem;
+}
+
+#model-select {
+  background: var(--bg-color);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  padding: 4px 6px;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+#model-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+}
+
+#task-monitor {
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
 #chat-history {
   flex: 1;
   overflow-y: auto;
