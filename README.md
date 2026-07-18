@@ -10,6 +10,13 @@ Verdant Beech is a next-generation map-making application powered by Agentic AI.
 
 ## Setup Instructions
 
+### Prerequisites & Environment
+The backend Cartography Agent utilizes `litellm` to interface with generative models. You must export your Google API key to your environment before starting the server:
+```bash
+export GEMINI_API_KEY="your_api_key_here"
+```
+*(Note: `GOOGLE_API_KEY` can also be used as an alternative depending on your Google Cloud setup).*
+
 ### 1. Python Backend
 ```bash
 cd server

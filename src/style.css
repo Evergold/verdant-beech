@@ -113,3 +113,27 @@ body {
   touch-action: none;
   outline: none;
 }
+
+/* Chat Messages */
+.chat-message {
+  padding: 10px 14px;
+  border-radius: 8px;
+  max-width: 90%;
+  line-height: 1.4;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.message-user {
+  align-self: flex-end;
+  background-color: var(--accent-color);
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+
+.message-assistant {
+  align-self: flex-start;
+  background-color: var(--border-color);
+  color: var(--text-main);
+  border-bottom-left-radius: 2px;
+}

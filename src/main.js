@@ -84,4 +84,61 @@ async function main() {
   console.log("Verdant Beech initialized successfully.");
 }
 
+// --- Chat Logic ---
+const chatHistory = document.getElementById("chat-history");
+const chatInput = document.getElementById("chat-input");
+const sendBtn = document.getElementById("send-btn");
+let messages = [];
+
+function appendMessage(role, content) {
+  const msgDiv = document.createElement("div");
+  msgDiv.className = `chat-message message-${role}`;
+  msgDiv.textContent = content; // Safely add text
+  chatHistory.appendChild(msgDiv);
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+  if (role !== "system" && role !== "thinking") {
+    messages.push({ role, content });
+  }
+}
+
+async function handleSend() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  
+  appendMessage("user", text);
+  chatInput.value = "";
+  
+  // Temporary "thinking" message
+  const thinkingId = "thinking-" + Date.now();
+  const thinkingDiv = document.createElement("div");
+  thinkingDiv.id = thinkingId;
+  thinkingDiv.className = `chat-message message-assistant`;
+  thinkingDiv.textContent = "...";
+  chatHistory.appendChild(thinkingDiv);
+  chatHistory.scrollTop = chatHistory.scrollHeight;
+
+  try {
+    const res = await fetch("http://localhost:8001/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ messages: messages })
+    });
+    const data = await res.json();
+    
+    document.getElementById(thinkingId).remove();
+    appendMessage("assistant", data.reply);
+  } catch (err) {
+    document.getElementById(thinkingId).remove();
+    appendMessage("assistant", "Connection error. Make sure the backend is running on port 8001.");
+  }
+}
+
+sendBtn.addEventListener("click", handleSend);
+chatInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    handleSend();
+  }
+});
+
 main();

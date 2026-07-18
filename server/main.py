@@ -3,6 +3,9 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import os
+from pydantic import BaseModel
+from typing import List
+import litellm
 
 app = FastAPI(title="Verdant Beech API", description="Backend for the Cartography Agent")
 
@@ -21,10 +24,30 @@ async def health_check():
     return {"status": "ok", "service": "verdant-beech"}
 
 # --- Agent / Litellm Stubs ---
+class ChatMessage(BaseModel):
+    role: str
+    content: str
+
+class ChatRequest(BaseModel):
+    messages: List[ChatMessage]
+
+CARTOGRAPHER_PROMPT = """You are Verdant Beech, an expert cartographer, designer, and photographer. 
+You assist the user in building maps, advising on style, color theory, typography, and procedural generation. 
+You MUST adhere strictly to cartographic excellence. Keep responses concise and practical."""
+
 @app.post("/api/chat")
-async def chat_endpoint(message: str):
-    # TODO: Implement local VLM sync + litellm routing
-    return {"reply": "As an expert cartographer, I am analyzing your request..."}
+async def chat_endpoint(req: ChatRequest):
+    messages = [{"role": "system", "content": CARTOGRAPHER_PROMPT}]
+    messages.extend([{"role": m.role, "content": m.content} for m in req.messages])
+    
+    try:
+        response = litellm.completion(
+            model="gemini/gemini-1.5-flash",
+            messages=messages
+        )
+        return {"reply": response.choices[0].message.content}
+    except Exception as e:
+        return {"reply": f"Error: {str(e)}"}
 
 @app.post("/api/generate")
 async def generate_map(prompt: str):
