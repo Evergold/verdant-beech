@@ -10,6 +10,8 @@ import yaml
 import httpx
 import subprocess
 import asyncio
+import json
+from server.rag import rag_store
 
 app = FastAPI(title="Verdant Beech API", description="Backend for the Cartography Agent")
 OLLAMA_URL = "http://localhost:11434"
@@ -97,6 +99,20 @@ CRITICAL RULES:
 Assist the user in preparing maps, advising on style, color theory, typography, and procedural generation."""
 
 CANVAS_TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "query_cartography_knowledge",
+            "description": "Query the Verdant Beech Cartography Knowledge Base for rules on typography, color theory, lighting, styles, or terrain.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "query": {"type": "string", "description": "The specific cartography topic to look up (e.g., 'typography', 'elevation colors')"}
+                },
+                "required": ["query"]
+            }
+        }
+    },
     {
         "type": "function",
         "function": {
@@ -237,6 +253,30 @@ async def chat_endpoint(req: ChatRequest):
         response = litellm.completion(**kwargs)
         msg = response.choices[0].message
         
+        # Handle backend RAG tool execution
+        if hasattr(msg, "tool_calls") and msg.tool_calls:
+            rag_calls = [tc for tc in msg.tool_calls if tc.function.name == "query_cartography_knowledge"]
+            if rag_calls:
+                # Append the assistant's tool call message
+                messages.append(msg.model_dump())
+                for tc in rag_calls:
+                    try:
+                        args = json.loads(tc.function.arguments)
+                        query_text = args.get("query", "")
+                    except:
+                        query_text = ""
+                    rag_result = rag_store.query(query_text)
+                    messages.append({
+                        "role": "tool",
+                        "tool_call_id": tc.id,
+                        "name": tc.function.name,
+                        "content": rag_result if rag_result else "No specific rules found in knowledge base."
+                    })
+                kwargs["messages"] = messages
+                # Second pass with RAG context
+                response = litellm.completion(**kwargs)
+                msg = response.choices[0].message
+                
         tool_calls = []
         if hasattr(msg, "tool_calls") and msg.tool_calls:
             for tc in msg.tool_calls:

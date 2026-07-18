@@ -259,3 +259,119 @@ def test_ensure_models_yaml():
         ensure_models_yaml()
         mock_open.assert_called_once()
 
+@pytest.mark.asyncio
+async def test_chat_endpoint_rag_tool():
+    """Test that a RAG tool call in the chat endpoint properly loops and fetches context."""
+    from pydantic import BaseModel
+    
+    class MockFunction:
+        def __init__(self, name, arguments):
+            self.name = name
+            self.arguments = arguments
+            
+    class MockToolCall:
+        def __init__(self, name, arguments):
+            self.id = "call_rag123"
+            self.function = MockFunction(name, arguments)
+            
+    class MockMessage(BaseModel):
+        content: str | None = None
+        tool_calls: list | None = None
+        def model_dump(self):
+            return {"role": "assistant", "content": self.content, "tool_calls": [{"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments}} for tc in (self.tool_calls or [])]}
+            
+    class MockChoice:
+        def __init__(self, message):
+            self.message = message
+            
+    class MockResponse:
+        def __init__(self, choices):
+            self.choices = choices
+            
+    responses = [
+        # First completion: LLM calls query_cartography_knowledge
+        MockResponse([MockChoice(MockMessage(
+            tool_calls=[MockToolCall("query_cartography_knowledge", '{"query": "Color Theory for Terrain"}')]
+        ))]),
+        # Second completion: LLM responds with the RAG knowledge
+        MockResponse([MockChoice(MockMessage(
+            content="Based on the rules, lowlands should be desaturated green."
+        ))])
+    ]
+    
+    call_count = 0
+    def mock_completion(*args, **kwargs):
+        nonlocal call_count
+        res = responses[call_count]
+        call_count += 1
+        return res
+        
+    with patch("server.main.litellm.completion", side_effect=mock_completion):
+        response = client.post("/api/chat", json={
+            "messages": [{"role": "user", "content": "What are the rules for elevation colors?"}],
+            "model_name": "test_model"
+        })
+        assert response.status_code == 200
+        data = response.json()
+        assert data["reply"] == "Based on the rules, lowlands should be desaturated green."
+        assert call_count == 2
+        
+def test_rag_empty_query():
+    from server.rag import rag_store
+    res = rag_store.query("xyz non existent 123", n_results=1)
+    assert isinstance(res, list) or isinstance(res, str)
+    
+def test_rag_bad_json_in_tool():
+    """Test the try/except around json.loads in the rag tool logic."""
+    from pydantic import BaseModel
+    
+    class MockFunction:
+        def __init__(self, name, arguments):
+            self.name = name
+            self.arguments = arguments
+            
+    class MockToolCall:
+        def __init__(self, name, arguments):
+            self.id = "call_rag123"
+            self.function = MockFunction(name, arguments)
+            
+    class MockMessage(BaseModel):
+        content: str | None = None
+        tool_calls: list | None = None
+        def model_dump(self):
+            return {"role": "assistant", "content": self.content, "tool_calls": [{"id": tc.id, "type": "function", "function": {"name": tc.function.name, "arguments": tc.function.arguments}} for tc in (self.tool_calls or [])]}
+            
+    class MockChoice:
+        def __init__(self, message):
+            self.message = message
+            
+    class MockResponse:
+        def __init__(self, choices):
+            self.choices = choices
+            
+    responses = [
+        # First completion: LLM calls query_cartography_knowledge with bad JSON
+        MockResponse([MockChoice(MockMessage(
+            tool_calls=[MockToolCall("query_cartography_knowledge", 'bad json!!!')]
+        ))]),
+        # Second completion: LLM responds with fallback
+        MockResponse([MockChoice(MockMessage(
+            content="Fallback."
+        ))])
+    ]
+    
+    call_count = 0
+    def mock_completion(*args, **kwargs):
+        nonlocal call_count
+        res = responses[call_count]
+        call_count += 1
+        return res
+        
+    with patch("server.main.litellm.completion", side_effect=mock_completion):
+        response = client.post("/api/chat", json={
+            "messages": [{"role": "user", "content": "bad json test"}],
+            "model_name": "test_model"
+        })
+        assert response.status_code == 200
+        assert call_count == 2
+
