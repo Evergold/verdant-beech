@@ -22,19 +22,21 @@ async function initI18n() {
   });
 }
 
+let engine, scene, camera, light, baseMap, baseMat;
+
 // Initialize Babylon.js WebGL Engine
 function initBabylon() {
   const canvas = document.getElementById("renderCanvas");
-  const engine = new BABYLON.Engine(canvas, true);
+  engine = new BABYLON.Engine(canvas, true);
 
   const createScene = function () {
-    const scene = new BABYLON.Scene(engine);
+    scene = new BABYLON.Scene(engine);
     
     // Set a dark space/cartography void background
     scene.clearColor = new BABYLON.Color4(0.05, 0.05, 0.07, 1);
 
     // This creates and positions a free camera (non-mesh)
-    const camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 50, 0), scene);
+    camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 50, 0), scene);
     camera.setTarget(BABYLON.Vector3.Zero());
     camera.attachControl(canvas, true);
     
@@ -47,19 +49,19 @@ function initBabylon() {
     camera.orthoRight = orthoSize * (canvas.width / canvas.height);
 
     // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-    const light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+    light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
     light.intensity = 0.7;
 
     // Base Map Plane (where the stitched 4K textures will go)
-    const baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 40, height: 40}, scene);
-    const baseMat = new BABYLON.StandardMaterial("baseMat", scene);
+    baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 40, height: 40}, scene);
+    baseMat = new BABYLON.StandardMaterial("baseMat", scene);
     baseMat.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2); // Placeholder
     baseMap.material = baseMat;
 
     return scene;
   };
 
-  const scene = createScene();
+  createScene();
 
   engine.runRenderLoop(function () {
     scene.render();
@@ -68,7 +70,6 @@ function initBabylon() {
   window.addEventListener("resize", function () {
     engine.resize();
     // Update orthographic camera ratio
-    const camera = scene.getCameraByName("camera1");
     if (camera && camera.mode === BABYLON.Camera.ORTHOGRAPHIC_CAMERA) {
       const orthoSize = camera.orthoTop;
       camera.orthoLeft = -orthoSize * (canvas.width / canvas.height);
@@ -463,6 +464,10 @@ async function handleSend() {
        }
     }
     
+    if (data.tool_calls && data.tool_calls.length > 0) {
+      executeCanvasTools(data.tool_calls);
+    }
+    
     document.getElementById(thinkingId).remove();
     appendMessage("assistant", data.reply);
   } catch (err) {
@@ -480,5 +485,20 @@ chatInput.addEventListener("keypress", (e) => {
     handleSend();
   }
 });
+
+function executeCanvasTools(toolCalls) {
+  toolCalls.forEach(tc => {
+    let args;
+    try {
+      args = JSON.parse(tc.arguments);
+    } catch(e) { return; }
+    
+    console.log(`Executing tool: ${tc.name}`, args);
+    showToast(`Green is adjusting: ${tc.name.replace(/_/g, " ")}`, "info");
+    
+    // For now we just log it and show the toast. We will implement the actual WebGL logic later.
+    // TODO: implement set_lighting, apply_filter, move_camera etc.
+  });
+}
 
 main();

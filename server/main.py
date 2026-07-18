@@ -93,7 +93,131 @@ CRITICAL RULES:
 - If greeted (e.g., "hello"), respond with a single, highly brief sentence offering map creation assistance. Do not talk about yourself and avoid sugary or overly promotional language.
 - Verdant frequently travels across random locations in Middle-earth (e.g., Rivendell, Osgiliath, Lothlórien). If a task requires heavy expertise, you must occasionally mention that you need to go fetch Verdant from their current location.
 - Do not use terms like 'master' or gendered pronouns; refer to them interchangeably as Verdant, Verdant Beech, or the Professor (though as a student, you heavily prefer 'the Professor' or 'Verdant').
+- You have tools to manipulate the map canvas (lighting, filters, overlays). If the user asks for a simple visual effect, USE YOUR TOOLS to instantly fulfill the request.
 Assist the user in preparing maps, advising on style, color theory, typography, and procedural generation."""
+
+CANVAS_TOOLS = [
+    {
+        "type": "function",
+        "function": {
+            "name": "set_lighting",
+            "description": "Adjust the ambient lighting and atmosphere of the 3D map canvas.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "time_of_day": {"type": "string", "enum": ["morning", "noon", "evening", "night"]},
+                    "intensity": {"type": "number", "description": "Light intensity from 0.0 to 1.0"}
+                },
+                "required": ["time_of_day"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "apply_filter",
+            "description": "Apply a post-processing visual filter to the map.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "filter_type": {"type": "string", "enum": ["none", "sepia", "grayscale", "vignette", "bloom"]}
+                },
+                "required": ["filter_type"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "toggle_overlay",
+            "description": "Toggle grid or UI overlays on the map.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "overlay_type": {"type": "string", "enum": ["hex_grid", "square_grid", "compass"]},
+                    "enabled": {"type": "boolean"}
+                },
+                "required": ["overlay_type", "enabled"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "move_camera",
+            "description": "Pan and zoom the camera to a specific region on the map.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "x": {"type": "number", "description": "X coordinate (-20 to 20)"},
+                    "y": {"type": "number", "description": "Y coordinate (-20 to 20)"},
+                    "zoom": {"type": "number", "description": "Zoom level (5 to 40)"}
+                },
+                "required": ["x", "y", "zoom"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "set_map_tint",
+            "description": "Apply a global color tint to the base map.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "hex_color": {"type": "string", "description": "Hex color code, e.g., #FFFFFF"}
+                },
+                "required": ["hex_color"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "add_map_marker",
+            "description": "Drop a pin or marker on the map to label a point of interest.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "x": {"type": "number"},
+                    "y": {"type": "number"},
+                    "label": {"type": "string"}
+                },
+                "required": ["x", "y", "label"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "toggle_weather",
+            "description": "Turn on an animated weather particle system.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "weather_type": {"type": "string", "enum": ["clear", "rain", "snow", "fog"]}
+                },
+                "required": ["weather_type"]
+            }
+        }
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "add_text_label",
+            "description": "Add floating text to label a region, ocean, or continent.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "x": {"type": "number"},
+                    "y": {"type": "number"},
+                    "text": {"type": "string"}
+                },
+                "required": ["x", "y", "text"]
+            }
+        }
+    }
+]
 
 @app.post("/api/chat")
 async def chat_endpoint(req: ChatRequest):
@@ -102,7 +226,8 @@ async def chat_endpoint(req: ChatRequest):
     
     kwargs = {
         "model": req.model_name,
-        "messages": messages
+        "messages": messages,
+        "tools": CANVAS_TOOLS
     }
     
     if req.reasoning:
@@ -110,7 +235,23 @@ async def chat_endpoint(req: ChatRequest):
         
     try:
         response = litellm.completion(**kwargs)
-        return {"reply": response.choices[0].message.content}
+        msg = response.choices[0].message
+        
+        tool_calls = []
+        if hasattr(msg, "tool_calls") and msg.tool_calls:
+            for tc in msg.tool_calls:
+                tool_calls.append({
+                    "id": tc.id,
+                    "name": tc.function.name,
+                    "arguments": tc.function.arguments
+                })
+                
+        reply_content = msg.content if msg.content else "I have updated the canvas as requested."
+        
+        return {
+            "reply": reply_content,
+            "tool_calls": tool_calls
+        }
     except Exception as e:
         return {"reply": f"Error: {str(e)}"}
 
