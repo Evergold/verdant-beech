@@ -23,6 +23,10 @@ async function initI18n() {
 }
 
 let engine, scene, camera, light, baseMap, baseMat;
+let pipeline = null;
+let particleSystem = null;
+let overlayMesh = null;
+let markers = [];
 
 // Initialize Babylon.js WebGL Engine
 function initBabylon() {
@@ -496,8 +500,131 @@ function executeCanvasTools(toolCalls) {
     console.log(`Executing tool: ${tc.name}`, args);
     showToast(`Green is adjusting: ${tc.name.replace(/_/g, " ")}`, "info");
     
-    // For now we just log it and show the toast. We will implement the actual WebGL logic later.
-    // TODO: implement set_lighting, apply_filter, move_camera etc.
+    if (!scene) return;
+    
+    switch(tc.name) {
+      case "set_lighting":
+        if (args.time_of_day === "morning") light.diffuse = new BABYLON.Color3(1, 0.9, 0.8);
+        else if (args.time_of_day === "noon") light.diffuse = new BABYLON.Color3(1, 1, 1);
+        else if (args.time_of_day === "evening") light.diffuse = new BABYLON.Color3(1, 0.5, 0.2);
+        else if (args.time_of_day === "night") light.diffuse = new BABYLON.Color3(0.1, 0.2, 0.5);
+        if (args.intensity !== undefined) light.intensity = args.intensity;
+        break;
+        
+      case "apply_filter":
+        if (!pipeline) {
+          pipeline = new BABYLON.DefaultRenderingPipeline("defaultPipeline", true, scene, [camera]);
+        }
+        pipeline.imageProcessingEnabled = false;
+        pipeline.bloomEnabled = false;
+        
+        if (args.filter_type === "sepia") {
+          pipeline.imageProcessingEnabled = true;
+          pipeline.imageProcessing.contrast = 1.2;
+          pipeline.imageProcessing.exposure = 1.1;
+        } else if (args.filter_type === "vignette") {
+          pipeline.imageProcessingEnabled = true;
+          pipeline.imageProcessing.vignetteEnabled = true;
+          pipeline.imageProcessing.vignetteWeight = 5;
+        } else if (args.filter_type === "bloom") {
+          pipeline.bloomEnabled = true;
+          pipeline.bloomThreshold = 0.5;
+          pipeline.bloomWeight = 0.5;
+        }
+        break;
+        
+      case "set_map_tint":
+        if (args.hex_color) {
+          baseMat.diffuseColor = BABYLON.Color3.FromHexString(args.hex_color);
+        }
+        break;
+        
+      case "move_camera":
+        if (camera.mode === BABYLON.Camera.ORTHOGRAPHIC_CAMERA) {
+           if (args.zoom) {
+              const canvas = document.getElementById("renderCanvas");
+              camera.orthoTop = args.zoom;
+              camera.orthoBottom = -args.zoom;
+              camera.orthoLeft = -args.zoom * (canvas.width / canvas.height);
+              camera.orthoRight = args.zoom * (canvas.width / canvas.height);
+           }
+           if (args.x !== undefined && args.y !== undefined) {
+              camera.position.x = args.x;
+              camera.position.z = args.y;
+           }
+        }
+        break;
+        
+      case "toggle_overlay":
+        if (overlayMesh) {
+          overlayMesh.dispose();
+          overlayMesh = null;
+        }
+        if (args.enabled) {
+          overlayMesh = BABYLON.MeshBuilder.CreateGround("overlay", {width: 40, height: 40}, scene);
+          overlayMesh.position.y = 0.1;
+          const gridMat = new BABYLON.StandardMaterial("gridMat", scene);
+          gridMat.wireframe = true;
+          gridMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+          gridMat.alpha = 0.3;
+          overlayMesh.material = gridMat;
+        }
+        break;
+        
+      case "add_map_marker":
+        const marker = BABYLON.MeshBuilder.CreateCylinder("marker", {diameterTop: 0, diameterBottom: 1, height: 2, tessellation: 4}, scene);
+        marker.position = new BABYLON.Vector3(args.x, 1, args.y);
+        const markerMat = new BABYLON.StandardMaterial("markerMat", scene);
+        markerMat.diffuseColor = BABYLON.Color3.Red();
+        marker.material = markerMat;
+        markers.push(marker);
+        break;
+        
+      case "toggle_weather":
+        if (particleSystem) {
+          particleSystem.stop();
+          particleSystem.dispose();
+          particleSystem = null;
+        }
+        if (args.weather_type && args.weather_type !== "clear") {
+          particleSystem = new BABYLON.ParticleSystem("weather", 2000, scene);
+          particleSystem.particleTexture = new BABYLON.Texture("https://raw.githubusercontent.com/BabylonJS/Babylon.js/master/packages/tools/playground/public/textures/flare.png", scene);
+          particleSystem.emitter = new BABYLON.Vector3(0, 20, 0); 
+          particleSystem.minEmitBox = new BABYLON.Vector3(-20, 0, -20);
+          particleSystem.maxEmitBox = new BABYLON.Vector3(20, 0, 20);
+          particleSystem.direction1 = new BABYLON.Vector3(-1, -10, -1);
+          particleSystem.direction2 = new BABYLON.Vector3(1, -10, 1);
+          particleSystem.minLifeTime = 1.0;
+          particleSystem.maxLifeTime = 2.0;
+          
+          if (args.weather_type === "snow") {
+             particleSystem.color1 = new BABYLON.Color4(1,1,1,1);
+             particleSystem.color2 = new BABYLON.Color4(1,1,1,0.5);
+          } else if (args.weather_type === "rain") {
+             particleSystem.color1 = new BABYLON.Color4(0.5,0.5,1,1);
+             particleSystem.colorDead = new BABYLON.Color4(0,0,0.2,0);
+             particleSystem.emitRate = 1000;
+          }
+          particleSystem.start();
+        }
+        break;
+        
+      case "add_text_label":
+        const labelPlane = BABYLON.MeshBuilder.CreatePlane("label", {width: 10, height: 2}, scene);
+        labelPlane.position = new BABYLON.Vector3(args.x, 0.2, args.y);
+        labelPlane.rotation.x = Math.PI / 2;
+        
+        const dt = new BABYLON.DynamicTexture("dt", {width: 1024, height: 256}, scene, false);
+        dt.hasAlpha = true;
+        dt.drawText(args.text, null, null, "bold 60px Arial", "white", "transparent", true);
+        
+        const mat = new BABYLON.StandardMaterial("mat", scene);
+        mat.diffuseTexture = dt;
+        mat.emissiveColor = BABYLON.Color3.White();
+        mat.backFaceCulling = false;
+        labelPlane.material = mat;
+        break;
+    }
   });
 }
 
