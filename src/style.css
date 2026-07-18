@@ -543,3 +543,43 @@ body {
 }
 .asset-save-controls button:hover { background: var(--border-color); }
 
+/* Canvas UI */
+.icon-btn {
+  background: rgba(30, 30, 35, 0.8);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  transition: all 0.2s;
+}
+.icon-btn:hover {
+  background: var(--surface-color);
+  border-color: var(--accent-color);
+}
+
+/* Style Guidelines UI */
+.style-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.style-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.style-select {
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 10px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+

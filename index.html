@@ -95,7 +95,15 @@
             <h2>Style Guidelines</h2>
           </header>
           <div class="panel-content">
-            <p style="color: var(--text-muted); font-size: 0.9rem;">Configure Verdant's generation rules.</p>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">Configure Verdant's generation rules.</p>
+            
+            <div class="style-controls">
+              <label class="style-label">Environment Lighting</label>
+              <select id="env-lighting-select" class="style-select">
+                <option value="uniform">Uniform Studio (Default)</option>
+                <option value="candle">Moody Candlelit</option>
+              </select>
+            </div>
           </div>
         </aside>
 
@@ -130,7 +138,10 @@
       </div>
       
       <!-- Main Canvas Area -->
-      <main id="canvas-panel">
+      <main id="canvas-panel" style="position: relative;">
+        <div id="canvas-ui-layer" style="position: absolute; top: 16px; right: 16px; z-index: 10;">
+          <button id="toggle-orientation-btn" class="icon-btn" title="Toggle Portrait/Landscape">🔄 Orientation</button>
+        </div>
         <canvas id="renderCanvas"></canvas>
       </main>
     </div>
