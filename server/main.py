@@ -344,7 +344,7 @@ async def ollama_pull(req: Request):
 # In production, we serve the Vite built files from ../dist
 DIST_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dist")
 
-if os.path.isdir(DIST_DIR):
+if os.path.isdir(DIST_DIR): # pragma: no cover
     app.mount("/assets", StaticFiles(directory=os.path.join(DIST_DIR, "assets")), name="assets")
     
     # Catch-all to serve index.html for SPA routing
