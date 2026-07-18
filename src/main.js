@@ -127,7 +127,7 @@ async function prewarmModel(modelId) {
     localStorage.setItem("selectedModel", modelSelect.value);
     renderReasoningTabs(modelSelect.value);
     document.getElementById("hardware-monitor").classList.add("hidden");
-    if (window.ollamaStatusInterval) clearInterval(window.ollamaStatusInterval);
+    if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
   }
 }
 
@@ -146,11 +146,11 @@ async function loadModels() {
         select.appendChild(opt);
       });
       
-      const savedModel = localStorage.getItem("selectedModel") || "ollama_chat/gemma4:e4b";
+      const savedModel = localStorage.getItem("selectedModel") || "gemini/gemini-3.5-flash";
       if ([...select.options].some(o => o.value === savedModel)) {
         select.value = savedModel;
       } else {
-        select.value = "ollama_chat/gemma4:e4b";
+        select.value = "gemini/gemini-3.5-flash";
       }
       
       select.dataset.old = select.value;
@@ -372,7 +372,7 @@ function renderReasoningTabs(modelId) {
 }
 
 modelSelect.addEventListener("change", async (e) => {
-  const oldModel = modelSelect.dataset.old || "ollama_chat/gemma4:e4b";
+  const oldModel = modelSelect.dataset.old || "gemini/gemini-3.5-flash";
   const newModel = e.target.value;
   modelSelect.dataset.old = newModel;
   localStorage.setItem("selectedModel", newModel);
