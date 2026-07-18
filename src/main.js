@@ -146,11 +146,11 @@ async function loadModels() {
         select.appendChild(opt);
       });
       
-      const savedModel = localStorage.getItem("selectedModel") || "gemini/gemini-3.5-flash";
+      const savedModel = localStorage.getItem("selectedModel") || "ollama_chat/gemma4:e4b";
       if ([...select.options].some(o => o.value === savedModel)) {
         select.value = savedModel;
       } else {
-        select.value = "gemini/gemini-3.5-flash";
+        select.value = "ollama_chat/gemma4:e4b";
       }
       
       select.dataset.old = select.value;
@@ -372,7 +372,7 @@ function renderReasoningTabs(modelId) {
 }
 
 modelSelect.addEventListener("change", async (e) => {
-  const oldModel = modelSelect.dataset.old || "gemini/gemini-3.5-flash";
+  const oldModel = modelSelect.dataset.old || "ollama_chat/gemma4:e4b";
   const newModel = e.target.value;
   modelSelect.dataset.old = newModel;
   localStorage.setItem("selectedModel", newModel);
