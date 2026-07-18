@@ -53,34 +53,77 @@ async function initBabylon() {
   const createScene = function () {
     scene = new BABYLON.Scene(engine);
     
-    // Set a dark space/cartography void background
-    scene.clearColor = new BABYLON.Color4(0.05, 0.05, 0.07, 1);
+    // Set a dark room background
+    scene.clearColor = new BABYLON.Color4(0.02, 0.02, 0.03, 1);
 
-    // This creates and positions a free camera (non-mesh)
-    camera = new BABYLON.FreeCamera("camera1", new BABYLON.Vector3(0, 50, 0), scene);
-    camera.setTarget(BABYLON.Vector3.Zero());
+    // Perspective Camera viewing the table
+    camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 3, 35, BABYLON.Vector3.Zero(), scene);
     camera.attachControl(canvas, true);
-    
-    // For a 2D Map editing feel, orthographic or heavily constrained perspective is best.
-    camera.mode = BABYLON.Camera.ORTHOGRAPHIC_CAMERA;
-    const orthoSize = 20;
-    camera.orthoTop = orthoSize;
-    camera.orthoBottom = -orthoSize;
-    camera.orthoLeft = -orthoSize * (canvas.width / canvas.height);
-    camera.orthoRight = orthoSize * (canvas.width / canvas.height);
+    camera.wheelPrecision = 20;
 
-    // This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-    light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
-    light.intensity = 0.7;
+    // Ambient Room Light (very dim)
+    const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
+    ambientLight.intensity = 0.1;
+    ambientLight.groundColor = new BABYLON.Color3(0.05, 0.05, 0.05);
 
-    // Base Map Plane (where the stitched 4K textures will go)
-    baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 40, height: 40}, scene);
+    // Drafting Lamp (SpotLight from top left)
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(-10, 15, -10), new BABYLON.Vector3(0.5, -1, 0.5), Math.PI / 2, 2, scene);
+    light.intensity = 0.8;
+    light.diffuse = new BABYLON.Color3(1, 0.95, 0.8); // Warm bulb
+
+    // Candle Light (PointLight, flickering)
+    const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(12, 2, 8), scene);
+    candleLight.diffuse = new BABYLON.Color3(1, 0.6, 0.2);
+    candleLight.intensity = 0.5;
+
+    // Shadows
+    const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+    shadowGenerator.useBlurExponentialShadowMap = true;
+    shadowGenerator.blurKernel = 32;
+
+    const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
+    candleShadows.usePercentageCloserFiltering = true;
+
+    // The Workshop Table (Large Ground)
+    const table = BABYLON.MeshBuilder.CreateGround("workshopTable", {width: 60, height: 40}, scene);
+    const tableMat = new BABYLON.StandardMaterial("tableMat", scene);
+    tableMat.diffuseColor = new BABYLON.Color3(0.15, 0.08, 0.03); // Dark Mahogany Wood
+    tableMat.specularColor = new BABYLON.Color3(0.1, 0.05, 0.02);
+    tableMat.roughness = 0.8;
+    table.material = tableMat;
+    table.receiveShadows = true;
+
+    // The Map Canvas (Parchment Paper resting on table)
+    // subdivisions: 128 allows for high-res 2.5D displacement later
+    baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 24, height: 16, subdivisions: 128}, scene);
+    baseMap.position.y = 0.05; // Hover slightly above table
     baseMat = new BABYLON.StandardMaterial("baseMat", scene);
-    baseMat.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2); // Placeholder
+    baseMat.diffuseColor = new BABYLON.Color3(0.94, 0.9, 0.82); // Parchment
+    baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
     baseMap.material = baseMat;
+    baseMap.receiveShadows = true;
+    
+    shadowGenerator.addShadowCaster(baseMap);
+    candleShadows.addShadowCaster(baseMap);
+
+    // Add a prop: an inkwell to cast dramatic shadows
+    const inkwell = BABYLON.MeshBuilder.CreateCylinder("inkwell", {height: 1.5, diameter: 1.0}, scene);
+    inkwell.position = new BABYLON.Vector3(10, 0.75, 7);
+    const inkMat = new BABYLON.StandardMaterial("inkMat", scene);
+    inkMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.15);
+    inkMat.specularColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+    inkwell.material = inkMat;
+    shadowGenerator.addShadowCaster(inkwell);
+    candleShadows.addShadowCaster(inkwell);
+
+    // Flickering animation for candle
+    let alpha = 0;
+    scene.registerBeforeRender(() => {
+      alpha += 0.05;
+      candleLight.intensity = 0.4 + Math.random() * 0.1 + Math.sin(alpha) * 0.05;
+    });
 
     window.scene = scene;
-    window.light = light;
     return scene;
   };
 
@@ -92,12 +135,6 @@ async function initBabylon() {
 
   window.addEventListener("resize", function () {
     engine.resize();
-    // Update orthographic camera ratio
-    if (camera && camera.mode === BABYLON.Camera.ORTHOGRAPHIC_CAMERA) {
-      const orthoSize = camera.orthoTop;
-      camera.orthoLeft = -orthoSize * (canvas.width / canvas.height);
-      camera.orthoRight = orthoSize * (canvas.width / canvas.height);
-    }
   });
 }
 
