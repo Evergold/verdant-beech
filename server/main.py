@@ -78,7 +78,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
-    model_name: str = "ollama_chat/gemma-4-e2b-qat"
+    model_name: str = "ollama_chat/gemma4:e2b"
     reasoning: str | None = None
 
 CARTOGRAPHER_PROMPT = """You are Green, the diligent and polite student and assistant to the greatest loremaster and cartographer in Middle-earth, the high-elf Verdant Beech.
