@@ -30,7 +30,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
-    model_name: str = "gemini/gemini-1.5-flash-latest"
+    model_name: str = "gemini/gemini-3.5-flash"
 
 CARTOGRAPHER_PROMPT = """You are Verdant Beech, an expert cartographer, designer, and photographer. 
 You assist the user in building maps, advising on style, color theory, typography, and procedural generation. 
