@@ -58,6 +58,12 @@ body {
   font-size: 0.85rem;
 }
 
+.model-selection-group {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
 #model-select {
   background: var(--bg-color);
   color: var(--text-main);
@@ -70,6 +76,36 @@ body {
 #model-select:focus {
   outline: none;
   border-color: var(--accent-color);
+}
+
+.reasoning-tabs {
+  display: flex;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.reasoning-tabs.hidden {
+  display: none;
+}
+
+.reasoning-tab {
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-right: 1px solid var(--border-color);
+  font-weight: 600;
+}
+
+.reasoning-tab:last-child {
+  border-right: none;
+}
+
+.reasoning-tab.active {
+  background: var(--accent-color);
+  color: #fff;
 }
 
 #task-monitor {

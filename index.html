@@ -14,9 +14,12 @@
         <header id="chat-header">
           <h2 data-i18n="chat.title">Cartographer Assistant</h2>
           <div class="header-controls">
-            <select id="model-select">
-              <!-- Populated dynamically via models.yaml -->
-            </select>
+            <div class="model-selection-group">
+              <select id="model-select">
+                <!-- Populated dynamically via models.yaml -->
+              </select>
+              <div id="reasoning-tabs" class="reasoning-tabs hidden"></div>
+            </div>
             <div id="task-monitor">Tasks: <span id="task-count">0</span></div>
           </div>
         </header>

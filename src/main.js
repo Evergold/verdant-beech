@@ -91,6 +91,7 @@ async function loadModels() {
         opt.textContent = model.label;
         select.appendChild(opt);
       });
+      renderReasoningTabs(select.value);
     }
   } catch (e) {
     console.error("Failed to load models.yaml", e);
@@ -110,10 +111,45 @@ const chatHistory = document.getElementById("chat-history");
 const chatInput = document.getElementById("chat-input");
 const sendBtn = document.getElementById("send-btn");
 const modelSelect = document.getElementById("model-select");
+const reasoningTabs = document.getElementById("reasoning-tabs");
 const taskCountSpan = document.getElementById("task-count");
 
 let messages = [];
 let activeTasks = 0;
+let currentReasoning = "high";
+
+function renderReasoningTabs(modelId) {
+  reasoningTabs.innerHTML = "";
+  let levels = [];
+  
+  if (modelId.includes("gemini-3.5-flash")) {
+    levels = ["low", "med", "high"];
+  } else if (modelId.includes("gemini-3.1-pro")) {
+    levels = ["low", "high"];
+  }
+
+  if (levels.length > 0) {
+    reasoningTabs.classList.remove("hidden");
+    levels.forEach(level => {
+      const tab = document.createElement("div");
+      tab.className = `reasoning-tab ${level === currentReasoning ? "active" : ""}`;
+      tab.textContent = level.toUpperCase();
+      tab.onclick = () => {
+        currentReasoning = level;
+        renderReasoningTabs(modelId);
+      };
+      reasoningTabs.appendChild(tab);
+    });
+    if (!levels.includes(currentReasoning)) {
+      currentReasoning = "high";
+      renderReasoningTabs(modelId);
+    }
+  } else {
+    reasoningTabs.classList.add("hidden");
+  }
+}
+
+modelSelect.addEventListener("change", () => renderReasoningTabs(modelSelect.value));
 
 function updateTaskCount(delta) {
   activeTasks += delta;
@@ -154,7 +190,8 @@ async function handleSend() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ 
         messages: messages,
-        model_name: modelSelect.value
+        model_name: modelSelect.value,
+        reasoning: reasoningTabs.classList.contains("hidden") ? null : currentReasoning
       })
     });
     const data = await res.json();

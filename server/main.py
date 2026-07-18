@@ -34,10 +34,10 @@ assistant_models:
     label: "Gemini 3.5 Flash"
   - id: "gemini/gemini-3.1-pro"
     label: "Gemini 3.1 Pro"
-  - id: "ollama_chat/gemma-4-e4b"
-    label: "Gemma 4 E4B (4.5B)"
-  - id: "ollama_chat/gemma-4-e2b"
-    label: "Gemma 4 E2B (2.3B)"
+  - id: "ollama_chat/gemma-4-e4b-qat"
+    label: "Gemma 4 (4.5B)"
+  - id: "ollama_chat/gemma-4-e2b-qat"
+    label: "Gemma 4 (2.3B)"
   # Template for other providers:
   # - id: "groq/llama3-8b-8192"
   #   label: "Llama 3 8B (Groq)"
@@ -79,6 +79,7 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
     model_name: str = "gemini/gemini-3.5-flash"
+    reasoning: str | None = None
 
 CARTOGRAPHER_PROMPT = """You are Verdant Beech, an expert cartographer, designer, and photographer. 
 You assist the user in building maps, advising on style, color theory, typography, and procedural generation. 
@@ -89,11 +90,16 @@ async def chat_endpoint(req: ChatRequest):
     messages = [{"role": "system", "content": CARTOGRAPHER_PROMPT}]
     messages.extend([{"role": m.role, "content": m.content} for m in req.messages])
     
+    kwargs = {
+        "model": req.model_name,
+        "messages": messages
+    }
+    
+    if req.reasoning:
+        kwargs["reasoning_effort"] = req.reasoning
+        
     try:
-        response = litellm.completion(
-            model=req.model_name,
-            messages=messages
-        )
+        response = litellm.completion(**kwargs)
         return {"reply": response.choices[0].message.content}
     except Exception as e:
         return {"reply": f"Error: {str(e)}"}
