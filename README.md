@@ -32,7 +32,6 @@ We recommend models capable of highly complex spatial planning and strict schema
 Running the default local assistant model (`gemma4:e4b`) is highly optimized thanks to QAT quantization. Actual observed resource usage is exceptionally light:
 - **VRAM (GPU Memory)**: ~3 GB
 - **System RAM**: ~6 GB
-- *Note: Our lazy-loading logic unloads the model from VRAM when not in use, preserving GPU memory for the heavy Babylon.js rendering scene.*
 
 ### Image Generation Models (Heavy Weight)
 Used for the actual tile stitching and map baking.
