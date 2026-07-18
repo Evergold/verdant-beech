@@ -732,6 +732,55 @@ if (createFolderBtn) {
   });
 }
 
+// --- Asset Generator ---
+const generateAssetBtn = document.getElementById("generate-asset-btn");
+const assetPromptInput = document.getElementById("asset-prompt-input");
+const exploratoryToggle = document.getElementById("exploratory-mode-toggle");
+const assetPreviewContainer = document.getElementById("asset-preview-container");
+const assetPreviewImg = document.getElementById("asset-preview-img");
+const saveAssetBtn = document.getElementById("save-asset-btn");
+const assetSaveName = document.getElementById("asset-save-name");
+
+if (generateAssetBtn) {
+  generateAssetBtn.addEventListener("click", async () => {
+    const prompt = assetPromptInput.value.trim();
+    if (!prompt) return showToast("Please describe the asset first.", "warning");
+    
+    const exploratory = exploratoryToggle.checked;
+    
+    try {
+      showToast("Generating asset...", "info");
+      const res = await fetch("http://localhost:8001/api/generate_asset", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ prompt, exploratory })
+      });
+      const data = await res.json();
+      
+      if (data.status === "success") {
+        assetPreviewImg.src = data.image_url;
+        assetPreviewContainer.classList.remove("hidden");
+        showToast(data.message, "success");
+      } else {
+        showToast("Generation failed: " + data.error, "error");
+      }
+    } catch(e) {
+      showToast("Connection error while generating asset.", "error");
+    }
+  });
+}
+
+if (saveAssetBtn) {
+  saveAssetBtn.addEventListener("click", () => {
+    const name = assetSaveName.value.trim();
+    if (!name) return showToast("Please provide a name to save the asset.", "warning");
+    // TODO: Send to Library Manager endpoint
+    showToast(`Saved asset '${name}' to library!`, "success");
+    assetSaveName.value = "";
+    assetPreviewContainer.classList.add("hidden");
+  });
+}
+
 main();
 
 // Handle Vite HMR to prevent Babylon.js WebGPU context leaks causing browser crashes

@@ -300,6 +300,20 @@ async def generate_map(prompt: str):
     # TODO: Implement 4K max tile stitching via litellm/Imagen 3
     return {"status": "generation_started"}
 
+class AssetRequest(BaseModel):
+    prompt: str
+    exploratory: bool
+
+@app.post("/api/generate_asset")
+async def generate_asset(req: AssetRequest):
+    # TODO: Connect to Vertex AI Imagen 3 via litellm.image_generation()
+    # For now, return a placeholder image to prove the UI workflow
+    return {
+        "status": "success",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/1x1.png/120px-1x1.png",
+        "message": f"Simulated generation of: {req.prompt} (Exploratory: {req.exploratory})"
+    }
+
 # --- Ollama Management Endpoints ---
 @app.get("/api/ollama/status")
 async def ollama_status():

@@ -21,6 +21,9 @@
         <button id="nav-style" class="nav-btn" title="Style Guidelines">
           <span class="icon">🎨</span>
         </button>
+        <button id="nav-asset" class="nav-btn" title="Asset Generator">
+          <span class="icon">✨</span>
+        </button>
       </nav>
 
       <!-- Panels Container -->
@@ -93,6 +96,35 @@
           </header>
           <div class="panel-content">
             <p style="color: var(--text-muted); font-size: 0.9rem;">Configure Verdant's generation rules.</p>
+          </div>
+        </aside>
+
+        <!-- Asset Generator Panel -->
+        <aside id="asset-panel" class="panel">
+          <header class="panel-header">
+            <h2>Asset Generator</h2>
+          </header>
+          <div class="panel-content">
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 12px;">Create and hone bespoke assets.</p>
+            
+            <div class="asset-controls">
+              <label class="toggle-container" title="Bypass Style Guidelines to freely experiment">
+                <input type="checkbox" id="exploratory-mode-toggle">
+                <span class="toggle-slider"></span>
+                Exploratory Mode
+              </label>
+              
+              <textarea id="asset-prompt-input" placeholder="Describe the asset (e.g. 'A glowing blue mushroom')..." rows="3"></textarea>
+              <button id="generate-asset-btn" class="primary-btn">Generate Asset</button>
+            </div>
+            
+            <div id="asset-preview-container" class="hidden">
+              <img id="asset-preview-img" src="" alt="Asset Preview" />
+              <div class="asset-save-controls">
+                <input type="text" id="asset-save-name" placeholder="Asset Name (e.g. blue_mushroom)" />
+                <button id="save-asset-btn">Save to Library</button>
+              </div>
+            </div>
           </div>
         </aside>
       </div>
