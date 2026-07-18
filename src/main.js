@@ -130,9 +130,10 @@ function renderReasoningTabs(modelId) {
 
   if (levels.length > 0) {
     reasoningTabs.classList.remove("hidden");
+    modelSelect.classList.add("has-tabs");
     levels.forEach(level => {
       const tab = document.createElement("div");
-      tab.className = `reasoning-tab ${level === currentReasoning ? "active" : ""}`;
+      tab.className = `reasoning-tab level-${level} ${level === currentReasoning ? "active" : ""}`;
       tab.textContent = level.toUpperCase();
       tab.onclick = () => {
         currentReasoning = level;
@@ -146,6 +147,7 @@ function renderReasoningTabs(modelId) {
     }
   } else {
     reasoningTabs.classList.add("hidden");
+    modelSelect.classList.remove("has-tabs");
   }
 }
 
