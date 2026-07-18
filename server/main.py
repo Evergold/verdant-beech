@@ -177,8 +177,12 @@ async def ollama_prewarm(req: Request):
     try:
         async with httpx.AsyncClient() as client:
             resp = await client.post(f"{OLLAMA_URL}/api/generate", json={"model": tag, "keep_alive": "5m"}, timeout=15.0)
+            if resp.status_code == 404:
+                return {"status": "missing", "error": "Model not installed"}
             resp.raise_for_status()
         return {"status": "warmed"}
+    except httpx.ConnectError:
+        return {"status": "offline", "error": "Ollama is not running"}
     except Exception as e:
         return {"status": "error", "error": str(e)}
 

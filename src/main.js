@@ -86,12 +86,18 @@ async function prewarmModel(modelId) {
       body: JSON.stringify({ model: modelId })
     });
     const data = await res.json();
-    if (data.status === "error") {
+    
+    if (data.status === "missing") {
+      showToast(`Model missing. Will download when you send a message.`, "warning");
+      return;
+    }
+    
+    if (data.status === "error" || data.status === "offline") {
       throw new Error(data.error);
     }
     startOllamaPoll();
   } catch (e) {
-    showToast(`Failed to load ${modelId}. Falling back to Gemini Flash.`, "error");
+    showToast(`Failed to load ${modelId}: ${e.message}. Falling back to Gemini.`, "error");
     const modelSelect = document.getElementById("model-select");
     modelSelect.value = "gemini/gemini-3.5-flash";
     localStorage.setItem("selectedModel", modelSelect.value);
@@ -430,6 +436,32 @@ async function handleSend() {
       })
     });
     const data = await res.json();
+    
+    if (data.reply && data.reply.startsWith("Error:")) {
+       if (modelSelect.value.includes("ollama_chat")) {
+           showToast("Local model error during chat. Falling back to Gemini Flash.", "error");
+           modelSelect.value = "gemini/gemini-3.5-flash";
+           localStorage.setItem("selectedModel", modelSelect.value);
+           renderReasoningTabs(modelSelect.value);
+           document.getElementById("hardware-monitor").classList.add("hidden");
+           if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
+           
+           // Retry with the fallback model
+           const fallbackRes = await fetch("http://localhost:8001/api/chat", {
+               method: "POST",
+               headers: { "Content-Type": "application/json" },
+               body: JSON.stringify({ 
+                   messages: messages,
+                   model_name: modelSelect.value,
+                   reasoning: levelsSupport(modelSelect.value) ? currentReasoning : null
+               })
+           });
+           const fallbackData = await fallbackRes.json();
+           document.getElementById(thinkingId).remove();
+           appendMessage("assistant", fallbackData.reply);
+           return;
+       }
+    }
     
     document.getElementById(thinkingId).remove();
     appendMessage("assistant", data.reply);
