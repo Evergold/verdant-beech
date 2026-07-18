@@ -23,8 +23,25 @@
               <!-- Populated dynamically via models.yaml -->
             </select>
           </div>
-          <div id="task-monitor">ACTIVE TASKS: <span id="task-count">0</span></div>
+          
+          <div class="monitor-bar">
+            <div id="task-monitor">ACTIVE TASKS: <span id="task-count">0</span></div>
+            <div id="hardware-monitor" class="hidden">
+              <span class="hw-label">RAM:</span> <span id="ram-use">0.0</span> GB 
+              <span class="hw-label">VRAM:</span> <span id="vram-use">0.0</span> GB
+            </div>
+          </div>
         </header>
+
+        <div id="toast-container"></div>
+
+        <div id="download-ui" class="hidden">
+          <div class="download-info">Downloading model... <span id="download-percent">0%</span></div>
+          <div class="download-controls">
+            <progress id="download-progress" value="0" max="100"></progress>
+            <button id="download-pause-btn">Pause</button>
+          </div>
+        </div>
 
         <div id="chat-history"></div>
         

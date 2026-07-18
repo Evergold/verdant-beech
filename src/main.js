@@ -117,10 +117,157 @@ const tabLow = document.getElementById("tab-low");
 const tabMed = document.getElementById("tab-med");
 const tabHigh = document.getElementById("tab-high");
 const tabs = [tabLow, tabMed, tabHigh];
+const hwMonitor = document.getElementById("hardware-monitor");
+const ramUse = document.getElementById("ram-use");
+const vramUse = document.getElementById("vram-use");
+const toastContainer = document.getElementById("toast-container");
+const downloadUI = document.getElementById("download-ui");
+const downloadPercent = document.getElementById("download-percent");
+const downloadProgress = document.getElementById("download-progress");
+const downloadPauseBtn = document.getElementById("download-pause-btn");
 
 let messages = [];
 let activeTasks = 0;
 let currentReasoning = "low";
+
+let ollamaStatusInterval = null;
+let downloadController = null;
+let isDownloading = false;
+let isDownloadPaused = false;
+let currentDownloadModel = "";
+
+function showToast(msg, type = "info") {
+  const toast = document.createElement("div");
+  toast.className = `toast ${type}`;
+  toast.textContent = msg;
+  toastContainer.appendChild(toast);
+  setTimeout(() => toast.remove(), 5000);
+}
+
+async function updateOllamaStatus() {
+  if (!modelSelect.value.includes("ollama_chat")) return;
+  try {
+    const res = await fetch("http://localhost:8001/api/ollama/status");
+    const status = await res.json();
+    if (status.online) {
+      hwMonitor.classList.remove("hidden");
+      ramUse.textContent = status.ram_mb.toFixed(1);
+      vramUse.textContent = status.vram_mb.toFixed(1);
+    } else {
+      hwMonitor.classList.add("hidden");
+    }
+  } catch (e) {
+    hwMonitor.classList.add("hidden");
+  }
+}
+
+function startOllamaPoll() {
+  if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
+  updateOllamaStatus();
+  ollamaStatusInterval = setInterval(updateOllamaStatus, 3000);
+}
+
+async function unloadOllama() {
+  try {
+    await fetch("http://localhost:8001/api/ollama/unload", { method: "POST" });
+  } catch(e) {}
+}
+
+async function streamDownload(tag) {
+  downloadUI.classList.remove("hidden");
+  sendBtn.disabled = true;
+  modelSelect.disabled = true;
+  isDownloading = true;
+  isDownloadPaused = false;
+  currentDownloadModel = tag;
+  downloadPauseBtn.textContent = "Pause";
+  
+  downloadController = new AbortController();
+  
+  try {
+    const res = await fetch("http://localhost:8001/api/ollama/pull", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: tag }),
+      signal: downloadController.signal
+    });
+    
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      
+      const lines = decoder.decode(value).split('\\n');
+      for (const line of lines) {
+        if (!line.trim()) continue;
+        try {
+          const data = JSON.parse(line);
+          if (data.total && data.completed) {
+            const pct = Math.floor((data.completed / data.total) * 100);
+            downloadProgress.value = pct;
+            downloadPercent.textContent = pct + "%";
+          }
+          if (data.status === "success") {
+            downloadProgress.value = 100;
+            downloadPercent.textContent = "100%";
+            setTimeout(() => downloadUI.classList.add("hidden"), 1000);
+            sendBtn.disabled = false;
+            modelSelect.disabled = false;
+            isDownloading = false;
+            showToast("Download complete!", "info");
+            return true;
+          }
+        } catch(e) {}
+      }
+    }
+  } catch (e) {
+    if (e.name === "AbortError") {
+      showToast("Download paused", "warning");
+      isDownloadPaused = true;
+      downloadPauseBtn.textContent = "Resume";
+      sendBtn.disabled = false;
+    } else {
+      showToast("Download failed", "error");
+      downloadUI.classList.add("hidden");
+      sendBtn.disabled = false;
+      modelSelect.disabled = false;
+      isDownloading = false;
+    }
+    return false;
+  }
+  return false;
+}
+
+downloadPauseBtn.addEventListener("click", () => {
+  if (!isDownloadPaused && isDownloading) {
+    downloadController.abort();
+  } else if (isDownloadPaused) {
+    streamDownload(currentDownloadModel);
+  }
+});
+
+async function checkAndDownloadOllamaModel(modelId) {
+  const tag = modelId.split("/")[1];
+  try {
+    const res = await fetch("http://localhost:8001/api/ollama/status");
+    const status = await res.json();
+    if (!status.online) {
+      showToast("Error: Ollama is not running!", "error");
+      return false;
+    }
+    if (status.models.includes(tag)) {
+      return true; // Installed
+    }
+    
+    showToast(`Model ${tag} is missing. Starting download...`, "info");
+    return await streamDownload(tag);
+  } catch (e) {
+    showToast("Connection to backend failed", "error");
+    return false;
+  }
+}
 
 function levelsSupport(modelId) {
   return modelId.includes("gemini-3.5-flash") || modelId.includes("gemini-3.1-pro");
@@ -157,7 +304,34 @@ function renderReasoningTabs(modelId) {
   }
 }
 
-modelSelect.addEventListener("change", () => renderReasoningTabs(modelSelect.value));
+modelSelect.addEventListener("change", async (e) => {
+  const oldModel = modelSelect.dataset.old || "ollama_chat/gemma4:e4b";
+  const newModel = e.target.value;
+  modelSelect.dataset.old = newModel;
+  
+  if (oldModel.includes("ollama_chat") && !newModel.includes("ollama_chat")) {
+    hwMonitor.classList.add("hidden");
+    if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
+    await unloadOllama();
+  }
+  
+  if (newModel.includes("ollama_chat")) {
+    startOllamaPoll();
+    const tag = newModel.split("/")[1];
+    try {
+      const res = await fetch("http://localhost:8001/api/ollama/status");
+      const status = await res.json();
+      if (status.online && !status.models.includes(tag)) {
+        showToast(`Warning: ${tag} is not installed locally.`, "warning");
+      } else if (!status.online) {
+        showToast("Error: Ollama is not running.", "error");
+      }
+    } catch(err){}
+  }
+  
+  renderReasoningTabs(newModel);
+});
+startOllamaPoll(); // Start polling initially
 
 tabs.forEach(tab => {
   tab.onclick = () => {
@@ -184,6 +358,13 @@ function appendMessage(role, content) {
 }
 
 async function handleSend() {
+  if (isDownloading && !isDownloadPaused) return; // Block while downloading
+  
+  if (modelSelect.value.includes("ollama_chat")) {
+    const isReady = await checkAndDownloadOllamaModel(modelSelect.value);
+    if (!isReady) return; // Wait for download to finish, or fail
+  }
+
   const text = chatInput.value.trim();
   if (!text) return;
   

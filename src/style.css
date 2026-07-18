@@ -50,12 +50,34 @@ body {
   letter-spacing: 0.5px;
 }
 
+.monitor-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  width: 100%;
+}
+
 #task-monitor {
   color: var(--accent-color);
   font-weight: 800;
   font-size: 0.9rem;
   letter-spacing: 1px;
-  margin-top: 14px;
+}
+
+#hardware-monitor {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+#hardware-monitor.hidden {
+  display: none;
+}
+
+.hw-label {
+  color: #666;
+  margin-left: 6px;
 }
 
 .model-selection-group {
@@ -235,3 +257,78 @@ body {
   color: var(--text-main);
   border-bottom-left-radius: 2px;
 }
+
+/* Toasts */
+#toast-container {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  animation: slideIn 0.3s ease forwards;
+}
+
+.toast.error { background: #d32f2f; border: 1px solid #ff4444; }
+.toast.warning { background: #f57c00; border: 1px solid #ffa726; }
+.toast.info { background: #3b82f6; border: 1px solid #64b5f6; }
+
+@keyframes slideIn {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Download UI */
+#download-ui {
+  background: #15181e;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+#download-ui.hidden {
+  display: none;
+}
+
+.download-info {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.download-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+#download-progress {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+}
+
+#download-pause-btn {
+  background: var(--border-color);
+  color: var(--text-main);
+  border: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+#download-pause-btn:hover { background: #444; }

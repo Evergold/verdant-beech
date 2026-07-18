@@ -1,14 +1,18 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from pydantic import BaseModel
 from typing import List
 import litellm
 import yaml
+import httpx
+import subprocess
+import asyncio
 
 app = FastAPI(title="Verdant Beech API", description="Backend for the Cartography Agent")
+OLLAMA_URL = "http://localhost:11434"
 
 # Allow CORS for development (Vite dev server)
 app.add_middleware(
@@ -114,6 +118,66 @@ async def chat_endpoint(req: ChatRequest):
 async def generate_map(prompt: str):
     # TODO: Implement 4K max tile stitching via litellm/Imagen 3
     return {"status": "generation_started"}
+
+# --- Ollama Management Endpoints ---
+@app.get("/api/ollama/status")
+async def ollama_status():
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(f"{OLLAMA_URL}/api/tags", timeout=2.0)
+            resp.raise_for_status()
+            tags_data = resp.json()
+            models = [m["name"] for m in tags_data.get("models", [])]
+            
+            ps_resp = await client.get(f"{OLLAMA_URL}/api/ps", timeout=2.0)
+            ps_data = ps_resp.json()
+            vram_bytes = sum(m.get("size_vram", 0) for m in ps_data.get("models", []))
+            loaded_models = [m["name"] for m in ps_data.get("models", [])]
+            
+            ram_bytes = 0
+            try:
+                ps_out = subprocess.check_output(["ps", "-eo", "comm,rss"]).decode()
+                for line in ps_out.splitlines():
+                    if "llama-server" in line or "ollama" in line:
+                        parts = line.split()
+                        if len(parts) >= 2:
+                            ram_bytes += int(parts[-1]) * 1024
+            except:
+                pass
+                
+            return {
+                "online": True,
+                "models": models,
+                "loaded_models": loaded_models,
+                "vram_mb": round(vram_bytes / (1024 * 1024), 1),
+                "ram_mb": round(ram_bytes / (1024 * 1024), 1)
+            }
+    except Exception as e:
+        return {"online": False, "error": str(e)}
+
+@app.post("/api/ollama/unload")
+async def ollama_unload():
+    try:
+        async with httpx.AsyncClient() as client:
+            ps_resp = await client.get(f"{OLLAMA_URL}/api/ps", timeout=2.0)
+            for m in ps_resp.json().get("models", []):
+                await client.post(f"{OLLAMA_URL}/api/generate", json={"model": m["name"], "keep_alive": 0})
+        return {"status": "unloaded"}
+    except:
+        return {"status": "error"}
+
+@app.post("/api/ollama/pull")
+async def ollama_pull(req: Request):
+    data = await req.json()
+    model_name = data.get("model")
+    
+    async def stream_pull():
+        async with httpx.AsyncClient() as client:
+            async with client.stream("POST", f"{OLLAMA_URL}/api/pull", json={"model": model_name, "stream": True}) as response:
+                async for chunk in response.aiter_bytes():
+                    yield chunk
+                    
+    return StreamingResponse(stream_pull(), media_type="application/x-ndjson")
 
 # --- Static File Serving (Single-Process Production Setup) ---
 # In production, we serve the Vite built files from ../dist
