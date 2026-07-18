@@ -62,6 +62,8 @@ function initBabylon() {
     baseMat.diffuseColor = new BABYLON.Color3(0.2, 0.2, 0.2); // Placeholder
     baseMap.material = baseMat;
 
+    window.scene = scene;
+    window.light = light;
     return scene;
   };
 
