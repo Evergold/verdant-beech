@@ -166,6 +166,22 @@ async def ollama_unload():
     except:
         return {"status": "error"}
 
+@app.post("/api/ollama/prewarm")
+async def ollama_prewarm(req: Request):
+    data = await req.json()
+    model_name = data.get("model")
+    if not model_name:
+        return {"status": "ignored"}
+    tag = model_name.split("/")[-1]
+    
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.post(f"{OLLAMA_URL}/api/generate", json={"model": tag, "keep_alive": "5m"}, timeout=15.0)
+            resp.raise_for_status()
+        return {"status": "warmed"}
+    except Exception as e:
+        return {"status": "error", "error": str(e)}
+
 @app.post("/api/ollama/pull")
 async def ollama_pull(req: Request):
     data = await req.json()

@@ -77,6 +77,30 @@ function initBabylon() {
   });
 }
 
+async function prewarmModel(modelId) {
+  try {
+    showToast(`Pre-warming ${modelId.split("/")[1]}...`, "info");
+    const res = await fetch("http://localhost:8001/api/ollama/prewarm", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ model: modelId })
+    });
+    const data = await res.json();
+    if (data.status === "error") {
+      throw new Error(data.error);
+    }
+    startOllamaPoll();
+  } catch (e) {
+    showToast(`Failed to load ${modelId}. Falling back to Gemini Flash.`, "error");
+    const modelSelect = document.getElementById("model-select");
+    modelSelect.value = "gemini/gemini-3.5-flash";
+    localStorage.setItem("selectedModel", modelSelect.value);
+    renderReasoningTabs(modelSelect.value);
+    document.getElementById("hardware-monitor").classList.add("hidden");
+    if (window.ollamaStatusInterval) clearInterval(window.ollamaStatusInterval);
+  }
+}
+
 async function loadModels() {
   try {
     const res = await fetch("http://localhost:8001/api/models");
@@ -91,7 +115,20 @@ async function loadModels() {
         opt.textContent = model.label;
         select.appendChild(opt);
       });
+      
+      const savedModel = localStorage.getItem("selectedModel") || "ollama_chat/gemma4:e4b";
+      if ([...select.options].some(o => o.value === savedModel)) {
+        select.value = savedModel;
+      } else {
+        select.value = "ollama_chat/gemma4:e4b";
+      }
+      
+      select.dataset.old = select.value;
       renderReasoningTabs(select.value);
+      
+      if (select.value.includes("ollama_chat")) {
+        prewarmModel(select.value);
+      }
     }
   } catch (e) {
     console.error("Failed to load models.yaml", e);
@@ -308,6 +345,7 @@ modelSelect.addEventListener("change", async (e) => {
   const oldModel = modelSelect.dataset.old || "ollama_chat/gemma4:e4b";
   const newModel = e.target.value;
   modelSelect.dataset.old = newModel;
+  localStorage.setItem("selectedModel", newModel);
   
   if (oldModel.includes("ollama_chat") && !newModel.includes("ollama_chat")) {
     hwMonitor.classList.add("hidden");
@@ -316,22 +354,22 @@ modelSelect.addEventListener("change", async (e) => {
   }
   
   if (newModel.includes("ollama_chat")) {
-    startOllamaPoll();
     const tag = newModel.split("/")[1];
     try {
       const res = await fetch("http://localhost:8001/api/ollama/status");
       const status = await res.json();
       if (status.online && !status.models.includes(tag)) {
         showToast(`Warning: ${tag} is not installed locally.`, "warning");
+        // Still try to prewarm, which will fail and fallback, or we can just let it download on send
       } else if (!status.online) {
         showToast("Error: Ollama is not running.", "error");
       }
     } catch(err){}
+    prewarmModel(newModel);
   }
   
   renderReasoningTabs(newModel);
 });
-startOllamaPoll(); // Start polling initially
 
 tabs.forEach(tab => {
   tab.onclick = () => {
