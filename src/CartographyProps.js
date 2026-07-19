@@ -146,9 +146,9 @@ export function buildCartographyTools(scene, shadowGenerators) {
     createPencil("pencilYellow", new BABYLON.Color3(0.9, 0.8, 0.1), 3.8, 9.8, Math.PI / 6);
 
     // 10. Staedtler Eraser (White block with blue sleeve)
-    const eraserWhite = BABYLON.StandardMaterial("eraserWhite", scene);
+    const eraserWhite = new BABYLON.StandardMaterial("eraserWhite", scene);
     eraserWhite.diffuseColor = new BABYLON.Color3(0.9, 0.9, 0.9);
-    const eraserBlue = BABYLON.StandardMaterial("eraserBlue", scene);
+    const eraserBlue = new BABYLON.StandardMaterial("eraserBlue", scene);
     eraserBlue.diffuseColor = new BABYLON.Color3(0.1, 0.3, 0.7);
     const erBlock = BABYLON.MeshBuilder.CreateBox("erBlock", {width: 1.5, height: 0.4, depth: 0.8}, scene);
     erBlock.material = eraserWhite;
