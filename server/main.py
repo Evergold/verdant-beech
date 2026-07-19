@@ -125,9 +125,20 @@ class CreateProjectRequest(BaseModel):
 @app.post("/api/projects")
 async def create_project(req: CreateProjectRequest):
     data = load_projects()
+    
+    # Auto-increment name if it already exists to preserve uniqueness constraint
+    base_name = req.name.strip()
+    new_name = base_name
+    counter = 2
+    existing_names = [p["name"].lower() for p in data["projects"].values()]
+    
+    while new_name.lower() in existing_names:
+        new_name = f"{base_name} {counter}"
+        counter += 1
+
     pid = str(uuid.uuid4())
     data["projects"][pid] = {
-        "name": req.name,
+        "name": new_name,
         "selectedModel": "ollama_chat/gemma4:e4b",
         "chroma_collection": f"memory_{pid}"
     }
