@@ -1123,27 +1123,50 @@ if (projectSelect) {
 }
 
 if (deleteProjectBtn) {
-  deleteProjectBtn.addEventListener("click", async () => {
+  const deletePopover = document.getElementById("delete-popover");
+  const popoverCancel = document.getElementById("popover-cancel");
+  const popoverConfirm = document.getElementById("popover-confirm");
+
+  deleteProjectBtn.addEventListener("click", (e) => {
     if (!activeProjectId) return;
-    
-    if (!confirm("Are you sure you want to delete this project and its memory?")) return;
-    
-    try {
-      const res = await fetch(`http://localhost:8001/api/projects/${activeProjectId}`, {
-        method: "DELETE"
-      });
-      const data = await res.json();
-      if (data.status === "success") {
-        await loadProjects();
-        await loadModels();
-        showToast("Project deleted", "success");
-      } else {
-        showToast(data.error, "error");
-      }
-    } catch(e) {
-      showToast("Error deleting project", "error");
+    e.stopPropagation();
+    deletePopover.classList.remove("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (deletePopover && !deletePopover.contains(e.target) && !deleteProjectBtn.contains(e.target)) {
+      deletePopover.classList.add("hidden");
     }
   });
+
+  if (popoverCancel) {
+    popoverCancel.addEventListener("click", (e) => {
+      e.stopPropagation();
+      deletePopover.classList.add("hidden");
+    });
+  }
+
+  if (popoverConfirm) {
+    popoverConfirm.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      deletePopover.classList.add("hidden");
+      try {
+        const res = await fetch(`http://localhost:8001/api/projects/${activeProjectId}`, {
+          method: "DELETE"
+        });
+        const data = await res.json();
+        if (data.status === "success") {
+          await loadProjects();
+          await loadModels();
+          showToast("Project deleted", "success");
+        } else {
+          showToast(data.error, "error");
+        }
+      } catch(e) {
+        showToast("Error deleting project", "error");
+      }
+    });
+  }
 }
 
 // --- Library Management ---

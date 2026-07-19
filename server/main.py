@@ -182,11 +182,20 @@ async def rename_project(req: RenameProjectRequest):
 async def delete_project(project_id: str):
     data = load_projects()
     if project_id in data["projects"]:
-        if len(data["projects"]) <= 1:
-            return {"error": "Cannot delete the last project."}
         del data["projects"][project_id]
-        if data["active_project"] == project_id:
+        
+        if len(data["projects"]) == 0:
+            # Recreate a default project if the last one was deleted
+            new_pid = str(uuid.uuid4())
+            data["projects"][new_pid] = {
+                "name": "Untitled Project",
+                "selectedModel": "ollama_chat/gemma4:e4b",
+                "chroma_collection": f"memory_{new_pid}"
+            }
+            data["active_project"] = new_pid
+        elif data["active_project"] == project_id:
             data["active_project"] = list(data["projects"].keys())[0]
+            
         save_projects(data)
         
         # Here we could also delete the chroma_db collection for this project.
