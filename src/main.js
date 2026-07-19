@@ -119,23 +119,23 @@ async function initBabylon() {
     shadowGenerator.addShadowCaster(baseMap);
     candleShadows.addShadowCaster(baseMap);
 
-    // Cartography Props around the perimeter (adjusted for smaller table)
+    // Cartography Props aligned along the "top edge" of the table
     const inkwell = BABYLON.MeshBuilder.CreateCylinder("inkwell", {height: 1.5, diameter: 1.0}, scene);
-    inkwell.position = new BABYLON.Vector3(14, 0.75, 8);
+    inkwell.position = new BABYLON.Vector3(12, 0.75, 14);
     const inkMat = new BABYLON.StandardMaterial("inkMat", scene);
     inkMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.15);
     inkMat.specularColor = new BABYLON.Color3(0.8, 0.8, 0.8);
     inkwell.material = inkMat;
 
-    const ruler = BABYLON.MeshBuilder.CreateBox("ruler", {width: 10, height: 0.05, depth: 1}, scene);
-    ruler.position = new BABYLON.Vector3(-13, 0.025, -9);
-    ruler.rotation.y = Math.PI / 6;
+    const ruler = BABYLON.MeshBuilder.CreateBox("ruler", {width: 12, height: 0.05, depth: 1}, scene);
+    ruler.position = new BABYLON.Vector3(-10, 0.025, 14);
+    ruler.rotation.y = 0; // Perfectly aligned with the edge
     const rulerMat = new BABYLON.StandardMaterial("rulerMat", scene);
     rulerMat.diffuseColor = new BABYLON.Color3(0.6, 0.5, 0.3); // Wood/brass
     ruler.material = rulerMat;
 
     const compass = BABYLON.MeshBuilder.CreateTorus("compass", {diameter: 2, thickness: 0.2}, scene);
-    compass.position = new BABYLON.Vector3(-14, 0.1, 7);
+    compass.position = new BABYLON.Vector3(2, 0.1, 14);
     const compassMat = new BABYLON.StandardMaterial("compMat", scene);
     compassMat.diffuseColor = new BABYLON.Color3(0.8, 0.7, 0.2); // Brass
     compassMat.specularColor = new BABYLON.Color3(1, 1, 0.8);
@@ -188,8 +188,8 @@ async function initBabylon() {
         
         // Reset target to center
         camera.setTarget(BABYLON.Vector3.Zero());
-        // Snap the view to the nearest 90-degree angle to square the map perfectly
-        camera.alpha = Math.round(camera.alpha / (Math.PI / 2)) * (Math.PI / 2);
+        // Snap the view to the primary frontal angle so the tools remain at the top edge
+        camera.alpha = -Math.PI / 2;
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
