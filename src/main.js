@@ -102,9 +102,8 @@ async function initBabylon() {
     ambientLight.intensity = 0.4; // Reduced slightly to let IBL and SSAO shine
     ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
-    // Main Studio Lamp (Directional Light for even illumination without edge falloff)
-    light = new BABYLON.DirectionalLight("lampLight", new BABYLON.Vector3(-0.5, -2, -0.5), scene);
-    light.position = new BABYLON.Vector3(10, 40, 10);
+    // Main Studio Lamp (SpotLight centered over the map for immersive vignette effect)
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 22, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 1.5, 2, scene);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 

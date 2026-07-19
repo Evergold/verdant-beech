@@ -98,12 +98,10 @@ export function buildCartographyTools(scene, shadowGenerators) {
     techPen.position = new BABYLON.Vector3(9, 0.15, 11.5);
     addShadows(techPen);
 
-    // 6. Drafting Tape
-    const tapeCore = BABYLON.MeshBuilder.CreateTube("tapeCore", {path: [new BABYLON.Vector3(0,0,0), new BABYLON.Vector3(0,0.6,0)], radius: 1.0, thickness: 0.05}, scene);
-    const tapeOuter = BABYLON.MeshBuilder.CreateTube("tapeOuter", {path: [new BABYLON.Vector3(0,0,0), new BABYLON.Vector3(0,0.6,0)], radius: 1.25, thickness: 0.25}, scene);
-    const tape = BABYLON.Mesh.MergeMeshes([tapeCore, tapeOuter], true, true);
+    // 6. Drafting Tape (Rebuilt as a stable Cylinder instead of a fragile Tube)
+    const tape = BABYLON.MeshBuilder.CreateCylinder("draftingTape", {height: 0.6, diameter: 2.5, tessellation: 32}, scene);
     tape.material = tapeMat;
-    tape.position = new BABYLON.Vector3(12.5, 0, 12.5);
+    tape.position = new BABYLON.Vector3(11.5, 0.3, 11.5); // Shift slightly inward
     addShadows(tape);
 
     // 7. Laser Distance Measurer
