@@ -4,46 +4,70 @@ import os
 
 KNOWLEDGE_BASE = [
     {
-        "id": "kb_typography_1",
+        "id": "kb_typography_expert",
         "category": "Typography",
-        "title": "Typography Hierarchy in Maps",
-        "content": "Labels should follow a strict visual hierarchy. Water features should be italicized and in a blue hue. Country names should be all-caps with generous letter spacing. City names should be standard title case. In medieval styles (e.g., Mappa Mundi), use Gothic or Blackletter fonts with illuminated initials. For contemporary styles, use clean sans-serif like Inter or Helvetica."
+        "title": "Expert Typography & Hierarchy",
+        "content": "Labels demand rigorous visual hierarchy. Natural features (rivers, oceans, mountains) strictly use serif fonts, often italicized; political/human features (cities, borders) use sans-serif. Water features must follow the spline (curve) of the river. Enforce 'halation' (subtle white text halos) to maintain legibility against complex terrain. Country names require all-caps with generous kerning (tracking) to visually span their territory. Scale font weight down logarithmically with administrative level."
     },
     {
-        "id": "kb_color_1",
+        "id": "kb_color_expert",
         "category": "Color Theory",
-        "title": "Color Theory for Terrain",
-        "content": "Elevation should use hypsometric tints. Contemporary lowlands use desaturated green (e.g., #b5cfa3), mid-elevations pale yellow/tan (#e3d4a6), and peaks stark white. Bathymetry darkens as depth increases. Medieval and vintage maps should rely heavily on warm sepia, raw sienna, and burnt umber, with verdigris green for forests."
+        "title": "Advanced Color Theory & Hypsometry",
+        "content": "Hypsometric tinting (elevation coloring) must utilize perceptually uniform color spaces (e.g., CIELAB). Lowlands use desaturated, cooler greens; mid-elevations transition to warmer, arid yellows/tans; alpine zones use stark whites/grays. Bathymetry uses sequential blue palettes darkening non-linearly with depth. Employ 'atmospheric perspective': distant or low-importance areas should have lower saturation and contrast to direct the viewer's eye."
+    },
+    {
+        "id": "kb_lighting_expert",
+        "category": "3D Rendering & Shading",
+        "title": "Analytical Hillshading & 3D Lighting",
+        "content": "For 2.5D/3D maps, enforce a light source azimuth of 315° (North-West) and a zenith angle of 45°. This specific angle prevents the optical illusion of 'relief inversion' where mountains look like craters. Combine Lambertian diffuse shading with subtle ambient occlusion in valleys. Utilize normal mapping for micro-texture (e.g., parchment grain) and absolute vertex displacement for macro-topography."
+    },
+    {
+        "id": "kb_projection_expert",
+        "category": "Geometry & Projection",
+        "title": "Geodesy & Tissot's Indicatrices",
+        "content": "Projection choice is paramount. Use Conformal projections (Mercator) exclusively for navigation where maintaining local angles is critical. Use Equal-Area projections (Albers, Peters) for thematic choropleth maps to prevent area distortion bias. For global aesthetic maps, use Compromise projections (Winkel Tripel, Robinson). Always define a coordinate reference system (CRS) datum (e.g., WGS84)."
+    },
+    {
+        "id": "kb_style_imhof",
+        "category": "Style: Imhof Analytical",
+        "title": "Eduard Imhof Swiss Hillshading",
+        "content": "To emulate Eduard Imhof's renowned Swiss cartography: abandon harsh black/gray shadows. Use aerial perspective. Illuminated slopes facing the NW light source must be tinted warm (pale yellow/orange), while cast shadows on SE slopes must be tinted cool (blue/violet). This simulates realistic atmospheric scattering and provides immense 3D clarity without darkening the map."
+    },
+    {
+        "id": "kb_style_beck",
+        "category": "Style: Beck Topological",
+        "title": "Harry Beck Transit Schematics",
+        "content": "To emulate Harry Beck's London Underground maps: discard geographical accuracy entirely in favor of topological clarity. All lines must be strictly drawn at 0°, 45°, or 90° angles. Stations are uniform ticks or nodes. Distances between stations should be visually equalized regardless of actual physical distance."
+    },
+    {
+        "id": "kb_style_golden_age",
+        "category": "Style: Golden Age",
+        "title": "Age of Discovery & Portolan Charts",
+        "content": "Golden Age and Portolan maritime charts require heavily decorated compass roses with intersecting rhumb lines (windrose networks) traversing the seas. Utilize 'horror vacui' (fear of empty space) by filling uncharted landmasses with illustrations of mythical beasts, lions, or elephants. Coastlines should be exaggerated with detailed, dense port cities, leaving interiors relatively blank."
+    },
+    {
+        "id": "kb_style_ttrpg",
+        "category": "Style: TTRPG HexCrawl",
+        "title": "Tabletop RPG Hexagonal Maps",
+        "content": "For TTRPG and HexCrawl styles, discretize the world into a strict hexagonal grid. Each hex should represent a single dominant biome (e.g., forest, swamp, mountain) using a centralized, repeated icon. This facilitates travel tracking and procedural generation mechanics. Edges between conflicting biomes should be hard, distinct borders rather than smooth gradients."
     },
     {
         "id": "kb_style_fantasy",
         "category": "Style: Fantasy & Vintage",
-        "title": "Historical Style: Tolkien / Fantasy",
-        "content": "Fantasy maps often utilize sepia or parchment tones, with hand-drawn 'caterpillar' mountains. Coastlines should have horizontal hatching (waterlines) fading into the sea. Forests are often depicted as clustered tree canopies rather than solid color blocks."
+        "title": "Tolkien High-Fantasy",
+        "content": "High-fantasy maps demand monochrome or sepia-toned parchment aesthetics. Mountains are drawn individually as 'caterpillar' ridges with hatched shading on the eastern slopes. Coastlines require concentric horizontal 'waterline' hatching fading outward into the sea. Forests are drawn as clustered, bubbly tree canopies."
     },
     {
         "id": "kb_style_medieval",
         "category": "Style: Medieval",
-        "title": "Historical Style: Portolan & Mappa Mundi",
-        "content": "Medieval Portolan charts should feature prominent compass roses and intersecting rhumb lines (windrose networks) criss-crossing the sea. Mappa Mundi styles should be highly allegorical, often placing East (Orient) at the top, featuring mythical beasts (sea monsters) in uncharted waters, and prominent walled-city icons."
+        "title": "Historical Style: Mappa Mundi",
+        "content": "Mappa Mundi styles are highly allegorical, often placing East (Orient) at the top of the map. Mathematical projection is entirely ignored in favor of theological importance (e.g., T-O maps). Focus heavily on illuminated initials, and prominently feature walled-city icons."
     },
     {
         "id": "kb_style_contemporary",
         "category": "Style: Contemporary",
         "title": "Modern & Minimalist Cartography",
-        "content": "Contemporary maps emphasize high-contrast minimalism. Use dark modes with neon accents for transit networks, or ultra-clean vector styles with zero terrain textures. Focus heavily on negative space and strict geometric alignment."
-    },
-    {
-        "id": "kb_lighting_1",
-        "category": "3D Rendering",
-        "title": "Camera & Lighting in 3D Cartography",
-        "content": "For 2.5D physical maps, the main light source (sun) should generally come from the top-left (north-west) to cast shadows to the bottom-right. This creates natural optical relief perception. An intensity of 0.7 to 1.2 is standard. For dramatic 'golden hour' renders, lower the light angle and tint it warm orange."
-    },
-    {
-        "id": "kb_projection_1",
-        "category": "Geometry & Projection",
-        "title": "Scale and Projection",
-        "content": "Always include a scale bar. When generating regions near the poles, be mindful of Mercator distortion. For aesthetic world maps, Robinson or Winkel Tripel projections are preferred over Mercator. Medieval maps often completely ignore mathematical projection in favor of theological or narrative importance (e.g., T-O maps)."
+        "content": "Contemporary web maps emphasize high-contrast minimalism. Use dark modes with neon accents for transit networks, or ultra-clean vector styles with zero terrain textures. Focus heavily on negative space, strict geometric alignment, and crisp sans-serif typography."
     }
 ]
 
