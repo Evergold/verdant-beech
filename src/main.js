@@ -75,9 +75,16 @@ async function initBabylon() {
       set: function(v) { this.target.z = v; }
     });
 
-    // Advanced Rendering Pipeline: SSR, SSAO2, and IBL (Baked Radiance Volumes)
+    // Advanced Rendering Pipeline: HDR and IBL (Baked Radiance Volumes)
     scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://playground.babylonjs.com/textures/environment.dds", scene);
     scene.environmentIntensity = 0.5;
+
+    // Enable High Dynamic Range (HDR) and Cinematic ACES Tone Mapping
+    const defaultPipeline = new BABYLON.DefaultRenderingPipeline("defaultPipeline", true, scene, [camera]);
+    defaultPipeline.imageProcessingEnabled = true;
+    defaultPipeline.imageProcessing.toneMappingEnabled = true;
+    defaultPipeline.imageProcessing.toneMappingType = BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;
+    defaultPipeline.imageProcessing.exposure = 1.2;
 
     // SSAO2 and SSR are mathematically brutal and causing severe lag. Disabled for performance.
     // const ssao = new BABYLON.SSAO2RenderingPipeline("ssao", scene, 0.75, [camera]);
@@ -100,10 +107,10 @@ async function initBabylon() {
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
-    // Shadow Generator - Ultra-Optimized Blur Exponential Shadow Maps (ESM)
+    // Shadow Generator - Balanced PCF Soft Shadows
     const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-    shadowGenerator.useBlurExponentialShadowMap = true;
-    shadowGenerator.blurKernel = 32;
+    shadowGenerator.usePercentageCloserFiltering = true;
+    shadowGenerator.filteringQuality = BABYLON.ShadowGenerator.QUALITY_LOW;
     shadowGenerator.setDarkness(0.2);
 
     // Candle Light (Moody)
@@ -112,8 +119,8 @@ async function initBabylon() {
     candleLight.diffuse = new BABYLON.Color3(1, 0.6, 0.2);
     
     const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
-    candleShadows.useBlurExponentialShadowMap = true;
-    candleShadows.blurKernel = 16;
+    candleShadows.usePercentageCloserFiltering = true;
+    candleShadows.filteringQuality = BABYLON.ShadowGenerator.QUALITY_LOW;
     candleShadows.setDarkness(0.5);
 
     // Lamp Mesh (Visual Representation)
