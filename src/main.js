@@ -86,6 +86,12 @@ async function initBabylon() {
     defaultPipeline.imageProcessing.toneMappingType = BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;
     defaultPipeline.imageProcessing.exposure = 1.2;
 
+    // Post-Processing Vignette to simulate dark atmospheric corners without clipping the shadow map
+    defaultPipeline.imageProcessing.vignetteEnabled = true;
+    defaultPipeline.imageProcessing.vignetteWeight = 1.5;
+    defaultPipeline.imageProcessing.vignetteColor = new BABYLON.Color4(0, 0, 0, 1);
+    defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
+
     // SSAO2 and SSR are mathematically brutal and causing severe lag. Disabled for performance.
     // const ssao = new BABYLON.SSAO2RenderingPipeline("ssao", scene, 0.75, [camera]);
     // ssao.radius = 2.0;
