@@ -45,3 +45,5 @@ library/*
 
 # State Management
 user_state.yaml
+chroma_db/
+server/chroma_db/
