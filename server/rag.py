@@ -68,6 +68,36 @@ KNOWLEDGE_BASE = [
         "category": "Style: Contemporary",
         "title": "Modern & Minimalist Cartography",
         "content": "Contemporary web maps emphasize high-contrast minimalism. Use dark modes with neon accents for transit networks, or ultra-clean vector styles with zero terrain textures. Focus heavily on negative space, strict geometric alignment, and crisp sans-serif typography."
+    },
+    {
+        "id": "kb_style_natgeo",
+        "category": "Style: National Geographic",
+        "title": "Classic National Geographic Atlas",
+        "content": "To emulate National Geographic atlases: use extremely legible, classic serif typefaces. Political borders must feature 'boundary ribbons'—a distinct colored stroke along the border that fades gently into the interior of the country. Terrain should use a very gentle, realistic shaded relief without harsh shadows."
+    },
+    {
+        "id": "kb_style_johnsnow",
+        "category": "Style: Data Journalism",
+        "title": "John Snow Spatial Analysis",
+        "content": "For epidemiological or spatial analysis (e.g., the 1854 Cholera Map): strip all unnecessary geographical features to leave a high-contrast, minimalist street grid. Emphasize data using prominent dot-density markers and utilize Voronoi diagrams to visually delineate zones of influence around key points."
+    },
+    {
+        "id": "kb_projection_dymaxion",
+        "category": "Geometry & Projection",
+        "title": "Buckminster Fuller's Dymaxion Projection",
+        "content": "The Dymaxion (Fuller) projection unfolds the Earth onto an icosahedron. It eliminates cultural 'up/down' biases by having no fixed North or South. It is heavily prioritized for thematic global maps because it drastically reduces distortion of both relative shapes and sizes, and does not slice any major landmasses."
+    },
+    {
+        "id": "kb_style_pirate",
+        "category": "Style: Vintage Pirate",
+        "title": "Treasure Maps & Golden Age Piracy",
+        "content": "Pirate and treasure maps demand heavily distressed, burnt-edge parchment. Apply a deep, aggressive sepia wash. Crucial landmarks must be exaggerated, utilizing 'X marks the spot' iconography. Seas must be crossed by prominent rhumb lines and populated with hand-drawn ships or krakens."
+    },
+    {
+        "id": "kb_style_cyberpunk",
+        "category": "Style: Sci-Fi & Cyberpunk",
+        "title": "Tactical Hologram / Cyberpunk",
+        "content": "Cyberpunk or sci-fi tactical displays require dark/black backgrounds with monochromatic glowing accents (e.g., cyan, magenta, or neon green). Terrain should be rendered as wireframe topologies or rigid glowing grids. Apply CRT scanline filters, heavy bloom, and UI crosshairs or hex-overlays to mimic a digital HUD."
     }
 ]
 
