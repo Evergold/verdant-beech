@@ -186,17 +186,16 @@ async function initBabylon() {
       toggleBtn.addEventListener("click", () => {
         isLandscape = !isLandscape;
         
-        // Reset and snap camera to perfectly frame the map
+        // Reset target to center
         camera.setTarget(BABYLON.Vector3.Zero());
+        // Snap the view to the nearest 90-degree angle to square the map perfectly
+        camera.alpha = Math.round(camera.alpha / (Math.PI / 2)) * (Math.PI / 2);
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
-          camera.alpha -= Math.PI / 2;
         } else {
           // Portrait mode: scale X down, scale Z up
           baseMap.scaling = new BABYLON.Vector3(16/24, 1, 24/16);
-          // Rotate camera alpha so we remain facing the bottom edge of the map
-          camera.alpha += Math.PI / 2;
         }
       });
     }
