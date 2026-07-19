@@ -51,7 +51,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     tsHead.position.x = -4.5;
     const tSquare = BABYLON.Mesh.MergeMeshes([tsArm, tsHead], true, true);
     tSquare.material = woodMat;
-    tSquare.position = new BABYLON.Vector3(-6, 0.04, 14); // Clustered safely inside table edge
+    tSquare.position = new BABYLON.Vector3(-6, 0.04, 12); // Clustered safely inside table edge
     tSquare.rotation.y = Math.PI / 24;
     addShadows(tSquare);
 
@@ -68,20 +68,20 @@ export function buildCartographyTools(scene, shadowGenerators) {
     dCompass.material = steelMat;
     dCompass.rotation.x = Math.PI / 2;
     dCompass.rotation.y = -Math.PI / 4;
-    dCompass.position = new BABYLON.Vector3(-1.5, 0.125, 13.5);
+    dCompass.position = new BABYLON.Vector3(-1.5, 0.125, 11.5);
     addShadows(dCompass);
 
     // 3. Protractor - Machined Brass Torus Ring for realism
     const protractor = BABYLON.MeshBuilder.CreateTorus("protractor", {diameter: 3.5, thickness: 0.15, tessellation: 64}, scene);
     protractor.scaling.y = 0.3; // Flatten it into a ruler profile
     protractor.material = brassMat;
-    protractor.position = new BABYLON.Vector3(2, 0.05, 14.5);
+    protractor.position = new BABYLON.Vector3(2, 0.05, 12.5);
     addShadows(protractor);
 
     // 4. Set Square (Triangle)
     const triangle = BABYLON.MeshBuilder.CreateCylinder("triangle", {height: 0.05, diameter: 3.5, tessellation: 3}, scene);
     triangle.material = plasticMat;
-    triangle.position = new BABYLON.Vector3(5.5, 0.025, 13.8);
+    triangle.position = new BABYLON.Vector3(5.5, 0.025, 11.8);
     triangle.rotation.y = Math.PI / 6;
     addShadows(triangle);
 
@@ -95,7 +95,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     techPen.material = plasticMat;
     techPen.rotation.x = Math.PI / 2;
     techPen.rotation.y = Math.PI / 2.5;
-    techPen.position = new BABYLON.Vector3(9, 0.15, 13.5);
+    techPen.position = new BABYLON.Vector3(9, 0.15, 11.5);
     addShadows(techPen);
 
     // 6. Drafting Tape
@@ -103,7 +103,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     const tapeOuter = BABYLON.MeshBuilder.CreateTube("tapeOuter", {path: [new BABYLON.Vector3(0,0,0), new BABYLON.Vector3(0,0.6,0)], radius: 1.25, thickness: 0.25}, scene);
     const tape = BABYLON.Mesh.MergeMeshes([tapeCore, tapeOuter], true, true);
     tape.material = tapeMat;
-    tape.position = new BABYLON.Vector3(12.5, 0, 14.5);
+    tape.position = new BABYLON.Vector3(12.5, 0, 12.5);
     addShadows(tape);
 
     // 7. Laser Distance Measurer (Yellow body, black/glass screen)
@@ -117,7 +117,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     // Parent instead of merge to preserve distinct multi-materials
     laserScreen.setParent(laserBase);
 
-    laserBase.position = new BABYLON.Vector3(10.5, 0.2, 11.5);
+    laserBase.position = new BABYLON.Vector3(10.5, 0.2, 9.5);
     laserBase.rotation.y = -Math.PI / 8;
     addShadows(laserBase);
     tools.push(laserScreen); // Track for disposal but don't cast shadow
