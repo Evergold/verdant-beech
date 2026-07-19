@@ -203,8 +203,8 @@ async function initBabylon() {
         // Stop existing animations before starting new ones
         scene.stopAnimation(camera);
         
-        BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 0, ease);
-        BABYLON.Animation.CreateAndStartAnimation("camSnapTarget", camera, "target", 60, 45, camera.target, new BABYLON.Vector3(0, 0, -3), 0, ease);
+        BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 2, ease);
+        BABYLON.Animation.CreateAndStartAnimation("camSnapTarget", camera, "target", 60, 45, camera.target, new BABYLON.Vector3(0, 0, -3), 2, ease);
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
@@ -274,8 +274,8 @@ async function initBabylon() {
           ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
           
           scene.stopAnimation(camera); // Stop previous zoom animations to prevent jumping
-          BABYLON.Animation.CreateAndStartAnimation("zoomRad", camera, "radius", 60, 20, camera.radius, targetRadius, 0, ease);
-          BABYLON.Animation.CreateAndStartAnimation("zoomTar", camera, "target", 60, 20, camera.target, finalTarget, 0, ease);
+          BABYLON.Animation.CreateAndStartAnimation("zoomRad", camera, "radius", 60, 20, camera.radius, targetRadius, 2, ease);
+          BABYLON.Animation.CreateAndStartAnimation("zoomTar", camera, "target", 60, 20, camera.target, finalTarget, 2, ease);
         }
       }
     });
