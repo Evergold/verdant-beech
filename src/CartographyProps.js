@@ -68,7 +68,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     dCompass.material = steelMat;
     dCompass.rotation.x = Math.PI / 2;
     dCompass.rotation.y = -Math.PI / 4;
-    dCompass.position = new BABYLON.Vector3(1, 0.125, 10.5);
+    dCompass.position = new BABYLON.Vector3(-4, 0.21, 12); // Resting on top of the T-Square arm
     addShadows(dCompass);
 
     // 3. Protractor - Machined Brass Torus Ring for realism
@@ -155,7 +155,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     const erSleeve = BABYLON.MeshBuilder.CreateBox("erSleeve", {width: 0.8, height: 0.42, depth: 0.82}, scene);
     erSleeve.material = eraserBlue;
     const eraser = BABYLON.Mesh.MergeMeshes([erBlock, erSleeve], true, true);
-    eraser.position = new BABYLON.Vector3(7.5, 0.2, 9.5);
+    eraser.position = new BABYLON.Vector3(7.5, 0.2, 11.5);
     eraser.rotation.y = Math.PI / 12;
     addShadows(eraser);
 
@@ -174,7 +174,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     const vialBrush = BABYLON.MeshBuilder.CreateCylinder("vialBrush", {height: 1.0, diameter: 0.1}, scene);
     vialBrush.position.y = 0.5;
     const cementVial = BABYLON.Mesh.MergeMeshes([vialBody, vialCap, vialBrush], true, true);
-    cementVial.position = new BABYLON.Vector3(6, 0.75, 11);
+    cementVial.position = new BABYLON.Vector3(7.5, 0.75, 13);
     addShadows(cementVial);
 
     return tools;
