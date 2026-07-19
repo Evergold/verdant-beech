@@ -1,5 +1,4 @@
 import * as BABYLON from "@babylonjs/core";
-import { buildCartographyTools } from "./CartographyProps.js";
 import i18next from "i18next";
 import enTranslations from "./locales/en.json";
 
@@ -132,8 +131,7 @@ async function initBabylon() {
     shadowGenerator.addShadowCaster(baseMap);
     candleShadows.addShadowCaster(baseMap);
 
-    // Generate the procedural cartography tools array and add shadows
-    const props = buildCartographyTools(scene, [shadowGenerator, candleShadows]);
+    // Cartography props removed pending high-quality 3D models from the user
 
     // Flickering animation for candle and camera checks
     let alpha = 0;
