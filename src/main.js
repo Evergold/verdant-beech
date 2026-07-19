@@ -193,13 +193,26 @@ async function initBabylon() {
 
     const tempSelect = document.getElementById("lighting-temp-select");
     if (tempSelect) {
+      tempSelect.value = "studio"; // Set default in UI to match initial lighting
       tempSelect.addEventListener("change", (e) => {
-        if (e.target.value === "studio") {
+        if (e.target.value === "moonlight") {
+          light.diffuse = new BABYLON.Color3(0.7, 0.8, 1.0);
+          ambientLight.diffuse = new BABYLON.Color3(0.4, 0.5, 0.8);
+        } else if (e.target.value === "overcast") {
+          light.diffuse = new BABYLON.Color3(0.9, 0.95, 1.0);
+          ambientLight.diffuse = new BABYLON.Color3(0.95, 0.95, 1.0);
+        } else if (e.target.value === "studio") {
           light.diffuse = new BABYLON.Color3(1, 1, 0.95);
           ambientLight.diffuse = new BABYLON.Color3(1, 1, 1);
         } else if (e.target.value === "daylight") {
-          light.diffuse = new BABYLON.Color3(0.9, 0.95, 1.0);
+          light.diffuse = new BABYLON.Color3(1.0, 0.95, 0.9);
           ambientLight.diffuse = new BABYLON.Color3(0.85, 0.9, 1.0);
+        } else if (e.target.value === "golden") {
+          light.diffuse = new BABYLON.Color3(1.0, 0.85, 0.6);
+          ambientLight.diffuse = new BABYLON.Color3(0.9, 0.7, 0.6);
+        } else if (e.target.value === "halogen") {
+          light.diffuse = new BABYLON.Color3(1.0, 0.8, 0.65);
+          ambientLight.diffuse = new BABYLON.Color3(1.0, 0.9, 0.8);
         } else if (e.target.value === "vintage") {
           light.diffuse = new BABYLON.Color3(1.0, 0.7, 0.4);
           ambientLight.diffuse = new BABYLON.Color3(1.0, 0.8, 0.5);

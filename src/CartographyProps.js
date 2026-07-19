@@ -68,7 +68,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     dCompass.material = steelMat;
     dCompass.rotation.x = Math.PI / 2;
     dCompass.rotation.y = -Math.PI / 4;
-    dCompass.position = new BABYLON.Vector3(-1.5, 0.125, 11.5);
+    dCompass.position = new BABYLON.Vector3(1, 0.125, 10.5);
     addShadows(dCompass);
 
     // 3. Protractor - Machined Brass Torus Ring for realism
@@ -141,9 +141,9 @@ export function buildCartographyTools(scene, shadowGenerators) {
         pencil.position = new BABYLON.Vector3(x, 0.1, z);
         addShadows(pencil);
     };
-    createPencil("pencilRed", new BABYLON.Color3(0.8, 0.1, 0.1), 3.5, 9.5, Math.PI / 8);
-    createPencil("pencilBlue", new BABYLON.Color3(0.1, 0.3, 0.8), 4.0, 9.3, Math.PI / 10);
-    createPencil("pencilYellow", new BABYLON.Color3(0.9, 0.8, 0.1), 3.8, 9.8, Math.PI / 6);
+    createPencil("pencilRed", new BABYLON.Color3(0.8, 0.1, 0.1), -13.5, 11.5, Math.PI / 8);
+    createPencil("pencilBlue", new BABYLON.Color3(0.1, 0.3, 0.8), -13.0, 11.0, Math.PI / 10);
+    createPencil("pencilYellow", new BABYLON.Color3(0.9, 0.8, 0.1), -12.5, 11.8, Math.PI / 6);
 
     // 10. Staedtler Eraser (White block with blue sleeve)
     const eraserWhite = new BABYLON.StandardMaterial("eraserWhite", scene);
