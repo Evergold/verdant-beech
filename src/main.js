@@ -79,15 +79,16 @@ async function initBabylon() {
     scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://playground.babylonjs.com/textures/environment.dds", scene);
     scene.environmentIntensity = 0.5;
 
-    const ssao = new BABYLON.SSAO2RenderingPipeline("ssao", scene, 0.75, [camera]);
-    ssao.radius = 2.0;
-    ssao.totalStrength = 1.2;
-    ssao.base = 0.5;
+    // SSAO2 and SSR are mathematically brutal and causing severe lag. Disabled for performance.
+    // const ssao = new BABYLON.SSAO2RenderingPipeline("ssao", scene, 0.75, [camera]);
+    // ssao.radius = 2.0;
+    // ssao.totalStrength = 1.2;
+    // ssao.base = 0.5;
 
-    const ssr = new BABYLON.SSRRenderingPipeline("ssr", scene, [camera]);
-    ssr.thickness = 0.1;
-    ssr.step = 1;
-    ssr.roughnessFactor = 0.2;
+    // const ssr = new BABYLON.SSRRenderingPipeline("ssr", scene, [camera]);
+    // ssr.thickness = 0.1;
+    // ssr.step = 1;
+    // ssr.roughnessFactor = 0.2;
 
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
