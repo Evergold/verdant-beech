@@ -142,20 +142,6 @@ CANVAS_TOOLS = [
     {
         "type": "function",
         "function": {
-            "name": "query_cartography_knowledge",
-            "description": "Query the Verdant Beech Cartography Knowledge Base for rules on typography, color theory, lighting, styles, or terrain.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {"type": "string", "description": "The specific cartography topic to look up (e.g., 'typography', 'elevation colors')"}
-                },
-                "required": ["query"]
-            }
-        }
-    },
-    {
-        "type": "function",
-        "function": {
             "name": "set_lighting",
             "description": "Adjust the ambient lighting and atmosphere of the 3D map canvas.",
             "parameters": {
@@ -277,7 +263,18 @@ CANVAS_TOOLS = [
 
 @app.post("/api/chat")
 async def chat_endpoint(req: ChatRequest):
-    messages = [{"role": "system", "content": CARTOGRAPHER_PROMPT}]
+    # PRE-INJECTION RAG: Small models struggle with explicit tool-use decisions.
+    # Instead, we proactively query the vector DB using the user's latest message 
+    # and invisibly inject the expert rules directly into the system prompt.
+    latest_user_msg = req.messages[-1].content if req.messages else ""
+    rag_context = ""
+    if latest_user_msg:
+        rag_results = rag_store.query(latest_user_msg, n_results=2)
+        if rag_results:
+            rag_context = "\\n\\nEXPERT CARTOGRAPHY RULES TO FOLLOW FOR THIS REQUEST:\\n- " + "\\n- ".join(rag_results)
+            
+    system_prompt = CARTOGRAPHER_PROMPT + rag_context
+    messages = [{"role": "system", "content": system_prompt}]
     messages.extend([{"role": m.role, "content": m.content} for m in req.messages])
     
     kwargs = {
@@ -293,30 +290,6 @@ async def chat_endpoint(req: ChatRequest):
         response = litellm.completion(**kwargs)
         msg = response.choices[0].message
         
-        # Handle backend RAG tool execution
-        if hasattr(msg, "tool_calls") and msg.tool_calls:
-            rag_calls = [tc for tc in msg.tool_calls if tc.function.name == "query_cartography_knowledge"]
-            if rag_calls:
-                # Append the assistant's tool call message
-                messages.append(msg.model_dump())
-                for tc in rag_calls:
-                    try:
-                        args = json.loads(tc.function.arguments)
-                        query_text = args.get("query", "")
-                    except:
-                        query_text = ""
-                    rag_result = rag_store.query(query_text)
-                    messages.append({
-                        "role": "tool",
-                        "tool_call_id": tc.id,
-                        "name": tc.function.name,
-                        "content": rag_result if rag_result else "No specific rules found in knowledge base."
-                    })
-                kwargs["messages"] = messages
-                # Second pass with RAG context
-                response = litellm.completion(**kwargs)
-                msg = response.choices[0].message
-                
         tool_calls = []
         if hasattr(msg, "tool_calls") and msg.tool_calls:
             for tc in msg.tool_calls:
