@@ -229,28 +229,6 @@ async function initBabylon() {
       });
     }
 
-    // Photographic Filter Toggles
-    const dofToggle = document.getElementById("dof-toggle");
-    if (dofToggle) {
-      dofToggle.addEventListener("change", (e) => {
-        defaultPipeline.depthOfFieldEnabled = e.target.checked;
-      });
-    }
-
-    const grainToggle = document.getElementById("grain-toggle");
-    if (grainToggle) {
-      grainToggle.addEventListener("change", (e) => {
-        defaultPipeline.grainEnabled = e.target.checked;
-      });
-    }
-
-    const chromaToggle = document.getElementById("chroma-toggle");
-    if (chromaToggle) {
-      chromaToggle.addEventListener("change", (e) => {
-        defaultPipeline.chromaticAberrationEnabled = e.target.checked;
-      });
-    }
-
     let isLandscape = true;
     const toggleBtn = document.getElementById("toggle-orientation-btn");
     if (toggleBtn) {
