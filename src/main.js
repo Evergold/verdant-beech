@@ -760,8 +760,8 @@ async function handleSend() {
   const thinkingId = "thinking-" + Date.now();
   const thinkingDiv = document.createElement("div");
   thinkingDiv.id = thinkingId;
-  thinkingDiv.className = `chat-message message-assistant`;
-  thinkingDiv.textContent = "...";
+  thinkingDiv.className = `chat-message message-assistant thinking`;
+  thinkingDiv.innerHTML = "<span class='typing-dot'>.</span><span class='typing-dot'>.</span><span class='typing-dot'>.</span>";
   chatHistory.appendChild(thinkingDiv);
   chatHistory.scrollTop = chatHistory.scrollHeight;
 
