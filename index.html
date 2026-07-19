@@ -139,8 +139,9 @@
       
       <!-- Main Canvas Area -->
       <main id="canvas-panel" style="position: relative;">
-        <div id="canvas-ui-layer" style="position: absolute; top: 16px; left: 16px; z-index: 10;">
+        <div id="canvas-ui-layer" style="position: absolute; top: 16px; left: 16px; z-index: 10; display: flex; flex-direction: column; gap: 8px;">
           <button id="toggle-orientation-btn" class="icon-btn" title="Toggle Portrait/Landscape">🔄 Orientation: Landscape</button>
+          <button id="zoom-tool-btn" class="icon-btn" title="Zoom Tool (Hold Ctrl to Zoom Out)">🔍 Zoom Tool: OFF</button>
         </div>
         <canvas id="renderCanvas"></canvas>
       </main>

@@ -582,4 +582,7 @@ body {
   width: 100%;
 }
 
+.cursor-zoom-in { cursor: zoom-in !important; }
+.cursor-zoom-out { cursor: zoom-out !important; }
+
 

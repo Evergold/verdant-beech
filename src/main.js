@@ -212,6 +212,70 @@ async function initBabylon() {
       });
     }
 
+    // Zoom Tool Logic
+    let isZoomToolActive = false;
+    const zoomToolBtn = document.getElementById("zoom-tool-btn");
+    
+    if (zoomToolBtn) {
+      zoomToolBtn.addEventListener("click", () => {
+        isZoomToolActive = !isZoomToolActive;
+        zoomToolBtn.textContent = isZoomToolActive ? "🔍 Zoom Tool: ON" : "🔍 Zoom Tool: OFF";
+        zoomToolBtn.style.color = isZoomToolActive ? "var(--accent-color)" : "var(--text-main)";
+        
+        if (isZoomToolActive) {
+          canvas.classList.add("cursor-zoom-in");
+          camera.detachControl(); // Disable normal drag-to-rotate while zooming
+        } else {
+          canvas.classList.remove("cursor-zoom-in");
+          canvas.classList.remove("cursor-zoom-out");
+          camera.attachControl(canvas, true);
+        }
+      });
+    }
+
+    window.addEventListener("keydown", (e) => {
+      if (isZoomToolActive && (e.key === "Control" || e.key === "Meta")) {
+        canvas.classList.replace("cursor-zoom-in", "cursor-zoom-out");
+      }
+    });
+    window.addEventListener("keyup", (e) => {
+      if (isZoomToolActive && (e.key === "Control" || e.key === "Meta")) {
+        canvas.classList.replace("cursor-zoom-out", "cursor-zoom-in");
+      }
+    });
+
+    scene.onPointerObservable.add((pointerInfo) => {
+      if (!isZoomToolActive) return;
+      
+      if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
+        const evt = pointerInfo.event;
+        const isZoomOut = evt.ctrlKey || evt.metaKey;
+        
+        const pickResult = scene.pick(scene.pointerX, scene.pointerY, (mesh) => mesh === baseMap || mesh === table);
+        if (pickResult.hit) {
+          const targetPoint = pickResult.pickedPoint;
+          targetPoint.y = 0; // Lock to table height
+          
+          let targetRadius = camera.radius * (isZoomOut ? 1.5 : 0.6);
+          if (targetRadius < camera.lowerRadiusLimit) targetRadius = camera.lowerRadiusLimit;
+          if (targetRadius > camera.upperRadiusLimit) targetRadius = camera.upperRadiusLimit;
+          
+          // Smart target shifting: keep canvas visible until we get too close
+          let finalTarget = BABYLON.Vector3.Zero();
+          if (targetRadius <= 25) {
+            // Once we are closer than 25 units, allow panning the target to the mouse cursor
+            finalTarget = targetPoint;
+          }
+          
+          const ease = new BABYLON.CubicEase();
+          ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
+          
+          BABYLON.Animation.CreateAndStartAnimation("zoomRad", camera, "radius", 60, 20, camera.radius, targetRadius, 0, ease);
+          BABYLON.Animation.CreateAndStartAnimation("zoomTar", camera, "target", 60, 20, camera.target, finalTarget, 0, ease);
+        }
+      }
+    });
+
     window.scene = scene;
     return scene;
   };
