@@ -1022,17 +1022,19 @@ navBtns.forEach(btn => {
 
 // --- Project Management ---
 const projectSelect = document.getElementById("project-select");
-const createProjectBtn = document.getElementById("create-project-btn");
-const newProjectName = document.getElementById("new-project-name");
+const projectNameInput = document.getElementById("project-name-input");
 const deleteProjectBtn = document.getElementById("delete-project-btn");
 
+let activeProjectId = null;
+
 async function loadProjects() {
-  if (!projectSelect) return;
+  if (!projectSelect || !projectNameInput) return;
   try {
     const res = await fetch("http://localhost:8001/api/projects");
     const data = await res.json();
     
-    projectSelect.innerHTML = "";
+    projectSelect.innerHTML = '<option value="_new_" style="font-weight: bold;">➕ New Project</option>';
+    
     Object.keys(data.projects).forEach(id => {
       const opt = document.createElement("option");
       opt.value = id;
@@ -1040,61 +1042,94 @@ async function loadProjects() {
       projectSelect.appendChild(opt);
     });
     
-    projectSelect.value = data.active_project;
+    activeProjectId = data.active_project;
+    projectSelect.value = activeProjectId;
+    projectNameInput.value = data.projects[activeProjectId].name;
   } catch(e) {
     console.error("Failed to load projects", e);
   }
 }
 
-if (createProjectBtn) {
-  createProjectBtn.addEventListener("click", async () => {
-    const name = newProjectName.value.trim();
-    if (!name) return showToast("Enter a project name", "warning");
-    
-    try {
-      const res = await fetch("http://localhost:8001/api/projects", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name })
-      });
-      const data = await res.json();
-      if (data.status === "success") {
-        newProjectName.value = "";
-        await loadProjects();
-        await loadModels(); // Reload model config for this project
-        showToast("Project created", "success");
-      }
-    } catch(e) {
-      showToast("Error creating project", "error");
+async function renameProject(newName) {
+  if (!newName || !activeProjectId) return;
+  try {
+    const res = await fetch("http://localhost:8001/api/projects/rename", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: newName })
+    });
+    const data = await res.json();
+    if (data.status === "success") {
+      await loadProjects();
+      showToast("Project renamed", "success");
+    } else {
+      showToast(data.error, "error");
+      await loadProjects(); // Reset input to current name
+    }
+  } catch(e) {
+    showToast("Error renaming project", "error");
+  }
+}
+
+if (projectNameInput) {
+  projectNameInput.addEventListener("blur", () => {
+    renameProject(projectNameInput.value.trim());
+  });
+  projectNameInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      projectNameInput.blur();
     }
   });
 }
 
 if (projectSelect) {
   projectSelect.addEventListener("change", async (e) => {
-    try {
-      await fetch("http://localhost:8001/api/projects/active", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: e.target.value })
-      });
-      await loadModels(); // Reload model config for this project
-      showToast("Project switched", "success");
-    } catch(e) {
-      showToast("Error switching project", "error");
+    const val = e.target.value;
+    if (val === "_new_") {
+      // Create new project
+      try {
+        const res = await fetch("http://localhost:8001/api/projects", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name: "Untitled Project" })
+        });
+        const data = await res.json();
+        if (data.status === "success") {
+          await loadProjects();
+          await loadModels(); // Reload model config
+          projectNameInput.focus();
+          projectNameInput.select(); // Prompt to rename immediately
+          showToast("New project created", "success");
+        }
+      } catch(e) {
+        showToast("Error creating project", "error");
+      }
+    } else {
+      // Switch active project
+      try {
+        await fetch("http://localhost:8001/api/projects/active", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ id: val })
+        });
+        await loadProjects();
+        await loadModels(); // Reload model config
+        showToast("Project switched", "success");
+      } catch(e) {
+        showToast("Error switching project", "error");
+      }
     }
   });
 }
 
 if (deleteProjectBtn) {
   deleteProjectBtn.addEventListener("click", async () => {
-    const activeId = projectSelect.value;
-    if (!activeId) return;
+    if (!activeProjectId) return;
     
     if (!confirm("Are you sure you want to delete this project and its memory?")) return;
     
     try {
-      const res = await fetch(`http://localhost:8001/api/projects/${activeId}`, {
+      const res = await fetch(`http://localhost:8001/api/projects/${activeProjectId}`, {
         method: "DELETE"
       });
       const data = await res.json();

@@ -147,6 +147,26 @@ async def set_active_project(req: ActiveProjectRequest):
         return {"status": "success"}
     return {"error": "Project not found"}
 
+class RenameProjectRequest(BaseModel):
+    name: str
+
+@app.post("/api/projects/rename")
+async def rename_project(req: RenameProjectRequest):
+    data = load_projects()
+    active_id = data["active_project"]
+    
+    # Check uniqueness
+    new_name = req.name.strip()
+    for pid, proj in data["projects"].items():
+        if pid != active_id and proj["name"].lower() == new_name.lower():
+            return {"error": "A project with this name already exists."}
+            
+    if active_id in data["projects"]:
+        data["projects"][active_id]["name"] = new_name
+        save_projects(data)
+        return {"status": "success"}
+    return {"error": "Project not found"}
+
 @app.delete("/api/projects/{project_id}")
 async def delete_project(project_id: str):
     data = load_projects()

@@ -3,5 +3,8 @@
     "title": "Assistant Tool",
     "placeholder": "Ask for a map or style advice...",
     "send": "Send"
+  },
+  "projects": {
+    "title": "Projects"
   }
 }

@@ -45,21 +45,16 @@
           </header>
           <div class="panel-content">
             <div class="controls-section">
-              <label class="style-label">Create New Project</label>
-              <div style="display: flex; gap: 8px;">
-                <input type="text" id="new-project-name" class="style-select" style="flex: 1;" placeholder="Project Name..." />
-                <button id="create-project-btn" class="style-btn" style="width: auto;">Create</button>
+              <label class="style-label">Active Project</label>
+              <div style="display: flex; gap: 4px; align-items: center;">
+                <input type="text" id="project-name-input" class="style-select" style="flex: 1;" placeholder="Project Name" title="Edit to rename project" />
+                <select id="project-select" class="style-select" style="width: 24px; padding: 0 0 0 6px; appearance: menulist;" title="Switch Project">
+                  <option value="_new_" style="font-weight: bold;">+ New Project</option>
+                  <!-- Dynamically populated -->
+                </select>
+                <button id="delete-project-btn" class="style-btn" style="background-color: transparent; border: 1px solid #8B0000; color: #8B0000; width: 32px; padding: 0;" title="Delete Project">🗑</button>
               </div>
             </div>
-            
-            <div class="controls-section">
-              <label class="style-label">Select Active Project</label>
-              <select id="project-select" class="style-select">
-                <!-- Dynamically populated -->
-              </select>
-            </div>
-            
-            <button id="delete-project-btn" class="style-btn" style="background-color: #8B0000; color: white;">Delete Active Project</button>
           </div>
         </aside>
 
