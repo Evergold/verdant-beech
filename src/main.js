@@ -88,7 +88,7 @@ async function initBabylon() {
 
     // Post-Processing Vignette to simulate dark atmospheric corners without clipping the shadow map
     defaultPipeline.imageProcessing.vignetteEnabled = true;
-    defaultPipeline.imageProcessing.vignetteWeight = 1.5;
+    defaultPipeline.imageProcessing.vignetteWeight = 4.5;
     defaultPipeline.imageProcessing.vignetteColor = new BABYLON.Color4(0, 0, 0, 1);
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
 
