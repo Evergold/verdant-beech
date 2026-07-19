@@ -112,6 +112,16 @@
                 <option value="golden">Golden Hour (4000K)</option>
                 <option value="halogen">Halogen (3200K)</option>
               </select>
+
+              <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 16px 0;" />
+              
+              <label class="style-label">Terrain Compositing Engine</label>
+              <div style="display: flex; gap: 8px; margin-bottom: 8px;">
+                <button id="generate-terrain-btn" class="primary-btn" style="flex: 1; padding: 6px;">Generate Hills</button>
+                <button id="flatten-terrain-btn" class="secondary-btn" style="flex: 1; padding: 6px;">Flatten</button>
+              </div>
+              <button id="add-settlement-btn" class="secondary-btn" style="width: 100%; padding: 6px; margin-bottom: 8px;">📍 Drop Settlement Marker</button>
+              <p style="color: var(--text-muted); font-size: 0.8rem; line-height: 1.3;">Markers automatically physics-snap to the displaced geometry of the terrain layers.</p>
             </div>
           </div>
         </aside>

@@ -1,5 +1,6 @@
 import * as BABYLON from "@babylonjs/core";
 import { buildCartographyTools } from "./CartographyProps.js";
+import { MapLayerManager } from "./MapLayers.js";
 import i18next from "i18next";
 import enTranslations from "./locales/en.json";
 
@@ -165,6 +166,9 @@ async function initBabylon() {
     baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
     baseMap.material = baseMat;
     baseMap.receiveShadows = true;
+
+    // Initialize 3D Compositing Layer Manager
+    const layerManager = new MapLayerManager(scene, baseMap);
     
     shadowGenerator.addShadowCaster(baseMap);
     candleShadows.addShadowCaster(baseMap);
@@ -230,6 +234,41 @@ async function initBabylon() {
           light.diffuse = new BABYLON.Color3(1.0, 0.7, 0.4);
           ambientLight.diffuse = new BABYLON.Color3(1.0, 0.8, 0.5);
         }
+      });
+    }
+
+    // Terrain Engine Toggles
+    const genTerrainBtn = document.getElementById("generate-terrain-btn");
+    if (genTerrainBtn) {
+      genTerrainBtn.addEventListener("click", () => {
+        // Apply CPU vertex displacement (simulating AI shader input)
+        layerManager.applyProceduralElevation(0.8, 1.2);
+      });
+    }
+
+    const flatTerrainBtn = document.getElementById("flatten-terrain-btn");
+    if (flatTerrainBtn) {
+      flatTerrainBtn.addEventListener("click", () => {
+        layerManager.flattenTerrain();
+      });
+    }
+
+    const addSettlementBtn = document.getElementById("add-settlement-btn");
+    if (addSettlementBtn) {
+      let settlementCount = 0;
+      // Pre-create a material for markers
+      const markerMat = new BABYLON.StandardMaterial("markerMat", scene);
+      markerMat.diffuseColor = new BABYLON.Color3(0.8, 0.2, 0.2); // Ruby red
+      markerMat.specularColor = new BABYLON.Color3(1, 0.5, 0.5);
+
+      addSettlementBtn.addEventListener("click", () => {
+        settlementCount++;
+        // Drop it randomly within the center bounds of the map (-5 to 5)
+        const rx = (Math.random() - 0.5) * 10;
+        const rz = (Math.random() - 0.5) * 10;
+        const marker = layerManager.addMarker("settlements", `city_${settlementCount}`, rx, rz, markerMat);
+        shadowGenerator.addShadowCaster(marker);
+        candleShadows.addShadowCaster(marker);
       });
     }
 
