@@ -90,6 +90,20 @@ async function initBabylon() {
     defaultPipeline.imageProcessing.vignetteEnabled = false;
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
 
+    // Photographic Post-Processing Filters (Disabled by default)
+    defaultPipeline.depthOfFieldEnabled = false;
+    defaultPipeline.depthOfField.focusDistance = 2000;
+    defaultPipeline.depthOfField.focalLength = 50;
+    defaultPipeline.depthOfField.fStop = 1.4;
+
+    defaultPipeline.grainEnabled = false;
+    defaultPipeline.grain.intensity = 15;
+    defaultPipeline.grain.animated = true;
+
+    defaultPipeline.chromaticAberrationEnabled = false;
+    defaultPipeline.chromaticAberration.aberrationAmount = 30;
+    defaultPipeline.chromaticAberration.radialIntensity = 1;
+
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
     ambientLight.intensity = 0.4; // Restored to illuminate the entire workspace naturally
@@ -212,6 +226,28 @@ async function initBabylon() {
           light.diffuse = new BABYLON.Color3(1.0, 0.7, 0.4);
           ambientLight.diffuse = new BABYLON.Color3(1.0, 0.8, 0.5);
         }
+      });
+    }
+
+    // Photographic Filter Toggles
+    const dofToggle = document.getElementById("dof-toggle");
+    if (dofToggle) {
+      dofToggle.addEventListener("change", (e) => {
+        defaultPipeline.depthOfFieldEnabled = e.target.checked;
+      });
+    }
+
+    const grainToggle = document.getElementById("grain-toggle");
+    if (grainToggle) {
+      grainToggle.addEventListener("change", (e) => {
+        defaultPipeline.grainEnabled = e.target.checked;
+      });
+    }
+
+    const chromaToggle = document.getElementById("chroma-toggle");
+    if (chromaToggle) {
+      chromaToggle.addEventListener("change", (e) => {
+        defaultPipeline.chromaticAberrationEnabled = e.target.checked;
       });
     }
 
