@@ -9,13 +9,13 @@ localStorage.clear();
 
 async function saveState(key, value) {
   try {
-    await fetch("http://localhost:8001/api/state", {
+    await fetch("http://localhost:8001/api/projects/state", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ key, value })
     });
   } catch (e) {
-    console.error("Failed to save state to YAML", e);
+    console.error("Failed to save state to project YAML", e);
   }
 }
 
@@ -467,21 +467,24 @@ async function loadModels() {
         select.appendChild(opt);
       });
       // Fetch persisted state from YAML backend
-      let savedModel = "ollama_chat/gemma4:e4b";
+      let savedModel = "gemini/gemini-3.5-flash";
       try {
-          const stateRes = await fetch("http://localhost:8001/api/state");
+          const stateRes = await fetch("http://localhost:8001/api/projects");
           if (stateRes.ok) {
-              const state = await stateRes.json();
-              savedModel = state.selectedModel || savedModel;
+              const data = await stateRes.json();
+              const activeId = data.active_project;
+              if (activeId && data.projects[activeId]) {
+                  savedModel = data.projects[activeId].selectedModel || savedModel;
+              }
           }
       } catch (e) {
-          console.error("Failed to load user state", e);
+          console.error("Failed to load project state", e);
       }
       
       if ([...select.options].some(o => o.value === savedModel)) {
         select.value = savedModel;
       } else {
-        select.value = "ollama_chat/gemma4:e4b";
+        select.value = "gemini/gemini-3.5-flash";
       }
       
       select.dataset.old = select.value;
@@ -499,6 +502,7 @@ async function loadModels() {
 // App Entry Point
 async function main() {
   await initI18n();
+  await loadProjects();
   await loadModels();
   await loadLibraryFolders();
   await initBabylon();
@@ -710,7 +714,8 @@ modelSelect.addEventListener("change", async (e) => {
   saveState("selectedModel", newModel);
   
   if (oldModel.includes("ollama_chat") && !newModel.includes("ollama_chat")) {
-    hwMonitor.classList.add("hidden");
+    const hwMonitor = document.getElementById("hardware-monitor");
+    if (hwMonitor) hwMonitor.classList.add("hidden");
     if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
     await unloadOllama();
   }
@@ -1014,6 +1019,97 @@ navBtns.forEach(btn => {
     }
   });
 });
+
+// --- Project Management ---
+const projectSelect = document.getElementById("project-select");
+const createProjectBtn = document.getElementById("create-project-btn");
+const newProjectName = document.getElementById("new-project-name");
+const deleteProjectBtn = document.getElementById("delete-project-btn");
+
+async function loadProjects() {
+  if (!projectSelect) return;
+  try {
+    const res = await fetch("http://localhost:8001/api/projects");
+    const data = await res.json();
+    
+    projectSelect.innerHTML = "";
+    Object.keys(data.projects).forEach(id => {
+      const opt = document.createElement("option");
+      opt.value = id;
+      opt.textContent = data.projects[id].name;
+      projectSelect.appendChild(opt);
+    });
+    
+    projectSelect.value = data.active_project;
+  } catch(e) {
+    console.error("Failed to load projects", e);
+  }
+}
+
+if (createProjectBtn) {
+  createProjectBtn.addEventListener("click", async () => {
+    const name = newProjectName.value.trim();
+    if (!name) return showToast("Enter a project name", "warning");
+    
+    try {
+      const res = await fetch("http://localhost:8001/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name })
+      });
+      const data = await res.json();
+      if (data.status === "success") {
+        newProjectName.value = "";
+        await loadProjects();
+        await loadModels(); // Reload model config for this project
+        showToast("Project created", "success");
+      }
+    } catch(e) {
+      showToast("Error creating project", "error");
+    }
+  });
+}
+
+if (projectSelect) {
+  projectSelect.addEventListener("change", async (e) => {
+    try {
+      await fetch("http://localhost:8001/api/projects/active", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: e.target.value })
+      });
+      await loadModels(); // Reload model config for this project
+      showToast("Project switched", "success");
+    } catch(e) {
+      showToast("Error switching project", "error");
+    }
+  });
+}
+
+if (deleteProjectBtn) {
+  deleteProjectBtn.addEventListener("click", async () => {
+    const activeId = projectSelect.value;
+    if (!activeId) return;
+    
+    if (!confirm("Are you sure you want to delete this project and its memory?")) return;
+    
+    try {
+      const res = await fetch(`http://localhost:8001/api/projects/${activeId}`, {
+        method: "DELETE"
+      });
+      const data = await res.json();
+      if (data.status === "success") {
+        await loadProjects();
+        await loadModels();
+        showToast("Project deleted", "success");
+      } else {
+        showToast(data.error, "error");
+      }
+    } catch(e) {
+      showToast("Error deleting project", "error");
+    }
+  });
+}
 
 // --- Library Management ---
 async function loadLibraryFolders() {

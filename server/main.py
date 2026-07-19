@@ -77,45 +77,110 @@ async def get_models():
     except Exception as e:
         return {"error": str(e)}
 
-# --- State Management Configuration ---
-STATE_YAML_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "user_state.yaml")
-DEFAULT_STATE = {
-    "selectedModel": "ollama_chat/gemma4:e4b"
-}
+# --- Project Management Configuration ---
+PROJECTS_YAML_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "projects.yaml")
+import uuid
 
-def ensure_state_yaml():
-    if not os.path.exists(STATE_YAML_PATH):
-        with open(STATE_YAML_PATH, "w") as f:
-            yaml.dump(DEFAULT_STATE, f)
+def generate_default_projects():
+    pid = str(uuid.uuid4())
+    return {
+        "active_project": pid,
+        "projects": {
+            pid: {
+                "name": "Untitled Project",
+                "selectedModel": "gemini/gemini-3.5-flash",
+                "chroma_collection": f"memory_{pid}"
+            }
+        }
+    }
 
-ensure_state_yaml()
+def ensure_projects_yaml():
+    if not os.path.exists(PROJECTS_YAML_PATH):
+        with open(PROJECTS_YAML_PATH, "w") as f:
+            yaml.dump(generate_default_projects(), f)
 
-@app.get("/api/state")
-async def get_state():
+ensure_projects_yaml()
+
+def load_projects():
     try:
-        with open(STATE_YAML_PATH, "r") as f:
-            return yaml.safe_load(f) or DEFAULT_STATE
-    except Exception as e:
-        return DEFAULT_STATE
+        with open(PROJECTS_YAML_PATH, "r") as f:
+            data = yaml.safe_load(f)
+            if not data or "projects" not in data:
+                return generate_default_projects()
+            return data
+    except:
+        return generate_default_projects()
+
+def save_projects(data):
+    with open(PROJECTS_YAML_PATH, "w") as f:
+        yaml.dump(data, f)
+
+@app.get("/api/projects")
+async def get_projects():
+    return load_projects()
+
+class CreateProjectRequest(BaseModel):
+    name: str
+
+@app.post("/api/projects")
+async def create_project(req: CreateProjectRequest):
+    data = load_projects()
+    pid = str(uuid.uuid4())
+    data["projects"][pid] = {
+        "name": req.name,
+        "selectedModel": "gemini/gemini-3.5-flash",
+        "chroma_collection": f"memory_{pid}"
+    }
+    data["active_project"] = pid
+    save_projects(data)
+    return {"status": "success", "id": pid}
+
+class ActiveProjectRequest(BaseModel):
+    id: str
+
+@app.post("/api/projects/active")
+async def set_active_project(req: ActiveProjectRequest):
+    data = load_projects()
+    if req.id in data["projects"]:
+        data["active_project"] = req.id
+        save_projects(data)
+        return {"status": "success"}
+    return {"error": "Project not found"}
+
+@app.delete("/api/projects/{project_id}")
+async def delete_project(project_id: str):
+    data = load_projects()
+    if project_id in data["projects"]:
+        if len(data["projects"]) <= 1:
+            return {"error": "Cannot delete the last project."}
+        del data["projects"][project_id]
+        if data["active_project"] == project_id:
+            data["active_project"] = list(data["projects"].keys())[0]
+        save_projects(data)
+        
+        # Here we could also delete the chroma_db collection for this project.
+        try:
+            from server.rag import rag_store
+            rag_store.client.delete_collection(f"memory_{project_id}")
+        except:
+            pass
+            
+        return {"status": "success"}
+    return {"error": "Project not found"}
 
 class StateRequest(BaseModel):
     key: str
     value: str
 
-@app.post("/api/state")
-async def update_state(req: StateRequest):
-    try:
-        with open(STATE_YAML_PATH, "r") as f:
-            state = yaml.safe_load(f) or {}
-        
-        state[req.key] = req.value
-        
-        with open(STATE_YAML_PATH, "w") as f:
-            yaml.dump(state, f)
-            
+@app.post("/api/projects/state")
+async def update_project_state(req: StateRequest):
+    data = load_projects()
+    active_id = data["active_project"]
+    if active_id in data["projects"]:
+        data["projects"][active_id][req.key] = req.value
+        save_projects(data)
         return {"status": "success"}
-    except Exception as e:
-        return {"error": str(e)}
+    return {"error": "Active project not found"}
 
 # --- Agent / Litellm Stubs ---
 class ChatMessage(BaseModel):

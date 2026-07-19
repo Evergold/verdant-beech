@@ -18,6 +18,9 @@
     <div id="app-container">
       <!-- Left Toolbar -->
       <nav id="side-toolbar">
+        <button id="nav-projects" class="nav-btn" title="Projects">
+          <span class="icon">🌳</span>
+        </button>
         <button id="nav-assistant" class="nav-btn active" title="Assistant Tool">
           <span class="icon">🤖</span>
           <span class="badge hidden" id="assistant-badge">!</span>
@@ -35,6 +38,31 @@
 
       <!-- Panels Container -->
       <div id="panel-container">
+        <!-- Projects Panel -->
+        <aside id="projects-panel" class="panel">
+          <header class="panel-header">
+            <h2 data-i18n="projects.title">Projects</h2>
+          </header>
+          <div class="panel-content">
+            <div class="controls-section">
+              <label class="style-label">Create New Project</label>
+              <div style="display: flex; gap: 8px;">
+                <input type="text" id="new-project-name" class="style-select" style="flex: 1;" placeholder="Project Name..." />
+                <button id="create-project-btn" class="style-btn" style="width: auto;">Create</button>
+              </div>
+            </div>
+            
+            <div class="controls-section">
+              <label class="style-label">Select Active Project</label>
+              <select id="project-select" class="style-select">
+                <!-- Dynamically populated -->
+              </select>
+            </div>
+            
+            <button id="delete-project-btn" class="style-btn" style="background-color: #8B0000; color: white;">Delete Active Project</button>
+          </div>
+        </aside>
+
         <!-- Sidecar Chat Panel -->
         <aside id="assistant-panel" class="panel active">
         <header id="chat-header">
