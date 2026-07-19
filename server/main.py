@@ -275,7 +275,13 @@ async def chat_endpoint(req: ChatRequest):
             
     system_prompt = CARTOGRAPHER_PROMPT + rag_context
     messages = [{"role": "system", "content": system_prompt}]
-    messages.extend([{"role": m.role, "content": m.content} for m in req.messages])
+    
+    # SLIDING WINDOW CONTEXT MANAGEMENT:
+    # Gemma 4 (e4b - 4.5B) features a massive 128,000 token context window!
+    # We enforce a highly relaxed sliding window to retain the last 150 messages (75 conversational turns),
+    # allowing for extremely deep, long-running context while still providing a safety ceiling against OOM crashes.
+    recent_messages = req.messages[-150:] if len(req.messages) > 150 else req.messages
+    messages.extend([{"role": m.role, "content": m.content} for m in recent_messages])
     
     kwargs = {
         "model": req.model_name,
