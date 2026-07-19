@@ -100,10 +100,10 @@ async function initBabylon() {
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
-    // Shadow Generator - Optimized PCF Soft Shadows
-    const shadowGenerator = new BABYLON.ShadowGenerator(2048, light);
-    shadowGenerator.usePercentageCloserFiltering = true;
-    shadowGenerator.filteringQuality = BABYLON.ShadowGenerator.QUALITY_HIGH;
+    // Shadow Generator - Ultra-Optimized Blur Exponential Shadow Maps (ESM)
+    const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
+    shadowGenerator.useBlurExponentialShadowMap = true;
+    shadowGenerator.blurKernel = 32;
     shadowGenerator.setDarkness(0.2);
 
     // Candle Light (Moody)
@@ -111,9 +111,9 @@ async function initBabylon() {
     candleLight.intensity = 0.0; // Off by default
     candleLight.diffuse = new BABYLON.Color3(1, 0.6, 0.2);
     
-    const candleShadows = new BABYLON.ShadowGenerator(1024, candleLight);
-    candleShadows.usePercentageCloserFiltering = true;
-    candleShadows.filteringQuality = BABYLON.ShadowGenerator.QUALITY_MEDIUM;
+    const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
+    candleShadows.useBlurExponentialShadowMap = true;
+    candleShadows.blurKernel = 16;
     candleShadows.setDarkness(0.5);
 
     // Lamp Mesh (Visual Representation)

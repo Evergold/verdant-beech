@@ -72,7 +72,7 @@ export function buildCartographyTools(scene, shadowGenerators) {
     addShadows(dCompass);
 
     // 3. Protractor - Machined Brass Torus Ring for realism
-    const protractor = BABYLON.MeshBuilder.CreateTorus("protractor", {diameter: 3.5, thickness: 0.15, tessellation: 64}, scene);
+    const protractor = BABYLON.MeshBuilder.CreateTorus("protractor", {diameter: 3.5, thickness: 0.15, tessellation: 32}, scene);
     protractor.scaling.y = 0.3; // Flatten it into a ruler profile
     protractor.material = brassMat;
     protractor.position = new BABYLON.Vector3(2, 0.05, 12.5);
