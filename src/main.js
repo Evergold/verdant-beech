@@ -86,6 +86,10 @@ async function initBabylon() {
     defaultPipeline.imageProcessing.toneMappingType = BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;
     defaultPipeline.imageProcessing.exposure = 1.2;
 
+    // Fast, cheap anti-aliasing to fix mesh edge jaggies
+    defaultPipeline.samples = 4; // 4x MSAA
+    defaultPipeline.fxaaEnabled = true; // Fast Approximate Anti-Aliasing
+
     // Removed screen-space vignette: using pure physical light falloff instead
     defaultPipeline.imageProcessing.vignetteEnabled = false;
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
