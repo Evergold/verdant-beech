@@ -62,6 +62,7 @@ async function initBabylon() {
     camera.wheelPrecision = 20;
     camera.lowerRadiusLimit = 10;
     camera.upperRadiusLimit = 40;
+    camera.panningSensibility = 250; // Lower number = faster/more sensitive panning
 
     // Custom animatable properties for safe panning without triggering ArcRotateCamera.setTarget orbital recalculations
     Object.defineProperty(camera, "targetX", {
