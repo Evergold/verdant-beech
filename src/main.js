@@ -110,6 +110,7 @@ async function initBabylon() {
     // The Map Canvas (Parchment Paper resting on table)
     baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 24, height: 16, subdivisions: 128}, scene);
     baseMap.position.y = 0.02; // Hover slightly above table
+    baseMap.position.z = -3;   // Shift lower on the table to make room for tools at the top
     baseMat = new BABYLON.StandardMaterial("baseMat", scene);
     baseMat.diffuseColor = new BABYLON.Color3(0.94, 0.9, 0.82); // Parchment
     baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
@@ -185,11 +186,22 @@ async function initBabylon() {
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
         isLandscape = !isLandscape;
+        toggleBtn.textContent = isLandscape ? "🔄 Orientation: Landscape" : "🔄 Orientation: Portrait";
         
-        // Reset target to center
-        camera.setTarget(BABYLON.Vector3.Zero());
-        // Snap the view to the primary frontal angle so the tools remain at the top edge
-        camera.alpha = -Math.PI / 2;
+        // Normalize current alpha to prevent 360-degree whirlwind spins
+        let currentAlpha = camera.alpha;
+        while (currentAlpha > Math.PI) currentAlpha -= 2 * Math.PI;
+        while (currentAlpha <= -Math.PI) currentAlpha += 2 * Math.PI;
+        camera.alpha = currentAlpha;
+        
+        const targetAlpha = -Math.PI / 2;
+        
+        // Smooth Animation Configuration
+        const ease = new BABYLON.CubicEase();
+        ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
+        
+        BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 0, ease);
+        BABYLON.Animation.CreateAndStartAnimation("camSnapTarget", camera, "target", 60, 45, camera.target, BABYLON.Vector3.Zero(), 0, ease);
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
