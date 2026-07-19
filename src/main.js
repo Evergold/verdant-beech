@@ -63,6 +63,16 @@ async function initBabylon() {
     camera.lowerRadiusLimit = 10;
     camera.upperRadiusLimit = 40;
 
+    // Custom animatable properties for safe panning without triggering ArcRotateCamera.setTarget orbital recalculations
+    Object.defineProperty(camera, "targetX", {
+      get: function() { return this.target.x; },
+      set: function(v) { this.target.x = v; }
+    });
+    Object.defineProperty(camera, "targetZ", {
+      get: function() { return this.target.z; },
+      set: function(v) { this.target.z = v; }
+    });
+
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
     ambientLight.intensity = 0.5;
@@ -202,11 +212,10 @@ async function initBabylon() {
         
         // Stop existing animations before starting new ones
         scene.stopAnimation(camera);
-        scene.stopAnimation(camera.target);
         
         BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 2, ease);
-        BABYLON.Animation.CreateAndStartAnimation("camSnapTarX", camera.target, "x", 60, 45, camera.target.x, 0, 2, ease);
-        BABYLON.Animation.CreateAndStartAnimation("camSnapTarZ", camera.target, "z", 60, 45, camera.target.z, -3, 2, ease);
+        BABYLON.Animation.CreateAndStartAnimation("camSnapTarX", camera, "targetX", 60, 45, camera.target.x, 0, 2, ease);
+        BABYLON.Animation.CreateAndStartAnimation("camSnapTarZ", camera, "targetZ", 60, 45, camera.target.z, -3, 2, ease);
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
@@ -267,17 +276,19 @@ async function initBabylon() {
           if (targetRadius < camera.lowerRadiusLimit) targetRadius = camera.lowerRadiusLimit;
           if (targetRadius > camera.upperRadiusLimit) targetRadius = camera.upperRadiusLimit;
           
-          // Always center on the point clicked
-          let finalTarget = targetPoint;
+          // Always center on the point clicked, but if zooming out, remain relative to the current center
+          let finalTarget = isZoomOut ? camera.target.clone() : targetPoint;
           
           const ease = new BABYLON.CubicEase();
           ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
           
           scene.stopAnimation(camera); // Stop previous zoom animations to prevent jumping
-          scene.stopAnimation(camera.target); // Stop direct target coordinate animations
           BABYLON.Animation.CreateAndStartAnimation("zoomRad", camera, "radius", 60, 20, camera.radius, targetRadius, 2, ease);
-          BABYLON.Animation.CreateAndStartAnimation("zoomTarX", camera.target, "x", 60, 20, camera.target.x, finalTarget.x, 2, ease);
-          BABYLON.Animation.CreateAndStartAnimation("zoomTarZ", camera.target, "z", 60, 20, camera.target.z, finalTarget.z, 2, ease);
+          
+          if (!isZoomOut) {
+            BABYLON.Animation.CreateAndStartAnimation("zoomTarX", camera, "targetX", 60, 20, camera.target.x, finalTarget.x, 2, ease);
+            BABYLON.Animation.CreateAndStartAnimation("zoomTarZ", camera, "targetZ", 60, 20, camera.target.z, finalTarget.z, 2, ease);
+          }
         }
       }
     });
