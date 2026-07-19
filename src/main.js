@@ -200,9 +200,11 @@ async function initBabylon() {
         const ease = new BABYLON.CubicEase();
         ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
         
-        BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 0, ease);
+        // Stop existing animations before starting new ones
         scene.stopAnimation(camera);
-        camera.setTarget(new BABYLON.Vector3(0, 0, -3));
+        
+        BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 0, ease);
+        BABYLON.Animation.CreateAndStartAnimation("camSnapTarget", camera, "target", 60, 45, camera.target, new BABYLON.Vector3(0, 0, -3), 0, ease);
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
