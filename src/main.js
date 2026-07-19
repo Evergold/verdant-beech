@@ -95,8 +95,8 @@ async function initBabylon() {
     const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
     candleShadows.usePercentageCloserFiltering = true;
 
-    // The Workshop Table (Thick Box for 3D realism)
-    const table = BABYLON.MeshBuilder.CreateBox("workshopTable", {width: 34, height: 2, depth: 22}, scene);
+    // The Workshop Table (Thick Box for 3D realism, perfectly square)
+    const table = BABYLON.MeshBuilder.CreateBox("workshopTable", {width: 32, height: 2, depth: 32}, scene);
     table.position.y = -1; // Top surface at y=0
     const tableMat = new BABYLON.StandardMaterial("tableMat", scene);
     const woodTex = new BABYLON.Texture("/wood.jpg", scene);
@@ -148,9 +148,16 @@ async function initBabylon() {
     candleShadows.addShadowCaster(ruler);
     candleShadows.addShadowCaster(compass);
 
-    // Flickering animation for candle
+    // Flickering animation for candle and camera checks
     let alpha = 0;
     scene.registerBeforeRender(() => {
+      // Hide lamp mesh if camera is directly overhead (beta < 0.2 radians)
+      if (camera.beta < 0.2) {
+        lampMesh.isVisible = false;
+      } else {
+        lampMesh.isVisible = true;
+      }
+
       if (candleLight.isEnabled()) {
         alpha += 0.05;
         candleLight.intensity = 0.4 + Math.random() * 0.1 + Math.sin(alpha) * 0.05;
@@ -184,16 +191,12 @@ async function initBabylon() {
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
-          camera.alpha = -Math.PI / 2;
-          camera.beta = Math.PI / 3;
-          camera.radius = 30;
+          camera.alpha -= Math.PI / 2;
         } else {
           // Portrait mode: scale X down, scale Z up
           baseMap.scaling = new BABYLON.Vector3(16/24, 1, 24/16);
-          // Snap camera to look perfectly straight down
-          camera.alpha = -Math.PI / 2;
-          camera.beta = 0.01; // Avoid exact 0 to prevent gimbal lock
-          camera.radius = 35;
+          // Rotate camera alpha so we remain facing the bottom edge of the map
+          camera.alpha += Math.PI / 2;
         }
       });
     }
