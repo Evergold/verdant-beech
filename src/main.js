@@ -123,20 +123,6 @@ async function initBabylon() {
     lampMat.emissiveColor = new BABYLON.Color3(0.5, 0.5, 0.4);
     lampMesh.material = lampMat;
 
-    // Candle Light (PointLight, flickering - disabled by default)
-    const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(14, 1.5, 10), scene);
-    candleLight.diffuse = new BABYLON.Color3(1, 0.6, 0.2);
-    candleLight.intensity = 0;
-    candleLight.setEnabled(false);
-
-    // Shadows
-    const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
-    shadowGenerator.useBlurExponentialShadowMap = true;
-    shadowGenerator.blurKernel = 32;
-
-    const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
-    candleShadows.usePercentageCloserFiltering = true;
-
     // The Workshop Table (Thick Box for 3D realism, perfectly square)
     const table = BABYLON.MeshBuilder.CreateBox("workshopTable", {width: 32, height: 2, depth: 32}, scene);
     table.position.y = -1; // Top surface at y=0
