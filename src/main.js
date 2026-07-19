@@ -256,7 +256,7 @@ async function initBabylon() {
         const evt = pointerInfo.event;
         const isZoomOut = evt.ctrlKey || evt.metaKey;
         
-        const pickResult = scene.pick(scene.pointerX, scene.pointerY, (mesh) => mesh === baseMap || mesh === table);
+        const pickResult = scene.pick(scene.pointerX, scene.pointerY, (mesh) => mesh === baseMap);
         if (pickResult.hit) {
           const targetPoint = pickResult.pickedPoint;
           targetPoint.y = 0; // Lock to table height
@@ -267,12 +267,8 @@ async function initBabylon() {
           if (targetRadius < camera.lowerRadiusLimit) targetRadius = camera.lowerRadiusLimit;
           if (targetRadius > camera.upperRadiusLimit) targetRadius = camera.upperRadiusLimit;
           
-          // Smart target shifting: use map center (0,0,-3) instead of table center
-          let finalTarget = new BABYLON.Vector3(0, 0, -3);
-          if (targetRadius <= 25) {
-            // Once we are closer than 25 units, allow panning the target to the mouse cursor
-            finalTarget = targetPoint;
-          }
+          // Always center on the point clicked
+          let finalTarget = targetPoint;
           
           const ease = new BABYLON.CubicEase();
           ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
