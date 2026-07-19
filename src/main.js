@@ -238,11 +238,26 @@ async function initBabylon() {
         
         if (isZoomToolActive) {
           canvas.classList.add("cursor-zoom-in");
-          camera.detachControl(); // Disable normal drag-to-rotate while zooming
+          // Disable left-click rotation (button 0) but keep right-click panning (button 2) active
+          if (camera.inputs.attached.pointers) {
+            camera.inputs.attached.pointers.buttons = [1, 2];
+          }
         } else {
           canvas.classList.remove("cursor-zoom-in");
           canvas.classList.remove("cursor-zoom-out");
-          camera.attachControl(canvas, true);
+          // Restore all mouse buttons for native camera controls
+          if (camera.inputs.attached.pointers) {
+            camera.inputs.attached.pointers.buttons = [0, 1, 2];
+          }
+          
+          // Smoothly reset view to centered map and zoomed-out radius
+          const ease = new BABYLON.CubicEase();
+          ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
+          
+          scene.stopAnimation(camera);
+          BABYLON.Animation.CreateAndStartAnimation("resetRad", camera, "radius", 60, 45, camera.radius, 35, 2, ease);
+          BABYLON.Animation.CreateAndStartAnimation("resetTarX", camera, "targetX", 60, 45, camera.target.x, 0, 2, ease);
+          BABYLON.Animation.CreateAndStartAnimation("resetTarZ", camera, "targetZ", 60, 45, camera.target.z, -3, 2, ease);
         }
       });
     }
@@ -263,6 +278,9 @@ async function initBabylon() {
       
       if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
         const evt = pointerInfo.event;
+        // Only trigger zoom logic on left-click (button 0)
+        if (evt.button !== 0) return;
+        
         const isZoomOut = evt.ctrlKey || evt.metaKey;
         
         const pickResult = scene.pick(scene.pointerX, scene.pointerY, (mesh) => mesh === baseMap);
