@@ -95,8 +95,11 @@ async function initBabylon() {
     ambientLight.intensity = 0.05; // Crushed from 0.4 to pitch the unlit corners into true darkness
     ambientLight.groundColor = new BABYLON.Color3(0.05, 0.05, 0.05);
 
-    // Main Studio Lamp (SpotLight with heavy physical decay to shroud the table corners in darkness)
-    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 24, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 1.4, 3.0, scene);
+    // Main Studio Lamp (SpotLight with custom innerAngle to protect the edges but shadow the corners)
+    // The angle (1.5) sets the hard outer limit at the table corners (radius ~22)
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 24, 0), new BABYLON.Vector3(0, -1, 0), 1.5, 2.0, scene);
+    // The innerAngle (1.1) keeps the light at 100% brightness up to radius ~15, illuminating the edges evenly before fading
+    light.innerAngle = 1.1;
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
