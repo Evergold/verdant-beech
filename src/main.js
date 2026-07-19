@@ -1,4 +1,5 @@
 import * as BABYLON from "@babylonjs/core";
+import { buildCartographyTools } from "./CartographyProps.js";
 import i18next from "i18next";
 import enTranslations from "./locales/en.json";
 
@@ -131,34 +132,8 @@ async function initBabylon() {
     shadowGenerator.addShadowCaster(baseMap);
     candleShadows.addShadowCaster(baseMap);
 
-    // Cartography Props aligned along the "top edge" of the table
-    const inkwell = BABYLON.MeshBuilder.CreateCylinder("inkwell", {height: 1.5, diameter: 1.0}, scene);
-    inkwell.position = new BABYLON.Vector3(12, 0.75, 14);
-    const inkMat = new BABYLON.StandardMaterial("inkMat", scene);
-    inkMat.diffuseColor = new BABYLON.Color3(0.1, 0.1, 0.15);
-    inkMat.specularColor = new BABYLON.Color3(0.8, 0.8, 0.8);
-    inkwell.material = inkMat;
-
-    const ruler = BABYLON.MeshBuilder.CreateBox("ruler", {width: 12, height: 0.05, depth: 1}, scene);
-    ruler.position = new BABYLON.Vector3(-10, 0.025, 14);
-    ruler.rotation.y = 0; // Perfectly aligned with the edge
-    const rulerMat = new BABYLON.StandardMaterial("rulerMat", scene);
-    rulerMat.diffuseColor = new BABYLON.Color3(0.6, 0.5, 0.3); // Wood/brass
-    ruler.material = rulerMat;
-
-    const compass = BABYLON.MeshBuilder.CreateTorus("compass", {diameter: 2, thickness: 0.2}, scene);
-    compass.position = new BABYLON.Vector3(2, 0.1, 14);
-    const compassMat = new BABYLON.StandardMaterial("compMat", scene);
-    compassMat.diffuseColor = new BABYLON.Color3(0.8, 0.7, 0.2); // Brass
-    compassMat.specularColor = new BABYLON.Color3(1, 1, 0.8);
-    compass.material = compassMat;
-
-    shadowGenerator.addShadowCaster(inkwell);
-    shadowGenerator.addShadowCaster(ruler);
-    shadowGenerator.addShadowCaster(compass);
-    candleShadows.addShadowCaster(inkwell);
-    candleShadows.addShadowCaster(ruler);
-    candleShadows.addShadowCaster(compass);
+    // Generate the procedural cartography tools array and add shadows
+    const props = buildCartographyTools(scene, [shadowGenerator, candleShadows]);
 
     // Flickering animation for candle and camera checks
     let alpha = 0;
