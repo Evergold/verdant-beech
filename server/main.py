@@ -77,6 +77,46 @@ async def get_models():
     except Exception as e:
         return {"error": str(e)}
 
+# --- State Management Configuration ---
+STATE_YAML_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "user_state.yaml")
+DEFAULT_STATE = {
+    "selectedModel": "ollama_chat/gemma4:e4b"
+}
+
+def ensure_state_yaml():
+    if not os.path.exists(STATE_YAML_PATH):
+        with open(STATE_YAML_PATH, "w") as f:
+            yaml.dump(DEFAULT_STATE, f)
+
+ensure_state_yaml()
+
+@app.get("/api/state")
+async def get_state():
+    try:
+        with open(STATE_YAML_PATH, "r") as f:
+            return yaml.safe_load(f) or DEFAULT_STATE
+    except Exception as e:
+        return DEFAULT_STATE
+
+class StateRequest(BaseModel):
+    key: str
+    value: str
+
+@app.post("/api/state")
+async def update_state(req: StateRequest):
+    try:
+        with open(STATE_YAML_PATH, "r") as f:
+            state = yaml.safe_load(f) or {}
+        
+        state[req.key] = req.value
+        
+        with open(STATE_YAML_PATH, "w") as f:
+            yaml.dump(state, f)
+            
+        return {"status": "success"}
+    except Exception as e:
+        return {"error": str(e)}
+
 # --- Agent / Litellm Stubs ---
 class ChatMessage(BaseModel):
     role: str

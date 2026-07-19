@@ -4,6 +4,21 @@ import { MapLayerManager } from "./MapLayers.js";
 import i18next from "i18next";
 import enTranslations from "./locales/en.json";
 
+// Invalidate local storage to prevent browser crashes from old cache states
+localStorage.clear();
+
+async function saveState(key, value) {
+  try {
+    await fetch("http://localhost:8001/api/state", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ key, value })
+    });
+  } catch (e) {
+    console.error("Failed to save state to YAML", e);
+  }
+}
+
 // Initialize i18n
 async function initI18n() {
   await i18next.init({
@@ -430,7 +445,7 @@ async function prewarmModel(modelId) {
     showToast(`Failed to load ${modelId}: ${e.message}. Falling back to Gemini.`, "error");
     const modelSelect = document.getElementById("model-select");
     modelSelect.value = "gemini/gemini-3.5-flash";
-    localStorage.setItem("selectedModel", modelSelect.value);
+    saveState("selectedModel", modelSelect.value);
     renderReasoningTabs(modelSelect.value);
     document.getElementById("hardware-monitor").classList.add("hidden");
     if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
@@ -451,8 +466,18 @@ async function loadModels() {
         opt.textContent = model.label;
         select.appendChild(opt);
       });
+      // Fetch persisted state from YAML backend
+      let savedModel = "ollama_chat/gemma4:e4b";
+      try {
+          const stateRes = await fetch("http://localhost:8001/api/state");
+          if (stateRes.ok) {
+              const state = await stateRes.json();
+              savedModel = state.selectedModel || savedModel;
+          }
+      } catch (e) {
+          console.error("Failed to load user state", e);
+      }
       
-      const savedModel = localStorage.getItem("selectedModel") || "ollama_chat/gemma4:e4b";
       if ([...select.options].some(o => o.value === savedModel)) {
         select.value = savedModel;
       } else {
@@ -682,7 +707,7 @@ modelSelect.addEventListener("change", async (e) => {
   const oldModel = modelSelect.dataset.old || "ollama_chat/gemma4:e4b";
   const newModel = e.target.value;
   modelSelect.dataset.old = newModel;
-  localStorage.setItem("selectedModel", newModel);
+  saveState("selectedModel", newModel);
   
   if (oldModel.includes("ollama_chat") && !newModel.includes("ollama_chat")) {
     hwMonitor.classList.add("hidden");
@@ -782,7 +807,7 @@ async function handleSend() {
        if (modelSelect.value.includes("ollama_chat")) {
            showToast("Local model error during chat. Falling back to Gemini Flash.", "error");
            modelSelect.value = "gemini/gemini-3.5-flash";
-           localStorage.setItem("selectedModel", modelSelect.value);
+           saveState("selectedModel", modelSelect.value);
            renderReasoningTabs(modelSelect.value);
            document.getElementById("hardware-monitor").classList.add("hidden");
            if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);

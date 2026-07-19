@@ -42,3 +42,6 @@ coverage/
 # Library Manager
 library/*
 !library/.gitkeep
+
+# State Management
+user_state.yaml
