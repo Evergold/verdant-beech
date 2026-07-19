@@ -88,7 +88,7 @@ async function initBabylon() {
 
     // Post-Processing Vignette to simulate dark atmospheric corners without clipping the shadow map
     defaultPipeline.imageProcessing.vignetteEnabled = true;
-    defaultPipeline.imageProcessing.vignetteWeight = 4.5;
+    defaultPipeline.imageProcessing.vignetteWeight = 2.0; // Reduced from 4.5 so the screen corners aren't entirely pitch black
     defaultPipeline.imageProcessing.vignetteColor = new BABYLON.Color4(0, 0, 0, 1);
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
 
@@ -108,8 +108,10 @@ async function initBabylon() {
     ambientLight.intensity = 0.4; // Reduced slightly to let IBL and SSAO shine
     ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
-    // Main Studio Lamp (SpotLight centered over the map for immersive vignette effect)
-    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 22, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 1.5, 2, scene);
+    // Main Studio Lamp (SpotLight tuned to keep the Map uniform but pitch the Table corners into shadow)
+    // Height 26, Angle PI/2 (Radius 26). Map corners are R=14, Table corners are R=22.
+    // Exponent 0.5 flattens the light falloff in the center (uniform map) but drops it rapidly at the cone edge (dark table).
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 26, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 0.5, scene);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
