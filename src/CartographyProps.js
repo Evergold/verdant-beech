@@ -106,21 +106,76 @@ export function buildCartographyTools(scene, shadowGenerators) {
     tape.position = new BABYLON.Vector3(12.5, 0, 12.5);
     addShadows(tape);
 
-    // 7. Laser Distance Measurer (Yellow body, black/glass screen)
+    // 7. Laser Distance Measurer
     const laserBase = BABYLON.MeshBuilder.CreateBox("laserBase", {width: 1.0, height: 0.4, depth: 2.5}, scene);
     laserBase.material = yellowMat;
-    
     const laserScreen = BABYLON.MeshBuilder.CreateBox("laserScreen", {width: 0.7, height: 0.45, depth: 0.8}, scene);
     laserScreen.position = new BABYLON.Vector3(0, 0.02, -0.4);
     laserScreen.material = glassMat;
-    
-    // Parent instead of merge to preserve distinct multi-materials
     laserScreen.setParent(laserBase);
-
     laserBase.position = new BABYLON.Vector3(10.5, 0.2, 9.5);
     laserBase.rotation.y = -Math.PI / 8;
     addShadows(laserBase);
-    tools.push(laserScreen); // Track for disposal but don't cast shadow
+    tools.push(laserScreen);
+
+    // 8. Scale Ruler (Triangular Prism)
+    const scaleRuler = BABYLON.MeshBuilder.CreateCylinder("scaleRuler", {height: 8, diameter: 0.6, tessellation: 3}, scene);
+    scaleRuler.material = plasticMat;
+    scaleRuler.rotation.z = Math.PI / 2;
+    scaleRuler.rotation.x = Math.PI / 6;
+    scaleRuler.position = new BABYLON.Vector3(0, 0.2, 10.5);
+    addShadows(scaleRuler);
+
+    // 9. Colored Pencils (Red, Blue, Yellow)
+    const createPencil = (name, color, x, z, rotY) => {
+        const pMat = new BABYLON.StandardMaterial(name + "Mat", scene);
+        pMat.diffuseColor = color;
+        const pBody = BABYLON.MeshBuilder.CreateCylinder(name + "Body", {height: 3.5, diameter: 0.2, tessellation: 6}, scene);
+        pBody.material = pMat;
+        const pTip = BABYLON.MeshBuilder.CreateCylinder(name + "Tip", {height: 0.5, diameterTop: 0.0, diameterBottom: 0.2}, scene);
+        pTip.position.y = 2.0;
+        pTip.material = woodMat;
+        const pencil = BABYLON.Mesh.MergeMeshes([pBody, pTip], true, true);
+        pencil.rotation.x = Math.PI / 2;
+        pencil.rotation.y = rotY;
+        pencil.position = new BABYLON.Vector3(x, 0.1, z);
+        addShadows(pencil);
+    };
+    createPencil("pencilRed", new BABYLON.Color3(0.8, 0.1, 0.1), 3.5, 9.5, Math.PI / 8);
+    createPencil("pencilBlue", new BABYLON.Color3(0.1, 0.3, 0.8), 4.0, 9.3, Math.PI / 10);
+    createPencil("pencilYellow", new BABYLON.Color3(0.9, 0.8, 0.1), 3.8, 9.8, Math.PI / 6);
+
+    // 10. Staedtler Eraser (White block with blue sleeve)
+    const eraserWhite = BABYLON.StandardMaterial("eraserWhite", scene);
+    eraserWhite.diffuseColor = new BABYLON.Color3(0.9, 0.9, 0.9);
+    const eraserBlue = BABYLON.StandardMaterial("eraserBlue", scene);
+    eraserBlue.diffuseColor = new BABYLON.Color3(0.1, 0.3, 0.7);
+    const erBlock = BABYLON.MeshBuilder.CreateBox("erBlock", {width: 1.5, height: 0.4, depth: 0.8}, scene);
+    erBlock.material = eraserWhite;
+    const erSleeve = BABYLON.MeshBuilder.CreateBox("erSleeve", {width: 0.8, height: 0.42, depth: 0.82}, scene);
+    erSleeve.material = eraserBlue;
+    const eraser = BABYLON.Mesh.MergeMeshes([erBlock, erSleeve], true, true);
+    eraser.position = new BABYLON.Vector3(7.5, 0.2, 9.5);
+    eraser.rotation.y = Math.PI / 12;
+    addShadows(eraser);
+
+    // 11. Rubber Cement Vial
+    const vialMat = new BABYLON.StandardMaterial("vialMat", scene);
+    vialMat.diffuseColor = new BABYLON.Color3(0.8, 0.8, 0.8);
+    vialMat.alpha = 0.6;
+    vialMat.specularPower = 128;
+    const vialBody = BABYLON.MeshBuilder.CreateCylinder("vialBody", {height: 1.5, diameter: 1.2}, scene);
+    vialBody.material = vialMat;
+    const vialCapMat = new BABYLON.StandardMaterial("vialCapMat", scene);
+    vialCapMat.diffuseColor = new BABYLON.Color3(0.9, 0.9, 0.9);
+    const vialCap = BABYLON.MeshBuilder.CreateCylinder("vialCap", {height: 0.4, diameter: 1.25}, scene);
+    vialCap.material = vialCapMat;
+    vialCap.position.y = 0.95;
+    const vialBrush = BABYLON.MeshBuilder.CreateCylinder("vialBrush", {height: 1.0, diameter: 0.1}, scene);
+    vialBrush.position.y = 0.5;
+    const cementVial = BABYLON.Mesh.MergeMeshes([vialBody, vialCap, vialBrush], true, true);
+    cementVial.position = new BABYLON.Vector3(6, 0.75, 11);
+    addShadows(cementVial);
 
     return tools;
 }

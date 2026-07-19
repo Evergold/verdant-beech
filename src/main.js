@@ -75,15 +75,45 @@ async function initBabylon() {
       set: function(v) { this.target.z = v; }
     });
 
+    // Advanced Rendering Pipeline: SSR, SSAO2, and IBL (Baked Radiance Volumes)
+    scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://playground.babylonjs.com/textures/environment.dds", scene);
+    scene.environmentIntensity = 0.5;
+
+    const ssao = new BABYLON.SSAO2RenderingPipeline("ssao", scene, 0.75, [camera]);
+    ssao.radius = 2.0;
+    ssao.totalStrength = 1.2;
+    ssao.base = 0.5;
+
+    const ssr = new BABYLON.SSRRenderingPipeline("ssr", scene, [camera]);
+    ssr.thickness = 0.1;
+    ssr.step = 1;
+    ssr.roughnessFactor = 0.2;
+
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
-    ambientLight.intensity = 0.5;
+    ambientLight.intensity = 0.4; // Reduced slightly to let IBL and SSAO shine
     ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
     // Main Studio Lamp (SpotLight centered over the map)
     light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 18, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 2, scene);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
+
+    // Shadow Generator - Upgraded to Contact Hardening Shadows (PCSS/Screen-Space Softness)
+    const shadowGenerator = new BABYLON.ShadowGenerator(2048, light);
+    shadowGenerator.useContactHardeningShadow = true;
+    shadowGenerator.contactHardeningLightSizeUVRatio = 0.05;
+    shadowGenerator.setDarkness(0.2);
+
+    // Candle Light (Moody)
+    const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(12, 1.5, 14), scene);
+    candleLight.intensity = 0.0; // Off by default
+    candleLight.diffuse = new BABYLON.Color3(1, 0.6, 0.2);
+    
+    const candleShadows = new BABYLON.ShadowGenerator(1024, candleLight);
+    candleShadows.useContactHardeningShadow = true;
+    candleShadows.contactHardeningLightSizeUVRatio = 0.1;
+    candleShadows.setDarkness(0.5);
 
     // Lamp Mesh (Visual Representation)
     const lampMesh = BABYLON.MeshBuilder.CreateCylinder("lampMesh", {height: 2, diameterTop: 3, diameterBottom: 4}, scene);
@@ -163,6 +193,22 @@ async function initBabylon() {
           ambientLight.intensity = 0.1;
           light.intensity = 0.8;
           candleLight.setEnabled(true);
+        }
+      });
+    }
+
+    const tempSelect = document.getElementById("lighting-temp-select");
+    if (tempSelect) {
+      tempSelect.addEventListener("change", (e) => {
+        if (e.target.value === "studio") {
+          light.diffuse = new BABYLON.Color3(1, 1, 0.95);
+          ambientLight.diffuse = new BABYLON.Color3(1, 1, 1);
+        } else if (e.target.value === "daylight") {
+          light.diffuse = new BABYLON.Color3(0.9, 0.95, 1.0);
+          ambientLight.diffuse = new BABYLON.Color3(0.85, 0.9, 1.0);
+        } else if (e.target.value === "vintage") {
+          light.diffuse = new BABYLON.Color3(1.0, 0.7, 0.4);
+          ambientLight.diffuse = new BABYLON.Color3(1.0, 0.8, 0.5);
         }
       });
     }
