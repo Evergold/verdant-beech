@@ -77,7 +77,7 @@ async function initBabylon() {
 
     // Advanced Rendering Pipeline: HDR and IBL (Baked Radiance Volumes)
     scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://playground.babylonjs.com/textures/environment.dds", scene);
-    scene.environmentIntensity = 0.5;
+    scene.environmentIntensity = 0.15; // Crushed to allow deep shadows while keeping metallic reflections
 
     // Enable High Dynamic Range (HDR) and Cinematic ACES Tone Mapping
     const defaultPipeline = new BABYLON.DefaultRenderingPipeline("defaultPipeline", true, scene, [camera]);
@@ -90,21 +90,10 @@ async function initBabylon() {
     defaultPipeline.imageProcessing.vignetteEnabled = false;
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
 
-    // SSAO2 and SSR are mathematically brutal and causing severe lag. Disabled for performance.
-    // const ssao = new BABYLON.SSAO2RenderingPipeline("ssao", scene, 0.75, [camera]);
-    // ssao.radius = 2.0;
-    // ssao.totalStrength = 1.2;
-    // ssao.base = 0.5;
-
-    // const ssr = new BABYLON.SSRRenderingPipeline("ssr", scene, [camera]);
-    // ssr.thickness = 0.1;
-    // ssr.step = 1;
-    // ssr.roughnessFactor = 0.2;
-
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
-    ambientLight.intensity = 0.4; // Reduced slightly to let IBL and SSAO shine
-    ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
+    ambientLight.intensity = 0.05; // Crushed from 0.4 to pitch the unlit corners into true darkness
+    ambientLight.groundColor = new BABYLON.Color3(0.05, 0.05, 0.05);
 
     // Main Studio Lamp (SpotLight with heavy physical decay to shroud the table corners in darkness)
     light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 24, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 1.4, 3.0, scene);
