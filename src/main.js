@@ -77,7 +77,7 @@ async function initBabylon() {
 
     // Advanced Rendering Pipeline: HDR and IBL (Baked Radiance Volumes)
     scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData("https://playground.babylonjs.com/textures/environment.dds", scene);
-    scene.environmentIntensity = 0.15; // Crushed to allow deep shadows while keeping metallic reflections
+    scene.environmentIntensity = 0.5; // Restored for proper ambient fill and reflections
 
     // Enable High Dynamic Range (HDR) and Cinematic ACES Tone Mapping
     const defaultPipeline = new BABYLON.DefaultRenderingPipeline("defaultPipeline", true, scene, [camera]);
@@ -92,15 +92,12 @@ async function initBabylon() {
 
     // Ambient Room Light (Uniform default)
     const ambientLight = new BABYLON.HemisphericLight("ambientLight", new BABYLON.Vector3(0, 1, 0), scene);
-    ambientLight.intensity = 0.05; // Crushed from 0.4 to pitch the unlit corners into true darkness
-    ambientLight.groundColor = new BABYLON.Color3(0.05, 0.05, 0.05);
+    ambientLight.intensity = 0.4; // Restored to illuminate the entire workspace naturally
+    ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
-    // Main Studio Lamp (SpotLight with custom innerAngle to sharply isolate table corners)
-    // The angle (1.45) sets the hard outer limit at radius ~21.1 (Corner is at ~22.6)
-    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 24, 0), new BABYLON.Vector3(0, -1, 0), 1.45, 1.0, scene);
-    // The innerAngle (1.35) keeps the light at 100% brightness up to radius ~19.2 (Table edges are at 16)
-    // This perfectly illuminates the table edges but abruptly pitches the corners into true darkness.
-    light.innerAngle = 1.35;
+    // Main Studio Lamp (DirectionalLight for 100% uniform illumination across the entire table)
+    light = new BABYLON.DirectionalLight("lampLight", new BABYLON.Vector3(-0.5, -2, -0.5), scene);
+    light.position = new BABYLON.Vector3(10, 40, 10);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
@@ -147,8 +144,6 @@ async function initBabylon() {
     baseMap.position.z = -3;   // Shift lower on the table to make room for tools at the top
     baseMat = new BABYLON.StandardMaterial("baseMat", scene);
     baseMat.diffuseColor = new BABYLON.Color3(0.94, 0.9, 0.82); // Parchment
-    // Emissive color perfectly counters the SpotLight falloff, making the paper natively uniform
-    baseMat.emissiveColor = new BABYLON.Color3(0.2, 0.18, 0.15); 
     baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
     baseMap.material = baseMat;
     baseMap.receiveShadows = true;
