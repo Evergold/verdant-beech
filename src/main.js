@@ -111,7 +111,8 @@ async function initBabylon() {
     const shadowGenerator = new BABYLON.ShadowGenerator(1024, light);
     shadowGenerator.usePercentageCloserFiltering = true;
     shadowGenerator.filteringQuality = BABYLON.ShadowGenerator.QUALITY_LOW;
-    shadowGenerator.setDarkness(0.2);
+    shadowGenerator.setDarkness(0.6); // Increased darkness so shadows aren't washed out by IBL
+    shadowGenerator.bias = 0.0005; // Tiny bias to prevent acne but keep shadows grounded
 
     // Candle Light (Moody)
     const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(12, 1.5, 14), scene);

@@ -98,10 +98,30 @@ export function buildCartographyTools(scene, shadowGenerators) {
     techPen.position = new BABYLON.Vector3(9, 0.15, 11.5);
     addShadows(techPen);
 
-    // 6. Drafting Tape (Rebuilt as a stable Cylinder instead of a fragile Tube)
-    const tape = BABYLON.MeshBuilder.CreateCylinder("draftingTape", {height: 0.6, diameter: 2.5, tessellation: 32}, scene);
-    tape.material = tapeMat;
-    tape.position = new BABYLON.Vector3(11.5, 0.3, 11.5); // Shift slightly inward
+    // 6. Drafting Tape (Rebuilt with CSG for a realistic hollow core and cardboard ring)
+    const cardMat = new BABYLON.StandardMaterial("cardMat", scene);
+    cardMat.diffuseColor = new BABYLON.Color3(0.6, 0.4, 0.2); // Brown cardboard
+    
+    const tOuter = BABYLON.MeshBuilder.CreateCylinder("tO", {height: 0.6, diameter: 2.5, tessellation: 32});
+    const tHole = BABYLON.MeshBuilder.CreateCylinder("tH", {height: 1.0, diameter: 1.2, tessellation: 32});
+    const tCore = BABYLON.MeshBuilder.CreateCylinder("tC", {height: 0.605, diameter: 1.3, tessellation: 32});
+
+    // Subtract the hole from the tape
+    const outerCSG = BABYLON.CSG.FromMesh(tOuter);
+    const holeCSG = BABYLON.CSG.FromMesh(tHole);
+    const tapeBody = outerCSG.subtract(holeCSG).toMesh("tapeBody", tapeMat, scene);
+    
+    // Subtract the hole from the cardboard core
+    const coreCSG = BABYLON.CSG.FromMesh(tCore);
+    const coreBody = coreCSG.subtract(holeCSG).toMesh("coreBody", cardMat, scene);
+
+    tOuter.dispose();
+    tHole.dispose();
+    tCore.dispose();
+
+    const tape = BABYLON.Mesh.MergeMeshes([tapeBody, coreBody], true, true);
+    tape.position = new BABYLON.Vector3(11.5, 0.3, 11.5);
+
     addShadows(tape);
 
     // 7. Laser Distance Measurer
