@@ -261,7 +261,8 @@ async function initBabylon() {
           const targetPoint = pickResult.pickedPoint;
           targetPoint.y = 0; // Lock to table height
           
-          let targetRadius = camera.radius * (isZoomOut ? 1.5 : 0.6);
+          // Use 1/3 increments (33% change)
+          let targetRadius = camera.radius * (isZoomOut ? 1.333 : 0.666);
           if (targetRadius < camera.lowerRadiusLimit) targetRadius = camera.lowerRadiusLimit;
           if (targetRadius > camera.upperRadiusLimit) targetRadius = camera.upperRadiusLimit;
           
