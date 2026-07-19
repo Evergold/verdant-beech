@@ -56,8 +56,8 @@ async function initBabylon() {
     // Set a dark room background
     scene.clearColor = new BABYLON.Color4(0.02, 0.02, 0.03, 1);
 
-    // Perspective Camera viewing the table
-    camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 3, 35, BABYLON.Vector3.Zero(), scene);
+    // Perspective Camera viewing the table (Centered on Map Canvas at z = -3)
+    camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 3, 35, new BABYLON.Vector3(0, 0, -3), scene);
     camera.attachControl(canvas, true);
     camera.wheelPrecision = 20;
     camera.lowerRadiusLimit = 10;
@@ -201,7 +201,8 @@ async function initBabylon() {
         ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
         
         BABYLON.Animation.CreateAndStartAnimation("camSnapAlpha", camera, "alpha", 60, 45, currentAlpha, targetAlpha, 0, ease);
-        BABYLON.Animation.CreateAndStartAnimation("camSnapTarget", camera, "target", 60, 45, camera.target, BABYLON.Vector3.Zero(), 0, ease);
+        scene.stopAnimation(camera);
+        camera.setTarget(new BABYLON.Vector3(0, 0, -3));
         
         if (isLandscape) {
           baseMap.scaling = new BABYLON.Vector3(1, 1, 1);
@@ -260,8 +261,8 @@ async function initBabylon() {
           if (targetRadius < camera.lowerRadiusLimit) targetRadius = camera.lowerRadiusLimit;
           if (targetRadius > camera.upperRadiusLimit) targetRadius = camera.upperRadiusLimit;
           
-          // Smart target shifting: keep canvas visible until we get too close
-          let finalTarget = BABYLON.Vector3.Zero();
+          // Smart target shifting: use map center (0,0,-3) instead of table center
+          let finalTarget = new BABYLON.Vector3(0, 0, -3);
           if (targetRadius <= 25) {
             // Once we are closer than 25 units, allow panning the target to the mouse cursor
             finalTarget = targetPoint;
@@ -270,6 +271,7 @@ async function initBabylon() {
           const ease = new BABYLON.CubicEase();
           ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEOUT);
           
+          scene.stopAnimation(camera); // Stop previous zoom animations to prevent jumping
           BABYLON.Animation.CreateAndStartAnimation("zoomRad", camera, "radius", 60, 20, camera.radius, targetRadius, 0, ease);
           BABYLON.Animation.CreateAndStartAnimation("zoomTar", camera, "target", 60, 20, camera.target, finalTarget, 0, ease);
         }
