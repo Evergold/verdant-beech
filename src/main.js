@@ -467,7 +467,7 @@ async function loadModels() {
         select.appendChild(opt);
       });
       // Fetch persisted state from YAML backend
-      let savedModel = "gemini/gemini-3.5-flash";
+      let savedModel = "ollama_chat/gemma4:e4b";
       try {
           const stateRes = await fetch("http://localhost:8001/api/projects");
           if (stateRes.ok) {
@@ -484,7 +484,7 @@ async function loadModels() {
       if ([...select.options].some(o => o.value === savedModel)) {
         select.value = savedModel;
       } else {
-        select.value = "gemini/gemini-3.5-flash";
+        select.value = "ollama_chat/gemma4:e4b";
       }
       
       select.dataset.old = select.value;

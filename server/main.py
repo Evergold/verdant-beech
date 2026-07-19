@@ -88,7 +88,7 @@ def generate_default_projects():
         "projects": {
             pid: {
                 "name": "Untitled Project",
-                "selectedModel": "gemini/gemini-3.5-flash",
+                "selectedModel": "ollama_chat/gemma4:e4b",
                 "chroma_collection": f"memory_{pid}"
             }
         }
@@ -128,7 +128,7 @@ async def create_project(req: CreateProjectRequest):
     pid = str(uuid.uuid4())
     data["projects"][pid] = {
         "name": req.name,
-        "selectedModel": "gemini/gemini-3.5-flash",
+        "selectedModel": "ollama_chat/gemma4:e4b",
         "chroma_collection": f"memory_{pid}"
     }
     data["active_project"] = pid
