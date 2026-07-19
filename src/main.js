@@ -803,7 +803,8 @@ async function handleSend() {
       body: JSON.stringify({ 
         messages: messages,
         model_name: modelSelect.value,
-        reasoning: levelsSupport(modelSelect.value) ? currentReasoning : null
+        reasoning: levelsSupport(modelSelect.value) ? currentReasoning : null,
+        project_id: activeProjectId
       })
     });
     const data = await res.json();
@@ -824,7 +825,8 @@ async function handleSend() {
                body: JSON.stringify({ 
                    messages: messages,
                    model_name: modelSelect.value,
-                   reasoning: levelsSupport(modelSelect.value) ? currentReasoning : null
+                   reasoning: levelsSupport(modelSelect.value) ? currentReasoning : null,
+                   project_id: activeProjectId
                })
            });
            const fallbackData = await fallbackRes.json();

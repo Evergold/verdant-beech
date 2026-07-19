@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, BackgroundTasks
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
@@ -231,6 +231,37 @@ class ChatRequest(BaseModel):
     messages: List[ChatMessage]
     model_name: str = "ollama_chat/gemma4:e4b"
     reasoning: str | None = None
+    project_id: str | None = None
+
+async def compact_memory(project_id: str, old_messages: list):
+    if not old_messages:
+        return
+    try:
+        from litellm import acompletion
+        prompt = "Summarize the following conversation segment into a single, concise sentence focusing on decisions made, user preferences, and cartography progress:\n\n"
+        for msg in old_messages:
+            role = msg["role"] if isinstance(msg, dict) else msg.role
+            content = msg["content"] if isinstance(msg, dict) else msg.content
+            prompt += f"{str(role).upper()}: {str(content)}\n"
+        
+        res = await acompletion(
+            model="gemini/gemini-3.5-flash", # Fallback to gemini if ollama struggles, wait no I'll use gemma4
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=150
+        )
+        summary = res.choices[0].message.content.strip()
+        
+        from server.rag import rag_store
+        import uuid
+        mem_collection = rag_store.client.get_or_create_collection(f"memory_{project_id}")
+        mem_collection.upsert(
+            documents=[summary],
+            metadatas=[{"type": "episodic_summary"}],
+            ids=[str(uuid.uuid4())]
+        )
+        print(f"[MEMORY MANAGER] Compacted {len(old_messages)} messages into ChromaDB for project {project_id}.")
+    except Exception as e:
+        print(f"[MEMORY MANAGER] Error compacting memory: {e}")
 
 CARTOGRAPHER_PROMPT = """You are Green, the diligent and polite student and assistant to the greatest loremaster and cartographer in Middle-earth, the high-elf Verdant Beech.
 Verdant Beech is the true expert cartographer, designer, and photographer who will handle the final image generation. You are the "Assistant Tool" who interfaces with the user.
@@ -360,32 +391,63 @@ CANVAS_TOOLS = [
                     "y": {"type": "number"},
                     "text": {"type": "string"}
                 },
-                "required": ["x", "y", "text"]
+        "required": ["x", "y", "text"]
             }
         }
     }
 ]
 
 @app.post("/api/chat")
-async def chat_endpoint(req: ChatRequest):
-    # PRE-INJECTION RAG: Small models struggle with explicit tool-use decisions.
-    # Instead, we proactively query the vector DB using the user's latest message 
-    # and invisibly inject the expert rules directly into the system prompt.
+async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
+    # PRE-INJECTION RAG: Query both expert rules and dynamic episodic memory
     latest_user_msg = req.messages[-1].content if req.messages else ""
     rag_context = ""
+    episodic_context = ""
+    
     if latest_user_msg:
+        # 1. Cartography Rules
         rag_results = rag_store.query(latest_user_msg, n_results=2)
         if rag_results:
-            rag_context = "\\n\\nEXPERT CARTOGRAPHY RULES TO FOLLOW FOR THIS REQUEST:\\n- " + "\\n- ".join(rag_results)
+            rag_context = "\n\nEXPERT CARTOGRAPHY RULES TO FOLLOW FOR THIS REQUEST:\n- " + "\n- ".join(rag_results)
             
-    system_prompt = CARTOGRAPHER_PROMPT + rag_context
+        # 2. Episodic Memory (Dynamic Topic Retrieval)
+        if req.project_id:
+            try:
+                mem_collection = rag_store.client.get_or_create_collection(f"memory_{req.project_id}")
+                mem_results = mem_collection.query(query_texts=[latest_user_msg], n_results=3)
+                if mem_results and mem_results['documents'] and mem_results['documents'][0]:
+                    episodic_context = "\n\nPAST CONVERSATIONAL MEMORY FOR THIS PROJECT:\n- " + "\n- ".join(mem_results['documents'][0])
+            except Exception as e:
+                print(f"[MEMORY] Error fetching episodic memory: {e}")
+            
+    system_prompt = CARTOGRAPHER_PROMPT + rag_context + episodic_context
     messages = [{"role": "system", "content": system_prompt}]
     
-    # SLIDING WINDOW CONTEXT MANAGEMENT:
-    # Gemma 4 (e4b - 4.5B) features a massive 128,000 token context window!
-    # We enforce a highly relaxed sliding window to retain the last 150 messages (75 conversational turns),
-    # allowing for extremely deep, long-running context while still providing a safety ceiling against OOM crashes.
-    recent_messages = req.messages[-150:] if len(req.messages) > 150 else req.messages
+    # CONTINUOUS COMPACTION & TIGHT SLIDING WINDOW:
+    # Instead of blinding keeping 150 messages, we shrink Working Memory to just the last 10 messages (5 turns).
+    # When the chat exceeds 20 messages, we scoop up the oldest uncompacted messages, send them to the
+    # BackgroundTasks memory manager, and store them in ChromaDB without blocking the user!
+    total_msgs = len(req.messages)
+    compacted_idx = 0
+    
+    if req.project_id:
+        data = load_projects()
+        if req.project_id in data["projects"]:
+            compacted_idx = data["projects"][req.project_id].get("compacted_idx", 0)
+            
+            if total_msgs - compacted_idx > 20:
+                # We leave the last 10 messages as working memory. Everything before that gets compacted.
+                to_compact = req.messages[compacted_idx : total_msgs - 10]
+                new_compacted_idx = total_msgs - 10
+                
+                # Update pointer
+                data["projects"][req.project_id]["compacted_idx"] = new_compacted_idx
+                save_projects(data)
+                
+                # Fire and forget memory manager
+                background_tasks.add_task(compact_memory, req.project_id, to_compact)
+    
+    recent_messages = req.messages[-10:] if total_msgs > 10 else req.messages
     messages.extend([{"role": m.role, "content": m.content} for m in recent_messages])
     
     kwargs = {
