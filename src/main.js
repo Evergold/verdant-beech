@@ -86,10 +86,8 @@ async function initBabylon() {
     defaultPipeline.imageProcessing.toneMappingType = BABYLON.ImageProcessingConfiguration.TONEMAPPING_ACES;
     defaultPipeline.imageProcessing.exposure = 1.2;
 
-    // Post-Processing Vignette to simulate dark atmospheric corners without clipping the shadow map
-    defaultPipeline.imageProcessing.vignetteEnabled = true;
-    defaultPipeline.imageProcessing.vignetteWeight = 2.0; // Reduced from 4.5 so the screen corners aren't entirely pitch black
-    defaultPipeline.imageProcessing.vignetteColor = new BABYLON.Color4(0, 0, 0, 1);
+    // Removed screen-space vignette: using pure physical light falloff instead
+    defaultPipeline.imageProcessing.vignetteEnabled = false;
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
 
     // SSAO2 and SSR are mathematically brutal and causing severe lag. Disabled for performance.
@@ -108,10 +106,8 @@ async function initBabylon() {
     ambientLight.intensity = 0.4; // Reduced slightly to let IBL and SSAO shine
     ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
-    // Main Studio Lamp (SpotLight tuned to keep the Map uniform but pitch the Table corners into shadow)
-    // Height 26, Angle PI/2 (Radius 26). Map corners are R=14, Table corners are R=22.
-    // Exponent 0.5 flattens the light falloff in the center (uniform map) but drops it rapidly at the cone edge (dark table).
-    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 26, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 0.5, scene);
+    // Main Studio Lamp (SpotLight with heavy physical decay to shroud the table corners in darkness)
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 24, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 1.4, 3.0, scene);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
@@ -158,6 +154,8 @@ async function initBabylon() {
     baseMap.position.z = -3;   // Shift lower on the table to make room for tools at the top
     baseMat = new BABYLON.StandardMaterial("baseMat", scene);
     baseMat.diffuseColor = new BABYLON.Color3(0.94, 0.9, 0.82); // Parchment
+    // Emissive color perfectly counters the SpotLight falloff, making the paper natively uniform
+    baseMat.emissiveColor = new BABYLON.Color3(0.2, 0.18, 0.15); 
     baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
     baseMap.material = baseMat;
     baseMap.receiveShadows = true;
