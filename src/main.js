@@ -103,7 +103,7 @@ async function initBabylon() {
     ambientLight.groundColor = new BABYLON.Color3(0.2, 0.2, 0.2);
 
     // Main Studio Lamp (SpotLight centered over the map)
-    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 18, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 2, 2, scene);
+    light = new BABYLON.SpotLight("lampLight", new BABYLON.Vector3(0, 22, 0), new BABYLON.Vector3(0, -1, 0), Math.PI / 1.5, 2, scene);
     light.intensity = 1.0;
     light.diffuse = new BABYLON.Color3(1, 1, 0.95);
 
@@ -112,6 +112,8 @@ async function initBabylon() {
     shadowGenerator.usePercentageCloserFiltering = true;
     shadowGenerator.filteringQuality = BABYLON.ShadowGenerator.QUALITY_LOW;
     shadowGenerator.setDarkness(0.2);
+    shadowGenerator.bias = 0.001;
+    shadowGenerator.normalBias = 0.02;
 
     // Candle Light (Moody)
     const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(12, 1.5, 14), scene);
