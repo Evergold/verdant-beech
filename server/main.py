@@ -16,6 +16,8 @@ import asyncio
 import json
 from server.rag import rag_store
 
+subconscious_state = {}
+
 app = FastAPI(title="Verdant Beech API", description="Backend for the Cartography Agent")
 OLLAMA_URL = "http://localhost:11434"
 
@@ -32,6 +34,10 @@ app.add_middleware(
 @app.get("/api/health")
 async def health_check():
     return {"status": "ok"}
+
+@app.get("/api/status/{project_id}")
+async def get_background_status(project_id: str):
+    return subconscious_state.get(project_id, {"gathering_thoughts": False, "lost_in_revery": False})
 
 # --- Auto Setup & Upgrade ---
 setup_status = {"in_progress": False, "updated": False}
@@ -291,6 +297,11 @@ import time
 async def compact_memory(project_id: str, old_messages: list, model_name: str, start_idx: int, end_idx: int):
     if not old_messages:
         return
+        
+    if project_id not in subconscious_state:
+        subconscious_state[project_id] = {"gathering_thoughts": False, "lost_in_revery": False}
+    subconscious_state[project_id]["gathering_thoughts"] = True
+    
     try:
         from litellm import acompletion
         prompt = "CRITICAL INSTRUCTION: Act as a highly deterministic, non-creative summarization engine. Do NOT output any <think> tags, reasoning blocks, or internal monologue. Output ONLY the literal, factual final summary without embellishment.\n\n"
@@ -329,8 +340,10 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
         print(f"[MEMORY MANAGER] Compacted {len(old_messages)} messages into ChromaDB for project {project_id}.")
         
         # REVERY: Semantic Profile Engine (with NLP Gating)
+        subconscious_state[project_id]["gathering_thoughts"] = False
         directives = ["want", "prefer", "change", "remove", "always", "never", "add", "must", "should", "hate", "love"]
         if any(d in summary.lower() for d in directives):
+            subconscious_state[project_id]["lost_in_revery"] = True
             data = load_projects()
             profile = data["projects"][project_id].get("revery_profile", [])
             
@@ -406,6 +419,10 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
 
     except Exception as e:
         print(f"[MEMORY MANAGER] Error compacting memory: {e}")
+    finally:
+        if project_id in subconscious_state:
+            subconscious_state[project_id]["gathering_thoughts"] = False
+            subconscious_state[project_id]["lost_in_revery"] = False
 
 CARTOGRAPHER_PROMPT = """You are Green, the diligent and polite student and assistant to the greatest loremaster and cartographer in Middle-earth, the high-elf Verdant Beech.
 Verdant Beech is the true expert cartographer, designer, and photographer who will handle the final image generation. You are the "Assistant Tool" who interfaces with the user.
