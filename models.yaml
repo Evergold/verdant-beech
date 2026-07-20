@@ -21,23 +21,29 @@ assistant_models:
 image_models:
   - id: "gemini/imagen-4.0-generate"
     label: "Imagen 4"
-    tier: "Tier 1 (One-Shot)"
+    tier: 2
+    capabilities: ["One-Shot", "Photorealism"]
   - id: "gemini/nano-banana-pro"
     label: "Nano Banana Pro"
-    tier: "Tier 1 (Iterative)"
+    tier: 1
+    capabilities: ["Iterative", "Consistency"]
   - id: "gemini/nano-banana-2"
     label: "Nano Banana 2"
-    tier: "Tier 0 (Rapid)"
+    tier: 0
+    capabilities: ["Rapid"]
   # Template for other image providers:
   # - id: "openai/gpt-image-2"
   #   label: "GPT Image 2"
-  #   tier: "Tier 1"
+  #   tier: 1
+  #   capabilities: ["General"]
   # - id: "huggingface/black-forest-labs/FLUX.2"
   #   label: "FLUX.2"
-  #   tier: "Tier 1"
+  #   tier: 1
+  #   capabilities: ["Optics"]
   # - id: "bedrock/amazon.titan-image-generator-v1"
   #   label: "Amazon Titan"
-  #   tier: "Tier 0"
+  #   tier: 0
+  #   capabilities: ["Enterprise"]
 
 embedding_models:
   - id: "ollama/embeddinggemma"

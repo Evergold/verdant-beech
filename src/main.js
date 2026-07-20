@@ -527,7 +527,15 @@ async function loadModels() {
       data.image_models.forEach(model => {
         const opt = document.createElement("option");
         opt.value = model.id;
-        opt.textContent = model.tier ? `${model.label} [${model.tier}]` : model.label;
+        
+        let labelText = model.label;
+        if (model.tier !== undefined) {
+          labelText += ` ${model.tier}`;
+        }
+        if (model.capabilities && model.capabilities.length > 0) {
+          labelText += ` | ${model.capabilities.join(', ')}`;
+        }
+        opt.textContent = labelText;
         imgSelect.appendChild(opt);
       });
       
