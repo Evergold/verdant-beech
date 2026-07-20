@@ -437,13 +437,25 @@ CRITICAL RULES:
 
 Assist the user in preparing maps, advising on style, color theory, typography, and procedural generation."""
 
+_tool_cache = None
+_tool_cache_mtime = 0
+
 def get_tool_registry():
+    global _tool_cache, _tool_cache_mtime
     tools_path = os.path.join(os.path.dirname(__file__), "tools.yaml")
-    if os.path.exists(tools_path):
-        with open(tools_path, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f)
-            return data.get("tools", [])
-    return []
+    if not os.path.exists(tools_path):
+        return []
+        
+    current_mtime = os.path.getmtime(tools_path)
+    if _tool_cache is not None and current_mtime == _tool_cache_mtime:
+        return _tool_cache
+        
+    with open(tools_path, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+        _tool_cache = data.get("tools", [])
+        _tool_cache_mtime = current_mtime
+        
+    return _tool_cache
 
 @app.post("/api/chat")
 async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
