@@ -63,7 +63,8 @@
     "generate": "അസറ്റ് സൃഷ്ടിക്കുക",
     "previewAlt": "അസറ്റ് പ്രിവ്യൂ",
     "namePlaceholder": "അസറ്റിന്റെ പേര് (ഉദാ. blue_mushroom)",
-    "save": "ലൈബ്രറിയിലേക്ക് സംരക്ഷിക്കുക"
+    "save": "ലൈബ്രറിയിലേക്ക് സംരക്ഷിക്കുക",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 ഓറിയന്റേഷൻ: ലാൻഡ്‌സ്‌കേപ്പ്",

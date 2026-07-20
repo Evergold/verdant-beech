@@ -63,7 +63,8 @@
     "generate": "Generiši element",
     "previewAlt": "Pregled elementa",
     "namePlaceholder": "Naziv elementa (npr. plava_pecurka)",
-    "save": "Sačuvaj u biblioteku"
+    "save": "Sačuvaj u biblioteku",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Položeno",

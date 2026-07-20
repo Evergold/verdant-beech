@@ -63,7 +63,8 @@
     "generate": "צור נכס",
     "previewAlt": "תצוגה מקדימה של הנכס",
     "namePlaceholder": "שם הנכס (למשל blue_mushroom)",
-    "save": "שמור לספרייה"
+    "save": "שמור לספרייה",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 כיוון: לרוחב",

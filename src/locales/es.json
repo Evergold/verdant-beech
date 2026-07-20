@@ -63,7 +63,8 @@
     "generate": "Generar recurso",
     "previewAlt": "Vista previa del recurso",
     "namePlaceholder": "Nombre del recurso (p. ej., hongo_azul)",
-    "save": "Guardar en la biblioteca"
+    "save": "Guardar en la biblioteca",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientación: Horizontal",

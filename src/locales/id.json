@@ -63,7 +63,8 @@
     "generate": "Buat Aset",
     "previewAlt": "Pratinjau Aset",
     "namePlaceholder": "Nama Aset (mis. blue_mushroom)",
-    "save": "Simpan ke Pustaka"
+    "save": "Simpan ke Pustaka",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",

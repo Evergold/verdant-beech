@@ -63,7 +63,8 @@
     "generate": "Luo elementti",
     "previewAlt": "Elementin esikatselu",
     "namePlaceholder": "Elementin nimi (esim. sininen_sieni)",
-    "save": "Tallenna kirjastoon"
+    "save": "Tallenna kirjastoon",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suunta: Vaaka",

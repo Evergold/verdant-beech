@@ -63,7 +63,8 @@
     "generate": "Згенерувати асет",
     "previewAlt": "Попередній перегляд асету",
     "namePlaceholder": "Назва асету (наприклад, blue_mushroom)",
-    "save": "Зберегти до бібліотеки"
+    "save": "Зберегти до бібліотеки",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Орієнтація: Альбомна",

@@ -63,7 +63,8 @@
     "generate": "Zalisha Rasilimali",
     "previewAlt": "Hakiki ya Rasilimali",
     "namePlaceholder": "Jina la Rasilimali (k.m. blue_mushroom)",
-    "save": "Hifadhi kwenye Maktaba"
+    "save": "Hifadhi kwenye Maktaba",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Mwelekeo: Mandhari",

@@ -63,7 +63,8 @@
     "generate": "சொத்தை உருவாக்கு",
     "previewAlt": "சொத்து மாதிரிக்காட்சி",
     "namePlaceholder": "சொத்தின் பெயர் (எ.கா. blue_mushroom)",
-    "save": "நூலகத்தில் சேமி"
+    "save": "நூலகத்தில் சேமி",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 நோக்குநிலை: படுக்கைவாட்டம்",

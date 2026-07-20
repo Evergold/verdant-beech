@@ -63,7 +63,8 @@
     "generate": "Gerar Asset",
     "previewAlt": "Pré-visualização do Asset",
     "namePlaceholder": "Nome do Asset (ex: cogumelo_azul)",
-    "save": "Salvar na Biblioteca"
+    "save": "Salvar na Biblioteca",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientação: Paisagem",

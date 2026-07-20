@@ -63,7 +63,8 @@
     "generate": "Gawe Aset",
     "previewAlt": "Pratinjau Aset",
     "namePlaceholder": "Jeneng Aset (tuladhane blue_mushroom)",
-    "save": "Simpen menyang Pustaka"
+    "save": "Simpen menyang Pustaka",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",

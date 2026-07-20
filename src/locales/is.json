@@ -63,7 +63,8 @@
     "generate": "Mynda eign",
     "previewAlt": "Forskoðun eignar",
     "namePlaceholder": "Heiti eignar (t.d. blar_sveppur)",
-    "save": "Vista í safn"
+    "save": "Vista í safn",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Stefna: Lárétt",

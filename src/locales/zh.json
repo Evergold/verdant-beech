@@ -63,7 +63,8 @@
     "generate": "生成资产",
     "previewAlt": "资产预览",
     "namePlaceholder": "资产名称（例如 blue_mushroom）",
-    "save": "保存到库"
+    "save": "保存到库",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 方向：横向",

@@ -63,7 +63,8 @@
     "generate": "Δημιουργία Στοιχείου",
     "previewAlt": "Προεπισκόπηση Στοιχείου",
     "namePlaceholder": "Όνομα Στοιχείου (π.χ. blue_mushroom)",
-    "save": "Αποθήκευση στη Βιβλιοθήκη"
+    "save": "Αποθήκευση στη Βιβλιοθήκη",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Προσανατολισμός: Οριζόντιος",

@@ -63,7 +63,8 @@
     "generate": "Generează element",
     "previewAlt": "Previzualizare element",
     "namePlaceholder": "Nume element (de ex. ciuperca_albastra)",
-    "save": "Salvează în bibliotecă"
+    "save": "Salvează în bibliotecă",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientare: Peisaj",

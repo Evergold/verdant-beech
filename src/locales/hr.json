@@ -63,7 +63,8 @@
     "generate": "Generiraj resurs",
     "previewAlt": "Pregled resursa",
     "namePlaceholder": "Naziv resursa (npr. plava_gljiva)",
-    "save": "Spremi u knjižnicu"
+    "save": "Spremi u knjižnicu",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Vodoravno",

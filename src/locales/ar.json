@@ -63,7 +63,8 @@
     "generate": "توليد الأصل",
     "previewAlt": "معاينة الأصل",
     "namePlaceholder": "اسم الأصل (مثال: blue_mushroom)",
-    "save": "حفظ في المكتبة"
+    "save": "حفظ في المكتبة",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 الاتجاه: أفقي",

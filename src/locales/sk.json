@@ -63,7 +63,8 @@
     "generate": "Generovať objekt",
     "previewAlt": "Náhľad objektu",
     "namePlaceholder": "Názov objektu (napr. modra_huba)",
-    "save": "Uložiť do knižnice"
+    "save": "Uložiť do knižnice",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientácia: Na šírku",

@@ -63,7 +63,8 @@
     "generate": "Générer l'asset",
     "previewAlt": "Aperçu de l'asset",
     "namePlaceholder": "Nom de l'asset (ex: champignon_bleu)",
-    "save": "Enregistrer dans la bibliothèque"
+    "save": "Enregistrer dans la bibliothèque",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientation : Paysage",

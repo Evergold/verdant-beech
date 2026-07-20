@@ -522,28 +522,62 @@ async function loadModels() {
     
     // Load Image Models
     if (data.image_models) {
-      const imgSelect = document.getElementById("image-model-select");
-      imgSelect.innerHTML = "";
+      const imgSelectContainer = document.getElementById("image-model-select");
+      const selectedBox = imgSelectContainer.querySelector(".select-selected");
+      const itemsContainer = imgSelectContainer.querySelector(".select-items");
+      
+      itemsContainer.innerHTML = "";
+      
+      let currentValue = data.image_models[0]?.id || "";
+      let currentShortText = "";
+      
       data.image_models.forEach(model => {
-        const opt = document.createElement("option");
-        opt.value = model.id;
+        let shortText = model.label;
         
-        let labelText = model.label;
-        if (model.tier !== undefined) {
-          labelText += ` ${model.tier}`;
-        }
+        let longText = shortText;
         if (model.capabilities && model.capabilities.length > 0) {
-          labelText += ` | ${model.capabilities.join(', ')}`;
+          longText += ` | ${model.capabilities.join(', ')}`;
         }
-        opt.textContent = labelText;
-        imgSelect.appendChild(opt);
+        
+        if (model.id === currentValue) {
+          currentShortText = shortText;
+        }
+        
+        const div = document.createElement("div");
+        div.textContent = longText;
+        div.dataset.value = model.id;
+        
+        div.addEventListener("click", (e) => {
+          e.stopPropagation();
+          currentValue = model.id;
+          selectedBox.textContent = shortText;
+          itemsContainer.classList.add("select-hide");
+          renderImageModelControls(currentValue);
+        });
+        
+        itemsContainer.appendChild(div);
       });
       
-      imgSelect.addEventListener("change", (e) => {
-        renderImageModelControls(e.target.value);
+      selectedBox.textContent = currentShortText;
+      
+      selectedBox.addEventListener("click", (e) => {
+        e.stopPropagation();
+        itemsContainer.classList.toggle("select-hide");
       });
+      
+      if (!window.__imgSelectListenerAdded) {
+        document.addEventListener("click", (e) => {
+          const container = document.getElementById("image-model-select");
+          if (container && !container.contains(e.target)) {
+            const items = container.querySelector(".select-items");
+            if (items) items.classList.add("select-hide");
+          }
+        });
+        window.__imgSelectListenerAdded = true;
+      }
+      
       // Initial render
-      renderImageModelControls(imgSelect.value);
+      renderImageModelControls(currentValue);
     }
   } catch (e) {
     console.error("Failed to load models.yaml", e);
@@ -566,7 +600,7 @@ function renderImageModelControls(modelId) {
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
         <label for="img-seed" style="font-size: 0.85rem; color: var(--text-muted);" title="Set a specific seed for deterministic reproduction">Determinism (Seed)</label>
-        <input type="number" id="img-seed" placeholder="Random" style="padding: 6px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);" />
+        <input type="number" id="img-seed" placeholder="Random" style="background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 10px 14px; font-size: 1rem; border-radius: 4px; font-family: inherit; width: 140px; box-sizing: border-box;" />
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
         <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Guidance Scale (CFG)</label>

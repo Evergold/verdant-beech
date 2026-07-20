@@ -63,7 +63,8 @@
     "generate": "Генериране на ресурс",
     "previewAlt": "Преглед на ресурса",
     "namePlaceholder": "Име на ресурса (напр. blue_mushroom)",
-    "save": "Запазване в библиотеката"
+    "save": "Запазване в библиотеката",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Пейзаж",

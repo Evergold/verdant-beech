@@ -63,7 +63,8 @@
     "generate": "Generera resurs",
     "previewAlt": "Förhandsvisning av resurs",
     "namePlaceholder": "Resursnamn (t.ex. bla_svamp)",
-    "save": "Spara i bibliotek"
+    "save": "Spara i bibliotek",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientering: Liggande",

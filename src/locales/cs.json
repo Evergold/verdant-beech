@@ -63,7 +63,8 @@
     "generate": "Generovat prvek",
     "previewAlt": "Náhled prvku",
     "namePlaceholder": "Název prvku (např. modra_houba)",
-    "save": "Uložit do knihovny"
+    "save": "Uložit do knihovny",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientace: Na šířku",

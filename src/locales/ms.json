@@ -63,7 +63,8 @@
     "generate": "Janakan Aset",
     "previewAlt": "Pratonton Aset",
     "namePlaceholder": "Nama Aset (cth. blue_mushroom)",
-    "save": "Simpan ke Pustaka"
+    "save": "Simpan ke Pustaka",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Landskap",

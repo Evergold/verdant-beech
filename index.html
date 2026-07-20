@@ -193,10 +193,11 @@
               </label>
 
               <div class="model-selection">
-                <label for="image-model-select" data-i18n="asset.modelSelect">Image Model</label>
-                <select id="image-model-select" class="dropdown">
-                  <!-- Dynamically populated from models.yaml -->
-                </select>
+                <label data-i18n="asset.modelSelect">Image Model</label>
+                <div id="image-model-select" class="custom-select" tabindex="0">
+                  <div class="select-selected">Loading...</div>
+                  <div class="select-items select-hide"></div>
+                </div>
               </div>
               
               <div id="image-model-controls" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">

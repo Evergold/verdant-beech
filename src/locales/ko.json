@@ -63,7 +63,8 @@
     "generate": "에셋 생성",
     "previewAlt": "에셋 미리보기",
     "namePlaceholder": "에셋 이름 (예: blue_mushroom)",
-    "save": "라이브러리에 저장"
+    "save": "라이브러리에 저장",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 방향: 가로",

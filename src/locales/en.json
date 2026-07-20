@@ -63,7 +63,8 @@
     "generate": "Generate Asset",
     "previewAlt": "Asset Preview",
     "namePlaceholder": "Asset Name (e.g. blue_mushroom)",
-    "save": "Save to Library"
+    "save": "Save to Library",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientation: Landscape",

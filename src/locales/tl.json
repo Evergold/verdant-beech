@@ -63,7 +63,8 @@
     "generate": "Bumuo ng Asset",
     "previewAlt": "Preview ng Asset",
     "namePlaceholder": "Pangalan ng Asset (hal. blue_mushroom)",
-    "save": "I-save sa Library"
+    "save": "I-save sa Library",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oryentasyon: Landscape",

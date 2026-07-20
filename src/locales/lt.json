@@ -63,7 +63,8 @@
     "generate": "Generuoti išteklių",
     "previewAlt": "Ištekliaus peržiūra",
     "namePlaceholder": "Ištekliaus pavadinimas (pvz., blue_mushroom)",
-    "save": "Išsaugoti bibliotekoje"
+    "save": "Išsaugoti bibliotekoje",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacija: Gulsčias",

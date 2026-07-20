@@ -63,7 +63,8 @@
     "generate": "ସମ୍ପତ୍ତି ଜେନେରେଟ୍ କରନ୍ତୁ",
     "previewAlt": "ସମ୍ପତ୍ତି ପୂର୍ବାବଲୋକନ",
     "namePlaceholder": "ସମ୍ପତ୍ତି ନାମ (ଯେପରିକି blue_mushroom)",
-    "save": "ଲାଇବ୍ରେରୀରେ ସଂରକ୍ଷଣ କରନ୍ତୁ"
+    "save": "ଲାଇବ୍ରେରୀରେ ସଂରକ୍ଷଣ କରନ୍ତୁ",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 ଆଭିମୁଖ୍ୟ: ଲ୍ୟାଣ୍ଡସ୍କେପ୍",

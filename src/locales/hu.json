@@ -63,7 +63,8 @@
     "generate": "Eszköz generálása",
     "previewAlt": "Eszköz előnézete",
     "namePlaceholder": "Eszköz neve (pl. kek_gomba)",
-    "save": "Mentés a könyvtárba"
+    "save": "Mentés a könyvtárba",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Tájolás: Fekvő",

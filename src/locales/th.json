@@ -63,7 +63,8 @@
     "generate": "สร้างแอสเซท",
     "previewAlt": "ตัวอย่างแอสเซท",
     "namePlaceholder": "ชื่อแอสเซท (เช่น blue_mushroom)",
-    "save": "บันทึกลงคลัง"
+    "save": "บันทึกลงคลัง",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 ทิศทาง: แนวนอน",

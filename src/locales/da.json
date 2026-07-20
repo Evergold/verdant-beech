@@ -63,7 +63,8 @@
     "generate": "Generer asset",
     "previewAlt": "Forhåndsvisning af asset",
     "namePlaceholder": "Asset-navn (f.eks. blue_mushroom)",
-    "save": "Gem i bibliotek"
+    "save": "Gem i bibliotek",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Retning: Liggende",

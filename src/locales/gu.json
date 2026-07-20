@@ -63,7 +63,8 @@
     "generate": "એસેટ બનાવો",
     "previewAlt": "એસેટ પૂર્વાવલોકન",
     "namePlaceholder": "એસેટનું નામ (દા.ત. blue_mushroom)",
-    "save": "લાઇબ્રેરીમાં સાચવો"
+    "save": "લાઇબ્રેરીમાં સાચવો",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 ઓરિએન્ટેશન: આડું",

@@ -63,7 +63,8 @@
     "generate": "اثاثہ بنائیں",
     "previewAlt": "اثاثہ کا پیش نظارہ",
     "namePlaceholder": "اثاثہ کا نام (مثلاً blue_mushroom)",
-    "save": "لائبریری میں محفوظ کریں"
+    "save": "لائبریری میں محفوظ کریں",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 رخ: لینڈ اسکیپ",

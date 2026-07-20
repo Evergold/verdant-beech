@@ -63,7 +63,8 @@
     "generate": "Tạo Tài nguyên",
     "previewAlt": "Xem trước Tài nguyên",
     "namePlaceholder": "Tên Tài nguyên (ví dụ: blue_mushroom)",
-    "save": "Lưu vào Thư viện"
+    "save": "Lưu vào Thư viện",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Hướng: Ngang",

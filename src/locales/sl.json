@@ -63,7 +63,8 @@
     "generate": "Ustvari element",
     "previewAlt": "Predogled elementa",
     "namePlaceholder": "Ime elementa (npr. modra_goba)",
-    "save": "Shrani v knjižnico"
+    "save": "Shrani v knjižnico",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Usmerjenost: Ležeče",

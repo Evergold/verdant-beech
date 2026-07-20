@@ -63,7 +63,8 @@
     "generate": "Genereeri vara",
     "previewAlt": "Vara eelvaade",
     "namePlaceholder": "Vara nimi (nt sinine_seen)",
-    "save": "Salvesta teeki"
+    "save": "Salvesta teeki",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suund: Rõhtpaigutus",

@@ -63,7 +63,8 @@
     "generate": "Generuj zasób",
     "previewAlt": "Podgląd zasobu",
     "namePlaceholder": "Nazwa zasobu (np. niebieski_grzyb)",
-    "save": "Zapisz w bibliotece"
+    "save": "Zapisz w bibliotece",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacja: Pozioma",

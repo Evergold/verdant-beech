@@ -63,7 +63,8 @@
     "generate": "تولید دارایی",
     "previewAlt": "پیش‌نمایش دارایی",
     "namePlaceholder": "نام دارایی (مثلاً blue_mushroom)",
-    "save": "ذخیره در کتابخانه"
+    "save": "ذخیره در کتابخانه",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 جهت: افقی",

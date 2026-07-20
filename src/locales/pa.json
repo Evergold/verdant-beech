@@ -63,7 +63,8 @@
     "generate": "ਸੰਪਤੀ ਤਿਆਰ ਕਰੋ",
     "previewAlt": "ਸੰਪਤੀ ਦੀ ਪੂਰਵ-ਝਲਕ",
     "namePlaceholder": "ਸੰਪਤੀ ਦਾ ਨਾਮ (ਜਿਵੇਂ blue_mushroom)",
-    "save": "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ"
+    "save": "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 ਦਿਸ਼ਾ: ਲੈਂਡਸਕੇਪ",

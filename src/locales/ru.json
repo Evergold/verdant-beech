@@ -63,7 +63,8 @@
     "generate": "Создать ассет",
     "previewAlt": "Предпросмотр ассета",
     "namePlaceholder": "Имя ассета (например, blue_mushroom)",
-    "save": "Сохранить в библиотеку"
+    "save": "Сохранить в библиотеку",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Альбомная",

@@ -63,7 +63,8 @@
     "generate": "अॅसेट तयार करा",
     "previewAlt": "अॅसेट पूर्वावलोकन",
     "namePlaceholder": "अॅसेटचे नाव (उदा. blue_mushroom)",
-    "save": "लायब्ररीमध्ये जतन करा"
+    "save": "लायब्ररीमध्ये जतन करा",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 अभिमुखता: लँडस्केप",

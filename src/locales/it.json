@@ -63,7 +63,8 @@
     "generate": "Genera Asset",
     "previewAlt": "Anteprima Asset",
     "namePlaceholder": "Nome Asset (es. fungo_blu)",
-    "save": "Salva nella Libreria"
+    "save": "Salva nella Libreria",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientamento: Orizzontale",

@@ -63,7 +63,8 @@
     "generate": "Varlık Oluştur",
     "previewAlt": "Varlık Önizlemesi",
     "namePlaceholder": "Varlık Adı (örn. mavi_mantar)",
-    "save": "Kütüphaneye Kaydet"
+    "save": "Kütüphaneye Kaydet",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Yönlendirme: Yatay",

@@ -63,7 +63,8 @@
     "generate": "Asset generieren",
     "previewAlt": "Asset-Vorschau",
     "namePlaceholder": "Asset-Name (z. B. blauer_pilz)",
-    "save": "In Bibliothek speichern"
+    "save": "In Bibliothek speichern",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ausrichtung: Querformat",

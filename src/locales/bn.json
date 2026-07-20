@@ -63,7 +63,8 @@
     "generate": "অ্যাসেট তৈরি করুন",
     "previewAlt": "অ্যাসেট প্রিভিউ",
     "namePlaceholder": "অ্যাসেটের নাম (যেমন: blue_mushroom)",
-    "save": "লাইব্রেরিতে সংরক্ষণ করুন"
+    "save": "লাইব্রেরিতে সংরক্ষণ করুন",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 ওরিয়েন্টেশন: ল্যান্ডস্কেপ",

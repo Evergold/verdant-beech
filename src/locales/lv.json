@@ -63,7 +63,8 @@
     "generate": "Ģenerēt resursu",
     "previewAlt": "Resursa priekšskatījums",
     "namePlaceholder": "Resursa nosaukums (piem., zila_sene)",
-    "save": "Saglabāt bibliotēkā"
+    "save": "Saglabāt bibliotēkā",
+    "modelSelect": "Image Model"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientācija: Ainava",
