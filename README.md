@@ -28,10 +28,9 @@ We recommend models capable of highly complex spatial planning and schema adhere
 
 - **Default Local Choice:** `gemma4:e4b` (4.5B) via Ollama. We **ALWAYS prefer QAT variants of Gemma 4** (e.g., `ollama_chat/gemma-4-e4b-qat` or `gemma4:e4b`). We also leverage the lightweight **2.3B** model as Green's "subconscious"—running in the background to support episodic memory via real-time context compaction and summarization, as well as maintaining semantic memory. 
   
-  To ensure both models coexist alongside the 3D map renderer with minimal VRAM use, we apply three optimizations:
+  To ensure both models coexist alongside the 3D map renderer with minimal VRAM use, we apply two optimizations:
   1. Employing context-cache reduction measures by hardcapping `num_ctx`. Live Chat is capped at 2048, and background tasks like `e2b` summarization or revery are capped at 1024 tokens.
   2. Dynamically tuning `num_gpu` layer-offloading during simultaneous `e4b`/`e2b` model calls to safely spill excess model layers to system RAM, preventing GPU memory exhaustion.
-  3. Pre-warming both local models on launch so they remain resident for zero-latency execution. If the user explicitly switches away from the local setup (e.g., to the Gemini API), we gracefully defer the VRAM purge (via our `/api/ollama/unload` endpoint) until any active `e4b` queries or `e2b` subconscious tasks complete, preventing state corruption while notifying the user.
 - **Default API Choice:** `gemini/gemini-3.5-flash` (or `gemini-3.1-pro` for maximal reasoning). Both support configurable reasoning tabs in the UI!
 
 #### 🖥️ Hardware Requirements for Gemma 4 (4.5B)
