@@ -459,7 +459,7 @@ async function initBabylon() {
   if (rendererBtn) {
     const params = new URLSearchParams(window.location.search);
     const isForced = params.get("webgl") === "1";
-    rendererBtn.textContent = isForced ? "🚀 Restore WebGPU" : "🚀 Force WebGL (Fix Lag)";
+    rendererBtn.textContent = isForced ? "🖥️ Restore WebGPU" : "🖥️ Force WebGL";
     rendererBtn.addEventListener("click", () => {
       if (isForced) {
         params.delete("webgl");
