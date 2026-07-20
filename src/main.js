@@ -72,6 +72,7 @@ async function initBabylon() {
   
   const webGPUSupported = await BABYLON.WebGPUEngine.IsSupportedAsync;
   const forceWebGL = localStorage.getItem("verdant_force_webgl") === "true";
+  console.log("Renderer Toggle State -> forceWebGL:", forceWebGL);
   
   let useWebGPU = false;
   if (webGPUSupported && !forceWebGL) {
