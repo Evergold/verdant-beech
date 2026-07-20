@@ -19,11 +19,12 @@ if %ERRORLEVEL% NEQ 0 (
     echo.
 )
 
-:: 2. Setup Frontend (Node.js)
+:: 2. Setup Frontend (Node.js v22+)
 echo 📦 Installing Frontend Node dependencies...
 where npm >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
-    echo ❌ ERROR: 'npm' is not installed. Please install Node.js.
+    echo ❌ ERROR: 'npm' is not installed. Node.js v22+ is required.
+    echo    Please install Node.js v22+ or use nvm-windows.
     exit /b 1
 )
 call npm install

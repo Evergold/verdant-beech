@@ -122,6 +122,14 @@ npm install
 
 **Development Mode (Hot Reloading)**
 To run both the backend server and the frontend Vite server simultaneously with HMR (Hot Module Replacement) enabled:
+
+*Note: The unified dev script requires Node.js v22+. If your system Node is older, we recommend using NVM (Node Version Manager) to temporarily satisfy the dependency before starting:*
+```bash
+# (Optional) Ensure Node 22 is active:
+nvm install 22
+nvm use 22
+```
+
 ```bash
 npm run dev
 ```

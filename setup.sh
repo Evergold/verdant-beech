@@ -18,11 +18,21 @@ else
     echo ""
 fi
 
-# 2. Setup Frontend (Node.js)
-echo "📦 Installing Frontend Node dependencies..."
+# 2. Setup Frontend (Node.js v22+)
+echo "📦 Checking Frontend Node.js dependencies..."
 if ! command -v npm &> /dev/null; then
-    echo "❌ ERROR: 'npm' is not installed. Please install Node.js."
+    echo "❌ ERROR: 'npm' is not installed. Node.js v22+ is required."
+    echo "   We highly recommend using NVM (Node Version Manager):"
+    echo "   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash"
+    echo "   nvm install 22 && nvm use 22"
     exit 1
+fi
+
+NODE_MAJOR=$(node -v | cut -d 'v' -f 2 | cut -d '.' -f 1)
+if [ "$NODE_MAJOR" -lt 22 ]; then
+    echo "⚠️  WARNING: Node.js v22 or higher is required (found v$NODE_MAJOR)."
+    echo "   If installation or 'npm run dev' fails, please upgrade via NVM:"
+    echo "   nvm install 22 && nvm use 22"
 fi
 npm install
 echo "✅ Frontend setup complete."
