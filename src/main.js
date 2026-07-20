@@ -470,7 +470,7 @@ async function prewarmModel(modelId) {
     showToast(i18next.t('toasts.fallbackGemini', { modelId, error: e.message }), "error");
     const modelSelect = document.getElementById("model-select");
     modelSelect.value = "gemini/gemini-3.5-flash";
-    saveState("selectedModel", modelSelect.value);
+    // Deliberately NOT saving state to projects.yaml so fallback is temporary
     renderReasoningTabs(modelSelect.value);
     document.getElementById("hardware-monitor").classList.add("hidden");
     if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
@@ -897,7 +897,7 @@ async function handleSend() {
        if (modelSelect.value.includes("ollama_chat")) {
            showToast(i18next.t('toasts.localModelErrorFallbackGemini'), "error");
            modelSelect.value = "gemini/gemini-3.5-flash";
-           saveState("selectedModel", modelSelect.value);
+           // Deliberately NOT saving state to projects.yaml so fallback is temporary
            renderReasoningTabs(modelSelect.value);
            document.getElementById("hardware-monitor").classList.add("hidden");
            if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
