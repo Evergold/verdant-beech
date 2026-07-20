@@ -104,12 +104,34 @@ async function initBabylon() {
     scene.clearColor = new BABYLON.Color4(0.02, 0.02, 0.03, 1);
 
     // Perspective Camera viewing the table (Centered on Map Canvas at z = -3)
-    camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 3, 35, new BABYLON.Vector3(0, 0, -3), scene);
+    // Starting angle: 45 degrees from overhead to simulate working at a cartography table
+    camera = new BABYLON.ArcRotateCamera("camera", -Math.PI / 2, Math.PI / 4, 35, new BABYLON.Vector3(0, 0, -3), scene);
     camera.attachControl(canvas, true);
     camera.wheelPrecision = 20;
     camera.lowerRadiusLimit = 10;
     camera.upperRadiusLimit = 40;
     camera.panningSensibility = 250; // Lower number = faster/more sensitive panning
+
+    // Restrict camera rotation to simulate a standing workshop view
+    // Pitch (beta): from directly overhead (0) to 45 degrees (Math.PI/4)
+    camera.lowerBetaLimit = 0.01; // Epsilon to avoid gimbal lock
+    camera.upperBetaLimit = Math.PI / 4;
+    // Yaw (alpha): max 45 degrees left or right from center (-Math.PI/2)
+    camera.lowerAlphaLimit = -Math.PI / 2 - Math.PI / 4;
+    camera.upperAlphaLimit = -Math.PI / 2 + Math.PI / 4;
+
+    // Create a pre-baked, heavily blurred cartography workshop background for a blazingly fast DOF effect
+    const workshopDome = new BABYLON.PhotoDome(
+        "workshopBackground",
+        "/blurred_workshop.jpg",
+        {
+            resolution: 32,
+            size: 1000
+        },
+        scene
+    );
+    // Align the dome so the image looks correct from the restricted camera angle
+    workshopDome.rotation.y = Math.PI;
 
     // Custom animatable properties for safe panning without triggering ArcRotateCamera.setTarget orbital recalculations
     Object.defineProperty(camera, "targetX", {
