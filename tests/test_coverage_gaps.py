@@ -88,3 +88,110 @@ def test_rag_empty_query():
         rag.collection.query.return_value = {"documents": []}
         res = rag.query("test")
         assert res == []
+
+@pytest.mark.asyncio
+async def test_compact_memory_full_revery_and_empty():
+    from server.main import compact_memory
+    from unittest.mock import patch, MagicMock
+    
+    # 1. Empty messages
+    await compact_memory("test_proj", [], "model", 0, 10)
+    
+    # 2. Revery parsing
+    class MockChoice:
+        def __init__(self, content):
+            self.message = MagicMock()
+            self.message.content = content
+            
+    class MockResponse:
+        def __init__(self, content):
+            self.choices = [MockChoice(content)]
+            
+    res1 = MockResponse("User says they prefer dark maps")
+    res2 = MockResponse("ADD: dark map\nREMOVE: light map\nUPDATE: old -> new")
+    
+    with patch("litellm.acompletion", side_effect=[res1, res2]):
+        with patch("server.main.load_projects") as mock_lp:
+            mock_lp.return_value = {"projects": {"test_proj": {"revery_profile": ["light map", "old"]}}}
+            with patch("server.main.save_projects") as mock_sp:
+                with patch("server.main.rag_store") as mock_rag:
+                    # Mock embeddings so cos_sim works and finds matches
+                    mock_rag.embedding_function.return_value = [[1.0], [1.0], [1.0], [1.0], [1.0], [1.0]]
+                    await compact_memory("test_proj", [{"role": "user", "content": "change the map style"}], "model", 0, 10)
+                    assert mock_sp.called
+
+def test_api_status_missing():
+    from fastapi.testclient import TestClient
+    from server.main import app, subconscious_state
+    client = TestClient(app)
+    
+    subconscious_state["test_proj"] = {"gathering_thoughts": True, "lost_in_revery": False}
+    res = client.get("/api/status/test_proj")
+    assert res.json()["gathering_thoughts"] == True
+    
+    res = client.get("/api/status/missing")
+    assert res.json()["gathering_thoughts"] == False
+
+def test_tool_registry_missing_file(monkeypatch):
+    from server.main import get_tool_registry
+    import server.main as main_module
+    
+    monkeypatch.setattr(main_module.os.path, "exists", lambda x: False)
+    assert get_tool_registry() == []
+
+@patch("server.main.litellm.completion")
+def test_chat_memory_warning_and_revery(mock_completion):
+    from fastapi.testclient import TestClient
+    from server.main import app
+    client = TestClient(app)
+    
+    mock_response = MagicMock()
+    mock_response.choices = [MagicMock()]
+    mock_response.usage.prompt_tokens = 1900
+    mock_completion.return_value = mock_response
+    
+    with patch("server.main.load_projects") as mock_lp:
+        mock_lp.return_value = {"projects": {"test_proj": {"revery_profile": ["User likes dogs"]}}}
+        
+        req_data = {
+            "messages": [{"role": "user", "content": "Hello"}],
+            "project_id": "test_proj",
+            "model_name": "test-model"
+        }
+        res = client.post("/api/chat", json=req_data)
+        assert res.status_code == 200
+        
+        messages = mock_completion.call_args.kwargs["messages"]
+        has_revery = any("User likes dogs" in m["content"] for m in messages)
+        assert has_revery
+
+@pytest.mark.asyncio
+async def test_compact_memory_edge_lines():
+    from server.main import compact_memory
+    from unittest.mock import patch, MagicMock
+    
+    class MockChoice:
+        def __init__(self, content):
+            self.message = MagicMock()
+            self.message.content = content
+            
+    class MockResponse:
+        def __init__(self, content, tokens):
+            self.choices = [MockChoice(content)]
+            self.usage = MagicMock()
+            self.usage.prompt_tokens = tokens
+            
+    # res1: triggers >900 token warning (line 327)
+    # res2: triggers ADD duplicate fact (line 384)
+    res1 = MockResponse("User says they prefer dark maps", 950)
+    res2 = MockResponse("ADD: dark map", 100)
+    
+    with patch("litellm.acompletion", side_effect=[res1, res2]):
+        with patch("server.main.load_projects") as mock_lp:
+            # Existing fact "dark map" so cos_sim is 1.0 (duplicate)
+            mock_lp.return_value = {"projects": {"test_proj": {"revery_profile": ["dark map"]}}}
+            with patch("server.main.save_projects") as mock_sp:
+                with patch("server.main.rag_store") as mock_rag:
+                    # Mock embeddings so it detects duplication
+                    mock_rag.embedding_function.return_value = [[1.0], [1.0]]
+                    await compact_memory("test_proj", [{"role": "user", "content": "change the map style"}], "model", 0, 10)
