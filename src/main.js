@@ -74,7 +74,10 @@ async function initBabylon() {
   let useWebGPU = false;
   if (webGPUSupported) {
     try {
-      engine = new BABYLON.WebGPUEngine(canvas);
+      engine = new BABYLON.WebGPUEngine(canvas, {
+        powerPreference: "high-performance",
+        antialias: true
+      });
       await engine.initAsync();
       console.log("Babylon.js initialized with WebGPU");
       useWebGPU = true;
@@ -603,7 +606,7 @@ function renderImageModelControls(modelId) {
         <input type="number" id="img-seed" placeholder="Random" style="background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 10px 14px; font-size: 1rem; border-radius: 4px; font-family: inherit; width: 140px; box-sizing: border-box;" />
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
-        <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Guidance Scale (CFG)</label>
+        <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Classifier-Free Guidance</label>
         <input type="range" id="img-cfg" min="1" max="20" step="0.5" value="7.5" />
       </div>
     `;
@@ -622,7 +625,7 @@ function renderImageModelControls(modelId) {
         <input type="range" id="nano-consistency" min="0" max="100" value="80" />
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
-        <label for="nano-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Guidance Scale (CFG)</label>
+        <label for="nano-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Classifier-Free Guidance</label>
         <input type="range" id="nano-cfg" min="1" max="20" step="0.5" value="7.5" />
       </div>
     `;
