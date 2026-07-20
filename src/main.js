@@ -71,8 +71,10 @@ async function initBabylon() {
   const canvas = document.getElementById("renderCanvas");
   
   const webGPUSupported = await BABYLON.WebGPUEngine.IsSupportedAsync;
+  const forceWebGL = localStorage.getItem("verdant_force_webgl") === "true";
+  
   let useWebGPU = false;
-  if (webGPUSupported) {
+  if (webGPUSupported && !forceWebGL) {
     try {
       const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
       const engineOptions = { antialias: true };
@@ -450,6 +452,16 @@ async function initBabylon() {
   window.addEventListener("resize", function () {
     engine.resize();
   });
+  
+  const rendererBtn = document.getElementById("toggle-renderer-btn");
+  if (rendererBtn) {
+    const isForced = localStorage.getItem("verdant_force_webgl") === "true";
+    rendererBtn.textContent = isForced ? "🚀 Restore WebGPU" : "🚀 Force WebGL (Fix Lag)";
+    rendererBtn.addEventListener("click", () => {
+      localStorage.setItem("verdant_force_webgl", isForced ? "false" : "true");
+      window.location.reload();
+    });
+  }
 }
 
 async function prewarmModel(modelId) {
