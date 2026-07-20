@@ -283,7 +283,7 @@ class ChatRequest(BaseModel):
     reasoning: str | None = None
     project_id: str | None = None
 
-async def compact_memory(project_id: str, old_messages: list):
+async def compact_memory(project_id: str, old_messages: list, model_name: str):
     if not old_messages:
         return
     try:
@@ -295,7 +295,7 @@ async def compact_memory(project_id: str, old_messages: list):
             prompt += f"{str(role).upper()}: {str(content)}\n"
         
         res = await acompletion(
-            model="gemini/gemini-3.5-flash", # Fallback to gemini if ollama struggles, wait no I'll use gemma4
+            model=model_name,
             messages=[{"role": "user", "content": prompt}],
             max_tokens=150
         )
@@ -501,7 +501,7 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
                 save_projects(data)
                 
                 # Fire and forget memory manager
-                background_tasks.add_task(compact_memory, req.project_id, to_compact)
+                background_tasks.add_task(compact_memory, req.project_id, to_compact, req.model_name)
     
     recent_messages = req.messages[-10:] if total_msgs > 10 else req.messages
     messages.extend([{"role": m.role, "content": m.content} for m in recent_messages])
