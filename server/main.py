@@ -634,20 +634,24 @@ async def generate_asset(req: AssetRequest):
     # --- RAG INTERCEPTOR: DYNAMIC PROMPT ASSEMBLY ---
     assembled_prompt = req.prompt
     
+    # Check for optional Verdant Brand Identity
+    has_brand_intent = any(kw in req.prompt.lower() for kw in ["verdant brand", "brand identity", "verdant style", "verdant aesthetic"])
+    brand_tokens = ", dark mode, deep charcoal background, neon green accents, verdant green glow, rich polished mahogany wood" if has_brand_intent else ""
+
     if req.exploratory:
         # Phase 0/1: Exploratory or Assembly
-        # We DO NOT force the Verdant Brand Identity here, allowing project-unique styles.
         # Inject Cartography/Topology tokens if applicable
         if "map" in req.prompt.lower() or "terrain" in req.prompt.lower():
             assembled_prompt += ", bathymetric rendering, hypsometric tinting, isoline topography"
         
+        assembled_prompt += brand_tokens
         # Less restrictive constraints for iterative flexibility
         negative_prompt = "low quality, blurry, text"
     else:
         # Phase 2: High-Fidelity Asset Generation
-        
-        # Inject Photography/Cinematography tokens
-        assembled_prompt += ", premium high-end, sleek minimalist, cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
+        # Inject Photography/Cinematography tokens (Max 4 to prevent dilution)
+        assembled_prompt += ", cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
+        assembled_prompt += brand_tokens
         
         # Absolute rigid constraints for One-Shot models
         negative_prompt = "device frames, laptops, phones, UI overlays, gradients on text, low quality, cartoonish, watermark"
@@ -656,15 +660,22 @@ async def generate_asset(req: AssetRequest):
         # Execute via litellm
         import litellm
         
-        # Map frontend aspect ratio to standard litellm size if necessary, or pass through
-        # In this implementation, litellm handles standard string conversions
+        # Build litellm kwargs to ensure we don't drop structural RAG components
+        generation_kwargs = {
+            "prompt": assembled_prompt,
+            "model": req.model,
+            "n": 1,
+            "size": "1024x1024", # Fallback default
+        }
         
-        response = litellm.image_generation(
-            prompt=assembled_prompt,
-            model=req.model,
-            n=1,
-            size="1024x1024", # Standard square, litellm backend specific sizing can be passed depending on provider
-        )
+        if req.seed is not None:
+            generation_kwargs["seed"] = req.seed
+            
+        # Passing extended kwargs for provider-specific support
+        generation_kwargs["negative_prompt"] = negative_prompt
+        generation_kwargs["guidance_scale"] = req.guidance_scale
+        
+        response = litellm.image_generation(**generation_kwargs)
         
         # The Litellm response format returns the URL in data[0].url
         image_url = response.data[0].url

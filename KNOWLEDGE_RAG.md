@@ -6,7 +6,14 @@ This document outlines the design, implementation, and strategic advantages of t
 
 The core image generation feature of Verdant Beech relies on a highly specialized Prompt Engineering pipeline. Instead of passing raw user prompts directly to the image diffusion models (via LiteLLM), the application employs a **Backend RAG Interceptor**. This interceptor dynamically analyzes, structures, and augments the user's prompt based on the active project phase, selected model tier, and desired aesthetic tokens.
 
-## 2. Pipeline Organization (The Three Phases)
+This architecture governs the entire generation lifecycle through the following mechanisms:
+*   **[2] Prompt Engineering Architecture:** How the Interceptor dynamically routes and structures prompts across four distinct developmental phases (from validation to high-fidelity baking).
+*   **[3] Domain-Specific Expertise:** How the RAG injects specialized, highly technical lexicons (Cartography, Photography, UI/UX) to elevate natural language inputs.
+*   **[4] Dynamic Prompt Assembly Logic:** The strict mathematical gating of tokens (max 3-4) to prevent prompt dilution and preserve the diffusion model's attention mechanism.
+*   **[5] Memory Architecture & Subconscious State:** How context windows and geometric seeds are meticulously segregated and persisted across different reasoning tiers.
+*   **[6] Expected Advantages & Capabilities:** The strategic benefits this architecture unlocks, including zero-shot mastery and compute efficiency.
+
+## 2. Prompt Engineering Architecture
 
 The RAG pipeline organizes prompt processing into distinct, rigid phases to maximize the efficiency and accuracy of the underlying AI models.
 
@@ -22,7 +29,7 @@ The RAG pipeline organizes prompt processing into distinct, rigid phases to maxi
   - Allows highly conversational and unstructured prompting.
   - Negative constraints are kept minimal (`low quality, blurry, text`) to allow the model freedom to invent and inpaint.
   - Dynamically injects specialized vocabularies (e.g., Cartography tokens like `bathymetric rendering` or `isoline topography`) if contextual keywords ("map", "terrain") are detected.
-  - The Verdant Brand Identity is actively suppressed, allowing the user to discover entirely bespoke, project-unique styles.
+  - The Verdant Brand Identity is actively suppressed by default to allow the user to discover entirely bespoke styles, but it will still be injected if explicitly requested in the prompt.
 
 ### Phase 1: Asset Assembly
 - **Trigger:** Active when the user shifts from broad brainstorming to generating specific set-pieces, sprite sheets, or individual structural components.
@@ -65,13 +72,21 @@ To bridge the gap between a user's natural language and the highly technical jar
 
 To prevent "Prompt Stuffing" or "Keyword Salad" (which severely dilutes a diffusion model's attention mechanism), the interceptor strictly limits injected tokens. It only appends 3 to 4 context-aware tokens at a time, ensuring the mathematical weight of the user's core subject remains the primary focus of the generation.
 
-## 5. Memory Tiering & Subconscious State
+When assembling the final string passed to the diffusion model, the interceptor enforces the following strict order, as diffusion models heavily weight the beginning of a prompt:
+1. **Subject & Medium:** (e.g., `A true orthographic view of a single oak tree...`)
+2. **Core Material:** (e.g., `...with subsurface scattering on the leaves and a matte bark finish...`)
+3. **Environment & Lighting:** (e.g., `...studio lighting setup, soft ambient occlusion...`)
+4. **Aesthetic Polish:** (e.g., `...premium 8k quality, Octane render...`)
+5. **Negative Constraints:** Passed discretely via kwargs (e.g., `...isolated on solid background, no cast shadow on floor, no text, no UI elements.`)
 
-Verdant Beech employs an advanced memory architecture to manage context windows efficiently across different reasoning levels and tasks.
+## 5. Memory Architecture & Subconscious State
 
-*   **Subconscious State (`subconscious_state`):** The backend maintains an asynchronous, non-blocking state dictionary for each project (`gathering_thoughts`, `lost_in_revery`). This allows the agent to run background tasks (like pre-warming heavy Tier-2 models or generating embeddings) without locking the UI or main reasoning thread.
-*   **Context Window Segregation:** The memory pipeline strictly segregates context based on the Reasoning Tier (LOW, MED, HIGH). Exploratory (Phase 0) chatter is kept isolated from High-Fidelity (Phase 2) generation context, ensuring that iterative failures or dead-end brainstorms do not pollute the final prompt sent to the One-Shot models.
-*   **Seed Persistence:** The geometric and stylistic memory of an image is preserved not via text, but mathematically via the `Seed`. This represents the ultimate form of aesthetic memory tiering, allowing exact structural persistence across different generation phases.
+Verdant Beech employs an advanced cognitive memory architecture to maintain deep project alignment while preserving computational focus:
+
+*   **Working Memory:** Kept tight (last 10 messages) to maintain immediate contextual focus on the active task without hallucinating from past interactions.
+*   **Episodic Memory:** Older conversation context is continuously compacted and summarized in the background by the agent, embedded into ChromaDB, and retrieved dynamically as needed.
+*   **Semantic Memory:** Generalized facts learned over time, specifically storing overarching project preferences, stylistic choices, and creative goals. These are embedded alongside expert cartography rules to ensure the agent remains permanently aligned with the user's vision.
+*   **Subconscious State (`subconscious_state`):** A non-blocking state dictionary that facilitates the overall design of memory. It allows the agent to run background tasks (like compacting episodic memory, generating embeddings, or pre-warming models) without locking the UI or interrupting the user's workflow.
 
 ## 6. Expected Advantages & Capabilities
 
@@ -79,3 +94,5 @@ Verdant Beech employs an advanced memory architecture to manage context windows 
 2. **Deterministic Iteration:** The frontend actively captures the exact `Seed` value and transmits it to the backend. This allows a user to discover a compelling composition in Phase 0 (Exploratory), lock the seed, and carry that exact geometric baseline into a Phase 2 (High-Fidelity) render.
 3. **Compute Efficiency:** The Phase -1 Validator prevents expensive Tier-2 models from wasting time generating unusable mud from vague prompts.
 4. **Creative Freedom vs. Stylistic Cohesion:** By decoupling the Verdant Brand Identity from the mandatory pipeline and making it optional, the system achieves the perfect balance. Users can enforce a strict, cohesive aesthetic when needed, or branch out into completely novel art styles during exploration.
+5. **Cognitive Persistence without Hallucination:** By segregating memory into Working, Episodic, and Semantic tiers, the agent maintains a virtually infinite historical understanding of the project without the prompt-bloat and hallucination risks caused by dumping massive, unmanaged context windows into the LLM.
+6. **Non-Blocking Fluidity (Zero-Latency UX):** The Subconscious State enables the agent to continuously compact memories, generate vector embeddings, and pre-warm heavy Tier-2 diffusion models entirely in the background, ensuring the user interface never locks up or stutters during complex cognitive tasks.
