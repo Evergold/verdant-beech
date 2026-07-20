@@ -1,10 +1,76 @@
 {
+  "nav": {
+    "projects": "Projects",
+    "assistant": "Assistant Tool",
+    "library": "Library Manager",
+    "style": "Style Guidelines",
+    "asset": "Asset Generator"
+  },
+  "projects": {
+    "title": "Projects",
+    "activeProject": "Active Project",
+    "projectNamePlaceholder": "Project Name",
+    "editToRename": "Edit to rename project",
+    "switchProject": "Switch Project",
+    "newProject": "➕ New Project",
+    "untitledProject": "Untitled Project",
+    "deleteProject": "Delete Project",
+    "confirmDelete": "Confirm Delete",
+    "cancel": "Cancel"
+  },
   "chat": {
     "title": "Assistant Tool",
     "placeholder": "Ask for a map or style advice...",
-    "send": "Send"
+    "send": "Send",
+    "activeTasks": "ACTIVE TASKS:",
+    "ram": "RAM:",
+    "vram": "VRAM:",
+    "downloading": "Downloading model...",
+    "pause": "Pause",
+    "resume": "Resume"
   },
-  "projects": {
-    "title": "Projects"
+  "library": {
+    "title": "Library Manager",
+    "description": "Manage portfolios, tags, and assets here.",
+    "newFolderPlaceholder": "New Portfolio Name...",
+    "create": "Create"
+  },
+  "style": {
+    "title": "Style Guidelines",
+    "description": "Configure Verdant's generation rules.",
+    "envLighting": "Environment Lighting",
+    "uniformStudio": "Uniform Studio (Default)",
+    "moodyCandlelit": "Moody Candlelit",
+    "lightingTemp": "Lighting Temperature",
+    "moonlight": "Moonlight (10000K)",
+    "overcast": "Overcast (7000K)",
+    "studio": "Studio (Default, 6500K)",
+    "daylight": "Daylight (5500K)",
+    "goldenHour": "Golden Hour (4000K)",
+    "halogen": "Halogen (3200K)",
+    "terrainEngine": "Terrain Compositing Engine",
+    "generateHills": "Generate Hills",
+    "flatten": "Flatten",
+    "dropMarker": "📍 Drop Settlement Marker",
+    "markerDesc": "Markers automatically physics-snap to the displaced geometry of the terrain layers."
+  },
+  "asset": {
+    "title": "Asset Generator",
+    "description": "Create and hone bespoke assets.",
+    "exploratoryMode": "Exploratory Mode",
+    "exploratoryDesc": "Bypass Style Guidelines to freely experiment",
+    "promptPlaceholder": "Describe the asset (e.g. 'A glowing blue mushroom')...",
+    "generate": "Generate Asset",
+    "previewAlt": "Asset Preview",
+    "namePlaceholder": "Asset Name (e.g. blue_mushroom)",
+    "save": "Save to Library"
+  },
+  "canvas": {
+    "orientationLandscape": "🔄 Orientation: Landscape",
+    "orientationPortrait": "🔄 Orientation: Portrait",
+    "zoomToolOff": "🔍 Zoom Tool: OFF",
+    "zoomToolOn": "🔍 Zoom Tool: ON",
+    "orientationTitle": "Toggle Portrait/Landscape",
+    "zoomTitle": "Zoom Tool (Hold Ctrl to Zoom Out)"
   }
 }

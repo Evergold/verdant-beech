@@ -37,6 +37,9 @@ async function initI18n() {
   document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
     el.placeholder = i18next.t(el.getAttribute("data-i18n-placeholder"));
   });
+  document.querySelectorAll("[data-i18n-title]").forEach(el => {
+    el.title = i18next.t(el.getAttribute("data-i18n-title"));
+  });
 }
 
 let engine, scene, camera, light, baseMap, baseMat;
@@ -291,8 +294,11 @@ async function initBabylon() {
     const toggleBtn = document.getElementById("toggle-orientation-btn");
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
-        isLandscape = !isLandscape;
-        toggleBtn.textContent = isLandscape ? "🔄 Orientation: Landscape" : "🔄 Orientation: Portrait";
+        const renderWidth = canvas.clientWidth;
+        const renderHeight = canvas.clientHeight;
+        const isLandscape = renderWidth > renderHeight;
+        toggleBtn.textContent = isLandscape ? i18next.t("canvas.orientationLandscape") : i18next.t("canvas.orientationPortrait");
+        engine.resize();
         
         // Normalize current alpha to prevent 360-degree whirlwind spins
         let currentAlpha = camera.alpha;
@@ -329,7 +335,7 @@ async function initBabylon() {
     if (zoomToolBtn) {
       zoomToolBtn.addEventListener("click", () => {
         isZoomToolActive = !isZoomToolActive;
-        zoomToolBtn.textContent = isZoomToolActive ? "🔍 Zoom Tool: ON" : "🔍 Zoom Tool: OFF";
+        zoomToolBtn.textContent = isZoomToolActive ? i18next.t("canvas.zoomToolOn") : i18next.t("canvas.zoomToolOff");
         zoomToolBtn.style.color = isZoomToolActive ? "var(--accent-color)" : "var(--text-main)";
         
         if (isZoomToolActive) {
@@ -598,7 +604,7 @@ async function streamDownload(tag) {
   isDownloading = true;
   isDownloadPaused = false;
   currentDownloadModel = tag;
-  downloadPauseBtn.textContent = "Pause";
+  downloadPauseBtn.textContent = i18next.t("chat.pause");
   
   downloadController = new AbortController();
   
@@ -617,7 +623,7 @@ async function streamDownload(tag) {
       const { done, value } = await reader.read();
       if (done) break;
       
-      const lines = decoder.decode(value).split('\\n');
+      const lines = decoder.decode(value).split('\n');
       for (const line of lines) {
         if (!line.trim()) continue;
         try {
@@ -626,6 +632,11 @@ async function streamDownload(tag) {
             const pct = Math.floor((data.completed / data.total) * 100);
             downloadProgress.value = pct;
             downloadPercent.textContent = pct + "%";
+          }
+          if (data.status === "paused") {
+            downloadPauseBtn.textContent = i18next.t("chat.resume");
+          } else {
+            downloadPauseBtn.textContent = i18next.t("chat.pause");
           }
           if (data.status === "success") {
             downloadProgress.value = 100;
@@ -644,7 +655,7 @@ async function streamDownload(tag) {
     if (e.name === "AbortError") {
       showToast("Download paused", "warning");
       isDownloadPaused = true;
-      downloadPauseBtn.textContent = "Resume";
+      downloadPauseBtn.textContent = i18next.t("chat.resume");
       sendBtn.disabled = false;
     } else {
       showToast("Download failed", "error");
@@ -1067,7 +1078,7 @@ async function loadProjects() {
     const res = await fetch("http://localhost:8001/api/projects");
     const data = await res.json();
     
-    projectSelect.innerHTML = '<option value="_new_" style="font-weight: bold;">➕ New Project</option>';
+    projectSelect.innerHTML = `<option value="_new_" style="font-weight: bold;">${i18next.t("projects.newProject")}</option>`;
     
     Object.keys(data.projects).forEach(id => {
       const opt = document.createElement("option");
@@ -1125,7 +1136,7 @@ if (projectSelect) {
         const res = await fetch("http://localhost:8001/api/projects", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: "Untitled Project" })
+          body: JSON.stringify({ name: i18next.t("projects.untitledProject") })
         });
         const data = await res.json();
         if (data.status === "success") {
