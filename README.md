@@ -135,6 +135,13 @@ npm run dev
 ```
 *(The frontend will be available at `http://localhost:5173`)*
 
+**UI Localization / Locale Override**
+Verdant Beech officially supports [50 languages](./src/locales/) and will natively detect your browser's language setting. If your language is unsupported, it defaults gracefully to English (`en`).
+You can explicitly override the UI language by passing the `VITE_LOCALE` environment variable using an ISO 639-1 code (must be one of the [50 supported languages](./src/locales/)):
+```bash
+VITE_LOCALE="fr" npm run dev
+```
+
 **Production Mode**
 To serve the optimized, static production build through the FastAPI backend directly (without a separate Vite dev server):
 ```bash

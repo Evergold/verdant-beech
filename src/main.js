@@ -24,11 +24,26 @@ async function saveState(key, value) {
 
 // Initialize i18n
 async function initI18n() {
+  let detectedLang = import.meta.env.VITE_LOCALE || (navigator.language || navigator.userLanguage || "en").split("-")[0].toLowerCase();
+  
+  let translations = enTranslations;
+  
+  if (detectedLang !== "en") {
+    try {
+      const module = await import(`./locales/${detectedLang}.json`);
+      translations = module.default || module;
+    } catch (e) {
+      console.warn(`Locale '${detectedLang}' not supported. Falling back to 'en'.`);
+      detectedLang = "en";
+    }
+  }
+
   await i18next.init({
-    lng: "en",
+    lng: detectedLang,
+    fallbackLng: "en",
     resources: {
-      en: {
-        translation: enTranslations
+      [detectedLang]: {
+        translation: translations
       }
     }
   });
