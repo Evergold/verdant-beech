@@ -392,6 +392,7 @@ body {
 .toast.error { background: #d32f2f; border: 1px solid #ff4444; }
 .toast.warning { background: #f57c00; border: 1px solid #ffa726; }
 .toast.info { background: #3b82f6; border: 1px solid #64b5f6; }
+.toast.success { background: #2f855a; border: 1px solid #48bb78; }
 
 @keyframes slideUp {
   from { transform: translateY(100%); opacity: 0; }
