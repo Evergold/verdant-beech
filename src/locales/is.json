@@ -64,7 +64,9 @@
     "previewAlt": "Forskoðun eignar",
     "namePlaceholder": "Heiti eignar (t.d. blar_sveppur)",
     "save": "Vista í safn",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Stefna: Lárétt",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Aðdráttartól: AF",
     "zoomToolOn": "🔍 Aðdráttartól: Á",
     "orientationTitle": "Skipta á milli lóðrétt/lárétt",
-    "zoomTitle": "Aðdráttartól (Haltu Ctrl inni til að minnka)"
+    "zoomTitle": "Aðdráttartól (Haltu Ctrl inni til að minnka)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Forhitar {{model}}...",

@@ -64,7 +64,9 @@
     "previewAlt": "Pratinjau Aset",
     "namePlaceholder": "Nama Aset (mis. blue_mushroom)",
     "save": "Simpan ke Pustaka",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Alat Zoom: MATI",
     "zoomToolOn": "🔍 Alat Zoom: AKTIF",
     "orientationTitle": "Alihkan Potret/Lanskap",
-    "zoomTitle": "Alat Zoom (Tahan Ctrl untuk Memperkecil)"
+    "zoomTitle": "Alat Zoom (Tahan Ctrl untuk Memperkecil)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Memanaskan awal {{model}}...",

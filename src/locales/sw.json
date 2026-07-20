@@ -64,7 +64,9 @@
     "previewAlt": "Hakiki ya Rasilimali",
     "namePlaceholder": "Jina la Rasilimali (k.m. blue_mushroom)",
     "save": "Hifadhi kwenye Maktaba",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Mwelekeo: Mandhari",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zana ya Kukuza: IMEZIMWA",
     "zoomToolOn": "🔍 Zana ya Kukuza: IMEWASHWA",
     "orientationTitle": "Badilisha Wima/Mandhari",
-    "zoomTitle": "Zana ya Kukuza (Shikilia Ctrl ili Kukuza Nje)"
+    "zoomTitle": "Zana ya Kukuza (Shikilia Ctrl ili Kukuza Nje)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Inapasha moto {{model}}...",

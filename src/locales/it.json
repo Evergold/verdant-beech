@@ -64,7 +64,9 @@
     "previewAlt": "Anteprima Asset",
     "namePlaceholder": "Nome Asset (es. fungo_blu)",
     "save": "Salva nella Libreria",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientamento: Orizzontale",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Strumento Zoom: OFF",
     "zoomToolOn": "🔍 Strumento Zoom: ON",
     "orientationTitle": "Alterna Verticale/Orizzontale",
-    "zoomTitle": "Strumento Zoom (Tieni premuto Ctrl per rimpicciolire)"
+    "zoomTitle": "Strumento Zoom (Tieni premuto Ctrl per rimpicciolire)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Preriscaldamento di {{model}}...",

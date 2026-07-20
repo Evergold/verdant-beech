@@ -64,7 +64,9 @@
     "previewAlt": "Vara eelvaade",
     "namePlaceholder": "Vara nimi (nt sinine_seen)",
     "save": "Salvesta teeki",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suund: Rõhtpaigutus",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Suurendustööriist: VÄLJAS",
     "zoomToolOn": "🔍 Suurendustööriist: SEES",
     "orientationTitle": "Lülita püst-/rõhtpaigutust",
-    "zoomTitle": "Suurendustööriist (vähendamiseks hoia all Ctrl-klahvi)"
+    "zoomTitle": "Suurendustööriist (vähendamiseks hoia all Ctrl-klahvi)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Mudeli {{model}} eelsoojendamine...",

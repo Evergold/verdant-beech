@@ -64,7 +64,9 @@
     "previewAlt": "Pré-visualização do Asset",
     "namePlaceholder": "Nome do Asset (ex: cogumelo_azul)",
     "save": "Salvar na Biblioteca",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientação: Paisagem",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Ferramenta de Zoom: DESLIGADA",
     "zoomToolOn": "🔍 Ferramenta de Zoom: LIGADA",
     "orientationTitle": "Alternar Retrato/Paisagem",
-    "zoomTitle": "Ferramenta de Zoom (Segure Ctrl para Afastar)"
+    "zoomTitle": "Ferramenta de Zoom (Segure Ctrl para Afastar)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Pré-aquecendo {{model}}...",

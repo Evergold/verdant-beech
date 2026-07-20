@@ -64,7 +64,9 @@
     "previewAlt": "Asset Preview",
     "namePlaceholder": "Asset Name (e.g. blue_mushroom)",
     "save": "Save to Library",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientation: Landscape",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zoom Tool: OFF",
     "zoomToolOn": "🔍 Zoom Tool: ON",
     "orientationTitle": "Toggle Portrait/Landscape",
-    "zoomTitle": "Zoom Tool (Hold Ctrl to Zoom Out)"
+    "zoomTitle": "Zoom Tool (Hold Ctrl to Zoom Out)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Pre-warming {{model}}...",

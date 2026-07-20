@@ -64,7 +64,9 @@
     "previewAlt": "Asset-voorbeeld",
     "namePlaceholder": "Assetnaam (bijv. blauwe_paddenstoel)",
     "save": "Opslaan in bibliotheek",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oriëntatie: Liggend",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zoomtool: UIT",
     "zoomToolOn": "🔍 Zoomtool: AAN",
     "orientationTitle": "Wisselen tussen staand/liggend",
-    "zoomTitle": "Zoomtool (Houd Ctrl ingedrukt om uit te zoomen)"
+    "zoomTitle": "Zoomtool (Houd Ctrl ingedrukt om uit te zoomen)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Voorverwarmen van {{model}}...",

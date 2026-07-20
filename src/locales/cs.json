@@ -64,7 +64,9 @@
     "previewAlt": "Náhled prvku",
     "namePlaceholder": "Název prvku (např. modra_houba)",
     "save": "Uložit do knihovny",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientace: Na šířku",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Nástroj lupy: VYPNUTO",
     "zoomToolOn": "🔍 Nástroj lupy: ZAPNUTO",
     "orientationTitle": "Přepnout na výšku/na šířku",
-    "zoomTitle": "Nástroj lupy (podržte Ctrl pro oddálení)"
+    "zoomTitle": "Nástroj lupy (podržte Ctrl pro oddálení)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Zahřívání {{model}}...",

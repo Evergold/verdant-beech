@@ -64,7 +64,9 @@
     "previewAlt": "Varlık Önizlemesi",
     "namePlaceholder": "Varlık Adı (örn. mavi_mantar)",
     "save": "Kütüphaneye Kaydet",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Yönlendirme: Yatay",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Yakınlaştırma Aracı: KAPALI",
     "zoomToolOn": "🔍 Yakınlaştırma Aracı: AÇIK",
     "orientationTitle": "Dikey/Yatay Geçişi Yap",
-    "zoomTitle": "Yakınlaştırma Aracı (Uzaklaştırmak için Ctrl tuşunu basılı tutun)"
+    "zoomTitle": "Yakınlaştırma Aracı (Uzaklaştırmak için Ctrl tuşunu basılı tutun)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} önceden ısıtılıyor...",

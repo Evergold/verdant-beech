@@ -64,7 +64,9 @@
     "previewAlt": "Predogled elementa",
     "namePlaceholder": "Ime elementa (npr. modra_goba)",
     "save": "Shrani v knjižnico",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Usmerjenost: Ležeče",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Orodje za povečavo: IZKLOPLJENO",
     "zoomToolOn": "🔍 Orodje za povečavo: VKLOPLJENO",
     "orientationTitle": "Preklopi med pokončno/ležeče",
-    "zoomTitle": "Orodje za povečavo (držite Ctrl za pomanjšavo)"
+    "zoomTitle": "Orodje za povečavo (držite Ctrl za pomanjšavo)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Predgrevanje modela {{model}}...",

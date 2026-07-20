@@ -64,7 +64,9 @@
     "previewAlt": "תצוגה מקדימה של הנכס",
     "namePlaceholder": "שם הנכס (למשל blue_mushroom)",
     "save": "שמור לספרייה",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 כיוון: לרוחב",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 כלי זום: כבוי",
     "zoomToolOn": "🔍 כלי זום: פעיל",
     "orientationTitle": "החלף בין לאורך/לרוחב",
-    "zoomTitle": "כלי זום (החזק Ctrl כדי להקטין)"
+    "zoomTitle": "כלי זום (החזק Ctrl כדי להקטין)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "מבצע חימום מוקדם ל-{{model}}...",

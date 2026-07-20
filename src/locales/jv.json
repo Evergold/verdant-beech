@@ -64,7 +64,9 @@
     "previewAlt": "Pratinjau Aset",
     "namePlaceholder": "Jeneng Aset (tuladhane blue_mushroom)",
     "save": "Simpen menyang Pustaka",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Piranti Zoom: MATI",
     "zoomToolOn": "🔍 Piranti Zoom: URIP",
     "orientationTitle": "Ganti Potret/Lanskap",
-    "zoomTitle": "Piranti Zoom (Tahan Ctrl kanggo Zoom Metu)"
+    "zoomTitle": "Piranti Zoom (Tahan Ctrl kanggo Zoom Metu)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Nyiapake {{model}}...",

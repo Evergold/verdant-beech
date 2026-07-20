@@ -64,7 +64,9 @@
     "previewAlt": "Xem trước Tài nguyên",
     "namePlaceholder": "Tên Tài nguyên (ví dụ: blue_mushroom)",
     "save": "Lưu vào Thư viện",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Hướng: Ngang",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Công cụ Thu phóng: TẮT",
     "zoomToolOn": "🔍 Công cụ Thu phóng: BẬT",
     "orientationTitle": "Chuyển đổi Dọc/Ngang",
-    "zoomTitle": "Công cụ Thu phóng (Giữ Ctrl để Thu nhỏ)"
+    "zoomTitle": "Công cụ Thu phóng (Giữ Ctrl để Thu nhỏ)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Đang khởi động trước {{model}}...",

@@ -459,7 +459,7 @@ async function initBabylon() {
   if (rendererBtn) {
     const params = new URLSearchParams(window.location.search);
     const isForced = params.get("webgl") === "1";
-    rendererBtn.textContent = isForced ? "🖥️ Restore WebGPU" : "🖥️ Force WebGL";
+    rendererBtn.textContent = isForced ? i18next.t("canvas.restoreWebGPU") : i18next.t("canvas.forceWebGL");
     rendererBtn.addEventListener("click", () => {
       if (isForced) {
         params.delete("webgl");
@@ -627,7 +627,7 @@ function renderImageModelControls(modelId) {
         <input type="number" id="img-seed" placeholder="Random" style="background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 10px 14px; font-size: 1rem; border-radius: 4px; font-family: inherit; width: 140px; box-sizing: border-box;" />
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
-        <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Classifier-Free Guidance</label>
+        <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="${i18next.t('asset.guidanceScaleTitle')}" data-i18n="asset.guidanceScale" data-i18n-title="asset.guidanceScaleTitle">${i18next.t('asset.guidanceScale')}</label>
         <input type="range" id="img-cfg" min="1" max="20" step="0.5" value="7.5" />
       </div>
     `;
@@ -646,7 +646,7 @@ function renderImageModelControls(modelId) {
         <input type="range" id="nano-consistency" min="0" max="100" value="80" />
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
-        <label for="nano-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Classifier-Free Guidance</label>
+        <label for="nano-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="${i18next.t('asset.guidanceScaleTitle')}" data-i18n="asset.guidanceScale" data-i18n-title="asset.guidanceScaleTitle">${i18next.t('asset.guidanceScale')}</label>
         <input type="range" id="nano-cfg" min="1" max="20" step="0.5" value="7.5" />
       </div>
     `;

@@ -64,7 +64,9 @@
     "previewAlt": "Pregled elementa",
     "namePlaceholder": "Naziv elementa (npr. plava_pecurka)",
     "save": "Sačuvaj u biblioteku",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Položeno",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Alat za zumiranje: ISKLJUČEN",
     "zoomToolOn": "🔍 Alat za zumiranje: UKLJUČEN",
     "orientationTitle": "Promeni uspravno/položeno",
-    "zoomTitle": "Alat za zumiranje (Držite Ctrl za udaljavanje)"
+    "zoomTitle": "Alat za zumiranje (Držite Ctrl za udaljavanje)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Pripremanje modela {{model}}...",

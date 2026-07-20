@@ -64,7 +64,9 @@
     "previewAlt": "Náhľad objektu",
     "namePlaceholder": "Názov objektu (napr. modra_huba)",
     "save": "Uložiť do knižnice",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientácia: Na šírku",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Nástroj lupy: VYPNUTÝ",
     "zoomToolOn": "🔍 Nástroj lupy: ZAPNUTÝ",
     "orientationTitle": "Prepnúť na výšku/šírku",
-    "zoomTitle": "Nástroj lupy (podržte Ctrl pre oddialenie)"
+    "zoomTitle": "Nástroj lupy (podržte Ctrl pre oddialenie)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Predhrieva sa {{model}}...",

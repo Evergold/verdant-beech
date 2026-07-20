@@ -64,7 +64,9 @@
     "previewAlt": "Aperçu de l'asset",
     "namePlaceholder": "Nom de l'asset (ex: champignon_bleu)",
     "save": "Enregistrer dans la bibliothèque",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientation : Paysage",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Outil Zoom : DÉSACTIVÉ",
     "zoomToolOn": "🔍 Outil Zoom : ACTIVÉ",
     "orientationTitle": "Basculer entre Portrait/Paysage",
-    "zoomTitle": "Outil Zoom (Maintenir Ctrl pour zoomer en arrière)"
+    "zoomTitle": "Outil Zoom (Maintenir Ctrl pour zoomer en arrière)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Préchauffage de {{model}}...",

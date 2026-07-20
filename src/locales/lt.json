@@ -64,7 +64,9 @@
     "previewAlt": "Ištekliaus peržiūra",
     "namePlaceholder": "Ištekliaus pavadinimas (pvz., blue_mushroom)",
     "save": "Išsaugoti bibliotekoje",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacija: Gulsčias",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Mastelio įrankis: IŠJUNGTAS",
     "zoomToolOn": "🔍 Mastelio įrankis: ĮJUNGTAS",
     "orientationTitle": "Perjungti statų / gulsčią",
-    "zoomTitle": "Mastelio įrankis (laikykite Ctrl, kad nutolintumėte)"
+    "zoomTitle": "Mastelio įrankis (laikykite Ctrl, kad nutolintumėte)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Iš anksto pašildomas {{model}}...",

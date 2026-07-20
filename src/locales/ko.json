@@ -64,7 +64,9 @@
     "previewAlt": "에셋 미리보기",
     "namePlaceholder": "에셋 이름 (예: blue_mushroom)",
     "save": "라이브러리에 저장",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 방향: 가로",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 줌 도구: 꺼짐",
     "zoomToolOn": "🔍 줌 도구: 켜짐",
     "orientationTitle": "가로/세로 전환",
-    "zoomTitle": "줌 도구 (Ctrl을 누른 채 축소)"
+    "zoomTitle": "줌 도구 (Ctrl을 누른 채 축소)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} 예열 중...",

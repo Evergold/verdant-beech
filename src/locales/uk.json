@@ -64,7 +64,9 @@
     "previewAlt": "Попередній перегляд асету",
     "namePlaceholder": "Назва асету (наприклад, blue_mushroom)",
     "save": "Зберегти до бібліотеки",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Орієнтація: Альбомна",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Інструмент масштабування: ВИМК.",
     "zoomToolOn": "🔍 Інструмент масштабування: УВІМК.",
     "orientationTitle": "Перемкнути Книжкова/Альбомна",
-    "zoomTitle": "Інструмент масштабування (утримуйте Ctrl для зменшення)"
+    "zoomTitle": "Інструмент масштабування (утримуйте Ctrl для зменшення)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Попередній розігрів {{model}}...",

@@ -64,7 +64,9 @@
     "previewAlt": "ਸੰਪਤੀ ਦੀ ਪੂਰਵ-ਝਲਕ",
     "namePlaceholder": "ਸੰਪਤੀ ਦਾ ਨਾਮ (ਜਿਵੇਂ blue_mushroom)",
     "save": "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ਦਿਸ਼ਾ: ਲੈਂਡਸਕੇਪ",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 ਜ਼ੂਮ ਟੂਲ: ਬੰਦ",
     "zoomToolOn": "🔍 ਜ਼ੂਮ ਟੂਲ: ਚਾਲੂ",
     "orientationTitle": "ਪੋਰਟਰੇਟ/ਲੈਂਡਸਕੇਪ ਬਦਲੋ",
-    "zoomTitle": "ਜ਼ੂਮ ਟੂਲ (ਜ਼ੂਮ ਆਊਟ ਕਰਨ ਲਈ Ctrl ਦਬਾ ਕੇ ਰੱਖੋ)"
+    "zoomTitle": "ਜ਼ੂਮ ਟੂਲ (ਜ਼ੂਮ ਆਊਟ ਕਰਨ ਲਈ Ctrl ਦਬਾ ਕੇ ਰੱਖੋ)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} ਨੂੰ ਪ੍ਰੀ-ਵਾਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",

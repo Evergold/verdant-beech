@@ -64,7 +64,9 @@
     "previewAlt": "资产预览",
     "namePlaceholder": "资产名称（例如 blue_mushroom）",
     "save": "保存到库",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 方向：横向",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 缩放工具：关闭",
     "zoomToolOn": "🔍 缩放工具：开启",
     "orientationTitle": "切换纵向/横向",
-    "zoomTitle": "缩放工具（按住 Ctrl 缩小）"
+    "zoomTitle": "缩放工具（按住 Ctrl 缩小）",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "正在预热 {{model}}...",

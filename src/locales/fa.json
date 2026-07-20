@@ -64,7 +64,9 @@
     "previewAlt": "پیش‌نمایش دارایی",
     "namePlaceholder": "نام دارایی (مثلاً blue_mushroom)",
     "save": "ذخیره در کتابخانه",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 جهت: افقی",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 ابزار بزرگنمایی: خاموش",
     "zoomToolOn": "🔍 ابزار بزرگنمایی: روشن",
     "orientationTitle": "تغییر حالت عمودی/افقی",
-    "zoomTitle": "ابزار بزرگنمایی (برای کوچک‌نمایی Ctrl را نگه دارید)"
+    "zoomTitle": "ابزار بزرگنمایی (برای کوچک‌نمایی Ctrl را نگه دارید)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "در حال آماده‌سازی اولیه {{model}}...",

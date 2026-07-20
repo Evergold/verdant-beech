@@ -64,7 +64,9 @@
     "previewAlt": "Elementin esikatselu",
     "namePlaceholder": "Elementin nimi (esim. sininen_sieni)",
     "save": "Tallenna kirjastoon",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suunta: Vaaka",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zoomaustyökalu: POIS",
     "zoomToolOn": "🔍 Zoomaustyökalu: PÄÄLLÄ",
     "orientationTitle": "Vaihda pysty-/vaakasuuntaa",
-    "zoomTitle": "Zoomaustyökalu (Pidä Ctrl painettuna loitontaaksesi)"
+    "zoomTitle": "Zoomaustyökalu (Pidä Ctrl painettuna loitontaaksesi)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Esilämmitetään {{model}}...",

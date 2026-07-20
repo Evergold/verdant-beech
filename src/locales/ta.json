@@ -64,7 +64,9 @@
     "previewAlt": "சொத்து மாதிரிக்காட்சி",
     "namePlaceholder": "சொத்தின் பெயர் (எ.கா. blue_mushroom)",
     "save": "நூலகத்தில் சேமி",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 நோக்குநிலை: படுக்கைவாட்டம்",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 பெரிதாக்கும் கருவி: முடக்கப்பட்டுள்ளது",
     "zoomToolOn": "🔍 பெரிதாக்கும் கருவி: இயக்கப்பட்டுள்ளது",
     "orientationTitle": "நெடுக்கைவாட்டம்/படுக்கைவாட்டம் மாற்றவும்",
-    "zoomTitle": "பெரிதாக்கும் கருவி (சிறிதாக்க Ctrl விசையை அழுத்தவும்)"
+    "zoomTitle": "பெரிதாக்கும் கருவி (சிறிதாக்க Ctrl விசையை அழுத்தவும்)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} முன்கூட்டியே தயார் செய்யப்படுகிறது...",

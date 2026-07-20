@@ -64,7 +64,9 @@
     "previewAlt": "Преглед на ресурса",
     "namePlaceholder": "Име на ресурса (напр. blue_mushroom)",
     "save": "Запазване в библиотеката",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Пейзаж",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Инструмент за мащабиране: ИЗКЛ.",
     "zoomToolOn": "🔍 Инструмент за мащабиране: ВКЛ.",
     "orientationTitle": "Превключване между Портрет/Пейзаж",
-    "zoomTitle": "Инструмент за мащабиране (Задръжте Ctrl за отдалечаване)"
+    "zoomTitle": "Инструмент за мащабиране (Задръжте Ctrl за отдалечаване)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Предварително загряване на {{model}}...",

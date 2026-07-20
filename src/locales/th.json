@@ -64,7 +64,9 @@
     "previewAlt": "ตัวอย่างแอสเซท",
     "namePlaceholder": "ชื่อแอสเซท (เช่น blue_mushroom)",
     "save": "บันทึกลงคลัง",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ทิศทาง: แนวนอน",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 เครื่องมือซูม: ปิด",
     "zoomToolOn": "🔍 เครื่องมือซูม: เปิด",
     "orientationTitle": "สลับแนวตั้ง/แนวนอน",
-    "zoomTitle": "เครื่องมือซูม (กด Ctrl ค้างไว้เพื่อซูมออก)"
+    "zoomTitle": "เครื่องมือซูม (กด Ctrl ค้างไว้เพื่อซูมออก)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "กำลังเตรียมความพร้อม {{model}}...",

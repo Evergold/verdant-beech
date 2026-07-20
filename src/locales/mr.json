@@ -64,7 +64,9 @@
     "previewAlt": "अॅसेट पूर्वावलोकन",
     "namePlaceholder": "अॅसेटचे नाव (उदा. blue_mushroom)",
     "save": "लायब्ररीमध्ये जतन करा",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 अभिमुखता: लँडस्केप",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 झूम साधन: बंद",
     "zoomToolOn": "🔍 झूम साधन: सुरू",
     "orientationTitle": "पोर्ट्रेट/लँडस्केप टॉगल करा",
-    "zoomTitle": "झूम साधन (झूम कमी करण्यासाठी Ctrl दाबून ठेवा)"
+    "zoomTitle": "झूम साधन (झूम कमी करण्यासाठी Ctrl दाबून ठेवा)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} प्री-वॉर्मिंग होत आहे...",

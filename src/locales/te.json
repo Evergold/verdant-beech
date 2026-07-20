@@ -64,7 +64,9 @@
     "previewAlt": "అస్సెట్ ప్రివ్యూ",
     "namePlaceholder": "అస్సెట్ పేరు (ఉదా. blue_mushroom)",
     "save": "లైబ్రరీకి సేవ్ చేయి",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ఓరియంటేషన్: ల్యాండ్‌స్కేప్",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 జూమ్ సాధనం: ఆఫ్",
     "zoomToolOn": "🔍 జూమ్ సాధనం: ఆన్",
     "orientationTitle": "పోర్ట్రెయిట్/ల్యాండ్‌స్కేప్ మార్చండి",
-    "zoomTitle": "జూమ్ సాధనం (జూమ్ అవుట్ చేయడానికి Ctrl నొక్కి పట్టుకోండి)"
+    "zoomTitle": "జూమ్ సాధనం (జూమ్ అవుట్ చేయడానికి Ctrl నొక్కి పట్టుకోండి)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} సిద్ధమౌతోంది...",

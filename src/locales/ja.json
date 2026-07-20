@@ -64,7 +64,9 @@
     "previewAlt": "アセットのプレビュー",
     "namePlaceholder": "アセット名（例：blue_mushroom）",
     "save": "ライブラリに保存",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 向き: 横",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 ズームツール: オフ",
     "zoomToolOn": "🔍 ズームツール: オン",
     "orientationTitle": "縦向き/横向きの切り替え",
-    "zoomTitle": "ズームツール（Ctrlキーを押しながらズームアウト）"
+    "zoomTitle": "ズームツール（Ctrlキーを押しながらズームアウト）",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}}を事前準備中...",

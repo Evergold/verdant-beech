@@ -64,7 +64,9 @@
     "previewAlt": "Προεπισκόπηση Στοιχείου",
     "namePlaceholder": "Όνομα Στοιχείου (π.χ. blue_mushroom)",
     "save": "Αποθήκευση στη Βιβλιοθήκη",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Προσανατολισμός: Οριζόντιος",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Εργαλείο Εστίασης: ΑΝΕΝΕΡΓΟ",
     "zoomToolOn": "🔍 Εργαλείο Εστίασης: ΕΝΕΡΓΟ",
     "orientationTitle": "Εναλλαγή Κατακόρυφου/Οριζόντιου",
-    "zoomTitle": "Εργαλείο Εστίασης (Κρατήστε πατημένο το Ctrl για Σμίκρυνση)"
+    "zoomTitle": "Εργαλείο Εστίασης (Κρατήστε πατημένο το Ctrl για Σμίκρυνση)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Προθέρμανση {{model}}...",

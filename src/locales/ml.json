@@ -64,7 +64,9 @@
     "previewAlt": "അസറ്റ് പ്രിവ്യൂ",
     "namePlaceholder": "അസറ്റിന്റെ പേര് (ഉദാ. blue_mushroom)",
     "save": "ലൈബ്രറിയിലേക്ക് സംരക്ഷിക്കുക",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ഓറിയന്റേഷൻ: ലാൻഡ്‌സ്‌കേപ്പ്",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 സൂം ടൂൾ: ഓഫ്",
     "zoomToolOn": "🔍 സൂം ടൂൾ: ഓൺ",
     "orientationTitle": "പോർട്രെയ്റ്റ്/ലാൻഡ്‌സ്‌കേപ്പ് മാറ്റുക",
-    "zoomTitle": "സൂം ടൂൾ (സൂം ഔട്ട് ചെയ്യാൻ Ctrl അമർത്തിപ്പിടിക്കുക)"
+    "zoomTitle": "സൂം ടൂൾ (സൂം ഔട്ട് ചെയ്യാൻ Ctrl അമർത്തിപ്പിടിക്കുക)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} പ്രീ-വാം ചെയ്യുന്നു...",

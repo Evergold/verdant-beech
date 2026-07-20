@@ -64,7 +64,9 @@
     "previewAlt": "معاينة الأصل",
     "namePlaceholder": "اسم الأصل (مثال: blue_mushroom)",
     "save": "حفظ في المكتبة",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 الاتجاه: أفقي",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 أداة التكبير: إيقاف",
     "zoomToolOn": "🔍 أداة التكبير: تشغيل",
     "orientationTitle": "تبديل بين عمودي/أفقي",
-    "zoomTitle": "أداة التكبير (اضغط باستمرار على Ctrl للتصغير)"
+    "zoomTitle": "أداة التكبير (اضغط باستمرار على Ctrl للتصغير)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "جاري الإحماء المسبق لـ {{model}}...",

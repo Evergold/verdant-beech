@@ -64,7 +64,9 @@
     "previewAlt": "Previzualizare element",
     "namePlaceholder": "Nume element (de ex. ciuperca_albastra)",
     "save": "Salvează în bibliotecă",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientare: Peisaj",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Instrument zoom: OPRIT",
     "zoomToolOn": "🔍 Instrument zoom: PORNIT",
     "orientationTitle": "Comută Portret/Peisaj",
-    "zoomTitle": "Instrument zoom (Ține apăsat Ctrl pentru a micșora)"
+    "zoomTitle": "Instrument zoom (Ține apăsat Ctrl pentru a micșora)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Se preîncălzește {{model}}...",

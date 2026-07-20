@@ -64,7 +64,9 @@
     "previewAlt": "Eszköz előnézete",
     "namePlaceholder": "Eszköz neve (pl. kek_gomba)",
     "save": "Mentés a könyvtárba",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Tájolás: Fekvő",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Nagyító eszköz: KI",
     "zoomToolOn": "🔍 Nagyító eszköz: BE",
     "orientationTitle": "Álló/Fekvő tájolás váltása",
-    "zoomTitle": "Nagyító eszköz (Tartsd lenyomva a Ctrl billentyűt a kicsinyítéshez)"
+    "zoomTitle": "Nagyító eszköz (Tartsd lenyomva a Ctrl billentyűt a kicsinyítéshez)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} előmelegítése...",

@@ -64,7 +64,9 @@
     "previewAlt": "Podgląd zasobu",
     "namePlaceholder": "Nazwa zasobu (np. niebieski_grzyb)",
     "save": "Zapisz w bibliotece",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacja: Pozioma",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Narzędzie powiększenia: WYŁ.",
     "zoomToolOn": "🔍 Narzędzie powiększenia: WŁ.",
     "orientationTitle": "Przełącz pionowo/poziomo",
-    "zoomTitle": "Narzędzie powiększenia (przytrzymaj Ctrl, aby pomniejszyć)"
+    "zoomTitle": "Narzędzie powiększenia (przytrzymaj Ctrl, aby pomniejszyć)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Wstępne nagrzewanie {{model}}...",

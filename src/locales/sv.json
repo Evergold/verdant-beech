@@ -64,7 +64,9 @@
     "previewAlt": "Förhandsvisning av resurs",
     "namePlaceholder": "Resursnamn (t.ex. bla_svamp)",
     "save": "Spara i bibliotek",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientering: Liggande",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zoomverktyg: AV",
     "zoomToolOn": "🔍 Zoomverktyg: PÅ",
     "orientationTitle": "Växla stående/liggande",
-    "zoomTitle": "Zoomverktyg (Håll Ctrl för att zooma ut)"
+    "zoomTitle": "Zoomverktyg (Håll Ctrl för att zooma ut)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Förvärmer {{model}}...",

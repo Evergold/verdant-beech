@@ -64,7 +64,9 @@
     "previewAlt": "Preview ng Asset",
     "namePlaceholder": "Pangalan ng Asset (hal. blue_mushroom)",
     "save": "I-save sa Library",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oryentasyon: Landscape",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Tool sa Pag-zoom: OFF",
     "zoomToolOn": "🔍 Tool sa Pag-zoom: ON",
     "orientationTitle": "I-toggle ang Portrait/Landscape",
-    "zoomTitle": "Tool sa Pag-zoom (Pindutin nang matagal ang Ctrl para Mag-zoom Out)"
+    "zoomTitle": "Tool sa Pag-zoom (Pindutin nang matagal ang Ctrl para Mag-zoom Out)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Pina-pre-warm ang {{model}}...",

@@ -64,7 +64,9 @@
     "previewAlt": "એસેટ પૂર્વાવલોકન",
     "namePlaceholder": "એસેટનું નામ (દા.ત. blue_mushroom)",
     "save": "લાઇબ્રેરીમાં સાચવો",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ઓરિએન્ટેશન: આડું",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 ઝૂમ ટૂલ: બંધ",
     "zoomToolOn": "🔍 ઝૂમ ટૂલ: ચાલુ",
     "orientationTitle": "ઊભું/આડું બદલો",
-    "zoomTitle": "ઝૂમ ટૂલ (ઝૂમ આઉટ કરવા માટે Ctrl દબાવી રાખો)"
+    "zoomTitle": "ઝૂમ ટૂલ (ઝૂમ આઉટ કરવા માટે Ctrl દબાવી રાખો)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} ને પ્રી-વોર્મિંગ કરી રહ્યું છે...",

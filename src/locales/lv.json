@@ -64,7 +64,9 @@
     "previewAlt": "Resursa priekšskatījums",
     "namePlaceholder": "Resursa nosaukums (piem., zila_sene)",
     "save": "Saglabāt bibliotēkā",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientācija: Ainava",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Tālummaiņas rīks: IZSLĒGTS",
     "zoomToolOn": "🔍 Tālummaiņas rīks: IESLĒGTS",
     "orientationTitle": "Pārslēgt portretu/ainavu",
-    "zoomTitle": "Tālummaiņas rīks (turiet Ctrl, lai tālinātu)"
+    "zoomTitle": "Tālummaiņas rīks (turiet Ctrl, lai tālinātu)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Sagatavo {{model}}...",

@@ -64,7 +64,9 @@
     "previewAlt": "ସମ୍ପତ୍ତି ପୂର୍ବାବଲୋକନ",
     "namePlaceholder": "ସମ୍ପତ୍ତି ନାମ (ଯେପରିକି blue_mushroom)",
     "save": "ଲାଇବ୍ରେରୀରେ ସଂରକ୍ଷଣ କରନ୍ତୁ",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ଆଭିମୁଖ୍ୟ: ଲ୍ୟାଣ୍ଡସ୍କେପ୍",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 ଜୁମ୍ ଟୁଲ୍: ବନ୍ଦ",
     "zoomToolOn": "🔍 ଜୁମ୍ ଟୁଲ୍: ଚାଲୁ",
     "orientationTitle": "ପୋର୍ଟ୍ରେଟ୍/ଲ୍ୟାଣ୍ଡସ୍କେପ୍ ବଦଳାନ୍ତୁ",
-    "zoomTitle": "ଜୁମ୍ ଟୁଲ୍ (ଜୁମ୍ ଆଉଟ୍ କରିବା ପାଇଁ Ctrl ଦବାଇ ରଖନ୍ତୁ)"
+    "zoomTitle": "ଜୁମ୍ ଟୁଲ୍ (ଜୁମ୍ ଆଉଟ୍ କରିବା ପାଇଁ Ctrl ଦବାଇ ରଖନ୍ତୁ)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} କୁ ପ୍ରି-ୱାର୍ମିଂ କରାଯାଉଛି...",

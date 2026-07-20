@@ -64,7 +64,9 @@
     "previewAlt": "Forhåndsvisning af asset",
     "namePlaceholder": "Asset-navn (f.eks. blue_mushroom)",
     "save": "Gem i bibliotek",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Retning: Liggende",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zoomværktøj: FRA",
     "zoomToolOn": "🔍 Zoomværktøj: TIL",
     "orientationTitle": "Skift mellem stående/liggende",
-    "zoomTitle": "Zoomværktøj (Hold Ctrl nede for at zoome ud)"
+    "zoomTitle": "Zoomværktøj (Hold Ctrl nede for at zoome ud)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Forvarmer {{model}}...",

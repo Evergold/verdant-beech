@@ -64,7 +64,9 @@
     "previewAlt": "Asset-Vorschau",
     "namePlaceholder": "Asset-Name (z. B. blauer_pilz)",
     "save": "In Bibliothek speichern",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ausrichtung: Querformat",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Zoom-Werkzeug: AUS",
     "zoomToolOn": "🔍 Zoom-Werkzeug: AN",
     "orientationTitle": "Hoch-/Querformat umschalten",
-    "zoomTitle": "Zoom-Werkzeug (Strg gedrückt halten zum Auszoomen)"
+    "zoomTitle": "Zoom-Werkzeug (Strg gedrückt halten zum Auszoomen)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} wird vorgewärmt...",

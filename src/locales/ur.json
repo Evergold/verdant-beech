@@ -64,7 +64,9 @@
     "previewAlt": "اثاثہ کا پیش نظارہ",
     "namePlaceholder": "اثاثہ کا نام (مثلاً blue_mushroom)",
     "save": "لائبریری میں محفوظ کریں",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 رخ: لینڈ اسکیپ",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 زوم ٹول: بند",
     "zoomToolOn": "🔍 زوم ٹول: آن",
     "orientationTitle": "پورٹریٹ/لینڈ اسکیپ تبدیل کریں",
-    "zoomTitle": "زوم ٹول (زوم آؤٹ کرنے کے لیے Ctrl دبائے رکھیں)"
+    "zoomTitle": "زوم ٹول (زوم آؤٹ کرنے کے لیے Ctrl دبائے رکھیں)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} کو پہلے سے گرم کیا جا رہا ہے...",

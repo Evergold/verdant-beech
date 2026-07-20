@@ -64,7 +64,9 @@
     "previewAlt": "অ্যাসেট প্রিভিউ",
     "namePlaceholder": "অ্যাসেটের নাম (যেমন: blue_mushroom)",
     "save": "লাইব্রেরিতে সংরক্ষণ করুন",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 ওরিয়েন্টেশন: ল্যান্ডস্কেপ",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 জুম টুল: বন্ধ",
     "zoomToolOn": "🔍 জুম টুল: চালু",
     "orientationTitle": "পোর্ট্রেট/ল্যান্ডস্কেপ পরিবর্তন করুন",
-    "zoomTitle": "জুম টুল (জুম আউট করতে Ctrl চেপে রাখুন)"
+    "zoomTitle": "জুম টুল (জুম আউট করতে Ctrl চেপে রাখুন)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "{{model}} প্রি-ওয়ার্মিং করা হচ্ছে...",

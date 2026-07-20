@@ -64,7 +64,9 @@
     "previewAlt": "Vista previa del recurso",
     "namePlaceholder": "Nombre del recurso (p. ej., hongo_azul)",
     "save": "Guardar en la biblioteca",
-    "modelSelect": "Image Model"
+    "modelSelect": "Image Model",
+    "guidanceScale": "Classifier-Free Guidance",
+    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientación: Horizontal",
@@ -72,7 +74,10 @@
     "zoomToolOff": "🔍 Herramienta de zoom: DESACTIVADA",
     "zoomToolOn": "🔍 Herramienta de zoom: ACTIVADA",
     "orientationTitle": "Alternar vertical/horizontal",
-    "zoomTitle": "Herramienta de zoom (Mantén presionado Ctrl para alejar)"
+    "zoomTitle": "Herramienta de zoom (Mantén presionado Ctrl para alejar)",
+    "forceWebGL": "🖥️ Force WebGL",
+    "restoreWebGPU": "🖥️ Restore WebGPU",
+    "toggleRendererTitle": "Toggle Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Precalentando {{model}}...",
