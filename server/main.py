@@ -684,10 +684,17 @@ async def ollama_prewarm(req: Request):
     
     try:
         async with httpx.AsyncClient() as client:
-            resp = await client.post(f"{OLLAMA_URL}/api/generate", json={"model": tag, "keep_alive": "5m"}, timeout=15.0)
+            resp = await client.post(f"{OLLAMA_URL}/api/generate", json={"model": tag, "keep_alive": -1}, timeout=15.0)
             if resp.status_code == 404:
                 return {"status": "missing", "error": "Model not installed"}
             resp.raise_for_status()
+            
+            # Pre-warm the subconscious model alongside the primary model
+            resp_e2b = await client.post(f"{OLLAMA_URL}/api/generate", json={"model": "gemma4:e2b", "keep_alive": -1}, timeout=15.0)
+            if resp_e2b.status_code == 404:
+                return {"status": "missing", "error": "gemma4:e2b not installed"}
+            resp_e2b.raise_for_status()
+            
         return {"status": "warmed"}
     except httpx.ConnectError:
         return {"status": "offline", "error": "Ollama is not running"}
