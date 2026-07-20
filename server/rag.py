@@ -105,8 +105,11 @@ KNOWLEDGE_BASE = [
 class CartographyRAG:
     def __init__(self, db_path="./chroma_db"):
         os.makedirs(db_path, exist_ok=True)
-        # Initialize persistent ChromaDB client
-        self.client = chromadb.PersistentClient(path=db_path)
+        # Initialize persistent ChromaDB client (with telemetry disabled for privacy)
+        self.client = chromadb.PersistentClient(
+            path=db_path,
+            settings=Settings(anonymized_telemetry=False)
+        )
         
         # Setup EmbeddingGemma via Ollama (bypassing HF license gates completely!)
         self.embedding_function = embedding_functions.OllamaEmbeddingFunction(
