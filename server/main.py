@@ -293,7 +293,9 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
         return
     try:
         from litellm import acompletion
-        prompt = "CRITICAL INSTRUCTION: Act as a highly deterministic, non-creative summarization engine. Do NOT output any <think> tags, reasoning blocks, or internal monologue. Output ONLY the literal, factual final summary without embellishment.\n\nSummarize the following conversation segment into a single, concise sentence focusing on decisions made, user preferences, and cartography progress:\n\n"
+        prompt = "CRITICAL INSTRUCTION: Act as a highly deterministic, non-creative summarization engine. Do NOT output any <think> tags, reasoning blocks, or internal monologue. Output ONLY the literal, factual final summary without embellishment.\n\n"
+        prompt += "EXAMPLE INPUT:\nUSER: Let's make the mountains spiky.\nASSISTANT: Done.\nEXAMPLE OUTPUT: The user decided to make the mountains spiky.\n\n"
+        prompt += "Summarize the following conversation segment into a single, concise sentence focusing on decisions made, user preferences, and cartography progress:\n\n"
         for msg in old_messages:
             role = msg["role"] if isinstance(msg, dict) else msg.role
             content = msg["content"] if isinstance(msg, dict) else msg.content
@@ -304,10 +306,14 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
             messages=[{"role": "user", "content": prompt}],
             max_tokens=150,
             reasoning_effort="low",
-            num_ctx=2048,
+            num_ctx=1024,
             drop_params=True
         )
         summary = res.choices[0].message.content.strip()
+        
+        prompt_tokens = getattr(res.usage, 'prompt_tokens', 0) if hasattr(res, 'usage') and res.usage else 0
+        if isinstance(prompt_tokens, int) and prompt_tokens > 900:
+            print(f"[MEMORY WARNING] Summarizer prompt tokens ({prompt_tokens}) approaching context limit (1024). Truncation risk!")
         
         from server.rag import rag_store
         import uuid
@@ -333,7 +339,11 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
                 f"Current permanent facts about the user's project:\n{profile}\n\n"
                 "If the summary reveals a NEW permanent fact (e.g. style preference, biome, rule), output a new line starting exactly with 'ADD: <fact>'.\n"
                 "If the summary contradicts an existing fact, output 'REMOVE: <old fact>' or 'UPDATE: <old fact> -> <new fact>'.\n"
-                "If there is nothing new or actionable, output nothing. Do not use markdown or quotes."
+                "If there is nothing new or actionable, output nothing. Do not use markdown or quotes.\n\n"
+                "EXAMPLES:\n"
+                "- ADD: The user prefers a dark fantasy aesthetic.\n"
+                "- REMOVE: The map is a snowy tundra.\n"
+                "- UPDATE: The central region is a valley -> The central region is a massive crater."
             )
             
             rev_res = await acompletion(
@@ -341,7 +351,7 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
                 messages=[{"role": "user", "content": revery_prompt}],
                 max_tokens=150,
                 reasoning_effort="low",
-                num_ctx=2048,
+                num_ctx=1024,
                 drop_params=True
             )
             rev_out = rev_res.choices[0].message.content.strip()
@@ -614,14 +624,20 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
         "model": req.model_name,
         "messages": messages,
         "tools": CANVAS_TOOLS,
-        "num_ctx": 4096
+        "num_ctx": 2048
     }
     
     if req.reasoning:
         kwargs["reasoning_effort"] = req.reasoning
         
     try:
+        import litellm
         response = litellm.completion(**kwargs)
+        
+        prompt_tokens = getattr(response.usage, 'prompt_tokens', 0) if hasattr(response, 'usage') and response.usage else 0
+        if isinstance(prompt_tokens, int) and prompt_tokens > 1800:
+            print(f"[MEMORY WARNING] Live chat prompt tokens ({prompt_tokens}) approaching context limit (2048). Truncation risk!")
+            
         msg = response.choices[0].message
         
         tool_calls = []
