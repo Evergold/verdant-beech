@@ -2,7 +2,7 @@
   "nav": {
     "projects": "Projekte",
     "assistant": "Assistenten-Tool",
-    "library": "Bibliotheksmanager",
+    "library": "Bibliotheksverwaltung",
     "style": "Stilrichtlinien",
     "asset": "Asset-Generator"
   },
@@ -10,7 +10,7 @@
     "title": "Projekte",
     "activeProject": "Aktives Projekt",
     "projectNamePlaceholder": "Projektname",
-    "editToRename": "Zum Umbenennen des Projekts bearbeiten",
+    "editToRename": "Bearbeiten, um Projekt umzubenennen",
     "switchProject": "Projekt wechseln",
     "newProject": "➕ Neues Projekt",
     "untitledProject": "Unbenanntes Projekt",
@@ -20,26 +20,26 @@
   },
   "chat": {
     "title": "Assistenten-Tool",
-    "placeholder": "Fragen Sie nach einer Karte oder Stilberatung...",
+    "placeholder": "Frage nach einer Karte oder Stilberatung...",
     "send": "Senden",
     "activeTasks": "AKTIVE AUFGABEN:",
     "ram": "RAM:",
     "vram": "VRAM:",
     "downloading": "Modell wird heruntergeladen...",
-    "pause": "Pause",
+    "pause": "Pausieren",
     "resume": "Fortsetzen"
   },
   "library": {
-    "title": "Bibliotheksmanager",
+    "title": "Bibliotheksverwaltung",
     "description": "Verwalten Sie hier Portfolios, Tags und Assets.",
     "newFolderPlaceholder": "Neuer Portfolio-Name...",
     "create": "Erstellen"
   },
   "style": {
     "title": "Stilrichtlinien",
-    "description": "Konfigurieren Sie Verdants Generierungsregeln.",
+    "description": "Konfigurieren Sie die Generierungsregeln von Verdant.",
     "envLighting": "Umgebungsbeleuchtung",
-    "uniformStudio": "Gleichmäßiges Studio (Standard)",
+    "uniformStudio": "Einheitliches Studio (Standard)",
     "moodyCandlelit": "Stimmungsvolles Kerzenlicht",
     "lightingTemp": "Lichttemperatur",
     "moonlight": "Mondlicht (10000K)",
@@ -48,21 +48,21 @@
     "daylight": "Tageslicht (5500K)",
     "goldenHour": "Goldene Stunde (4000K)",
     "halogen": "Halogen (3200K)",
-    "terrainEngine": "Gelände-Kompositions-Engine",
+    "terrainEngine": "Gelände-Compositing-Engine",
     "generateHills": "Hügel generieren",
     "flatten": "Abflachen",
     "dropMarker": "📍 Siedlungsmarker setzen",
-    "markerDesc": "Marker rasten automatisch physikalisch an der verschobenen Geometrie der Geländeschichten ein."
+    "markerDesc": "Marker rasten automatisch per Physik an der verschobenen Geometrie der Geländeschichten ein."
   },
   "asset": {
     "title": "Asset-Generator",
     "description": "Erstellen und verfeinern Sie maßgeschneiderte Assets.",
     "exploratoryMode": "Erkundungsmodus",
-    "exploratoryDesc": "Umgehen Sie die Stilrichtlinien, um frei zu experimentieren",
-    "promptPlaceholder": "Beschreiben Sie das Asset (z.B. 'Ein leuchtender blauer Pilz')...",
+    "exploratoryDesc": "Stilrichtlinien umgehen, um frei zu experimentieren",
+    "promptPlaceholder": "Beschreiben Sie das Asset (z. B. 'Ein leuchtender blauer Pilz')...",
     "generate": "Asset generieren",
     "previewAlt": "Asset-Vorschau",
-    "namePlaceholder": "Asset-Name (z.B. blauer_pilz)",
+    "namePlaceholder": "Asset-Name (z. B. blauer_pilz)",
     "save": "In Bibliothek speichern"
   },
   "canvas": {
@@ -71,12 +71,12 @@
     "zoomToolOff": "🔍 Zoom-Werkzeug: AUS",
     "zoomToolOn": "🔍 Zoom-Werkzeug: AN",
     "orientationTitle": "Hoch-/Querformat umschalten",
-    "zoomTitle": "Zoom-Werkzeug (Strg gedrückt halten zum Herauszoomen)"
+    "zoomTitle": "Zoom-Werkzeug (Strg gedrückt halten zum Auszoomen)"
   },
   "toasts": {
-    "prewarming": "Vorwärmen von {{model}}...",
+    "prewarming": "{{model}} wird vorgewärmt...",
     "modelMissingDownloadLater": "Modell fehlt. Wird heruntergeladen, wenn Sie eine Nachricht senden.",
-    "fallbackGemini": "Fehler beim Laden von {{modelId}}: {{error}}. Rückgriff auf Gemini.",
+    "fallbackGemini": "Fehler beim Laden von {{modelId}}: {{error}}. Weiche auf Gemini aus.",
     "modelsUpdated": "Erforderliche Modelle wurden automatisch überprüft und aktualisiert!",
     "downloadComplete": "Download abgeschlossen!",
     "downloadPaused": "Download pausiert",
@@ -84,10 +84,10 @@
     "ollamaNotRunning": "Fehler: Ollama läuft nicht!",
     "modelMissingStartingDownload": "Modell {{tag}} fehlt. Download wird gestartet...",
     "backendConnectionFailed": "Verbindung zum Backend fehlgeschlagen",
-    "warningNotInstalledLocally": "Warnung: {{tag}} ist nicht lokal installiert.",
-    "backgroundModelSetupInProgress": "Die Einrichtung des Hintergrundmodells läuft noch, bitte warten Sie...",
-    "localModelErrorFallbackGemini": "Lokaler Modellfehler während des Chats. Rückgriff auf Gemini Flash.",
-    "greenAdjusting": "Grün wird angepasst: {{name}}",
+    "warningNotInstalledLocally": "Warnung: {{tag}} ist lokal nicht installiert.",
+    "backgroundModelSetupInProgress": "Hintergrund-Modell-Setup läuft noch, bitte warten...",
+    "localModelErrorFallbackGemini": "Lokaler Modellfehler während des Chats. Weiche auf Gemini Flash aus.",
+    "greenAdjusting": "Grün passt sich an: {{name}}",
     "projectRenamed": "Projekt umbenannt",
     "errorRenamingProject": "Fehler beim Umbenennen des Projekts",
     "newProjectCreated": "Neues Projekt erstellt",
@@ -101,7 +101,7 @@
     "pleaseDescribeAssetFirst": "Bitte beschreiben Sie zuerst das Asset.",
     "generatingAsset": "Asset wird generiert...",
     "generationFailed": "Generierung fehlgeschlagen: {{error}}",
-    "connectionErrorWhileGeneratingAsset": "Verbindungsfehler beim Generieren des Assets.",
+    "connectionErrorWhileGeneratingAsset": "Verbindungsfehler während der Asset-Generierung.",
     "pleaseProvideNameToSaveAsset": "Bitte geben Sie einen Namen an, um das Asset zu speichern.",
     "savedAssetToLibrary": "Asset '{{name}}' in Bibliothek gespeichert!"
   }

@@ -2,7 +2,7 @@
   "nav": {
     "projects": "Projek",
     "assistant": "Alat Pembantu",
-    "library": "Pengurus Perpustakaan",
+    "library": "Pengurus Pustaka",
     "style": "Garis Panduan Gaya",
     "asset": "Penjana Aset"
   },
@@ -20,50 +20,50 @@
   },
   "chat": {
     "title": "Alat Pembantu",
-    "placeholder": "Minta peta atau nasihat gaya...",
+    "placeholder": "Tanya tentang peta atau nasihat gaya...",
     "send": "Hantar",
     "activeTasks": "TUGAS AKTIF:",
     "ram": "RAM:",
     "vram": "VRAM:",
     "downloading": "Memuat turun model...",
     "pause": "Jeda",
-    "resume": "Sambung Semula"
+    "resume": "Sambung"
   },
   "library": {
-    "title": "Pengurus Perpustakaan",
+    "title": "Pengurus Pustaka",
     "description": "Urus portfolio, tag dan aset di sini.",
     "newFolderPlaceholder": "Nama Portfolio Baharu...",
     "create": "Cipta"
   },
   "style": {
     "title": "Garis Panduan Gaya",
-    "description": "Konfigurasi peraturan penjanaan Verdant.",
+    "description": "Konfigurasikan peraturan penjanaan Verdant.",
     "envLighting": "Pencahayaan Persekitaran",
     "uniformStudio": "Studio Seragam (Lalai)",
-    "moodyCandlelit": "Cahaya Lilin Suram",
+    "moodyCandlelit": "Cahaya Lilin Syahdu",
     "lightingTemp": "Suhu Pencahayaan",
     "moonlight": "Cahaya Bulan (10000K)",
     "overcast": "Mendung (7000K)",
     "studio": "Studio (Lalai, 6500K)",
     "daylight": "Cahaya Siang (5500K)",
-    "goldenHour": "Waktu Emas (4000K)",
+    "goldenHour": "Waktu Keemasan (4000K)",
     "halogen": "Halogen (3200K)",
-    "terrainEngine": "Enjin Pengkompositan Rupa Bumi",
-    "generateHills": "Jana Bukit",
+    "terrainEngine": "Enjin Penggubahan Rupa Bumi",
+    "generateHills": "Janakan Bukit",
     "flatten": "Ratakan",
-    "dropMarker": "📍 Letakkan Penanda Penempatan",
-    "markerDesc": "Penanda secara automatik melekat secara fizikal pada geometri lapisan rupa bumi yang dipindahkan."
+    "dropMarker": "📍 Letakkan Penanda Petempatan",
+    "markerDesc": "Penanda secara automatik melekat secara fizik pada geometri lapisan rupa bumi yang tersesar."
   },
   "asset": {
     "title": "Penjana Aset",
     "description": "Cipta dan perhalusi aset tersuai.",
     "exploratoryMode": "Mod Penerokaan",
     "exploratoryDesc": "Pintas Garis Panduan Gaya untuk bereksperimen secara bebas",
-    "promptPlaceholder": "Huraikan aset (cth. 'Cendawan biru bercahaya')...",
-    "generate": "Jana Aset",
+    "promptPlaceholder": "Huraikan aset (cth. 'Cendawan biru yang bercahaya')...",
+    "generate": "Janakan Aset",
     "previewAlt": "Pratonton Aset",
     "namePlaceholder": "Nama Aset (cth. blue_mushroom)",
-    "save": "Simpan ke Perpustakaan"
+    "save": "Simpan ke Pustaka"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Landskap",
@@ -74,20 +74,20 @@
     "zoomTitle": "Alat Zum (Tahan Ctrl untuk Zum Keluar)"
   },
   "toasts": {
-    "prewarming": "Memanaskan awal {{model}}...",
-    "modelMissingDownloadLater": "Model tiada. Akan dimuat turun apabila anda menghantar mesej.",
-    "fallbackGemini": "Gagal memuatkan {{modelId}}: {{error}}. Kembali kepada Gemini.",
-    "modelsUpdated": "Model yang diperlukan telah diperiksa dan dikemas kini secara automatik!",
+    "prewarming": "Prapemanasan {{model}}...",
+    "modelMissingDownloadLater": "Model hilang. Akan dimuat turun apabila anda menghantar mesej.",
+    "fallbackGemini": "Gagal memuatkan {{modelId}}: {{error}}. Beralih semula ke Gemini.",
+    "modelsUpdated": "Model yang diperlukan telah disemak dan dikemas kini secara automatik!",
     "downloadComplete": "Muat turun selesai!",
     "downloadPaused": "Muat turun dijeda",
     "downloadFailed": "Muat turun gagal",
     "ollamaNotRunning": "Ralat: Ollama tidak berjalan!",
-    "modelMissingStartingDownload": "Model {{tag}} tiada. Memulakan muat turun...",
+    "modelMissingStartingDownload": "Model {{tag}} hilang. Memulakan muat turun...",
     "backendConnectionFailed": "Sambungan ke bahagian belakang gagal",
-    "warningNotInstalledLocally": "Amaran: {{tag}} tidak dipasang secara setempat.",
-    "backgroundModelSetupInProgress": "Persediaan model latar belakang masih dalam proses, sila tunggu...",
-    "localModelErrorFallbackGemini": "Ralat model tempatan semasa sembang. Kembali kepada Gemini Flash.",
-    "greenAdjusting": "Hijau sedang melaraskan: {{name}}",
+    "warningNotInstalledLocally": "Amaran: {{tag}} tidak dipasang secara tempatan.",
+    "backgroundModelSetupInProgress": "Persediaan model latar belakang masih dijalankan, sila tunggu...",
+    "localModelErrorFallbackGemini": "Ralat model tempatan semasa sembang. Beralih semula ke Gemini Flash.",
+    "greenAdjusting": "Hijau sedang melaras: {{name}}",
     "projectRenamed": "Projek dinamakan semula",
     "errorRenamingProject": "Ralat menamakan semula projek",
     "newProjectCreated": "Projek baharu dicipta",
@@ -103,6 +103,6 @@
     "generationFailed": "Penjanaan gagal: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Ralat sambungan semasa menjana aset.",
     "pleaseProvideNameToSaveAsset": "Sila berikan nama untuk menyimpan aset.",
-    "savedAssetToLibrary": "Aset '{{name}}' disimpan ke perpustakaan!"
+    "savedAssetToLibrary": "Aset '{{name}}' berjaya disimpan ke pustaka!"
   }
 }
