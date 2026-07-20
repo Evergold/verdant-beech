@@ -113,6 +113,7 @@
     "unloadingModels": "Đang chờ các tác vụ đang hoạt động hoàn tất trước khi dỡ VRAM an toàn...",
     "waitingUnload": "Đang chờ dỡ tải an toàn hoàn tất trước khi làm nóng trước...",
     "deferredPrewarm": "Đang kích hoạt làm nóng trước bị trì hoãn...",
-    "prewarming_e2b": "Đang làm nóng trước {{model}}..."
+    "prewarming_e2b": "Đang làm nóng trước {{model}}...",
+    "prewarmComplete": "Quá trình làm nóng trước hoàn tất! Các mô hình đã có trong VRAM."
   }
 }

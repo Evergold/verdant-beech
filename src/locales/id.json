@@ -113,6 +113,7 @@
     "unloadingModels": "Menunggu tugas aktif selesai sebelum mengosongkan VRAM dengan aman...",
     "waitingUnload": "Menunggu pembongkaran aman selesai sebelum pemanasan awal...",
     "deferredPrewarm": "Mengaktifkan pemanasan awal yang ditangguhkan...",
-    "prewarming_e2b": "Memanaskan awal {{model}}..."
+    "prewarming_e2b": "Memanaskan awal {{model}}...",
+    "prewarmComplete": "Pemanasan awal selesai! Model sekarang berada di VRAM."
   }
 }

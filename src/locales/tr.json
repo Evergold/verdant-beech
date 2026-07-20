@@ -113,6 +113,7 @@
     "unloadingModels": "VRAM güvenli bir şekilde boşaltılmadan önce aktif görevlerin tamamlanması bekleniyor...",
     "waitingUnload": "Ön ısıtmadan önce güvenli boşaltmanın tamamlanması bekleniyor...",
     "deferredPrewarm": "Ertelenmiş ön ısıtma etkinleştiriliyor...",
-    "prewarming_e2b": "{{model}} ön ısıtılıyor..."
+    "prewarming_e2b": "{{model}} ön ısıtılıyor...",
+    "prewarmComplete": "Ön ısıtma tamamlandı! Modeller VRAM'de yerleşiktir."
   }
 }

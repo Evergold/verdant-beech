@@ -113,6 +113,7 @@
     "unloadingModels": "Naghihintay na makumpleto ang mga aktibong gawain bago ligtas na i-unload ang VRAM...",
     "waitingUnload": "Naghihintay na makumpleto ang ligtas na pag-unload bago ang prewarming...",
     "deferredPrewarm": "Ina-activate ang ipinagpalibang pre-warming...",
-    "prewarming_e2b": "Nagpe-pre-warm ng {{model}}..."
+    "prewarming_e2b": "Nagpe-pre-warm ng {{model}}...",
+    "prewarmComplete": "Kumpleto na ang pag-pre-warm! Ang mga modelo ay nasa VRAM na."
   }
 }

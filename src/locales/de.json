@@ -113,6 +113,7 @@
     "unloadingModels": "Warten auf Abschluss aktiver Aufgaben vor dem sicheren Entladen des VRAMs...",
     "waitingUnload": "Warten auf den Abschluss des sicheren Entladens vor dem Vorwärmen...",
     "deferredPrewarm": "Verzögertes Vorwärmen wird aktiviert...",
-    "prewarming_e2b": "Vorwärmen von {{model}}..."
+    "prewarming_e2b": "Vorwärmen von {{model}}...",
+    "prewarmComplete": "Vorwärmen abgeschlossen! Modelle sind im VRAM resident."
   }
 }

@@ -113,6 +113,7 @@
     "unloadingModels": "Venter på at aktive opgaver fuldføres før VRAM tømmes sikkert...",
     "waitingUnload": "Venter på at sikker tømning fuldføres før forvarmning...",
     "deferredPrewarm": "Aktiverer udskudt forvarmning...",
-    "prewarming_e2b": "Forvarmer {{model}}..."
+    "prewarming_e2b": "Forvarmer {{model}}...",
+    "prewarmComplete": "Forvarmning fuldført! Modeller er indlæst i VRAM."
   }
 }

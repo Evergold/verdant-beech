@@ -113,6 +113,7 @@
     "unloadingModels": "Inasubiri kazi zinazoendelea kukamilika kabla ya kupakua VRAM kwa usalama...",
     "waitingUnload": "Inasubiri upakuaji salama ukamilike kabla ya kuongeza joto...",
     "deferredPrewarm": "Inawasha ongezeko la joto lililocheleweshwa...",
-    "prewarming_e2b": "Inaongeza joto {{model}}..."
+    "prewarming_e2b": "Inaongeza joto {{model}}...",
+    "prewarmComplete": "Upashaji joto umekamilika! Miundo sasa iko kwenye VRAM."
   }
 }

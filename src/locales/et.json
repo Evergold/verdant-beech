@@ -113,6 +113,7 @@
     "unloadingModels": "Oodatakse aktiivsete ülesannete lõpetamist enne VRAM-i ohutut tühjendamist...",
     "waitingUnload": "Oodatakse ohutu tühjendamise lõpetamist enne eelsoojendamist...",
     "deferredPrewarm": "Viivitatud eelsoojenduse aktiveerimine...",
-    "prewarming_e2b": "Eelsoojendatakse {{model}}..."
+    "prewarming_e2b": "Eelsoojendatakse {{model}}...",
+    "prewarmComplete": "Eelsoojendus on lõppenud! Mudelid on VRAM-is."
   }
 }

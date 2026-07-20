@@ -113,6 +113,7 @@
     "unloadingModels": "Väntar på att aktiva uppgifter ska slutföras innan VRAM laddas ur säkert...",
     "waitingUnload": "Väntar på att säker urladdning ska slutföras innan förvärmning...",
     "deferredPrewarm": "Aktiverar uppskjuten förvärmning...",
-    "prewarming_e2b": "Förvärmer {{model}}..."
+    "prewarming_e2b": "Förvärmer {{model}}...",
+    "prewarmComplete": "Förvärmningen klar! Modellerna ligger nu i VRAM."
   }
 }

@@ -113,6 +113,7 @@
     "unloadingModels": "En attente de la fin des tâches actives avant de décharger la VRAM en toute sécurité...",
     "waitingUnload": "En attente de la fin du déchargement sécurisé avant le préchauffage...",
     "deferredPrewarm": "Activation du préchauffage différé...",
-    "prewarming_e2b": "Préchauffage de {{model}}..."
+    "prewarming_e2b": "Préchauffage de {{model}}...",
+    "prewarmComplete": "Préchauffage terminé ! Les modèles sont résidents dans la VRAM."
   }
 }

@@ -480,9 +480,6 @@ async function prewarmModel(modelId) {
   }
   try {
     showToast(i18next.t('toasts.prewarming', { model: modelId.split("/")[1] }), "info");
-    if (modelId.includes("gemma4")) {
-      showToast(i18next.t('toasts.prewarming_e2b', { model: "gemma4:e2b (subconscious)" }), "info");
-    }
     const res = await fetch("http://localhost:8001/api/ollama/prewarm", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -493,11 +490,23 @@ async function prewarmModel(modelId) {
     if (data.status === "missing") {
       showToast(i18next.t('toasts.modelMissingDownloadLater'), "warning");
       return;
+    } else if (data.status === "offline") {
+      showToast(i18next.t('toasts.ollamaNotRunning'), "error");
     }
-    
+
+    if (modelId.includes("gemma4") && data.status !== "offline") {
+      showToast(i18next.t('toasts.prewarming_e2b', { model: "gemma4:e2b (subconscious)" }), "info");
+      await fetch("http://localhost:8001/api/ollama/prewarm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ model: "gemma4:e2b" })
+      });
+    }
+
     if (data.status === "error" || data.status === "offline") {
       throw new Error(data.error);
     }
+    showToast(i18next.t('toasts.prewarmComplete', "Pre-warming complete! Models are resident in VRAM."), "success");
     startOllamaPoll();
   } catch (e) {
     showToast(i18next.t('toasts.fallbackGemini', { modelId, error: e.message }), "error");

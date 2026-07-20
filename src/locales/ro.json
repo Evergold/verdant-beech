@@ -113,6 +113,7 @@
     "unloadingModels": "Așteptând finalizarea sarcinilor active înainte de descărcarea în siguranță a VRAM-ului...",
     "waitingUnload": "Așteptând finalizarea descărcării sigure înainte de preîncălzire...",
     "deferredPrewarm": "Activarea preîncălzirii amânate...",
-    "prewarming_e2b": "Preîncălzire {{model}}..."
+    "prewarming_e2b": "Preîncălzire {{model}}...",
+    "prewarmComplete": "Preîncălzirea este completă! Modelele sunt rezidente în VRAM."
   }
 }

@@ -113,6 +113,7 @@
     "unloadingModels": "Gaidām aktīvo uzdevumu pabeigšanu pirms drošas VRAM izkraušanas...",
     "waitingUnload": "Gaidām drošas izkraušanas pabeigšanu pirms iepriekšējas uzsildīšanas...",
     "deferredPrewarm": "Aktivizē atlikto iepriekšējo uzsildīšanu...",
-    "prewarming_e2b": "Iepriekšēja uzsildīšana {{model}}..."
+    "prewarming_e2b": "Iepriekšēja uzsildīšana {{model}}...",
+    "prewarmComplete": "Iepriekšēja uzsildīšana pabeigta! Modeļi tagad ir VRAM."
   }
 }

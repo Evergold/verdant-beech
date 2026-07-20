@@ -113,6 +113,7 @@
     "unloadingModels": "Várakozás az aktív feladatok befejezésére a VRAM biztonságos kiürítése előtt...",
     "waitingUnload": "Várakozás a biztonságos kiürítés befejezésére az előmelegítés előtt...",
     "deferredPrewarm": "Késleltetett előmelegítés aktiválása...",
-    "prewarming_e2b": "{{model}} előmelegítése..."
+    "prewarming_e2b": "{{model}} előmelegítése...",
+    "prewarmComplete": "Az előmelegítés befejeződött! A modellek a VRAM-ban vannak."
   }
 }

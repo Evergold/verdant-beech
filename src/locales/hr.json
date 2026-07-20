@@ -113,6 +113,7 @@
     "unloadingModels": "Čekanje na završetak aktivnih zadataka prije sigurnog pražnjenja VRAM-a...",
     "waitingUnload": "Čekanje na završetak sigurnog pražnjenja prije predgrijavanja...",
     "deferredPrewarm": "Aktivacija odgođenog predgrijavanja...",
-    "prewarming_e2b": "Predgrijavanje {{model}}..."
+    "prewarming_e2b": "Predgrijavanje {{model}}...",
+    "prewarmComplete": "Predgrijavanje je završeno! Modeli su u VRAM-u."
   }
 }

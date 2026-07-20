@@ -113,6 +113,7 @@
     "unloadingModels": "ממתין להשלמת משימות פעילות לפני פריקה בטוחה של VRAM...",
     "waitingUnload": "ממתין להשלמת הפריקה הבטוחה לפני חימום מראש...",
     "deferredPrewarm": "מפעיל חימום מראש נדחה...",
-    "prewarming_e2b": "מחמם מראש {{model}}..."
+    "prewarming_e2b": "מחמם מראש {{model}}...",
+    "prewarmComplete": "החימום מראש הושלם! המודלים שוהים ב-VRAM."
   }
 }

@@ -113,6 +113,7 @@
     "unloadingModels": "Wachten tot actieve taken zijn voltooid voordat VRAM veilig wordt ontladen...",
     "waitingUnload": "Wachten tot veilig ontladen is voltooid voor het voorverwarmen...",
     "deferredPrewarm": "Uitgesteld voorverwarmen activeren...",
-    "prewarming_e2b": "{{model}} voorverwarmen..."
+    "prewarming_e2b": "{{model}} voorverwarmen...",
+    "prewarmComplete": "Voorverwarmen voltooid! Modellen staan nu in VRAM."
   }
 }

@@ -113,6 +113,7 @@
     "unloadingModels": "Bíður eftir að virkum verkefnum ljúki áður en VRAM er tæmt á öruggan hátt...",
     "waitingUnload": "Bíður eftir að öruggri tæmingu ljúki fyrir forhitun...",
     "deferredPrewarm": "Virkjar frestaða forhitun...",
-    "prewarming_e2b": "Forhitar {{model}}..."
+    "prewarming_e2b": "Forhitar {{model}}...",
+    "prewarmComplete": "Forhitun lokið! Líkönin eru nú í VRAM."
   }
 }
