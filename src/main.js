@@ -1245,30 +1245,40 @@ navBtns.forEach(btn => {
 });
 
 // --- Project Management ---
-const projectSelect = document.getElementById("project-select");
+const projectDropdownBtn = document.getElementById("project-dropdown-btn");
+const projectSelectItems = document.getElementById("project-select-items");
 const projectNameInput = document.getElementById("project-name-input");
 const deleteProjectBtn = document.getElementById("delete-project-btn");
 
-let activeProjectId = null;
-
+let activeProjectId;
 async function loadProjects() {
-  if (!projectSelect || !projectNameInput) return;
+  if (!projectSelectItems || !projectNameInput) return;
   try {
     const res = await fetch("http://localhost:8001/api/projects");
     const data = await res.json();
     
-    projectSelect.innerHTML = `<option value="_new_" style="font-weight: bold;">${i18next.t("projects.newProject")}</option>`;
+    projectSelectItems.innerHTML = "";
+    
+    const newOpt = document.createElement("div");
+    newOpt.textContent = i18next.t("projects.newProject");
+    newOpt.style.fontWeight = "bold";
+    newOpt.addEventListener("click", () => handleProjectChange("_new_"));
+    projectSelectItems.appendChild(newOpt);
     
     Object.keys(data.projects).forEach(id => {
-      const opt = document.createElement("option");
-      opt.value = id;
+      const opt = document.createElement("div");
       opt.textContent = data.projects[id].name;
-      projectSelect.appendChild(opt);
+      opt.addEventListener("click", () => handleProjectChange(id));
+      projectSelectItems.appendChild(opt);
     });
     
     activeProjectId = data.active_project;
-    projectSelect.value = activeProjectId;
-    projectNameInput.value = data.projects[activeProjectId].name;
+    
+    if (activeProjectId && data.projects[activeProjectId]) {
+      projectNameInput.value = data.projects[activeProjectId].name;
+    } else {
+      projectNameInput.value = "";
+    }
   } catch(e) {
     console.error("Failed to load projects", e);
   }
@@ -1306,44 +1316,57 @@ if (projectNameInput) {
   });
 }
 
-if (projectSelect) {
-  projectSelect.addEventListener("change", async (e) => {
-    const val = e.target.value;
-    if (val === "_new_") {
-      // Create new project
-      try {
-        const res = await fetch("http://localhost:8001/api/projects", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name: i18next.t("projects.untitledProject") })
-        });
-        const data = await res.json();
-        if (data.status === "success") {
-          await loadProjects();
-          await loadModels(); // Reload model config
-          projectNameInput.focus();
-          projectNameInput.select(); // Prompt to rename immediately
-          showToast(i18next.t('toasts.newProjectCreated'), "success");
-        }
-      } catch(e) {
-        showToast(i18next.t('toasts.errorCreatingProject'), "error");
-      }
-    } else {
-      // Switch active project
-      try {
-        await fetch("http://localhost:8001/api/projects/active", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ id: val })
-        });
+async function handleProjectChange(val) {
+  if (projectSelectItems) projectSelectItems.classList.add("select-hide");
+  if (val === "_new_") {
+    // Create new project
+    try {
+      const res = await fetch("http://localhost:8001/api/projects", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: i18next.t("projects.untitledProject") })
+      });
+      const data = await res.json();
+      if (data.status === "success") {
         await loadProjects();
         await loadModels(); // Reload model config
-        showToast(i18next.t('toasts.projectSwitched'), "success");
-      } catch(e) {
-        showToast(i18next.t('toasts.errorSwitchingProject'), "error");
+        projectNameInput.focus();
+        projectNameInput.select(); // Prompt to rename immediately
+        showToast(i18next.t('toasts.newProjectCreated'), "success");
       }
+    } catch(e) {
+      showToast(i18next.t('toasts.errorCreatingProject'), "error");
     }
-  });
+  } else {
+    // Switch active project
+    try {
+      await fetch("http://localhost:8001/api/projects/active", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: val })
+      });
+      await loadProjects();
+      await loadModels(); // Reload model config
+      showToast(i18next.t('toasts.projectSwitched'), "info");
+    } catch(e) {
+      showToast(i18next.t('toasts.errorSwitchingProject'), "error");
+    }
+  }
+}
+
+if (projectDropdownBtn && projectSelectItems) {
+  if (!window.__projListenerAdded) {
+    projectDropdownBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      projectSelectItems.classList.toggle("select-hide");
+    });
+    document.addEventListener("click", (e) => {
+      if (!projectSelectItems.contains(e.target) && !projectDropdownBtn.contains(e.target)) {
+        projectSelectItems.classList.add("select-hide");
+      }
+    });
+    window.__projListenerAdded = true;
+  }
 }
 
 if (deleteProjectBtn) {
