@@ -39,8 +39,8 @@ fi
 echo "   Creating virtual environment (server/.venv)..."
 uv venv server/.venv
 
-echo "   Installing backend dependencies..."
-uv pip install -e server
+echo "   Installing backend dependencies (including testing suites)..."
+uv pip install -e "server[test]"
 echo "✅ Backend setup complete."
 echo ""
 

@@ -42,7 +42,9 @@ Used for the actual tile stitching and map baking. Due to the high architectural
 ### Embedding Models (Memory & RAG Retrieval)
 To power our Tiered Memory Architecture, we rely heavily on accurate semantic retrieval for past chat history and Cartography Rules.
 - **Default Choice:** `embeddinggemma` 
-*Why a dedicated Gemma-based Embedding model?* Traditional embedding models (like `all-MiniLM-L6-v2`) act as shallow fuzzy keyword matchers. By utilizing an embeddings generator trained directly on the Gemma architecture, we inject **deep contextual reasoning** straight into the retrieval layer. This means the database actually comprehends *intent*. If you ask for a "spooky ocean vibe," EmbeddingGemma's structural reasoning natively links the abstract concept of "spooky" to an older, seemingly unrelated episodic memory about "foggy bathymetry," entirely bypassing the need for exact keyword overlap.
+*Why a dedicated Gemma-based Embedding model?* Traditional baseline embedding models (like ChromaDB's default `all-MiniLM-L6-v2`) act as shallow fuzzy keyword matchers. By utilizing an embeddings generator trained directly on the Gemma architecture, we inject **deep contextual reasoning** straight into the retrieval layer. This means the database actually comprehends *intent*. If you ask for a "spooky ocean vibe," EmbeddingGemma's structural reasoning natively links the abstract concept of "spooky" to an older, seemingly unrelated episodic memory about "foggy bathymetry," entirely bypassing the need for exact keyword overlap.
+- **Recommended Local Alternative:** `paraphrase-multilingual-MiniLM-L12-v2` (Unlike the baseline `all-` variant, this `multilingual` variant maps 50+ languages to the exact same vector space, allowing a French prompt to successfully retrieve an English cartography rule).
+- **Cloud APIs (Multi-language):** Google Gemini (`text-embedding-004`) or OpenAI (`text-embedding-3-large`). Both gracefully support cross-lingual retrieval that overlaps perfectly with our 50+ language target.
 
 ---
 
@@ -103,10 +105,10 @@ ollama pull gemma4:e4b
 ollama pull embeddinggemma
 ```
 
-**2. Python Backend:**
+**2. Python Backend (with test dependencies):**
 ```bash
 uv venv server/.venv
-uv pip install -e server
+uv pip install -e "server[test]"
 ```
 
 **3. Frontend (Vite):**
@@ -149,6 +151,10 @@ npm run start
 - `vite`: Lightning-fast modern build tool and dev server.
 - `babylonjs`: Hardware-accelerated 3D WebGL/WebGPU rendering engine.
 - `marked`, `dompurify`, & `highlight.js`: Secure Markdown parsing and syntax highlighting.
+
+**Testing Stack:**
+- `pytest`, `pytest-cov`, `pytest-asyncio`: Automated Python backend unit testing and coverage reporting.
+- `@playwright/test`: Automated cross-browser end-to-end UI testing.
 
 ---
 

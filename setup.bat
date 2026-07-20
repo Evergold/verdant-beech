@@ -42,8 +42,8 @@ if %ERRORLEVEL% NEQ 0 (
 echo    Creating virtual environment (server\.venv)...
 call uv venv server\.venv
 
-echo    Installing backend dependencies...
-call uv pip install -e server
+echo    Installing backend dependencies (including testing suites)...
+call uv pip install -e "server[test]"
 echo ✅ Backend setup complete.
 echo.
 
