@@ -13,7 +13,7 @@ Verdant Beech is a next-generation map-making application powered by Agentic AI.
   - **Working Memory**: Kept tight (last 10 messages) to maintain focus.
   - **Episodic Memory**: Older conversation context is continuously compacted and summarized in the background by the agent, embedded into ChromaDB, and retrieved dynamically.
   - **Semantic Memory**: Generalized facts learned over time, specifically storing your overarching project preferences, stylistic choices, and creative goals. These are embedded alongside expert cartography rules to ensure the agent remains permanently aligned with your vision.
-- **Hardware-Accelerated WebGPU**: Uses Babylon.js v9 for buttery-smooth panning and zooming across stitched 4K textures, safely gracefully falling back to WebGL on older browsers. Please see the [Browser WebGPU Configuration Guide](WEBGPU_GUIDE.md) for platform-specific tweaks (Firefox, Brave, Safari) to ensure maximum performance.
+- **Hardware-Accelerated WebGPU**: Uses Babylon.js v9 for smooth panning and zooming across stitched 4K textures, falling back to WebGL on older browsers. Please see the [Browser WebGPU Configuration Guide](WEBGPU_GUIDE.md) for platform-specific tweaks (Firefox, Brave, Safari) to ensure maximum performance.
 - **Dynamic Canvas Tooling**: The agent can natively manipulate your scene lighting, apply post-processing filters, overlay hex grids, drop markers, and control weather effects.
 - **Real-Time VLM Sync (Coming Soon)**: A debounced local Vision-Language Model watches your canvas strokes to provide instant, context-aware feedback.
 
@@ -21,44 +21,49 @@ Verdant Beech is a next-generation map-making application powered by Agentic AI.
 
 ## 🗺️ Model Ecosystem & Requirements
 
-The application uses a `models.yaml` file to let you hot-swap LLMs seamlessly via LiteLLM.
+The application uses a `models.yaml` file to let you hot-swap LLMs via LiteLLM.
 
 ### Assistant Models (Green-persona)
 We recommend models capable of highly complex spatial planning and schema adherence:
 
-- **Default Local Choice:** `gemma4:e4b` via Ollama. We **ALWAYS prefer QAT variants of Gemma 4** (e.g., `ollama_chat/gemma-4-e4b-qat` or `gemma4:e4b`).
+- **Default Local Choice:** `gemma4:e4b` (4.5B) via Ollama. We **ALWAYS prefer QAT variants of Gemma 4** (e.g., `ollama_chat/gemma-4-e4b-qat` or `gemma4:e4b`). We also leverage the lightweight **2.3B** model as Green's "subconscious"—running in the background to support episodic memory via real-time context compaction and summarization, as well as maintaining semantic memory. 
+  
+  To ensure both models coexist alongside the 3D map renderer with minimal VRAM use, we apply three optimizations:
+  1. Employing context-cache reduction measures by hardcapping `num_ctx`. Live Chat is capped at 2048, and background tasks like `e2b` summarization or revery are capped at 1024 tokens.
+  2. Dynamically tuning `num_gpu` layer-offloading during simultaneous `e4b`/`e2b` model calls to safely spill excess model layers to system RAM, preventing GPU memory exhaustion.
+  3. Pre-warming both local models on launch so they remain resident for zero-latency execution. If the user explicitly switches away from the local setup (e.g., to the Gemini API), we gracefully defer the VRAM purge (via our `/api/ollama/unload` endpoint) until any active `e4b` queries or `e2b` subconscious tasks complete, preventing state corruption while notifying the user.
 - **Default API Choice:** `gemini/gemini-3.5-flash` (or `gemini-3.1-pro` for maximal reasoning). Both support configurable reasoning tabs in the UI!
 
 #### 🖥️ Hardware Requirements for Gemma 4 (4.5B)
-Running the default local assistant model (`gemma4:e4b`) is highly optimized thanks to QAT quantization. Actual observed resource usage is exceptionally light:
+Running the default local assistant model (`gemma4:e4b`) is highly optimized thanks to QAT quantization. Actual observed resource usage is light:
 - **VRAM (GPU Memory)**: ~3 GB
 - **System RAM**: ~6 GB
 
 ### Image Generation Models (Verdant-persona)
-Used for the actual tile stitching and map baking. Due to the high architectural demands of topology, we strictly rely on cutting-edge 2026 models. In the UI, each model is labeled with its numeric capability Tier (Tier 0 to Tier 2) and specific architectural **Capability Tags**.
+Used for the actual tile stitching and map baking. Due to the high architectural demands of topology, we rely on cutting-edge 2026 models. In the UI, each model is labeled with its numeric capability Tier (Tier 0 to Tier 2) and specific architectural **Capability Tags**.
 
 #### Capability Tag Definitions:
-- **`One-Shot`**: Highly tuned to perfectly execute a complex prompt on the very first try without requiring manual editing iterations.
-- **`Photorealism`**: Architected to simulate real-world physics, lighting, and high-fidelity textures flawlessly.
+- **`One-Shot`**: Tuned to execute a complex prompt on the first try without requiring manual editing iterations.
+- **`Photorealism`**: Architected to simulate real-world physics, lighting, and high-fidelity textures.
 - **`Iterative`**: Optimized for a conversational workflow, allowing you to upload a reference image and perform targeted edits (e.g., "change the background").
-- **`Consistency`**: Excels at keeping characters, objects, or UI themes perfectly identical across multiple distinct generation requests.
+- **`Consistency`**: Excels at keeping characters, objects, or UI themes identical across multiple distinct generation requests.
 - **`Rapid`**: Stripped-down architecture optimized for low-latency brainstorming and rapid trial-and-error prototyping.
 - **`General`**: A balanced, jack-of-all-trades architecture suitable for standard scene composition.
-- **`Optics`**: Heavily fine-tuned to mimic real-world camera lenses, focal lengths, and cinematic depth of field.
-- **`Enterprise`**: Built with strict commercial compliance, brand safety, and proprietary data protection in mind.
+- **`Optics`**: Fine-tuned to mimic real-world camera lenses, focal lengths, and cinematic depth of field.
+- **`Enterprise`**: Built with commercial compliance, brand safety, and proprietary data protection in mind.
 
 #### Our Default & Templated Models:
 - **Primary [Tier 2]:** `gemini/imagen-4.0-generate` (Capabilities: *One-Shot, Photorealism*)
 - **Conversational Iteration [Tier 1]:** `gemini/nano-banana-pro` (Capabilities: *Iterative, Consistency*)
 - **Rapid Prototyping [Tier 0]:** `gemini/nano-banana-2` (Capabilities: *Rapid*)
-- **Alternatives:** `gpt-image-2` [Tier 1, *General*], `huggingface/black-forest-labs/FLUX.2` [Tier 1, *Optics*], and `bedrock/amazon.titan-image-generator-v1` [Tier 0, *Enterprise*] can be seamlessly swapped via `models.yaml`.
+- **Alternatives:** `gpt-image-2` [Tier 1, *General*], `huggingface/black-forest-labs/FLUX.2` [Tier 1, *Optics*], and `bedrock/amazon.titan-image-generator-v1` [Tier 0, *Enterprise*] can be swapped via `models.yaml`.
 
 ### Embedding Models (Memory & RAG Retrieval)
-To power our Tiered Memory Architecture, we rely heavily on accurate semantic retrieval for past chat history and Cartography Rules.
+To power our Tiered Memory Architecture, we rely on accurate semantic retrieval for past chat history and Cartography Rules.
 - **Default Choice:** `embeddinggemma` 
 *Why a dedicated Gemma-based Embedding model?* Traditional baseline embedding models (like ChromaDB's default `all-MiniLM-L6-v2`) act as shallow fuzzy keyword matchers. By utilizing an embeddings generator trained directly on the Gemma architecture, we inject **deep contextual reasoning** straight into the retrieval layer. This means the database actually comprehends *intent*. If you ask for a "spooky ocean vibe," EmbeddingGemma's structural reasoning natively links the abstract concept of "spooky" to an older, seemingly unrelated episodic memory about "foggy bathymetry," entirely bypassing the need for exact keyword overlap.
 - **Recommended Local Alternative:** `paraphrase-multilingual-MiniLM-L12-v2` (Unlike the baseline `all-` variant, this `multilingual` variant maps 50+ languages to the exact same vector space, allowing a French prompt to successfully retrieve an English cartography rule).
-- **Cloud APIs (Multi-language):** Google Gemini (`text-embedding-004`) or OpenAI (`text-embedding-3-large`). Both gracefully support cross-lingual retrieval that overlaps perfectly with our 50+ language target.
+- **Cloud APIs (Multi-language):** Google Gemini (`text-embedding-004`) or OpenAI (`text-embedding-3-large`). Both support cross-lingual retrieval that overlaps with our 50+ language target.
 
 ---
 
@@ -67,7 +72,7 @@ To power our Tiered Memory Architecture, we rely heavily on accurate semantic re
 ### Prerequisites & Environment
 If you intend to run the application using our **Default Local Choice** (Gemma 4), **no API keys are required whatsoever.**
 
-However, the backend utilizes `litellm` to interface with generative models, meaning you can seamlessly hot-swap to almost any commercial cloud API by exporting the respective keys before starting the server:
+However, the backend utilizes `litellm` to interface with generative models, meaning you can hot-swap to almost any commercial cloud API by exporting the respective keys before starting the server:
 
 **For API-based Assistant Models (Green-persona):**
 - **Google Gemini** (e.g., `gemini-3.5-flash`): `export GEMINI_API_KEY="your_key"`
@@ -105,6 +110,7 @@ setup.bat
 Install the engine from [ollama.com](https://ollama.com), then pull the required local models:
 ```bash
 ollama pull gemma4:e4b
+ollama pull gemma4:e2b
 ollama pull embeddinggemma
 ```
 
@@ -139,7 +145,7 @@ npm run dev
 *(The frontend will be available at `http://localhost:5173`)*
 
 **UI Localization / Locale Override**
-Verdant Beech officially supports [50 languages](./src/locales/) and will natively detect your browser's language setting. If your language is unsupported, it defaults gracefully to English (`en`).
+Verdant Beech officially supports [50 languages](./src/locales/) and will natively detect your browser's language setting. If your language is unsupported, it defaults to English (`en`).
 You can explicitly override the UI language by passing the `VITE_LOCALE` environment variable using an ISO 639-1 code (must be one of the [50 supported languages](./src/locales/)):
 ```bash
 VITE_LOCALE="fr" npm run dev
@@ -159,14 +165,14 @@ npm run start
 
 **Backend Stack:**
 - `fastapi` & `uvicorn`: High-performance asynchronous API server.
-- `litellm`: Unified interface for seamlessly hot-swapping generative AI models.
+- `litellm`: Unified interface for hot-swapping generative AI models.
 - `chromadb`: Local vector database powering the Tiered Memory architecture.
 - `httpx`: Asynchronous HTTP client for background Ollama management.
 - `pyyaml`: Configuration management for projects, libraries, and models.
 - `ollama`: Required locally to power the Gemma 4 and EmbeddingGemma models.
 
 **Frontend Stack (Node/Vite):**
-- `vite`: Lightning-fast modern build tool and dev server.
+- `vite`: Fast modern build tool and dev server.
 - `babylonjs`: Hardware-accelerated 3D WebGL/WebGPU rendering engine.
 - `marked`, `dompurify`, & `highlight.js`: Secure Markdown parsing and syntax highlighting.
 
