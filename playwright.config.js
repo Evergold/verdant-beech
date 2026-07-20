@@ -1,3 +1,6 @@
+// playwright.config.js (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>
+// Licensed under the MIT License (see LICENSE for details)
+
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({

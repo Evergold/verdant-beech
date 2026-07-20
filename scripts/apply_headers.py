@@ -7,7 +7,9 @@ HEADER_TEMPLATE = {
     ".py": "# {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>\n# Licensed under the MIT License (see LICENSE for details)\n\n",
     ".js": "// {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>\n// Licensed under the MIT License (see LICENSE for details)\n\n",
     ".css": "/* {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com> */\n/* Licensed under the MIT License (see LICENSE for details) */\n\n",
-    ".html": "<!-- {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com> -->\n<!-- Licensed under the MIT License (see LICENSE for details) -->\n\n"
+    ".html": "<!-- {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com> -->\n<!-- Licensed under the MIT License (see LICENSE for details) -->\n\n",
+    ".sh": "# {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>\n# Licensed under the MIT License (see LICENSE for details)\n\n",
+    ".bat": "REM {filename} (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>\nREM Licensed under the MIT License (see LICENSE for details)\n\n"
 }
 
 # The core files we've authored
@@ -23,7 +25,11 @@ TARGETS = [
     "tests/e2e.spec.js",
     "tests/test_i18n.js",
     "scripts/generate_locales.py",
-    "scripts/apply_headers.py"
+    "scripts/apply_headers.py",
+    "setup.sh",
+    "setup.bat",
+    "vite.config.js",
+    "playwright.config.js"
 ]
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

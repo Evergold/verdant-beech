@@ -1,3 +1,6 @@
+REM setup.bat (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>
+REM Licensed under the MIT License (see LICENSE for details)
+
 @echo off
 setlocal
 
