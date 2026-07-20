@@ -115,15 +115,8 @@ class LiteLLMEmbeddingFunction(EmbeddingFunction):
         return [data["embedding"] for data in response.data]
 
 class CartographyRAG:
-    def __init__(self, db_path="./chroma_db"):
-        os.makedirs(db_path, exist_ok=True)
-        # Initialize persistent ChromaDB client (with telemetry disabled for privacy)
-        self.client = chromadb.PersistentClient(
-            path=db_path,
-            settings=Settings(anonymized_telemetry=False)
-        )
-        
-        # Read the embedding model from models.yaml
+    def __init__(self, base_db_path="./chroma_db"):
+        # Read the embedding model from models.yaml first
         embedding_model_id = "ollama/embeddinggemma"  # fallback
         try:
             with open("../models.yaml", "r") as f:
@@ -132,14 +125,27 @@ class CartographyRAG:
                     embedding_model_id = models_config["embedding_models"][0]["id"]
         except Exception as e:
             print(f"[RAG] Warning: Could not read models.yaml for embedding config: {e}. Falling back to default.")
-            
-        print(f"[RAG] Initializing with embedding model: {embedding_model_id}")
+
+        # Namespace the ChromaDB path based on the embedding model to allow multiple to coexist
+        import re
+        safe_model_id = re.sub(r'[^a-zA-Z0-9_-]', '_', embedding_model_id)
+        db_path = os.path.join(base_db_path, safe_model_id)
+        
+        os.makedirs(db_path, exist_ok=True)
+        # Initialize persistent ChromaDB client isolated to this specific embedding model
+        self.client = chromadb.PersistentClient(
+            path=db_path,
+            settings=Settings(anonymized_telemetry=False)
+        )
+        
+        print(f"[RAG] Initializing with embedding model: {embedding_model_id} (DB isolated at {db_path})")
         self.embedding_function = LiteLLMEmbeddingFunction(model_name=embedding_model_id)
         
-        # Get or create collection
+        # Get or create collection (namespaces ensure no vector collision between models)
         self.collection = self.client.get_or_create_collection(
             name="cartography_rules",
-            embedding_function=self.embedding_function
+            embedding_function=self.embedding_function,
+            metadata={"embedding_model": embedding_model_id}
         )
         
         # Always upsert to keep the database in sync with the KNOWLEDGE_BASE array
