@@ -50,14 +50,14 @@
             <div class="controls-section">
               <label class="style-label" data-i18n="projects.activeProject">Active Project</label>
               <div style="display: flex; gap: 8px; align-items: stretch; height: 42px; box-sizing: border-box;">
-                <div style="flex: 1; display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 4px; position: relative;">
+                <div style="flex: 1; min-width: 0; display: flex; background: var(--bg-color); border: 1px solid var(--border-color); border-radius: 4px; position: relative;">
                   <input type="text" id="project-name-input" data-i18n-placeholder="projects.projectNamePlaceholder" data-i18n-title="projects.editToRename" style="flex: 1; min-width: 0; background: transparent; border: none; padding: 0 14px; font-size: 1rem; font-weight: 600; color: var(--text-main); outline: none; height: 100%; box-sizing: border-box;" placeholder="Project Name" title="Edit to rename project" />
-                  <div id="project-dropdown-btn" style="width: 48px; border-left: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); cursor: pointer;" data-i18n-title="projects.switchProject" title="Switch Project">
+                  <div id="project-dropdown-btn" style="width: 48px; border-left: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.02); cursor: pointer; flex-shrink: 0;" data-i18n-title="projects.switchProject" title="Switch Project">
                     <span style="font-size: 0.8rem; color: var(--text-main); pointer-events: none;">▼</span>
                   </div>
                   <div id="project-select-items" class="select-items select-hide" style="position: absolute; top: 100%; left: 0; width: 100%; z-index: 99; margin-top: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); border-radius: 4px;"></div>
                 </div>
-                <div style="position: relative; display: flex; align-items: center;">
+                <div style="position: relative; display: flex; align-items: center; flex-shrink: 0;">
                   <button id="delete-project-btn" class="icon-btn" data-i18n-title="projects.deleteProject" style="background: transparent; border: none; cursor: pointer; width: auto; margin-left: 4px; padding: 4px;" title="Delete Project">
                     <span class="icon" style="font-size: 1.8rem; position: relative; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px;">
                       <div style="position: absolute; top: 18px; left: 6px; width: 8px; height: 8px; background: #aee2ff; border-radius: 50%; z-index: 0; box-shadow: 0 0 2px rgba(0,0,0,0.2);"></div>
