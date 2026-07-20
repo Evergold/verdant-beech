@@ -627,18 +627,16 @@ async def generate_asset(req: AssetRequest):
     # Here we simulate the LLM fast-check. If the prompt is too short/vague, we fail fast.
     if len(req.prompt.split()) < 3:
         return {
-            "status": "error",
-            "error": "Prompt is too vague. Please clarify: Are you designing a UI component, a map texture, or an abstract asset?"
+            "status": "clarification",
+            "message": "Prompt is too vague. Please clarify: Are you designing a UI component, a map texture, or an abstract asset?"
         }
 
     # --- RAG INTERCEPTOR: DYNAMIC PROMPT ASSEMBLY ---
     assembled_prompt = req.prompt
     
-    # E. Verdant Brand Identity Lexicon (Always applied)
-    assembled_prompt += ", dark mode, deep charcoal background, translucent frosted layers, glassmorphism, neon green accents, rich polished mahogany wood"
-    
     if req.exploratory:
         # Phase 0/1: Exploratory or Assembly
+        # We DO NOT force the Verdant Brand Identity here, allowing project-unique styles.
         # Inject Cartography/Topology tokens if applicable
         if "map" in req.prompt.lower() or "terrain" in req.prompt.lower():
             assembled_prompt += ", bathymetric rendering, hypsometric tinting, isoline topography"
@@ -647,6 +645,10 @@ async def generate_asset(req: AssetRequest):
         negative_prompt = "low quality, blurry, text"
     else:
         # Phase 2: High-Fidelity Asset Generation
+        
+        # E. Verdant Brand Identity Lexicon (Applied in Phase 2 for consistency)
+        assembled_prompt += ", dark mode, deep charcoal background, translucent frosted layers, glassmorphism, neon green accents, rich polished mahogany wood"
+        
         # Inject Photography/Cinematography tokens
         assembled_prompt += ", premium high-end, sleek minimalist, cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
         

@@ -1546,6 +1546,9 @@ if (generateAssetBtn) {
         assetPreviewImg.src = data.image_url;
         assetPreviewContainer.classList.remove("hidden");
         showToast(data.message, "success");
+      } else if (data.status === "clarification") {
+        appendMessage("assistant", data.message);
+        document.getElementById("nav-assistant").click();
       } else {
         showToast(i18next.t('toasts.generationFailed', { error: data.error }), "error");
       }
