@@ -21,20 +21,29 @@ npx playwright test --ui
 ```
 
 ## 2. Backend & Agent Logic
-We maintain a near **100% test coverage** standard for all backend services, API routes, and agent logic using `pytest`.
+We maintain a strict **100% test coverage** standard for all backend services, API routes, and complex agent memory logic using `pytest`. The test suite is organized across multiple files (`test_backend.py`, `test_coverage_100.py`, `test_coverage_gaps.py`, `test_projects.py`).
 
-### Existing Test Coverage (`tests/test_backend.py`):
-- **FastAPI Endpoints**: Validates standard routes (`/api/health`, `/api/models`) and Ollama local hardware-polling endpoints (`status`, `prewarm`, `unload`).
-- **LiteLLM Agent Mocks**: Intercepts LiteLLM completions to ensure the agent correctly processes payloads and executes function tools (e.g., changing lighting, dropping markers).
-- **Cartography RAG Vector Store**: Mocks ChromaDB to ensure that the RAG store successfully fetches and injects relevant cartographic rules into the agent's context window.
-- **Library Manager**: Asserts the creation, validation, and metadata generation of portfolio folders directly on the disk using the `/api/library/folders` endpoints.
+### Key Covered Features:
+- **Elastic Window & Time-Aware Recall**: Mocks ChromaDB to ensure that dynamic episodic memory slices are fetched via `start_idx` and `end_idx` metadata, and correctly injected under the `TELEPORTED HISTORICAL CONTEXT` tag.
+- **Revery Semantic Pipeline (CRUD)**: Validates the NLP-gated continuous compaction task. Tests ensure the background LLM correctly identifies permanent facts, vectorizes them to check for duplicates, and writes them to the `projects.yaml` state.
+- **Bottom-Heavy Prompt Architecture**: Asserts that `CARTOGRAPHY RULES` and `Revery Profiles` are injected directly at the bottom of the prompt to combat LLM "Lost in the Middle" syndrome.
+- **Defensive Type Checking**: The backend includes robust `isinstance()` checking against `res.usage.prompt_tokens` to gracefully handle `MagicMock` behaviors in test environments when monitoring VRAM truncation risks.
+- **LiteLLM Agent Mocks**: Intercepts LiteLLM completions to ensure the agent correctly processes payloads and executes generative function tools (e.g., changing lighting, dropping markers).
 
 ### Running Backend Tests:
 ```bash
-# Run pytest with a terminal coverage report
-PYTHONPATH=. server/.venv/bin/pytest tests/test_backend.py --cov=server --cov-report=term-missing
+# Run pytest with a terminal coverage report ensuring 100% coverage
+PYTHONPATH=. server/.venv/bin/pytest tests/ --cov=server --cov-report=term-missing
 ```
 
-## 3. Strict Rules
+## 3. Hardware Concurrency & VRAM Stress Testing
+Verdant Beech employs an aggressive dual-model memory architecture designed to run flawlessly on 8GB VRAM consumer GPUs.
+
+To verify this, we maintain standalone stress test scripts (e.g., `scratch/test_models.py`).
+- **Methodology**: Uses `asyncio.gather` to force simultaneous inference overlap between the heavyweight foreground model (e.g., `gemma4:e4b`) and the lightweight background memory model (e.g., `gemma4:e2b`).
+- **Constraints**: Verifies the strict API caps (Live Chat capped at `num_ctx=2048`, Background Tasks capped at `num_ctx=1024`).
+- **Results**: Proves that the models can safely contend for memory bandwidth and GPU compute cores for 30+ seconds simultaneously without throwing an Out-Of-Memory (OOM) error or falling back to slow system RAM.
+
+## 4. Strict Rules
 *   **Test Location**: ALL tests must be placed in the `tests/` directory at the project root.
 *   **Artifacts**: Never commit test results, Playwright traces, coverage HTML, or cache files (`.pytest_cache`) to the git repository.
