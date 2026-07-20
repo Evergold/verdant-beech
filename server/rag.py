@@ -102,6 +102,18 @@ KNOWLEDGE_BASE = [
     }
 ]
 
+import yaml
+import litellm
+from chromadb import Documents, EmbeddingFunction, Embeddings
+
+class LiteLLMEmbeddingFunction(EmbeddingFunction):
+    def __init__(self, model_name: str):
+        self.model_name = model_name
+        
+    def __call__(self, input: Documents) -> Embeddings:
+        response = litellm.embedding(model=self.model_name, input=input)
+        return [data["embedding"] for data in response.data]
+
 class CartographyRAG:
     def __init__(self, db_path="./chroma_db"):
         os.makedirs(db_path, exist_ok=True)
@@ -111,11 +123,18 @@ class CartographyRAG:
             settings=Settings(anonymized_telemetry=False)
         )
         
-        # Setup EmbeddingGemma via Ollama (bypassing HF license gates completely!)
-        self.embedding_function = embedding_functions.OllamaEmbeddingFunction(
-            url="http://localhost:11434/api/embeddings",
-            model_name="embeddinggemma"
-        )
+        # Read the embedding model from models.yaml
+        embedding_model_id = "ollama/embeddinggemma"  # fallback
+        try:
+            with open("../models.yaml", "r") as f:
+                models_config = yaml.safe_load(f)
+                if "embedding_models" in models_config and len(models_config["embedding_models"]) > 0:
+                    embedding_model_id = models_config["embedding_models"][0]["id"]
+        except Exception as e:
+            print(f"[RAG] Warning: Could not read models.yaml for embedding config: {e}. Falling back to default.")
+            
+        print(f"[RAG] Initializing with embedding model: {embedding_model_id}")
+        self.embedding_function = LiteLLMEmbeddingFunction(model_name=embedding_model_id)
         
         # Get or create collection
         self.collection = self.client.get_or_create_collection(

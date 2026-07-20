@@ -96,6 +96,17 @@ image_models:
   #   label: "FLUX.2"
   # - id: "bedrock/amazon.titan-image-generator-v1"
   #   label: "Amazon Titan"
+
+embedding_models:
+  - id: "ollama/embeddinggemma"
+    label: "EmbeddingGemma (Ollama)"
+  # Template for other embedding providers:
+  # - id: "ollama/paraphrase-multilingual-MiniLM-L12-v2"
+  #   label: "Multilingual MiniLM (Ollama)"
+  # - id: "gemini/text-embedding-004"
+  #   label: "Gemini Text Embedding 004"
+  # - id: "openai/text-embedding-3-large"
+  #   label: "OpenAI Text Embedding 3 Large"
 """
 
 def ensure_models_yaml():
