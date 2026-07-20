@@ -288,7 +288,7 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str):
         return
     try:
         from litellm import acompletion
-        prompt = "Summarize the following conversation segment into a single, concise sentence focusing on decisions made, user preferences, and cartography progress:\n\n"
+        prompt = "CRITICAL INSTRUCTION: Act as a highly deterministic, non-creative summarization engine. Do NOT output any <think> tags, reasoning blocks, or internal monologue. Output ONLY the literal, factual final summary without embellishment.\n\nSummarize the following conversation segment into a single, concise sentence focusing on decisions made, user preferences, and cartography progress:\n\n"
         for msg in old_messages:
             role = msg["role"] if isinstance(msg, dict) else msg.role
             content = msg["content"] if isinstance(msg, dict) else msg.content
@@ -297,7 +297,9 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str):
         res = await acompletion(
             model=model_name,
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=150
+            max_tokens=150,
+            reasoning_effort="low",
+            drop_params=True
         )
         summary = res.choices[0].message.content.strip()
         
