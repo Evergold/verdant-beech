@@ -33,8 +33,8 @@ We recommend models capable of highly complex spatial planning and schema adhere
   2. Dynamically tuning `num_gpu` layer-offloading during simultaneous `e4b`/`e2b` model calls to safely spill excess model layers to system RAM, preventing GPU memory exhaustion.
 - **Default API Choice:** `gemini/gemini-3.5-flash` (or `gemini-3.1-pro` for maximal reasoning). Both support configurable reasoning tabs in the UI!
 
-#### 🖥️ Hardware Requirements for Gemma 4 (4.5B)
-Running the default local assistant model (`gemma4:e4b`) is highly optimized thanks to QAT quantization. Actual observed resource usage is light:
+#### 🖥️ Hardware Requirements for Combined Gemma 4 Architecture (4.5B + 2.3B)
+Running the dual local assistant architecture (`gemma4:e4b` + `gemma4:e2b`) is highly optimized thanks to QAT quantization and dynamic layer-offloading. Actual observed resource usage for both models simultaneously is light:
 - **VRAM (GPU Memory)**: ~3 GB
 - **System RAM**: ~6 GB
 
