@@ -616,16 +616,70 @@ async def generate_map(prompt: str):
 class AssetRequest(BaseModel):
     prompt: str
     exploratory: bool
+    model: str
+    seed: Optional[int] = None
+    guidance_scale: float = 7.5
+    aspect_ratio: str = "1:1"
 
 @app.post("/api/generate_asset")
 async def generate_asset(req: AssetRequest):
-    # TODO: Connect to Vertex AI Imagen 3 via litellm.image_generation()
-    # For now, return a placeholder image to prove the UI workflow
-    return {
-        "status": "success",
-        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/1x1.png/120px-1x1.png",
-        "message": f"Simulated generation of: {req.prompt} (Exploratory: {req.exploratory})"
-    }
+    # --- PHASE -1: VALIDATION & CLARIFICATION ---
+    # Here we simulate the LLM fast-check. If the prompt is too short/vague, we fail fast.
+    if len(req.prompt.split()) < 3:
+        return {
+            "status": "error",
+            "error": "Prompt is too vague. Please clarify: Are you designing a UI component, a map texture, or an abstract asset?"
+        }
+
+    # --- RAG INTERCEPTOR: DYNAMIC PROMPT ASSEMBLY ---
+    assembled_prompt = req.prompt
+    
+    # E. Verdant Brand Identity Lexicon (Always applied)
+    assembled_prompt += ", dark mode, deep charcoal background, translucent frosted layers, glassmorphism, neon green accents, rich polished mahogany wood"
+    
+    if req.exploratory:
+        # Phase 0/1: Exploratory or Assembly
+        # Inject Cartography/Topology tokens if applicable
+        if "map" in req.prompt.lower() or "terrain" in req.prompt.lower():
+            assembled_prompt += ", bathymetric rendering, hypsometric tinting, isoline topography"
+        
+        # Less restrictive constraints for iterative flexibility
+        negative_prompt = "low quality, blurry, text"
+    else:
+        # Phase 2: High-Fidelity Asset Generation
+        # Inject Photography/Cinematography tokens
+        assembled_prompt += ", premium high-end, sleek minimalist, cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
+        
+        # Absolute rigid constraints for One-Shot models
+        negative_prompt = "device frames, laptops, phones, UI overlays, gradients on text, low quality, cartoonish, watermark"
+
+    try:
+        # Execute via litellm
+        import litellm
+        
+        # Map frontend aspect ratio to standard litellm size if necessary, or pass through
+        # In this implementation, litellm handles standard string conversions
+        
+        response = litellm.image_generation(
+            prompt=assembled_prompt,
+            model=req.model,
+            n=1,
+            size="1024x1024", # Standard square, litellm backend specific sizing can be passed depending on provider
+        )
+        
+        # The Litellm response format returns the URL in data[0].url
+        image_url = response.data[0].url
+        
+        return {
+            "status": "success",
+            "image_url": image_url,
+            "message": f"Generated successfully via {req.model}"
+        }
+    except Exception as e:
+        return {
+            "status": "error",
+            "error": f"Generation failed: {str(e)}"
+        }
 
 # --- Ollama Management Endpoints ---
 @app.get("/api/ollama/status")

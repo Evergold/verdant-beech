@@ -609,6 +609,7 @@ async function loadModels() {
         div.addEventListener("click", (e) => {
           e.stopPropagation();
           currentValue = model.id;
+          imgSelectContainer.dataset.value = model.id; // Expose globally for API payload
           selectedBox.textContent = shortText;
           itemsContainer.classList.add("select-hide");
           renderImageModelControls(currentValue);
@@ -618,6 +619,7 @@ async function loadModels() {
       });
       
       selectedBox.textContent = currentShortText;
+      imgSelectContainer.dataset.value = currentValue; // Set initial value globally
       
       selectedBox.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -1520,13 +1522,23 @@ if (generateAssetBtn) {
     if (!prompt) return showToast(i18next.t('toasts.pleaseDescribeAssetFirst'), "warning");
     
     const exploratory = exploratoryToggle.checked;
+    const model = document.getElementById("image-model-select").dataset.value;
+    
+    // Retrieve dynamic inputs if they exist (they depend on the selected model)
+    const seedInput = document.getElementById("img-seed");
+    const cfgInput = document.getElementById("img-cfg");
+    const aspectRatioInput = document.getElementById("img-aspect-ratio");
+    
+    const seed = seedInput && seedInput.value ? parseInt(seedInput.value) : null;
+    const guidance_scale = cfgInput ? parseFloat(cfgInput.value) : 7.5;
+    const aspect_ratio = aspectRatioInput ? aspectRatioInput.value : "1:1";
     
     try {
       showToast(i18next.t('toasts.generatingAsset'), "info");
       const res = await fetch("http://localhost:8001/api/generate_asset", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ prompt, exploratory })
+        body: JSON.stringify({ prompt, exploratory, model, seed, guidance_scale, aspect_ratio })
       });
       const data = await res.json();
       
