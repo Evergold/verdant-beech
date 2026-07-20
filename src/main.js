@@ -547,6 +547,9 @@ function showToast(msg, type = "info") {
   setTimeout(() => toast.remove(), 5000);
 }
 
+let setupInProgress = true;
+let setupToastShown = false;
+
 async function updateOllamaStatus() {
   if (!modelSelect.value.includes("ollama_chat")) return;
   try {
@@ -558,6 +561,18 @@ async function updateOllamaStatus() {
       vramUse.textContent = status.vram_gb.toFixed(1);
     } else {
       hwMonitor.classList.add("hidden");
+    }
+    
+    // Check auto-setup status
+    if (setupInProgress) {
+        const setupRes = await fetch("http://localhost:8001/api/setup/status");
+        const setupData = await setupRes.json();
+        setupInProgress = setupData.in_progress;
+        
+        if (!setupInProgress && setupData.updated && !setupToastShown) {
+            showToast("Required models were automatically checked and updated!", "info");
+            setupToastShown = true;
+        }
     }
   } catch (e) {
     hwMonitor.classList.add("hidden");
@@ -780,10 +795,27 @@ async function handleSend() {
     if (!isReady) return; // Wait for download to finish, or fail
   }
 
-  const text = chatInput.value.trim();
-  if (!text) return;
-  
-  appendMessage("user", text);
+  const messageText = chatInput.value.trim();
+  if (!messageText) return;
+
+  if (setupInProgress && modelSelect.value.includes("ollama")) {
+      showToast("Background model setup is still in progress, please wait...", "info");
+      
+      const thinkingId = "thinking-setup-" + Date.now();
+      const thinkingDiv = document.createElement("div");
+      thinkingDiv.id = thinkingId;
+      thinkingDiv.className = `chat-message message-assistant thinking`;
+      thinkingDiv.innerHTML = "<span class='typing-dot'>.</span><span class='typing-dot'>.</span><span class='typing-dot'>.</span>";
+      chatHistory.appendChild(thinkingDiv);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+      
+      setTimeout(() => {
+          thinkingDiv.remove();
+      }, 3000);
+      return;
+  }
+
+  appendMessage("user", messageText);
   chatInput.value = "";
   
   // Temporary "thinking" message

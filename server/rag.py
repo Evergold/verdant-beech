@@ -1,5 +1,6 @@
 import chromadb
 from chromadb.config import Settings
+import chromadb.utils.embedding_functions as embedding_functions
 import os
 
 KNOWLEDGE_BASE = [
@@ -107,9 +108,16 @@ class CartographyRAG:
         # Initialize persistent ChromaDB client
         self.client = chromadb.PersistentClient(path=db_path)
         
+        # Setup EmbeddingGemma via Ollama (bypassing HF license gates completely!)
+        self.embedding_function = embedding_functions.OllamaEmbeddingFunction(
+            url="http://localhost:11434/api/embeddings",
+            model_name="embeddinggemma"
+        )
+        
         # Get or create collection
         self.collection = self.client.get_or_create_collection(
-            name="cartography_rules"
+            name="cartography_rules",
+            embedding_function=self.embedding_function
         )
         
         # Always upsert to keep the database in sync with the KNOWLEDGE_BASE array
