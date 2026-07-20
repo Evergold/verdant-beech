@@ -139,7 +139,8 @@ def generate_default_projects():
             pid: {
                 "name": "Untitled Project",
                 "selectedModel": "ollama_chat/gemma4:e4b",
-                "chroma_collection": f"memory_{pid}"
+                "chroma_collection": f"memory_{pid}",
+                "revery_profile": []
             }
         }
     }
@@ -190,7 +191,8 @@ async def create_project(req: CreateProjectRequest):
     data["projects"][pid] = {
         "name": new_name,
         "selectedModel": "ollama_chat/gemma4:e4b",
-        "chroma_collection": f"memory_{pid}"
+        "chroma_collection": f"memory_{pid}",
+        "revery_profile": []
     }
     data["active_project"] = pid
     save_projects(data)
@@ -240,7 +242,8 @@ async def delete_project(project_id: str):
             data["projects"][new_pid] = {
                 "name": "Untitled Project",
                 "selectedModel": "ollama_chat/gemma4:e4b",
-                "chroma_collection": f"memory_{new_pid}"
+                "chroma_collection": f"memory_{new_pid}",
+                "revery_profile": []
             }
             data["active_project"] = new_pid
         elif data["active_project"] == project_id:
@@ -317,6 +320,78 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
             ids=[str(uuid.uuid4())]
         )
         print(f"[MEMORY MANAGER] Compacted {len(old_messages)} messages into ChromaDB for project {project_id}.")
+        
+        # REVERY: Semantic Profile Engine (with NLP Gating)
+        directives = ["want", "prefer", "change", "remove", "always", "never", "add", "must", "should", "hate", "love"]
+        if any(d in summary.lower() for d in directives):
+            data = load_projects()
+            profile = data["projects"][project_id].get("revery_profile", [])
+            
+            revery_prompt = (
+                f"Analyze this conversation summary:\n'{summary}'\n\n"
+                f"Current permanent facts about the user's project:\n{profile}\n\n"
+                "If the summary reveals a NEW permanent fact (e.g. style preference, biome, rule), output a new line starting exactly with 'ADD: <fact>'.\n"
+                "If the summary contradicts an existing fact, output 'REMOVE: <old fact>' or 'UPDATE: <old fact> -> <new fact>'.\n"
+                "If there is nothing new or actionable, output nothing. Do not use markdown or quotes."
+            )
+            
+            rev_res = await acompletion(
+                model=model_name,
+                messages=[{"role": "user", "content": revery_prompt}],
+                max_tokens=150,
+                reasoning_effort="low",
+                drop_params=True
+            )
+            rev_out = rev_res.choices[0].message.content.strip()
+            
+            changed = False
+            for line in rev_out.splitlines():
+                line = line.strip()
+                if line.startswith("ADD:"):
+                    new_fact = line.replace("ADD:", "").strip()
+                    # Semantic Gate Deduplication
+                    if profile:
+                        new_emb = rag_store.embedding_function([new_fact])[0]
+                        prof_embs = rag_store.embedding_function(profile)
+                        def cos_sim(a, b):
+                            return sum(x*y for x, y in zip(a,b)) / ((sum(x*x for x in a)**0.5 * sum(x*x for x in b)**0.5) or 1)
+                        if any(cos_sim(new_emb, p_emb) > 0.85 for p_emb in prof_embs):
+                            continue # Duplicate fact
+                    profile.append(new_fact)
+                    changed = True
+                    
+                elif line.startswith("REMOVE:"):
+                    target = line.replace("REMOVE:", "").strip()
+                    if profile:
+                        tgt_emb = rag_store.embedding_function([target])[0]
+                        prof_embs = rag_store.embedding_function(profile)
+                        def cos_sim(a, b):
+                            return sum(x*y for x, y in zip(a,b)) / ((sum(x*x for x in a)**0.5 * sum(x*x for x in b)**0.5) or 1)
+                        best_idx = max(range(len(profile)), key=lambda i: cos_sim(tgt_emb, prof_embs[i]))
+                        if cos_sim(tgt_emb, prof_embs[best_idx]) > 0.70:
+                            profile.pop(best_idx)
+                            changed = True
+                            
+                elif line.startswith("UPDATE:"):
+                    parts = line.replace("UPDATE:", "").split("->")
+                    if len(parts) == 2:
+                        target = parts[0].strip()
+                        new_fact = parts[1].strip()
+                        if profile:
+                            tgt_emb = rag_store.embedding_function([target])[0]
+                            prof_embs = rag_store.embedding_function(profile)
+                            def cos_sim(a, b):
+                                return sum(x*y for x, y in zip(a,b)) / ((sum(x*x for x in a)**0.5 * sum(x*x for x in b)**0.5) or 1)
+                            best_idx = max(range(len(profile)), key=lambda i: cos_sim(tgt_emb, prof_embs[i]))
+                            if cos_sim(tgt_emb, prof_embs[best_idx]) > 0.70:
+                                profile[best_idx] = new_fact
+                                changed = True
+            
+            if changed:
+                data["projects"][project_id]["revery_profile"] = profile
+                save_projects(data)
+                print(f"[REVERY] Updated semantic profile for {project_id}")
+
     except Exception as e:
         print(f"[MEMORY MANAGER] Error compacting memory: {e}")
 
@@ -458,11 +533,13 @@ CANVAS_TOOLS = [
 async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
     total_msgs = len(req.messages)
     compacted_idx = 0
+    revery_profile = []
     
     if req.project_id:
         data = load_projects()
         if req.project_id in data["projects"]:
             compacted_idx = data["projects"][req.project_id].get("compacted_idx", 0)
+            revery_profile = data["projects"][req.project_id].get("revery_profile", [])
             
             if total_msgs - compacted_idx > 20:
                 to_compact = req.messages[compacted_idx : total_msgs - 10]
@@ -476,6 +553,7 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
     # PRE-INJECTION RAG & ELASTIC WINDOW
     latest_user_msg = req.messages[-1].content if req.messages else ""
     rag_context = ""
+    revery_context = ""
     episodic_messages = []
     
     if latest_user_msg:
@@ -484,7 +562,11 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
         if rag_results:
             rag_context = "\n\nEXPERT CARTOGRAPHY RULES TO FOLLOW:\n- " + "\n- ".join(rag_results)
             
-        # 2. Elastic Window (Time-Aware Episodic Recall)
+        # 2. Revery Profile (Semantic Memory)
+        if revery_profile:
+            revery_context = "\n\nABSOLUTE USER FACTS (NEVER FORGET):\n- " + "\n- ".join(revery_profile)
+            
+        # 3. Elastic Window (Time-Aware Episodic Recall)
         if req.project_id:
             try:
                 mem_collection = rag_store.client.get_or_create_collection(
@@ -517,8 +599,8 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
     if len(recent_working) > 1:
         messages.extend([{"role": m.role, "content": m.content} for m in recent_working[:-1]])
         
-    if rag_context:
-        bottom_context = "CRITICAL REFRESHER BEFORE RESPONDING:" + rag_context
+    if rag_context or revery_context:
+        bottom_context = "CRITICAL REFRESHER BEFORE RESPONDING:" + revery_context + rag_context
         messages.append({"role": "system", "content": bottom_context})
         
     if recent_working:

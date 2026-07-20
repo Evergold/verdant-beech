@@ -149,7 +149,7 @@ def test_chat_episodic_memory_injection(mock_completion):
             "metadatas": [[{"start_idx": 0, "end_idx": 1, "timestamp": 123}]]
         }
         mock_rag.client.get_or_create_collection.return_value = mock_collection
-        mock_lp.return_value = {"projects": {"proj_mem": {"compacted_idx": 10}}}
+        mock_lp.return_value = {"projects": {"proj_mem": {"compacted_idx": 10, "revery_profile": []}}}
         
         messages_payload = [{"role": "user", "content": f"msg {i}"} for i in range(12)]
         res = client.post("/api/chat", json={
