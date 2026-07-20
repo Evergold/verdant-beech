@@ -37,7 +37,7 @@
   },
   "style": {
     "title": "Stilretningslinjer",
-    "description": "Konfigurer Verdants genereringsregler.",
+    "description": "Konfigurer Verdants generationsregler.",
     "envLighting": "Miljøbelysning",
     "uniformStudio": "Ensartet studie (Standard)",
     "moodyCandlelit": "Stemningsfuldt stearinlys",
@@ -50,9 +50,9 @@
     "halogen": "Halogen (3200K)",
     "terrainEngine": "Terrænsammensætningsmotor",
     "generateHills": "Generer bakker",
-    "flatten": "Udjævn",
+    "flatten": "Flad ud",
     "dropMarker": "📍 Placer bosættelsesmarkør",
-    "markerDesc": "Markører fastgøres automatisk med fysik til terrænlagenes forskudte geometri."
+    "markerDesc": "Markører fastgøres automatisk via fysik til den forskudte geometri af terrænlagene."
   },
   "asset": {
     "title": "Asset-generator",

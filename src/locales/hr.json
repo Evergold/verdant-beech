@@ -2,7 +2,7 @@
   "nav": {
     "projects": "Projekti",
     "assistant": "Alat asistenta",
-    "library": "Upravitelj knjižnicom",
+    "library": "Upravitelj knjižnice",
     "style": "Smjernice stila",
     "asset": "Generator resursa"
   },
@@ -30,7 +30,7 @@
     "resume": "Nastavi"
   },
   "library": {
-    "title": "Upravitelj knjižnicom",
+    "title": "Upravitelj knjižnice",
     "description": "Ovdje upravljajte portfeljima, oznakama i resursima.",
     "newFolderPlaceholder": "Naziv novog portfelja...",
     "create": "Izradi"
@@ -40,7 +40,7 @@
     "description": "Konfigurirajte Verdantova pravila generiranja.",
     "envLighting": "Osvjetljenje okoline",
     "uniformStudio": "Jednoliki studio (Zadano)",
-    "moodyCandlelit": "Sjetna svjetlost svijeća",
+    "moodyCandlelit": "Prigušeno svjetlo svijeća",
     "lightingTemp": "Temperatura osvjetljenja",
     "moonlight": "Mjesečina (10000K)",
     "overcast": "Oblačno (7000K)",
@@ -48,11 +48,11 @@
     "daylight": "Dnevno svjetlo (5500K)",
     "goldenHour": "Zlatni sat (4000K)",
     "halogen": "Halogeno (3200K)",
-    "terrainEngine": "Sustav za slaganje terena",
+    "terrainEngine": "Pokretač za slaganje terena",
     "generateHills": "Generiraj brda",
-    "flatten": "Poravnaj",
+    "flatten": "Izravnaj",
     "dropMarker": "📍 Postavi oznaku naselja",
-    "markerDesc": "Oznake se automatski fizikalno poravnavaju s pomaknutom geometrijom slojeva terena."
+    "markerDesc": "Oznake automatski prianjaju uz deformiranu geometriju slojeva terena."
   },
   "asset": {
     "title": "Generator resursa",
@@ -78,7 +78,7 @@
     "modelMissingDownloadLater": "Model nedostaje. Preuzet će se kada pošaljete poruku.",
     "fallbackGemini": "Učitavanje modela {{modelId}} nije uspjelo: {{error}}. Vraćanje na Gemini.",
     "modelsUpdated": "Potrebni modeli automatski su provjereni i ažurirani!",
-    "downloadComplete": "Preuzimanje završeno!",
+    "downloadComplete": "Preuzimanje dovršeno!",
     "downloadPaused": "Preuzimanje pauzirano",
     "downloadFailed": "Preuzimanje nije uspjelo",
     "ollamaNotRunning": "Pogreška: Ollama nije pokrenut!",

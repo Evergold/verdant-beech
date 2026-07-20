@@ -3,7 +3,7 @@
     "projects": "Projeler",
     "assistant": "Asistan Aracı",
     "library": "Kütüphane Yöneticisi",
-    "style": "Stil Kılavuzları",
+    "style": "Stil Yönergeleri",
     "asset": "Varlık Oluşturucu"
   },
   "projects": {
@@ -20,7 +20,7 @@
   },
   "chat": {
     "title": "Asistan Aracı",
-    "placeholder": "Bir harita veya stil önerisi isteyin...",
+    "placeholder": "Bir harita veya stil tavsiyesi isteyin...",
     "send": "Gönder",
     "activeTasks": "AKTİF GÖREVLER:",
     "ram": "RAM:",
@@ -36,14 +36,14 @@
     "create": "Oluştur"
   },
   "style": {
-    "title": "Stil Kılavuzları",
+    "title": "Stil Yönergeleri",
     "description": "Verdant'ın üretim kurallarını yapılandırın.",
     "envLighting": "Ortam Aydınlatması",
     "uniformStudio": "Tekdüze Stüdyo (Varsayılan)",
-    "moodyCandlelit": "Loş Mum Işığı",
+    "moodyCandlelit": "Kasvetli Mum Işığı",
     "lightingTemp": "Aydınlatma Sıcaklığı",
     "moonlight": "Ay Işığı (10000K)",
-    "overcast": "Bulutlu (7000K)",
+    "overcast": "Kapalı Hava (7000K)",
     "studio": "Stüdyo (Varsayılan, 6500K)",
     "daylight": "Gün Işığı (5500K)",
     "goldenHour": "Altın Saat (4000K)",
@@ -58,7 +58,7 @@
     "title": "Varlık Oluşturucu",
     "description": "Özel varlıklar oluşturun ve geliştirin.",
     "exploratoryMode": "Keşif Modu",
-    "exploratoryDesc": "Serbestçe deneme yapmak için Stil Kılavuzlarını devre dışı bırakın",
+    "exploratoryDesc": "Serbestçe deneme yapmak için Stil Yönergelerini devre dışı bırakın",
     "promptPlaceholder": "Varlığı tanımlayın (örn. 'Parlayan mavi bir mantar')...",
     "generate": "Varlık Oluştur",
     "previewAlt": "Varlık Önizlemesi",
@@ -74,7 +74,7 @@
     "zoomTitle": "Yakınlaştırma Aracı (Uzaklaştırmak için Ctrl tuşunu basılı tutun)"
   },
   "toasts": {
-    "prewarming": "{{model}} önceden hazırlanıyor...",
+    "prewarming": "{{model}} önceden ısıtılıyor...",
     "modelMissingDownloadLater": "Model eksik. Mesaj gönderdiğinizde indirilecek.",
     "fallbackGemini": "{{modelId}} yüklenemedi: {{error}}. Gemini'a geri dönülüyor.",
     "modelsUpdated": "Gerekli modeller otomatik olarak kontrol edildi ve güncellendi!",
@@ -85,8 +85,8 @@
     "modelMissingStartingDownload": "Model {{tag}} eksik. İndirme başlatılıyor...",
     "backendConnectionFailed": "Arka uç bağlantısı başarısız oldu",
     "warningNotInstalledLocally": "Uyarı: {{tag}} yerel olarak yüklü değil.",
-    "backgroundModelSetupInProgress": "Arka planda model kurulumu devam ediyor, lütfen bekleyin...",
-    "localModelErrorFallbackGemini": "Sohbet sırasında yerel model hatası oluştu. Gemini Flash'a geri dönülüyor.",
+    "backgroundModelSetupInProgress": "Arka plan model kurulumu hala devam ediyor, lütfen bekleyin...",
+    "localModelErrorFallbackGemini": "Sohbet sırasında yerel model hatası. Gemini Flash'a geri dönülüyor.",
     "greenAdjusting": "Green ayarlanıyor: {{name}}",
     "projectRenamed": "Proje yeniden adlandırıldı",
     "errorRenamingProject": "Proje yeniden adlandırılırken hata oluştu",

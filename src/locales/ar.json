@@ -23,24 +23,24 @@
     "placeholder": "اطلب خريطة أو نصيحة بشأن النمط...",
     "send": "إرسال",
     "activeTasks": "المهام النشطة:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
+    "ram": "ذاكرة الوصول العشوائي (RAM):",
+    "vram": "ذاكرة الفيديو (VRAM):",
     "downloading": "جاري تنزيل النموذج...",
     "pause": "إيقاف مؤقت",
     "resume": "استئناف"
   },
   "library": {
     "title": "مدير المكتبة",
-    "description": "إدارة الحافظات، والعلامات، والأصول هنا.",
+    "description": "إدارة الحافظات، العلامات، والأصول هنا.",
     "newFolderPlaceholder": "اسم الحافظة الجديدة...",
     "create": "إنشاء"
   },
   "style": {
     "title": "إرشادات النمط",
-    "description": "تكوين قواعد توليد Verdant.",
+    "description": "تكوين قواعد إنشاء Verdant.",
     "envLighting": "إضاءة البيئة",
     "uniformStudio": "استوديو موحد (افتراضي)",
-    "moodyCandlelit": "إضاءة شموع مزاجية",
+    "moodyCandlelit": "إضاءة شموع كئيبة",
     "lightingTemp": "درجة حرارة الإضاءة",
     "moonlight": "ضوء القمر (10000 كلفن)",
     "overcast": "غائم (7000 كلفن)",
@@ -51,12 +51,12 @@
     "terrainEngine": "محرك تركيب التضاريس",
     "generateHills": "توليد تلال",
     "flatten": "تسطيح",
-    "dropMarker": "📍 إسقاط علامة المستوطنة",
-    "markerDesc": "تنجذب العلامات تلقائيًا فيزيائيًا إلى الهندسة المزاحة لطبقات التضاريس."
+    "dropMarker": "📍 إسقاط علامة مستوطنة",
+    "markerDesc": "تنجذب العلامات تلقائيًا بفيزيائية إلى الهندسة المزاحة لطبقات التضاريس."
   },
   "asset": {
     "title": "منشئ الأصول",
-    "description": "إنشاء وتحسين الأصول المخصصة.",
+    "description": "إنشاء وصقل الأصول المخصصة.",
     "exploratoryMode": "الوضع الاستكشافي",
     "exploratoryDesc": "تجاوز إرشادات النمط للتجربة بحرية",
     "promptPlaceholder": "صف الأصل (مثال: 'فطر أزرق متوهج')...",
@@ -68,13 +68,13 @@
   "canvas": {
     "orientationLandscape": "🔄 الاتجاه: أفقي",
     "orientationPortrait": "🔄 الاتجاه: عمودي",
-    "zoomToolOff": "🔍 أداة التكبير: معطلة",
-    "zoomToolOn": "🔍 أداة التكبير: مفعلة",
+    "zoomToolOff": "🔍 أداة التكبير: إيقاف",
+    "zoomToolOn": "🔍 أداة التكبير: تشغيل",
     "orientationTitle": "تبديل بين عمودي/أفقي",
-    "zoomTitle": "أداة التكبير (اضغط مع الاستمرار على Ctrl للتصغير)"
+    "zoomTitle": "أداة التكبير (اضغط باستمرار على Ctrl للتصغير)"
   },
   "toasts": {
-    "prewarming": "تهيئة مسبقة لـ {{model}}...",
+    "prewarming": "جاري الإحماء المسبق لـ {{model}}...",
     "modelMissingDownloadLater": "النموذج مفقود. سيتم التنزيل عند إرسال رسالة.",
     "fallbackGemini": "فشل تحميل {{modelId}}: {{error}}. جاري الرجوع إلى Gemini.",
     "modelsUpdated": "تم فحص وتحديث النماذج المطلوبة تلقائيًا!",
@@ -85,9 +85,9 @@
     "modelMissingStartingDownload": "النموذج {{tag}} مفقود. جاري بدء التنزيل...",
     "backendConnectionFailed": "فشل الاتصال بالخلفية",
     "warningNotInstalledLocally": "تحذير: {{tag}} غير مثبت محليًا.",
-    "backgroundModelSetupInProgress": "إعداد النموذج في الخلفية لا يزال قيد التشغيل، يرجى الانتظار...",
+    "backgroundModelSetupInProgress": "إعداد النموذج في الخلفية لا يزال قيد التنفيذ، يرجى الانتظار...",
     "localModelErrorFallbackGemini": "خطأ في النموذج المحلي أثناء الدردشة. جاري الرجوع إلى Gemini Flash.",
-    "greenAdjusting": "اللون الأخضر قيد الضبط: {{name}}",
+    "greenAdjusting": "اللون الأخضر يتعدل: {{name}}",
     "projectRenamed": "تمت إعادة تسمية المشروع",
     "errorRenamingProject": "خطأ أثناء إعادة تسمية المشروع",
     "newProjectCreated": "تم إنشاء مشروع جديد",

@@ -11,7 +11,7 @@
     "activeProject": "Активний проєкт",
     "projectNamePlaceholder": "Назва проєкту",
     "editToRename": "Редагувати, щоб перейменувати проєкт",
-    "switchProject": "Змінити проєкт",
+    "switchProject": "Перемкнути проєкт",
     "newProject": "➕ Новий проєкт",
     "untitledProject": "Проєкт без назви",
     "deleteProject": "Видалити проєкт",
@@ -23,8 +23,8 @@
     "placeholder": "Запитайте про карту або пораду щодо стилю...",
     "send": "Надіслати",
     "activeTasks": "АКТИВНІ ЗАВДАННЯ:",
-    "ram": "ОЗП (RAM):",
-    "vram": "Відеопам'ять (VRAM):",
+    "ram": "ОЗП:",
+    "vram": "VRAM:",
     "downloading": "Завантаження моделі...",
     "pause": "Пауза",
     "resume": "Продовжити"
@@ -70,7 +70,7 @@
     "orientationPortrait": "🔄 Орієнтація: Книжкова",
     "zoomToolOff": "🔍 Інструмент масштабування: ВИМК.",
     "zoomToolOn": "🔍 Інструмент масштабування: УВІМК.",
-    "orientationTitle": "Перемкнути книжкову/альбомну орієнтацію",
+    "orientationTitle": "Перемкнути Книжкова/Альбомна",
     "zoomTitle": "Інструмент масштабування (утримуйте Ctrl для зменшення)"
   },
   "toasts": {
@@ -85,7 +85,7 @@
     "modelMissingStartingDownload": "Модель {{tag}} відсутня. Початок завантаження...",
     "backendConnectionFailed": "Помилка підключення до бекенду",
     "warningNotInstalledLocally": "Попередження: {{tag}} не встановлено локально.",
-    "backgroundModelSetupInProgress": "Налаштування фонової моделі все ще триває, будь ласка, зачекайте...",
+    "backgroundModelSetupInProgress": "Налаштування моделі у фоновому режимі триває, зачекайте...",
     "localModelErrorFallbackGemini": "Помилка локальної моделі під час чату. Перехід на Gemini Flash.",
     "greenAdjusting": "Зелений налаштовується: {{name}}",
     "projectRenamed": "Проєкт перейменовано",

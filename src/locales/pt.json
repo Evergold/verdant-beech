@@ -32,7 +32,7 @@
   "library": {
     "title": "Gerenciador de Biblioteca",
     "description": "Gerencie portfólios, tags e assets aqui.",
-    "newFolderPlaceholder": "Nome do Novo Portfólio...",
+    "newFolderPlaceholder": "Novo Nome do Portfólio...",
     "create": "Criar"
   },
   "style": {
@@ -40,7 +40,7 @@
     "description": "Configure as regras de geração do Verdant.",
     "envLighting": "Iluminação de Ambiente",
     "uniformStudio": "Estúdio Uniforme (Padrão)",
-    "moodyCandlelit": "Luz de Velas Dramática",
+    "moodyCandlelit": "Luz de Velas Intimista",
     "lightingTemp": "Temperatura da Iluminação",
     "moonlight": "Luz do Luar (10000K)",
     "overcast": "Nublado (7000K)",
@@ -56,12 +56,12 @@
   },
   "asset": {
     "title": "Gerador de Assets",
-    "description": "Crie e aperfeiçoe assets personalizados.",
+    "description": "Crie e aperfeiçoe assets sob medida.",
     "exploratoryMode": "Modo Exploratório",
     "exploratoryDesc": "Ignorar as Diretrizes de Estilo para experimentar livremente",
     "promptPlaceholder": "Descreva o asset (ex: 'Um cogumelo azul brilhante')...",
     "generate": "Gerar Asset",
-    "previewAlt": "Visualização do Asset",
+    "previewAlt": "Pré-visualização do Asset",
     "namePlaceholder": "Nome do Asset (ex: cogumelo_azul)",
     "save": "Salvar na Biblioteca"
   },
@@ -80,7 +80,7 @@
     "modelsUpdated": "Os modelos necessários foram verificados e atualizados automaticamente!",
     "downloadComplete": "Download concluído!",
     "downloadPaused": "Download pausado",
-    "downloadFailed": "Download falhou",
+    "downloadFailed": "Falha no download",
     "ollamaNotRunning": "Erro: O Ollama não está em execução!",
     "modelMissingStartingDownload": "O modelo {{tag}} está ausente. Iniciando download...",
     "backendConnectionFailed": "Falha na conexão com o backend",
@@ -96,7 +96,7 @@
     "errorSwitchingProject": "Erro ao alternar o projeto",
     "projectDeleted": "Projeto excluído",
     "errorDeletingProject": "Erro ao excluir o projeto",
-    "failedToCreateFolder": "Falha ao criar pasta",
+    "failedToCreateFolder": "Falha ao criar a pasta",
     "connectionError": "Erro de conexão",
     "pleaseDescribeAssetFirst": "Por favor, descreva o asset primeiro.",
     "generatingAsset": "Gerando asset...",

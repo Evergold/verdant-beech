@@ -86,7 +86,7 @@
     "backendConnectionFailed": "Ühendus taustasüsteemiga ebaõnnestus",
     "warningNotInstalledLocally": "Hoiatus: {{tag}} pole kohalikult installitud.",
     "backgroundModelSetupInProgress": "Taustamudeli seadistamine on veel pooleli, palun oodake...",
-    "localModelErrorFallbackGemini": "Local model error during chat. Falling back to Gemini Flash.",
+    "localModelErrorFallbackGemini": "Kohaliku mudeli viga vestluse ajal. Lülitume tagasi Gemini Flashile.",
     "greenAdjusting": "Roheline kohandub: {{name}}",
     "projectRenamed": "Projekt on ümber nimetatud",
     "errorRenamingProject": "Viga projekti ümbernimetamisel",

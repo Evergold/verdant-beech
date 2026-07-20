@@ -31,7 +31,7 @@
   },
   "library": {
     "title": "מנהל הספרייה",
-    "description": "נהל תיקי עבודות, תגיות ונכסים כאן.",
+    "description": "נהל כאן תיקי עבודות, תגיות ונכסים.",
     "newFolderPlaceholder": "שם תיק עבודות חדש...",
     "create": "צור"
   },
@@ -51,13 +51,13 @@
     "terrainEngine": "מנוע הרכבת שטח",
     "generateHills": "צור גבעות",
     "flatten": "שטח",
-    "dropMarker": "📍 נעץ סמן יישוב",
-    "markerDesc": "סמנים נצמדים פיזיקלית באופן אוטומטי לגיאומטריה המוזזת של שכבות השטח."
+    "dropMarker": "📍 מקם סמן יישוב",
+    "markerDesc": "סמנים נצמדים פיזיקלית באופן אוטומטי לגיאומטריה המועתקת של שכבות השטח."
   },
   "asset": {
     "title": "מחולל נכסים",
     "description": "צור ושפר נכסים מותאמים אישית.",
-    "exploratoryMode": "מצב חקר",
+    "exploratoryMode": "מצב חקירה",
     "exploratoryDesc": "עקוף את הנחיות הסגנון כדי להתנסות בחופשיות",
     "promptPlaceholder": "תאר את הנכס (למשל 'פטריה כחולה זוהרת')...",
     "generate": "צור נכס",
@@ -76,7 +76,7 @@
   "toasts": {
     "prewarming": "מבצע חימום מוקדם ל-{{model}}...",
     "modelMissingDownloadLater": "המודל חסר. הוא יורד כאשר תשלח הודעה.",
-    "fallbackGemini": "טעינת {{modelId}} נכשלה: {{error}}. עובר ל-Gemini כגיבוי.",
+    "fallbackGemini": "טעינת {{modelId}} נכשלה: {{error}}. חוזר ל-Gemini.",
     "modelsUpdated": "המודלים הנדרשים נבדקו ועודכנו באופן אוטומטי!",
     "downloadComplete": "ההורדה הושלמה!",
     "downloadPaused": "ההורדה הושהתה",
@@ -86,7 +86,7 @@
     "backendConnectionFailed": "החיבור לשרת האחורי נכשל",
     "warningNotInstalledLocally": "אזהרה: {{tag}} אינו מותקן מקומית.",
     "backgroundModelSetupInProgress": "הגדרת מודל הרקע עדיין בתהליך, אנא המתן...",
-    "localModelErrorFallbackGemini": "שגיאת מודל מקומי במהלך הצ'אט. עובר ל-Gemini Flash כגיבוי.",
+    "localModelErrorFallbackGemini": "שגיאת מודל מקומי במהלך הצ'אט. חוזר ל-Gemini Flash.",
     "greenAdjusting": "הירוק מתכוונן: {{name}}",
     "projectRenamed": "שם הפרויקט שונה",
     "errorRenamingProject": "שגיאה בשינוי שם הפרויקט",

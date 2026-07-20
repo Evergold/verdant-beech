@@ -13,7 +13,7 @@
     "editToRename": "प्रकल्पाचे नाव बदलण्यासाठी संपादित करा",
     "switchProject": "प्रकल्प बदला",
     "newProject": "➕ नवीन प्रकल्प",
-    "untitledProject": "शीर्षक नसलेला प्रकल्प",
+    "untitledProject": "विनाशीर्षक प्रकल्प",
     "deleteProject": "प्रकल्प हटवा",
     "confirmDelete": "हटवण्याची पुष्टी करा",
     "cancel": "रद्द करा"
@@ -31,7 +31,7 @@
   },
   "library": {
     "title": "लायब्ररी व्यवस्थापक",
-    "description": "येथे पोर्टफोलिओ, टॅग्ज आणि अॅसेट व्यवस्थापित करा.",
+    "description": "येथे पोर्टफोलिओ, टॅग आणि अॅसेट व्यवस्थापित करा.",
     "newFolderPlaceholder": "नवीन पोर्टफोलिओ नाव...",
     "create": "तयार करा"
   },
@@ -40,8 +40,8 @@
     "description": "Verdant चे निर्मिती नियम कॉन्फिगर करा.",
     "envLighting": "पर्यावरण प्रकाशयोजना",
     "uniformStudio": "एकसमान स्टुडिओ (डीफॉल्ट)",
-    "moodyCandlelit": "मूड वाढवणारी मेणबत्तीची प्रकाशयोजना",
-    "lightingTemp": "प्रकाशयोजना तापमान",
+    "moodyCandlelit": "मूड कॅन्डललाइट",
+    "lightingTemp": "प्रकाश तापमान",
     "moonlight": "चांदणे (10000K)",
     "overcast": "ढगाळ (7000K)",
     "studio": "स्टुडिओ (डीफॉल्ट, 6500K)",
@@ -51,7 +51,7 @@
     "terrainEngine": "भूरूप कंपोझिटिंग इंजिन",
     "generateHills": "टेकड्या तयार करा",
     "flatten": "सपाट करा",
-    "dropMarker": "📍 सेटलमेंट मार्कर ठेवा",
+    "dropMarker": "📍 वसाहत मार्कर ठेवा",
     "markerDesc": "मार्कर स्वयंचलितपणे भूरूप थरांच्या विस्थापित भूमितीशी भौतिकदृष्ट्या जोडले जातात."
   },
   "asset": {
@@ -59,25 +59,25 @@
     "description": "विशिष्ट अॅसेट तयार करा आणि सुधारा.",
     "exploratoryMode": "अन्वेषणात्मक मोड",
     "exploratoryDesc": "मुक्तपणे प्रयोग करण्यासाठी शैली मार्गदर्शक तत्त्वे वगळा",
-    "promptPlaceholder": "अॅसेटचे वर्णन करा (उदा. 'चमकणारा निळा मशरूम')...",
+    "promptPlaceholder": "अॅसेटचे वर्णन करा (उदा. 'एक चमकणारा निळा आळिंबी')...",
     "generate": "अॅसेट तयार करा",
-    "previewAlt": "अॅसेट पूर्वदृश्य",
+    "previewAlt": "अॅसेट पूर्वावलोकन",
     "namePlaceholder": "अॅसेटचे नाव (उदा. blue_mushroom)",
     "save": "लायब्ररीमध्ये जतन करा"
   },
   "canvas": {
     "orientationLandscape": "🔄 अभिमुखता: लँडस्केप",
     "orientationPortrait": "🔄 अभिमुखता: पोर्ट्रेट",
-    "zoomToolOff": "🔍 झूम टूल: बंद",
-    "zoomToolOn": "🔍 झूम टूल: सुरू",
+    "zoomToolOff": "🔍 झूम साधन: बंद",
+    "zoomToolOn": "🔍 झूम साधन: सुरू",
     "orientationTitle": "पोर्ट्रेट/लँडस्केप टॉगल करा",
-    "zoomTitle": "झूम टूल (झूम आउट करण्यासाठी Ctrl दाबून ठेवा)"
+    "zoomTitle": "झूम साधन (झूम कमी करण्यासाठी Ctrl दाबून ठेवा)"
   },
   "toasts": {
     "prewarming": "{{model}} प्री-वॉर्मिंग होत आहे...",
-    "modelMissingDownloadLater": "मॉडेल गहाळ आहे. तुम्ही संदेश पाठवल्यावर डाउनलोड केले जाईल.",
-    "fallbackGemini": "{{modelId}} लोड करण्यात अयशस्वी: {{error}}. Gemini वर परत जात आहे.",
-    "modelsUpdated": "आवश्यक मॉडेल्स स्वयंचलितपणे तपासले आणि अद्यतनित केले गेले!",
+    "modelMissingDownloadLater": "मॉडेल गहाळ आहे. तुम्ही संदेश पाठवल्यावर ते डाउनलोड केले जाईल.",
+    "fallbackGemini": "{{modelId}} लोड करण्यात अयशस्वी: {{error}}. जेमिनी (Gemini) वर परत जात आहे.",
+    "modelsUpdated": "आवश्यक मॉडेल्स स्वयंचलितपणे तपासले आणि अद्यतनित केले गेले आहेत!",
     "downloadComplete": "डाउनलोड पूर्ण झाले!",
     "downloadPaused": "डाउनलोड विराम दिला",
     "downloadFailed": "डाउनलोड अयशस्वी",
@@ -86,7 +86,7 @@
     "backendConnectionFailed": "बॅकएंडशी कनेक्शन अयशस्वी झाले",
     "warningNotInstalledLocally": "चेतावणी: {{tag}} स्थानिक पातळीवर स्थापित केलेले नाही.",
     "backgroundModelSetupInProgress": "पार्श्वभूमी मॉडेल सेटअप अद्याप प्रगतीपथावर आहे, कृपया प्रतीक्षा करा...",
-    "localModelErrorFallbackGemini": "चॅट दरम्यान स्थानिक मॉडेल त्रुटी. Gemini Flash वर परत जात आहे.",
+    "localModelErrorFallbackGemini": "चॅट दरम्यान स्थानिक मॉडेल त्रुटी. जेमिनी फ्लॅश (Gemini Flash) वर परत जात आहे.",
     "greenAdjusting": "हिरवा रंग समायोजित होत आहे: {{name}}",
     "projectRenamed": "प्रकल्पाचे नाव बदलले",
     "errorRenamingProject": "प्रकल्पाचे नाव बदलताना त्रुटी",
@@ -103,6 +103,6 @@
     "generationFailed": "निर्मिती अयशस्वी: {{error}}",
     "connectionErrorWhileGeneratingAsset": "अॅसेट तयार करताना कनेक्शन त्रुटी आली.",
     "pleaseProvideNameToSaveAsset": "कृपया अॅसेट जतन करण्यासाठी नाव द्या.",
-    "savedAssetToLibrary": "'{{name}}' अॅसेट लायब्ररीमध्ये जतन केली!"
+    "savedAssetToLibrary": "अॅसेट '{{name}}' लायब्ररीमध्ये जतन केले!"
   }
 }

@@ -3,7 +3,7 @@
     "projects": "ਪ੍ਰੋਜੈਕਟ",
     "assistant": "ਸਹਾਇਕ ਟੂਲ",
     "library": "ਲਾਇਬ੍ਰੇਰੀ ਮੈਨੇਜਰ",
-    "style": "ਸ਼ੈਲੀ ਦੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼",
+    "style": "ਸ਼ੈਲੀ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼",
     "asset": "ਸੰਪਤੀ ਜਨਰੇਟਰ"
   },
   "projects": {
@@ -31,13 +31,13 @@
   },
   "library": {
     "title": "ਲਾਇਬ੍ਰੇਰੀ ਮੈਨੇਜਰ",
-    "description": "ਇੱਥੇ ਪੋਰਟਫੋਲੀਓ, ਟੈਗਸ ਅਤੇ ਸੰਪਤੀਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।",
+    "description": "ਇੱਥੇ ਪੋਰਟਫੋਲੀਓ, ਟੈਗ ਅਤੇ ਸੰਪਤੀਆਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ।",
     "newFolderPlaceholder": "ਨਵਾਂ ਪੋਰਟਫੋਲੀਓ ਨਾਮ...",
     "create": "ਬਣਾਓ"
   },
   "style": {
-    "title": "ਸ਼ੈਲੀ ਦੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼",
-    "description": "ਵਰਡੈਂਟ (Verdant) ਦੇ ਨਿਰਮਾਣ ਨਿਯਮਾਂ ਨੂੰ ਕੌਂਫਿਗਰ ਕਰੋ।",
+    "title": "ਸ਼ੈਲੀ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼",
+    "description": "ਵਰਡੈਂਟ ਦੇ ਨਿਰਮਾਣ ਨਿਯਮਾਂ ਨੂੰ ਕੌਂਫਿਗਰ ਕਰੋ।",
     "envLighting": "ਵਾਤਾਵਰਣ ਦੀ ਰੋਸ਼ਨੀ",
     "uniformStudio": "ਯੂਨੀਫਾਰਮ ਸਟੂਡੀਓ (ਡਿਫੌਲਟ)",
     "moodyCandlelit": "ਮੂਡੀ ਮੋਮਬੱਤੀ ਦੀ ਰੋਸ਼ਨੀ",
@@ -52,11 +52,11 @@
     "generateHills": "ਪਹਾੜੀਆਂ ਬਣਾਓ",
     "flatten": "ਪੱਧਰਾ ਕਰੋ",
     "dropMarker": "📍 ਬਸਤੀ ਦਾ ਨਿਸ਼ਾਨ ਲਗਾਓ",
-    "markerDesc": "ਨਿਸ਼ਾਨਦੇਹ ਆਪਣੇ ਆਪ ਟੈਰੇਨ ਲੇਅਰਾਂ ਦੇ ਵਿਸਥਾਪਿਤ ਜਿਓਮੈਟਰੀ ਨਾਲ ਫਿਜ਼ਿਕਸ-ਸਨੈਪ ਹੋ ਜਾਂਦੇ ਹਨ।"
+    "markerDesc": "ਨਿਸ਼ਾਨ ਆਪਣੇ ਆਪ ਟੈਰੇਨ ਪਰਤਾਂ ਦੇ ਵਿਸਥਾਪਿਤ ਜਿਓਮੈਟਰੀ ਨਾਲ ਭੌਤਿਕ ਵਿਗਿਆਨ ਅਨੁਸਾਰ ਜੁੜ ਜਾਂਦੇ ਹਨ।"
   },
   "asset": {
     "title": "ਸੰਪਤੀ ਜਨਰੇਟਰ",
-    "description": "ਖਾਸ ਸੰਪਤੀਆਂ ਬਣਾਓ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਬਿਹਤਰ ਬਣਾਓ।",
+    "description": "ਬੇਸਪੋਕ ਸੰਪਤੀਆਂ ਬਣਾਓ ਅਤੇ ਉਹਨਾਂ ਨੂੰ ਬਿਹਤਰ ਬਣਾਓ।",
     "exploratoryMode": "ਖੋਜੀ ਮੋਡ",
     "exploratoryDesc": "ਖੁੱਲ੍ਹ ਕੇ ਪ੍ਰਯੋਗ ਕਰਨ ਲਈ ਸ਼ੈਲੀ ਦੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਨੂੰ ਬਾਈਪਾਸ ਕਰੋ",
     "promptPlaceholder": "ਸੰਪਤੀ ਦਾ ਵਰਣਨ ਕਰੋ (ਜਿਵੇਂ 'ਇੱਕ ਚਮਕਦਾ ਨੀਲਾ ਮਸ਼ਰੂਮ')...",
@@ -71,23 +71,23 @@
     "zoomToolOff": "🔍 ਜ਼ੂਮ ਟੂਲ: ਬੰਦ",
     "zoomToolOn": "🔍 ਜ਼ੂਮ ਟੂਲ: ਚਾਲੂ",
     "orientationTitle": "ਪੋਰਟਰੇਟ/ਲੈਂਡਸਕੇਪ ਬਦਲੋ",
-    "zoomTitle": "ਜ਼ੂਮ ਟੂਲ (ਜ਼ੂਮ ਆਉਟ ਕਰਨ ਲਈ Ctrl ਦਬਾ ਕੇ ਰੱਖੋ)"
+    "zoomTitle": "ਜ਼ੂਮ ਟੂਲ (ਜ਼ੂਮ ਆਊਟ ਕਰਨ ਲਈ Ctrl ਦਬਾ ਕੇ ਰੱਖੋ)"
   },
   "toasts": {
     "prewarming": "{{model}} ਨੂੰ ਪ੍ਰੀ-ਵਾਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "modelMissingDownloadLater": "ਮਾਡਲ ਗੁੰਮ ਹੈ। ਜਦੋਂ ਤੁਸੀਂ ਕੋਈ ਸੁਨੇਹਾ ਭੇਜੋਗੇ ਤਾਂ ਇਹ ਡਾਊਨਲੋਡ ਹੋ ਜਾਵੇਗਾ।",
-    "fallbackGemini": "{{modelId}} ਨੂੰ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ: {{error}}। ਜੈਮਿਨੀ (Gemini) 'ਤੇ ਵਾਪਸ ਜਾ ਰਿਹਾ ਹੈ।",
+    "fallbackGemini": "{{modelId}} ਨੂੰ ਲੋਡ ਕਰਨ ਵਿੱਚ ਅਸਫਲ: {{error}}। Gemini 'ਤੇ ਵਾਪਸ ਜਾ ਰਿਹਾ ਹੈ।",
     "modelsUpdated": "ਲੋੜੀਂਦੇ ਮਾਡਲਾਂ ਦੀ ਆਪਣੇ ਆਪ ਜਾਂਚ ਕੀਤੀ ਗਈ ਅਤੇ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ!",
     "downloadComplete": "ਡਾਊਨਲੋਡ ਪੂਰਾ ਹੋਇਆ!",
     "downloadPaused": "ਡਾਊਨਲੋਡ ਰੋਕਿਆ ਗਿਆ",
     "downloadFailed": "ਡਾਊਨਲੋਡ ਅਸਫਲ ਰਿਹਾ",
-    "ollamaNotRunning": "ਗਲਤੀ: ਓਲਾਮਾ (Ollama) ਨਹੀਂ ਚੱਲ ਰਿਹਾ ਹੈ!",
+    "ollamaNotRunning": "ਗਲਤੀ: Ollama ਨਹੀਂ ਚੱਲ ਰਿਹਾ ਹੈ!",
     "modelMissingStartingDownload": "ਮਾਡਲ {{tag}} ਗੁੰਮ ਹੈ। ਡਾਊਨਲੋਡ ਸ਼ੁਰੂ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "backendConnectionFailed": "ਬੈਕਐਂਡ ਨਾਲ ਕਨੈਕਸ਼ਨ ਅਸਫਲ ਰਿਹਾ",
     "warningNotInstalledLocally": "ਚੇਤਾਵਨੀ: {{tag}} ਸਥਾਨਕ ਤੌਰ 'ਤੇ ਸਥਾਪਤ ਨਹੀਂ ਹੈ।",
     "backgroundModelSetupInProgress": "ਬੈਕਗ੍ਰਾਊਂਡ ਮਾਡਲ ਸੈੱਟਅੱਪ ਅਜੇ ਵੀ ਜਾਰੀ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ...",
-    "localModelErrorFallbackGemini": "ਚੈਟ ਦੌਰਾਨ ਸਥਾਨਕ ਮਾਡਲ ਵਿੱਚ ਗਲਤੀ ਆਈ। ਜੈਮਿਨੀ ਫਲੈਸ਼ (Gemini Flash) 'ਤੇ ਵਾਪਸ ਜਾ ਰਿਹਾ ਹੈ।",
-    "greenAdjusting": "ਗ੍ਰੀਨ ਐਡਜਸਟ ਕਰ ਰਿਹਾ ਹੈ: {{name}}",
+    "localModelErrorFallbackGemini": "ਚੈਟ ਦੌਰਾਨ ਸਥਾਨਕ ਮਾਡਲ ਵਿੱਚ ਗਲਤੀ ਆਈ। Gemini Flash 'ਤੇ ਵਾਪਸ ਜਾ ਰਿਹਾ ਹੈ।",
+    "greenAdjusting": "ਗ੍ਰੀਨ ਐਡਜਸਟ ਹੋ ਰਿਹਾ ਹੈ: {{name}}",
     "projectRenamed": "ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਬਦਲਿਆ ਗਿਆ",
     "errorRenamingProject": "ਪ੍ਰੋਜੈਕਟ ਦਾ ਨਾਮ ਬਦਲਣ ਵਿੱਚ ਗਲਤੀ",
     "newProjectCreated": "ਨਵਾਂ ਪ੍ਰੋਜੈਕਟ ਬਣਾਇਆ ਗਿਆ",

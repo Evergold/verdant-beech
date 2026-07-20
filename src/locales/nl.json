@@ -52,13 +52,13 @@
     "generateHills": "Heuvels genereren",
     "flatten": "Afvlakken",
     "dropMarker": "📍 Nederzettingsmarkering plaatsen",
-    "markerDesc": "Markeringen worden automatisch via fysica uitgelijnd op de verplaatste geometrie van de terreinlagen."
+    "markerDesc": "Markeringen snappen automatisch via physics naar de verplaatste geometrie van de terreinlagen."
   },
   "asset": {
     "title": "Asset-generator",
     "description": "Creëer en verfijn op maat gemaakte assets.",
     "exploratoryMode": "Verkenningsmodus",
-    "exploratoryDesc": "Sla de stijlrichtlijnen over om vrij te experimenteren",
+    "exploratoryDesc": "Omzeil stijlrichtlijnen om vrij te experimenteren",
     "promptPlaceholder": "Beschrijf de asset (bijv. 'Een gloeiende blauwe paddenstoel')...",
     "generate": "Asset genereren",
     "previewAlt": "Asset-voorbeeld",
@@ -68,10 +68,10 @@
   "canvas": {
     "orientationLandscape": "🔄 Oriëntatie: Liggend",
     "orientationPortrait": "🔄 Oriëntatie: Staand",
-    "zoomToolOff": "🔍 Zoom-tool: UIT",
-    "zoomToolOn": "🔍 Zoom-tool: AAN",
+    "zoomToolOff": "🔍 Zoomtool: UIT",
+    "zoomToolOn": "🔍 Zoomtool: AAN",
     "orientationTitle": "Wisselen tussen staand/liggend",
-    "zoomTitle": "Zoom-tool (Houd Ctrl ingedrukt om uit te zoomen)"
+    "zoomTitle": "Zoomtool (Houd Ctrl ingedrukt om uit te zoomen)"
   },
   "toasts": {
     "prewarming": "Voorverwarmen van {{model}}...",
@@ -82,26 +82,26 @@
     "downloadPaused": "Download gepauzeerd",
     "downloadFailed": "Download mislukt",
     "ollamaNotRunning": "Fout: Ollama is niet actief!",
-    "modelMissingStartingDownload": "Model {{tag}} is missing. Download starten...",
+    "modelMissingStartingDownload": "Model {{tag}} ontbreekt. Downloaden starten...",
     "backendConnectionFailed": "Verbinding met backend mislukt",
     "warningNotInstalledLocally": "Waarschuwing: {{tag}} is niet lokaal geïnstalleerd.",
     "backgroundModelSetupInProgress": "Modelconfiguratie op de achtergrond is nog bezig, even geduld...",
     "localModelErrorFallbackGemini": "Lokale modelfout tijdens chat. Er wordt teruggevallen op Gemini Flash.",
     "greenAdjusting": "Groen past aan: {{name}}",
-    "projectRenamed": "Projectnaam gewijzigd",
-    "errorRenamingProject": "Fout bij wijzigen van projectnaam",
-    "newProjectCreated": "Nieuw project aangemaakt",
-    "errorCreatingProject": "Fout bij aanmaken van project",
+    "projectRenamed": "Project hernoemd",
+    "errorRenamingProject": "Fout bij hernoemen van project",
+    "newProjectCreated": "Nieuw project gemaakt",
+    "errorCreatingProject": "Fout bij maken van project",
     "projectSwitched": "Project gewisseld",
     "errorSwitchingProject": "Fout bij wisselen van project",
     "projectDeleted": "Project verwijderd",
     "errorDeletingProject": "Fout bij verwijderen van project",
-    "failedToCreateFolder": "Aanmaken van map mislukt",
+    "failedToCreateFolder": "Maken van map mislukt",
     "connectionError": "Verbindingsfout",
     "pleaseDescribeAssetFirst": "Beschrijf eerst de asset.",
     "generatingAsset": "Asset genereren...",
     "generationFailed": "Genereren mislukt: {{error}}",
-    "connectionErrorWhileGeneratingAsset": "Verbindingsfout tijdens het genereren van de asset.",
+    "connectionErrorWhileGeneratingAsset": "Verbindingsfout tijdens genereren van asset.",
     "pleaseProvideNameToSaveAsset": "Geef een naam op om de asset op te slaan.",
     "savedAssetToLibrary": "Asset '{{name}}' opgeslagen in bibliotheek!"
   }

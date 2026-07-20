@@ -1,10 +1,10 @@
 {
   "nav": {
     "projects": "Projektit",
-    "assistant": "Avustajatyökalu",
+    "assistant": "Avustaja",
     "library": "Kirjastonhallinta",
     "style": "Tyyliohjeet",
-    "asset": "Resurssigeneraattori"
+    "asset": "Elementtigeneraattori"
   },
   "projects": {
     "title": "Projektit",
@@ -19,7 +19,7 @@
     "cancel": "Peruuta"
   },
   "chat": {
-    "title": "Avustajatyökalu",
+    "title": "Avustaja",
     "placeholder": "Kysy karttaa tai tyylivinkkejä...",
     "send": "Lähetä",
     "activeTasks": "AKTIIVISET TEHTÄVÄT:",
@@ -31,7 +31,7 @@
   },
   "library": {
     "title": "Kirjastonhallinta",
-    "description": "Hallitse portfolioita, tunnisteita ja resursseja täällä.",
+    "description": "Hallitse portfolioita, tunnisteita ja elementtejä täällä.",
     "newFolderPlaceholder": "Uuden portfolion nimi...",
     "create": "Luo"
   },
@@ -44,25 +44,25 @@
     "lightingTemp": "Valaistuksen lämpötila",
     "moonlight": "Kuunvalo (10000K)",
     "overcast": "Pilvinen (7000K)",
-    "studio": "Studio (Oletus, 6500K)",
+    "studio": "Studio (oletus, 6500K)",
     "daylight": "Päivänvalo (5500K)",
     "goldenHour": "Kultainen hetki (4000K)",
     "halogen": "Halogeeni (3200K)",
-    "terrainEngine": "Maaston koostamo",
+    "terrainEngine": "Maastonkoostamo",
     "generateHills": "Luo kukkuloita",
     "flatten": "Tasoita",
     "dropMarker": "📍 Aseta asutusmerkki",
-    "markerDesc": "Merkit napsahtavat fysiikan mukaisesti automaattisesti maastokerrosten siirtyneeseen geometriaan."
+    "markerDesc": "Merkit kiinnittyvät fysiikan avulla automaattisesti maastokerrosten siirtyneeseen geometriaan."
   },
   "asset": {
-    "title": "Resurssigeneraattori",
-    "description": "Luo ja hio räätälöityjä resursseja.",
+    "title": "Elementtigeneraattori",
+    "description": "Luo ja hio räätälöityjä elementtejä.",
     "exploratoryMode": "Tutkimustila",
     "exploratoryDesc": "Ohita tyyliohjeet vapaata kokeilua varten",
-    "promptPlaceholder": "Kuvaile resurssia (esim. 'Hehkuva sininen sieni')...",
-    "generate": "Luo resurssi",
-    "previewAlt": "Resurssin esikatselu",
-    "namePlaceholder": "Resurssin nimi (esim. sininen_sieni)",
+    "promptPlaceholder": "Kuvaile elementtiä (esim. 'Hehkuva sininen sieni')...",
+    "generate": "Luo elementti",
+    "previewAlt": "Elementin esikatselu",
+    "namePlaceholder": "Elementin nimi (esim. sininen_sieni)",
     "save": "Tallenna kirjastoon"
   },
   "canvas": {
@@ -74,9 +74,9 @@
     "zoomTitle": "Zoomaustyökalu (Pidä Ctrl painettuna loitontaaksesi)"
   },
   "toasts": {
-    "prewarming": "Esilämmitetään mallia {{model}}...",
+    "prewarming": "Esilämmitetään {{model}}...",
     "modelMissingDownloadLater": "Malli puuttuu. Se ladataan, kun lähetät viestin.",
-    "fallbackGemini": "Mallin {{modelId}} lataaminen epäonnistui: {{error}}. Siirrytään käyttämään Geminiä.",
+    "fallbackGemini": "Mallin {{modelId}} lataus epäonnistui: {{error}}. Siirrytään Geminiin.",
     "modelsUpdated": "Vaaditut mallit tarkistettiin ja päivitettiin automaattisesti!",
     "downloadComplete": "Lataus valmis!",
     "downloadPaused": "Lataus keskeytetty",
@@ -84,10 +84,10 @@
     "ollamaNotRunning": "Virhe: Ollama ei ole käynnissä!",
     "modelMissingStartingDownload": "Malli {{tag}} puuttuu. Aloitetaan lataus...",
     "backendConnectionFailed": "Yhteys taustajärjestelmään epäonnistui",
-    "warningNotInstalledLocally": "Varoitus: Mallia {{tag}} ei ole asennettu paikallisesti.",
-    "backgroundModelSetupInProgress": "Taustamallin määritys on vielä kesken, odota hetki...",
-    "localModelErrorFallbackGemini": "Paikallisen mallin virhe keskustelun aikana. Siirrytään käyttämään Gemini Flashia.",
-    "greenAdjusting": "Green säätää: {{name}}",
+    "warningNotInstalledLocally": "Varoitus: {{tag}} ei ole asennettu paikallisesti.",
+    "backgroundModelSetupInProgress": "Taustamallin määritys on edelleen käynnissä, odota...",
+    "localModelErrorFallbackGemini": "Paikallisen mallin virhe chatin aikana. Siirrytään Gemini Flashiin.",
+    "greenAdjusting": "Vihreä säätää: {{name}}",
     "projectRenamed": "Projekti nimetty uudelleen",
     "errorRenamingProject": "Virhe nimettäessä projektia uudelleen",
     "newProjectCreated": "Uusi projekti luotu",
@@ -98,11 +98,11 @@
     "errorDeletingProject": "Virhe poistettaessa projektia",
     "failedToCreateFolder": "Kansion luominen epäonnistui",
     "connectionError": "Yhteysvirhe",
-    "pleaseDescribeAssetFirst": "Kuvaile resurssia ensin.",
-    "generatingAsset": "Luodaan resurssia...",
+    "pleaseDescribeAssetFirst": "Kuvaile elementti ensin.",
+    "generatingAsset": "Luodaan elementtiä...",
     "generationFailed": "Luonti epäonnistui: {{error}}",
-    "connectionErrorWhileGeneratingAsset": "Yhteysvirhe resurssia luodessa.",
-    "pleaseProvideNameToSaveAsset": "Anna nimi resurssin tallentamiseksi.",
-    "savedAssetToLibrary": "Resurssi '{{name}}' tallennettu kirjastoon!"
+    "connectionErrorWhileGeneratingAsset": "Yhteysvirhe elementtiä luodessa.",
+    "pleaseProvideNameToSaveAsset": "Anna nimi elementin tallentamiseksi.",
+    "savedAssetToLibrary": "Elementti '{{name}}' tallennettu kirjastoon!"
   }
 }

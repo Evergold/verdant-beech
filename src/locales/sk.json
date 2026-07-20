@@ -13,7 +13,7 @@
     "editToRename": "Upravte pre premenovanie projektu",
     "switchProject": "Prepnúť projekt",
     "newProject": "➕ Nový projekt",
-    "untitledProject": "Nepomenovaný projekt",
+    "untitledProject": "Projekt bez názvu",
     "deleteProject": "Vymazať projekt",
     "confirmDelete": "Potvrdiť vymazanie",
     "cancel": "Zrušiť"
@@ -52,7 +52,7 @@
     "generateHills": "Generovať kopce",
     "flatten": "Sploštiť",
     "dropMarker": "📍 Umiestniť značku osady",
-    "markerDesc": "Značky sa automaticky prichytia k deformovanej geometrii vrstiev terénu."
+    "markerDesc": "Značky sa automaticky prichytia k deformovanej geometrii vrstiev terénu pomocou fyziky."
   },
   "asset": {
     "title": "Generátor objektov",
@@ -68,10 +68,10 @@
   "canvas": {
     "orientationLandscape": "🔄 Orientácia: Na šírku",
     "orientationPortrait": "🔄 Orientácia: Na výšku",
-    "zoomToolOff": "🔍 Nástroj priblíženia: VYPNUTÝ",
-    "zoomToolOn": "🔍 Nástroj priblíženia: ZAPNUTÝ",
+    "zoomToolOff": "🔍 Nástroj lupy: VYPNUTÝ",
+    "zoomToolOn": "🔍 Nástroj lupy: ZAPNUTÝ",
     "orientationTitle": "Prepnúť na výšku/šírku",
-    "zoomTitle": "Nástroj priblíženia (podržte Ctrl pre oddialenie)"
+    "zoomTitle": "Nástroj lupy (podržte Ctrl pre oddialenie)"
   },
   "toasts": {
     "prewarming": "Predhrieva sa {{model}}...",
@@ -87,7 +87,7 @@
     "warningNotInstalledLocally": "Upozornenie: {{tag}} nie je nainštalovaný lokálne.",
     "backgroundModelSetupInProgress": "Nastavenie modelu na pozadí stále prebieha, čakajte prosím...",
     "localModelErrorFallbackGemini": "Chyba lokálneho modelu počas chatu. Prechádza sa na Gemini Flash.",
-    "greenAdjusting": "Zelená sa prispôbuje: {{name}}",
+    "greenAdjusting": "Zelená sa prispôsobuje: {{name}}",
     "projectRenamed": "Projekt bol premenovaný",
     "errorRenamingProject": "Chyba pri premenovávaní projektu",
     "newProjectCreated": "Nový projekt bol vytvorený",
@@ -102,7 +102,7 @@
     "generatingAsset": "Generuje sa objekt...",
     "generationFailed": "Generovanie zlyhalo: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Chyba pripojenia počas generovania objektu.",
-    "pleaseProvideNameToSaveAsset": "Zadajte názov pre uloženie objektu.",
+    "pleaseProvideNameToSaveAsset": "Zadajte názov na uloženie objektu.",
     "savedAssetToLibrary": "Objekt „{{name}}“ bol uložený do knižnice!"
   }
 }

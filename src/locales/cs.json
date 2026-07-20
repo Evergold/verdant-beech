@@ -13,7 +13,7 @@
     "editToRename": "Upravit pro přejmenování projektu",
     "switchProject": "Přepnout projekt",
     "newProject": "➕ Nový projekt",
-    "untitledProject": "Nepojmenovaný projekt",
+    "untitledProject": "Projekt bez názvu",
     "deleteProject": "Smazat projekt",
     "confirmDelete": "Potvrdit smazání",
     "cancel": "Zrušit"
@@ -56,7 +56,7 @@
   },
   "asset": {
     "title": "Generátor prvků",
-    "description": "Vytvářejte a zdokonalujte vlastní prvky.",
+    "description": "Vytvářejte a zdokonalujte zakázkové prvky.",
     "exploratoryMode": "Průzkumný režim",
     "exploratoryDesc": "Obejít pokyny pro styl a volně experimentovat",
     "promptPlaceholder": "Popište prvek (např. 'Svítící modrá houba')...",
@@ -68,15 +68,15 @@
   "canvas": {
     "orientationLandscape": "🔄 Orientace: Na šířku",
     "orientationPortrait": "🔄 Orientace: Na výšku",
-    "zoomToolOff": "🔍 Nástroj lupa: VYPNUTO",
-    "zoomToolOn": "🔍 Nástroj lupa: ZAPNUTO",
-    "orientationTitle": "Přepnout na výšku/šířku",
-    "zoomTitle": "Nástroj lupa (podržte Ctrl pro oddálení)"
+    "zoomToolOff": "🔍 Nástroj lupy: VYPNUTO",
+    "zoomToolOn": "🔍 Nástroj lupy: ZAPNUTO",
+    "orientationTitle": "Přepnout na výšku/na šířku",
+    "zoomTitle": "Nástroj lupy (podržte Ctrl pro oddálení)"
   },
   "toasts": {
-    "prewarming": "Předehřívání {{model}}...",
+    "prewarming": "Zahřívání {{model}}...",
     "modelMissingDownloadLater": "Model chybí. Stáhne se, jakmile odešlete zprávu.",
-    "fallbackGemini": "Nepodařilo se načíst {{modelId}}: {{error}}. Přecházím na Gemini.",
+    "fallbackGemini": "Nepodařilo se načíst {{modelId}}: {{error}}. Přepínání na Gemini.",
     "modelsUpdated": "Požadované modely byly automaticky zkontrolovány a aktualizovány!",
     "downloadComplete": "Stahování dokončeno!",
     "downloadPaused": "Stahování pozastaveno",
@@ -86,10 +86,10 @@
     "backendConnectionFailed": "Připojení k backendu selhalo",
     "warningNotInstalledLocally": "Varování: {{tag}} není nainstalován lokálně.",
     "backgroundModelSetupInProgress": "Nastavení modelu na pozadí stále probíhá, prosím čekejte...",
-    "localModelErrorFallbackGemini": "Chyba lokálního modelu během chatu. Přecházím na Gemini Flash.",
-    "greenAdjusting": "Zelená se upravuje: {{name}}",
+    "localModelErrorFallbackGemini": "Chyba lokálního modelu během chatu. Přepínání na Gemini Flash.",
+    "greenAdjusting": "Zelená se přizpůsobuje: {{name}}",
     "projectRenamed": "Projekt byl přejmenován",
-    "errorRenamingProject": "Chyba při přejmenovávání projektu",
+    "errorRenamingProject": "Chyba při přejmenování projektu",
     "newProjectCreated": "Nový projekt byl vytvořen",
     "errorCreatingProject": "Chyba při vytváření projektu",
     "projectSwitched": "Projekt byl přepnut",
