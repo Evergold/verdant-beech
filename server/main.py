@@ -435,133 +435,158 @@ CRITICAL RULES:
 - You have tools to manipulate the map canvas (lighting, filters, overlays). If the user asks for a simple visual effect, USE YOUR TOOLS to instantly fulfill the request.
 - Do NOT output raw JSON or explain how to use the tools. Just execute them naturally.
 
-TOOL CALLING EXAMPLES:
-USER: "It's too bright, can you make it night?"
-ASSISTANT: (Triggers `set_lighting` with `time_of_day="night"`) "I have lowered the lights to mimic the evening stars."
-
-USER: "Can you add a hex grid so I can measure distance?"
-ASSISTANT: (Triggers `toggle_overlay` with `overlay_type="hex_grid"` and `enabled=true`) "A hex grid has been overlaid upon your parchment."
-
 Assist the user in preparing maps, advising on style, color theory, typography, and procedural generation."""
 
-CANVAS_TOOLS = [
+TOOL_REGISTRY = [
     {
-        "type": "function",
-        "function": {
-            "name": "set_lighting",
-            "description": "Adjust the ambient lighting and atmosphere of the 3D map canvas.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "time_of_day": {"type": "string", "enum": ["morning", "noon", "evening", "night"]},
-                    "intensity": {"type": "number", "description": "Light intensity from 0.0 to 1.0"}
-                },
-                "required": ["time_of_day"]
+        "keywords": ["light", "dark", "night", "morning", "noon", "evening", "bright", "dim", "sun", "moon", "time of day", "ambient"],
+        "few_shot": 'USER: "It\'s too bright, can you make it night?"\nASSISTANT: (Triggers `set_lighting` with `time_of_day="night"`) "I have lowered the lights to mimic the evening stars."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "set_lighting",
+                "description": "Adjust the ambient lighting and atmosphere of the 3D map canvas.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "time_of_day": {"type": "string", "enum": ["morning", "noon", "evening", "night"]},
+                        "intensity": {"type": "number", "description": "Light intensity from 0.0 to 1.0"}
+                    },
+                    "required": ["time_of_day"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "apply_filter",
-            "description": "Apply a post-processing visual filter to the map.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "filter_type": {"type": "string", "enum": ["none", "sepia", "grayscale", "vignette", "bloom"]}
-                },
-                "required": ["filter_type"]
+        "keywords": ["filter", "sepia", "grayscale", "vignette", "bloom", "effect", "look like", "vintage", "post-processing"],
+        "few_shot": 'USER: "Make it look like an old photograph"\nASSISTANT: (Triggers `apply_filter` with `filter_type="sepia"`) "I have applied a vintage sepia ink filter."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "apply_filter",
+                "description": "Apply a post-processing visual filter to the map.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "filter_type": {"type": "string", "enum": ["none", "sepia", "grayscale", "vignette", "bloom"]}
+                    },
+                    "required": ["filter_type"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "toggle_overlay",
-            "description": "Toggle grid or UI overlays on the map.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "overlay_type": {"type": "string", "enum": ["hex_grid", "square_grid", "compass"]},
-                    "enabled": {"type": "boolean"}
-                },
-                "required": ["overlay_type", "enabled"]
+        "keywords": ["grid", "hex", "square", "compass", "overlay", "measure", "ui", "distance"],
+        "few_shot": 'USER: "Can you add a hex grid so I can measure distance?"\nASSISTANT: (Triggers `toggle_overlay` with `overlay_type="hex_grid"` and `enabled=true`) "A hex grid has been overlaid upon your parchment."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "toggle_overlay",
+                "description": "Toggle grid or UI overlays on the map.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "overlay_type": {"type": "string", "enum": ["hex_grid", "square_grid", "compass"]},
+                        "enabled": {"type": "boolean"}
+                    },
+                    "required": ["overlay_type", "enabled"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "move_camera",
-            "description": "Pan and zoom the camera to a specific region on the map.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "x": {"type": "number", "description": "X coordinate (-20 to 20)"},
-                    "y": {"type": "number", "description": "Y coordinate (-20 to 20)"},
-                    "zoom": {"type": "number", "description": "Zoom level (5 to 40)"}
-                },
-                "required": ["x", "y", "zoom"]
+        "keywords": ["camera", "pan", "zoom", "move to", "look at", "focus on", "coordinate"],
+        "few_shot": 'USER: "Zoom in closely to the center"\nASSISTANT: (Triggers `move_camera` with `x=0, y=0, zoom=30`) "I am bringing our focus closer to the center."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "move_camera",
+                "description": "Pan and zoom the camera to a specific region on the map.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "x": {"type": "number", "description": "X coordinate (-20 to 20)"},
+                        "y": {"type": "number", "description": "Y coordinate (-20 to 20)"},
+                        "zoom": {"type": "number", "description": "Zoom level (5 to 40)"}
+                    },
+                    "required": ["x", "y", "zoom"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "set_map_tint",
-            "description": "Apply a global color tint to the base map.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "hex_color": {"type": "string", "description": "Hex color code, e.g., #FFFFFF"}
-                },
-                "required": ["hex_color"]
+        "keywords": ["tint", "color", "hue", "paint", "dye"],
+        "few_shot": 'USER: "Tint the map red"\nASSISTANT: (Triggers `set_map_tint` with `hex_color="#FF0000"`) "I have dyed the parchment with crimson ink."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "set_map_tint",
+                "description": "Apply a global color tint to the base map.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "hex_color": {"type": "string", "description": "Hex color code, e.g., #FFFFFF"}
+                    },
+                    "required": ["hex_color"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "add_map_marker",
-            "description": "Drop a pin or marker on the map to label a point of interest.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "x": {"type": "number"},
-                    "y": {"type": "number"},
-                    "label": {"type": "string"}
-                },
-                "required": ["x", "y", "label"]
+        "keywords": ["marker", "pin", "drop a pin", "point of interest", "settlement", "location", "label a point"],
+        "few_shot": 'USER: "Drop a pin at 5, 5 called Rivendell"\nASSISTANT: (Triggers `add_map_marker` with `x=5, y=5, label="Rivendell"`) "I have marked Rivendell on the map."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "add_map_marker",
+                "description": "Drop a pin or marker on the map to label a point of interest.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "x": {"type": "number"},
+                        "y": {"type": "number"},
+                        "label": {"type": "string"}
+                    },
+                    "required": ["x", "y", "label"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "toggle_weather",
-            "description": "Turn on an animated weather particle system.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "weather_type": {"type": "string", "enum": ["clear", "rain", "snow", "fog"]}
-                },
-                "required": ["weather_type"]
+        "keywords": ["weather", "rain", "snow", "fog", "clear", "storm"],
+        "few_shot": 'USER: "Make it rain"\nASSISTANT: (Triggers `toggle_weather` with `weather_type="rain"`) "A heavy rain has begun to fall."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "toggle_weather",
+                "description": "Turn on an animated weather particle system.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "weather_type": {"type": "string", "enum": ["clear", "rain", "snow", "fog"]}
+                    },
+                    "required": ["weather_type"]
+                }
             }
         }
     },
     {
-        "type": "function",
-        "function": {
-            "name": "add_text_label",
-            "description": "Add floating text to label a region, ocean, or continent.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "x": {"type": "number"},
-                    "y": {"type": "number"},
-                    "text": {"type": "string"}
-                },
-        "required": ["x", "y", "text"]
+        "keywords": ["text", "float", "label region", "continent name", "ocean name"],
+        "few_shot": 'USER: "Add the text Mordor over the east"\nASSISTANT: (Triggers `add_text_label` with `x=15, y=0, text="Mordor"`) "The name Mordor has been inscribed."\n',
+        "schema": {
+            "type": "function",
+            "function": {
+                "name": "add_text_label",
+                "description": "Add floating text to label a region, ocean, or continent.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "x": {"type": "number"},
+                        "y": {"type": "number"},
+                        "text": {"type": "string"}
+                    },
+            "required": ["x", "y", "text"]
+                }
             }
         }
     }
@@ -626,8 +651,23 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
             except Exception as e:
                 print(f"[MEMORY] Error fetching episodic memory: {e}")
 
+    # DYNAMIC TOOL GATE: Only load tools if relevant keywords are in the user's latest message
+    active_tools = []
+    active_few_shot = []
+    latest_lower = latest_user_msg.lower()
+    
+    for tool in TOOL_REGISTRY:
+        if any(kw in latest_lower for kw in tool["keywords"]):
+            active_tools.append(tool["schema"])
+            active_few_shot.append(tool["few_shot"])
+            
+    # Build dynamic prompt
+    system_prompt = CARTOGRAPHER_PROMPT
+    if active_few_shot:
+        system_prompt += "\n\nTOOL CALLING EXAMPLES:\n" + "\n".join(active_few_shot)
+
     # Build the final prompt structure (Bottom-Heavy Architecture)
-    messages = [{"role": "system", "content": CARTOGRAPHER_PROMPT}]
+    messages = [{"role": "system", "content": system_prompt}]
     
     if episodic_messages:
         messages.append({"role": "system", "content": "--- TELEPORTED HISTORICAL CONTEXT ---"})
@@ -649,9 +689,12 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
     kwargs = {
         "model": req.model_name,
         "messages": messages,
-        "tools": CANVAS_TOOLS,
         "num_ctx": 2048
     }
+    
+    # Only attach the JSON schema overhead if the NLP keyword gate passed
+    if active_tools:
+        kwargs["tools"] = active_tools
     
     if req.reasoning:
         kwargs["reasoning_effort"] = req.reasoning
