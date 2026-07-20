@@ -1,6 +1,6 @@
 # <img src="./public/favicon-32x32.png" width="36" height="36" align="absmiddle" /> Verdant Beech - Cartography Assistant
 
-Verdant Beech is a next-generation map-making application powered by Agentic AI. It features a hardware-accelerated Babylon.js map canvas for large-scale map viewing and full 3D topography visualization. Our unified WebGPU/WebGL architecture guarantees that **Verdant Beech is fully GPU-agnostic and OS-independent**. It runs smoothly on Windows, macOS, and Linux across NVIDIA, AMD, or Apple Silicon hardware.
+Verdant Beech is a next-generation map-making application powered by Agentic AI. It features a hardware-accelerated Babylon.js map canvas for large-scale map viewing and full 3D topography visualization. Our unified WebGPU/WebGL architecture guarantees that **Verdant Beech is fully GPU-agnostic and OS-independent**. It runs smoothly on Windows, macOS, and Linux across NVIDIA, AMD, Intel, or Apple Silicon hardware.
 
 ---
 
@@ -56,29 +56,18 @@ If you intend to run the application using our **Default Local Choice** (Gemma 4
 However, the backend utilizes `litellm` to interface with generative models, meaning you can seamlessly hot-swap to almost any commercial cloud API by exporting the respective keys before starting the server:
 
 **For API-based Assistant Models (Green-persona):**
-- **Google Gemini** (Default API Choice):
-  `export GEMINI_API_KEY="your_key"`
-- **OpenAI** (e.g., `gpt-5.6-sol` for fast, highly capable multi-modal reasoning):
-  `export OPENAI_API_KEY="your_key"`
-- **Anthropic** (e.g., `claude-sonnet-5` for supreme spatial logic & strict JSON schema adherence):
-  `export ANTHROPIC_API_KEY="your_key"`
-- **Groq** (e.g., `groq/llama-4-maverick` for lightning-fast real-time inference):
-  `export GROQ_API_KEY="your_key"`
-- **Mistral** (e.g., `mistral/mistral-large-latest`):
-  `export MISTRAL_API_KEY="your_key"`
+- **Google Gemini** (e.g., `gemini-3.5-flash`): `export GEMINI_API_KEY="your_key"`
+- **OpenAI** (e.g., `gpt-5.6-sol`): `export OPENAI_API_KEY="your_key"`
+- **Anthropic** (e.g., `claude-sonnet-5`): `export ANTHROPIC_API_KEY="your_key"`
+- **Groq** (e.g., `groq/llama-4-maverick`): `export GROQ_API_KEY="your_key"`
+- **Mistral** (e.g., `mistral/mistral-large-latest`): `export MISTRAL_API_KEY="your_key"`
 
 **For Image Generation Models (Verdant-persona):**
-*(You can use **any** image generation API supported by LiteLLM)*
-- **Google Gemini API** (Primary: `gemini/imagen-4.0-generate`):
-  *(Uses your standard `GEMINI_API_KEY`)*
-- **Stability AI** (e.g., `stabilityai/stable-diffusion-3`):
-  `export STABILITY_API_KEY="your_key"`
-- **OpenAI** (e.g., `gpt-image-2`):
-  `export OPENAI_API_KEY="your_key"`
-- **Amazon Bedrock** (e.g., `bedrock/amazon.titan-image-generator-v1`):
-  *(Requires standard AWS Credentials)*
-- **HuggingFace** (e.g., `huggingface/black-forest-labs/FLUX.2`):
-  `export HUGGINGFACE_API_KEY="your_key"`
+- **Google Gemini API** (e.g., `gemini/imagen-4.0-generate`): `export GEMINI_API_KEY="your_key"`
+- **Stability AI** (e.g., `stabilityai/stable-diffusion-3`): `export STABILITY_API_KEY="your_key"`
+- **OpenAI** (e.g., `gpt-image-2`): `export OPENAI_API_KEY="your_key"`
+- **Amazon Bedrock** (e.g., `bedrock/amazon.titan-image-generator-v1`): `export AWS_ACCESS_KEY_ID="your_id" AWS_SECRET_ACCESS_KEY="your_key" AWS_REGION_NAME="us-east-1"`
+- **HuggingFace** (e.g., `huggingface/black-forest-labs/FLUX.2`): `export HUGGINGFACE_API_KEY="your_key"`
 
 ### 1. Installation
 
