@@ -35,10 +35,23 @@ Running the default local assistant model (`gemma4:e4b`) is highly optimized tha
 - **System RAM**: ~6 GB
 
 ### Image Generation Models (Verdant-persona)
-Used for the actual tile stitching and map baking. Due to the high architectural demands of topology, we strictly rely on cutting-edge 2026 models:
-- **Primary:** `gemini/imagen-4.0-generate` (Top-tier for photorealism and zero-shot spatial accuracy).
-- **Conversational Iteration (Nano Banana):** `gemini/nano-banana-2` (for rapid iteration) and `gemini/nano-banana-pro` (for 4K production-grade consistency and complex editing).
-- **Alternatives:** `gpt-image-2` (OpenAI's DALL-E successor, excellent for general scene composition) or `huggingface/black-forest-labs/FLUX.2` (for camera-accurate optics) can be seamlessly swapped via `models.yaml`.
+Used for the actual tile stitching and map baking. Due to the high architectural demands of topology, we strictly rely on cutting-edge 2026 models. In the UI, each model is labeled with its numeric capability Tier (Tier 0 to Tier 2) and specific architectural **Capability Tags**.
+
+#### Capability Tag Definitions:
+- **`One-Shot`**: Highly tuned to perfectly execute a complex prompt on the very first try without requiring manual editing iterations.
+- **`Photorealism`**: Architected to simulate real-world physics, lighting, and high-fidelity textures flawlessly.
+- **`Iterative`**: Optimized for a conversational workflow, allowing you to upload a reference image and perform targeted edits (e.g., "change the background").
+- **`Consistency`**: Excels at keeping characters, objects, or UI themes perfectly identical across multiple distinct generation requests.
+- **`Rapid`**: Stripped-down architecture optimized for low-latency brainstorming and rapid trial-and-error prototyping.
+- **`General`**: A balanced, jack-of-all-trades architecture suitable for standard scene composition.
+- **`Optics`**: Heavily fine-tuned to mimic real-world camera lenses, focal lengths, and cinematic depth of field.
+- **`Enterprise`**: Built with strict commercial compliance, brand safety, and proprietary data protection in mind.
+
+#### Our Default & Templated Models:
+- **Primary [Tier 2]:** `gemini/imagen-4.0-generate` (Capabilities: *One-Shot, Photorealism*)
+- **Conversational Iteration [Tier 1]:** `gemini/nano-banana-pro` (Capabilities: *Iterative, Consistency*)
+- **Rapid Prototyping [Tier 0]:** `gemini/nano-banana-2` (Capabilities: *Rapid*)
+- **Alternatives:** `gpt-image-2` [Tier 1, *General*], `huggingface/black-forest-labs/FLUX.2` [Tier 1, *Optics*], and `bedrock/amazon.titan-image-generator-v1` [Tier 0, *Enterprise*] can be seamlessly swapped via `models.yaml`.
 
 ### Embedding Models (Memory & RAG Retrieval)
 To power our Tiered Memory Architecture, we rely heavily on accurate semantic retrieval for past chat history and Cartography Rules.
