@@ -114,6 +114,7 @@
     "waitingUnload": "사전 예열 전에 안전한 언로드가 완료되기를 기다리는 중...",
     "deferredPrewarm": "지연된 사전 예열 활성화 중...",
     "prewarming_e2b": "{{model}} 사전 예열 중...",
-    "prewarmComplete": "사전 예열 완료! 모델이 VRAM에 상주하고 있습니다."
+    "prewarmComplete": "사전 예열 완료! 모델이 VRAM에 상주하고 있습니다.",
+    "prewarmingPersistent": "잠시 기다려주세요, 사전 예열이 진행 중입니다..."
   }
 }

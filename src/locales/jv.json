@@ -114,6 +114,7 @@
     "waitingUnload": "Ngenteni pembongkaran aman rampung sadurunge prewarming...",
     "deferredPrewarm": "Ngaktifake pre-warming sing ditundha...",
     "prewarming_e2b": "Pra-pemanasan {{model}}...",
-    "prewarmComplete": "Prapemanasan rampung! Model wis ana ing VRAM."
+    "prewarmComplete": "Prapemanasan rampung! Model wis ana ing VRAM.",
+    "prewarmingPersistent": "Manggaha antosi, prapemanasan lagi ditindakake..."
   }
 }

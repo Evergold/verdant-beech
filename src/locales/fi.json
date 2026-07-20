@@ -114,6 +114,7 @@
     "waitingUnload": "Odotetaan turvallisen purkamisen valmistumista ennen esilämmitystä...",
     "deferredPrewarm": "Aktivoidaan viivästetty esilämmitys...",
     "prewarming_e2b": "Esilämmitetään {{model}}...",
-    "prewarmComplete": "Esilämmitys valmis! Mallit ovat VRAM-muistissa."
+    "prewarmComplete": "Esilämmitys valmis! Mallit ovat VRAM-muistissa.",
+    "prewarmingPersistent": "Odota, esilämmitys on käynnissä..."
   }
 }

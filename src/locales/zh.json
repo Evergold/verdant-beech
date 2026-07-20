@@ -114,6 +114,7 @@
     "waitingUnload": "在预热之前等待安全卸载完成...",
     "deferredPrewarm": "正在激活延迟的预热...",
     "prewarming_e2b": "正在预热 {{model}}...",
-    "prewarmComplete": "预热完成！模型现已常驻于 VRAM 中。"
+    "prewarmComplete": "预热完成！模型现已常驻于 VRAM 中。",
+    "prewarmingPersistent": "请稍候，正在进行预热..."
   }
 }

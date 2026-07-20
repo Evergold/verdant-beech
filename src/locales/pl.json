@@ -114,6 +114,7 @@
     "waitingUnload": "Oczekiwanie na zakończenie bezpiecznego zwalniania przed podgrzewaniem...",
     "deferredPrewarm": "Aktywacja opóźnionego podgrzewania...",
     "prewarming_e2b": "Podgrzewanie {{model}}...",
-    "prewarmComplete": "Podgrzewanie zakończone! Modele znajdują się w pamięci VRAM."
+    "prewarmComplete": "Podgrzewanie zakończone! Modele znajdują się w pamięci VRAM.",
+    "prewarmingPersistent": "Proszę czekać, trwa podgrzewanie..."
   }
 }

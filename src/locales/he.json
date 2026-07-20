@@ -114,6 +114,7 @@
     "waitingUnload": "ממתין להשלמת הפריקה הבטוחה לפני חימום מראש...",
     "deferredPrewarm": "מפעיל חימום מראש נדחה...",
     "prewarming_e2b": "מחמם מראש {{model}}...",
-    "prewarmComplete": "החימום מראש הושלם! המודלים שוהים ב-VRAM."
+    "prewarmComplete": "החימום מראש הושלם! המודלים שוהים ב-VRAM.",
+    "prewarmingPersistent": "אנא המתן, חימום מראש מתבצע..."
   }
 }

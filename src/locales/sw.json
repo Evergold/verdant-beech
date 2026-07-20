@@ -114,6 +114,7 @@
     "waitingUnload": "Inasubiri upakuaji salama ukamilike kabla ya kuongeza joto...",
     "deferredPrewarm": "Inawasha ongezeko la joto lililocheleweshwa...",
     "prewarming_e2b": "Inaongeza joto {{model}}...",
-    "prewarmComplete": "Upashaji joto umekamilika! Miundo sasa iko kwenye VRAM."
+    "prewarmComplete": "Upashaji joto umekamilika! Miundo sasa iko kwenye VRAM.",
+    "prewarmingPersistent": "Tafadhali subiri, upashaji joto unaendelea..."
   }
 }

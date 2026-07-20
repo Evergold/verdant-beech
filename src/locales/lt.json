@@ -114,6 +114,7 @@
     "waitingUnload": "Laukiama, kol bus baigtas saugus iškrovimas prieš pakaitinimą...",
     "deferredPrewarm": "Aktyvuojamas atidėtas pakaitinimas...",
     "prewarming_e2b": "Pakaitinamas {{model}}...",
-    "prewarmComplete": "Pakaitinimas baigtas! Modeliai yra VRAM atmintyje."
+    "prewarmComplete": "Pakaitinimas baigtas! Modeliai yra VRAM atmintyje.",
+    "prewarmingPersistent": "Prašome palaukti, vyksta pakaitinimas..."
   }
 }

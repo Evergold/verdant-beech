@@ -114,6 +114,7 @@
     "waitingUnload": "Esperando a que se complete la descarga segura antes del precalentamiento...",
     "deferredPrewarm": "Activando precalentamiento diferido...",
     "prewarming_e2b": "Precalentando {{model}}...",
-    "prewarmComplete": "¡Precalentamiento completado! Los modelos están residentes en la VRAM."
+    "prewarmComplete": "¡Precalentamiento completado! Los modelos están residentes en la VRAM.",
+    "prewarmingPersistent": "Por favor, espere, el precalentamiento está en curso..."
   }
 }

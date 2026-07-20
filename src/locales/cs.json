@@ -114,6 +114,7 @@
     "waitingUnload": "Čekání na dokončení bezpečného uvolnění před předehřátím...",
     "deferredPrewarm": "Aktivace odloženého předehřátí...",
     "prewarming_e2b": "Předehřívání {{model}}...",
-    "prewarmComplete": "Předehřívání dokončeno! Modely jsou v paměti VRAM."
+    "prewarmComplete": "Předehřívání dokončeno! Modely jsou v paměti VRAM.",
+    "prewarmingPersistent": "Čekejte prosím, probíhá předehřívání..."
   }
 }

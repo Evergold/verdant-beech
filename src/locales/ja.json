@@ -114,6 +114,7 @@
     "waitingUnload": "プレウォームの前に安全なアンロードが完了するのを待機しています...",
     "deferredPrewarm": "遅延プレウォームをアクティブ化しています...",
     "prewarming_e2b": "{{model}}をプレウォーム中...",
-    "prewarmComplete": "プレウォーム完了！モデルはVRAMに常駐しています。"
+    "prewarmComplete": "プレウォーム完了！モデルはVRAMに常駐しています。",
+    "prewarmingPersistent": "お待ちください。プレウォームが進行中です..."
   }
 }

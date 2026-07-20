@@ -114,6 +114,7 @@
     "waitingUnload": "Venter på at sikker tømning fuldføres før forvarmning...",
     "deferredPrewarm": "Aktiverer udskudt forvarmning...",
     "prewarming_e2b": "Forvarmer {{model}}...",
-    "prewarmComplete": "Forvarmning fuldført! Modeller er indlæst i VRAM."
+    "prewarmComplete": "Forvarmning fuldført! Modeller er indlæst i VRAM.",
+    "prewarmingPersistent": "Vent venligst, forvarmning er i gang..."
   }
 }

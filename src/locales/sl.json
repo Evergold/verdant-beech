@@ -114,6 +114,7 @@
     "waitingUnload": "Čakanje na dokončanje varnega praznjenja pred predgrevanjem...",
     "deferredPrewarm": "Aktivacija odloženega predgrevanja...",
     "prewarming_e2b": "Predgrevanje {{model}}...",
-    "prewarmComplete": "Predgrevanje končano! Modeli so zdaj v VRAM-u."
+    "prewarmComplete": "Predgrevanje končano! Modeli so zdaj v VRAM-u.",
+    "prewarmingPersistent": "Prosimo, počakajte, predgrevanje poteka..."
   }
 }

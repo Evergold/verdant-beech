@@ -114,6 +114,7 @@
     "waitingUnload": "Gaidām drošas izkraušanas pabeigšanu pirms iepriekšējas uzsildīšanas...",
     "deferredPrewarm": "Aktivizē atlikto iepriekšējo uzsildīšanu...",
     "prewarming_e2b": "Iepriekšēja uzsildīšana {{model}}...",
-    "prewarmComplete": "Iepriekšēja uzsildīšana pabeigta! Modeļi tagad ir VRAM."
+    "prewarmComplete": "Iepriekšēja uzsildīšana pabeigta! Modeļi tagad ir VRAM.",
+    "prewarmingPersistent": "Lūdzu, uzgaidiet, notiek iepriekšēja uzsildīšana..."
   }
 }

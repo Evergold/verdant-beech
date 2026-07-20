@@ -472,13 +472,24 @@ async function initBabylon() {
 }
 
 async function prewarmModel(modelId) {
-  if (window.unloadPromise) {
-    showToast(i18next.t('toasts.waitingUnload', "Waiting for safely unloading to complete before prewarming..."), "warning");
-    await window.unloadPromise;
-    window.unloadPromise = null;
-    showToast(i18next.t('toasts.deferredPrewarm', "Activating deferred pre-warming..."), "info");
+  const sendBtn = document.getElementById("send-btn");
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.classList.add("disabled");
   }
+  
+  let persistentToast = null;
+  
   try {
+    persistentToast = showToast(i18next.t('toasts.prewarmingPersistent', "Please wait, prewarming is in progress..."), "info", true);
+    
+    if (window.unloadPromise) {
+      showToast(i18next.t('toasts.waitingUnload', "Waiting for safely unloading to complete before prewarming..."), "warning");
+      await window.unloadPromise;
+      window.unloadPromise = null;
+      showToast(i18next.t('toasts.deferredPrewarm', "Activating deferred pre-warming..."), "info");
+    }
+
     showToast(i18next.t('toasts.prewarming', { model: modelId.split("/")[1] }), "info");
     const res = await fetch("http://localhost:8001/api/ollama/prewarm", {
       method: "POST",
@@ -516,6 +527,12 @@ async function prewarmModel(modelId) {
     renderReasoningTabs(modelSelect.value);
     document.getElementById("hardware-monitor").classList.add("hidden");
     if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
+  } finally {
+    if (persistentToast) persistentToast.remove();
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.classList.remove("disabled");
+    }
   }
 }
 
@@ -720,12 +737,15 @@ let isDownloading = false;
 let isDownloadPaused = false;
 let currentDownloadModel = "";
 
-function showToast(msg, type = "info") {
+function showToast(msg, type = "info", persistent = false) {
   const toast = document.createElement("div");
   toast.className = `toast ${type}`;
   toast.textContent = msg;
   toastContainer.appendChild(toast);
-  setTimeout(() => toast.remove(), 5000);
+  if (!persistent) {
+    setTimeout(() => toast.remove(), 5000);
+  }
+  return toast;
 }
 
 let setupInProgress = true;

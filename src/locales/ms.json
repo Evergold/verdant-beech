@@ -114,6 +114,7 @@
     "waitingUnload": "Menunggu pemunggahan selamat selesai sebelum prapemanasan...",
     "deferredPrewarm": "Mengaktifkan prapemanasan tertunda...",
     "prewarming_e2b": "Prapemanasan {{model}}...",
-    "prewarmComplete": "Prapemanasan selesai! Model kini berada di VRAM."
+    "prewarmComplete": "Prapemanasan selesai! Model kini berada di VRAM.",
+    "prewarmingPersistent": "Sila tunggu, prapemanasan sedang berjalan..."
   }
 }

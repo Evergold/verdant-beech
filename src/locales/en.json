@@ -114,6 +114,7 @@
     "waitingUnload": "Waiting for safely unloading to complete before prewarming...",
     "deferredPrewarm": "Activating deferred pre-warming...",
     "prewarming_e2b": "Pre-warming {{model}}...",
-    "prewarmComplete": "Pre-warming complete! Models are resident in VRAM."
+    "prewarmComplete": "Pre-warming complete! Models are resident in VRAM.",
+    "prewarmingPersistent": "Please wait, prewarming is in progress..."
   }
 }
