@@ -430,7 +430,7 @@ async function initBabylon() {
 
 async function prewarmModel(modelId) {
   try {
-    showToast(`Pre-warming ${modelId.split("/")[1]}...`, "info");
+    showToast(i18next.t('toasts.prewarming', { model: modelId.split("/")[1] }), "info");
     const res = await fetch("http://localhost:8001/api/ollama/prewarm", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -439,7 +439,7 @@ async function prewarmModel(modelId) {
     const data = await res.json();
     
     if (data.status === "missing") {
-      showToast(`Model missing. Will download when you send a message.`, "warning");
+      showToast(i18next.t('toasts.modelMissingDownloadLater'), "warning");
       return;
     }
     
@@ -448,7 +448,7 @@ async function prewarmModel(modelId) {
     }
     startOllamaPoll();
   } catch (e) {
-    showToast(`Failed to load ${modelId}: ${e.message}. Falling back to Gemini.`, "error");
+    showToast(i18next.t('toasts.fallbackGemini', { modelId, error: e.message }), "error");
     const modelSelect = document.getElementById("model-select");
     modelSelect.value = "gemini/gemini-3.5-flash";
     saveState("selectedModel", modelSelect.value);
@@ -576,7 +576,7 @@ async function updateOllamaStatus() {
         setupInProgress = setupData.in_progress;
         
         if (!setupInProgress && setupData.updated && !setupToastShown) {
-            showToast("Required models were automatically checked and updated!", "info");
+            showToast(i18next.t('toasts.modelsUpdated'), "info");
             setupToastShown = true;
         }
     }
@@ -645,7 +645,7 @@ async function streamDownload(tag) {
             sendBtn.disabled = false;
             modelSelect.disabled = false;
             isDownloading = false;
-            showToast("Download complete!", "info");
+            showToast(i18next.t('toasts.downloadComplete'), "info");
             return true;
           }
         } catch(e) {}
@@ -653,12 +653,12 @@ async function streamDownload(tag) {
     }
   } catch (e) {
     if (e.name === "AbortError") {
-      showToast("Download paused", "warning");
+      showToast(i18next.t('toasts.downloadPaused'), "warning");
       isDownloadPaused = true;
       downloadPauseBtn.textContent = i18next.t("chat.resume");
       sendBtn.disabled = false;
     } else {
-      showToast("Download failed", "error");
+      showToast(i18next.t('toasts.downloadFailed'), "error");
       downloadUI.classList.add("hidden");
       sendBtn.disabled = false;
       modelSelect.disabled = false;
@@ -683,17 +683,17 @@ async function checkAndDownloadOllamaModel(modelId) {
     const res = await fetch("http://localhost:8001/api/ollama/status");
     const status = await res.json();
     if (!status.online) {
-      showToast("Error: Ollama is not running!", "error");
+      showToast(i18next.t('toasts.ollamaNotRunning'), "error");
       return false;
     }
     if (status.models.includes(tag)) {
       return true; // Installed
     }
     
-    showToast(`Model ${tag} is missing. Starting download...`, "info");
+    showToast(i18next.t('toasts.modelMissingStartingDownload', { tag }), "info");
     return await streamDownload(tag);
   } catch (e) {
-    showToast("Connection to backend failed", "error");
+    showToast(i18next.t('toasts.backendConnectionFailed'), "error");
     return false;
   }
 }
@@ -752,10 +752,10 @@ modelSelect.addEventListener("change", async (e) => {
       const res = await fetch("http://localhost:8001/api/ollama/status");
       const status = await res.json();
       if (status.online && !status.models.includes(tag)) {
-        showToast(`Warning: ${tag} is not installed locally.`, "warning");
+        showToast(i18next.t('toasts.warningNotInstalledLocally', { tag }), "warning");
         // Still try to prewarm, which will fail and fallback, or we can just let it download on send
       } else if (!status.online) {
-        showToast("Error: Ollama is not running.", "error");
+        showToast(i18next.t('toasts.ollamaNotRunning'), "error");
       }
     } catch(err){}
     prewarmModel(newModel);
@@ -810,7 +810,7 @@ async function handleSend() {
   if (!messageText) return;
 
   if (setupInProgress && modelSelect.value.includes("ollama")) {
-      showToast("Background model setup is still in progress, please wait...", "info");
+      showToast(i18next.t('toasts.backgroundModelSetupInProgress'), "info");
       
       const thinkingId = "thinking-setup-" + Date.now();
       const thinkingDiv = document.createElement("div");
@@ -854,7 +854,7 @@ async function handleSend() {
     
     if (data.reply && data.reply.startsWith("Error:")) {
        if (modelSelect.value.includes("ollama_chat")) {
-           showToast("Local model error during chat. Falling back to Gemini Flash.", "error");
+           showToast(i18next.t('toasts.localModelErrorFallbackGemini'), "error");
            modelSelect.value = "gemini/gemini-3.5-flash";
            saveState("selectedModel", modelSelect.value);
            renderReasoningTabs(modelSelect.value);
@@ -909,7 +909,7 @@ function executeCanvasTools(toolCalls) {
     } catch(e) { return; }
     
     console.log(`Executing tool: ${tc.name}`, args);
-    showToast(`Green is adjusting: ${tc.name.replace(/_/g, " ")}`, "info");
+    showToast(i18next.t('toasts.greenAdjusting', { name: tc.name.replace(/_/g, " ") }), "info");
     
     if (!scene) return;
     
@@ -1106,13 +1106,13 @@ async function renameProject(newName) {
     const data = await res.json();
     if (data.status === "success") {
       await loadProjects();
-      showToast("Project renamed", "success");
+      showToast(i18next.t('toasts.projectRenamed'), "success");
     } else {
       showToast(data.error, "error");
       await loadProjects(); // Reset input to current name
     }
   } catch(e) {
-    showToast("Error renaming project", "error");
+    showToast(i18next.t('toasts.errorRenamingProject'), "error");
   }
 }
 
@@ -1144,10 +1144,10 @@ if (projectSelect) {
           await loadModels(); // Reload model config
           projectNameInput.focus();
           projectNameInput.select(); // Prompt to rename immediately
-          showToast("New project created", "success");
+          showToast(i18next.t('toasts.newProjectCreated'), "success");
         }
       } catch(e) {
-        showToast("Error creating project", "error");
+        showToast(i18next.t('toasts.errorCreatingProject'), "error");
       }
     } else {
       // Switch active project
@@ -1159,9 +1159,9 @@ if (projectSelect) {
         });
         await loadProjects();
         await loadModels(); // Reload model config
-        showToast("Project switched", "success");
+        showToast(i18next.t('toasts.projectSwitched'), "success");
       } catch(e) {
-        showToast("Error switching project", "error");
+        showToast(i18next.t('toasts.errorSwitchingProject'), "error");
       }
     }
   });
@@ -1203,12 +1203,12 @@ if (deleteProjectBtn) {
         if (data.status === "success") {
           await loadProjects();
           await loadModels();
-          showToast("Project deleted", "success");
+          showToast(i18next.t('toasts.projectDeleted'), "success");
         } else {
           showToast(data.error, "error");
         }
       } catch(e) {
-        showToast("Error deleting project", "error");
+        showToast(i18next.t('toasts.errorDeletingProject'), "error");
       }
     });
   }
@@ -1254,10 +1254,10 @@ if (createFolderBtn) {
         input.value = "";
         loadLibraryFolders();
       } else {
-        showToast(data.error || "Failed to create folder", "error");
+        showToast(data.error || i18next.t('toasts.failedToCreateFolder'), "error");
       }
     } catch(e) {
-      showToast("Connection error", "error");
+      showToast(i18next.t('toasts.connectionError'), "error");
     }
   });
 }
@@ -1274,12 +1274,12 @@ const assetSaveName = document.getElementById("asset-save-name");
 if (generateAssetBtn) {
   generateAssetBtn.addEventListener("click", async () => {
     const prompt = assetPromptInput.value.trim();
-    if (!prompt) return showToast("Please describe the asset first.", "warning");
+    if (!prompt) return showToast(i18next.t('toasts.pleaseDescribeAssetFirst'), "warning");
     
     const exploratory = exploratoryToggle.checked;
     
     try {
-      showToast("Generating asset...", "info");
+      showToast(i18next.t('toasts.generatingAsset'), "info");
       const res = await fetch("http://localhost:8001/api/generate_asset", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1292,10 +1292,10 @@ if (generateAssetBtn) {
         assetPreviewContainer.classList.remove("hidden");
         showToast(data.message, "success");
       } else {
-        showToast("Generation failed: " + data.error, "error");
+        showToast(i18next.t('toasts.generationFailed', { error: data.error }), "error");
       }
     } catch(e) {
-      showToast("Connection error while generating asset.", "error");
+      showToast(i18next.t('toasts.connectionErrorWhileGeneratingAsset'), "error");
     }
   });
 }
@@ -1303,9 +1303,9 @@ if (generateAssetBtn) {
 if (saveAssetBtn) {
   saveAssetBtn.addEventListener("click", () => {
     const name = assetSaveName.value.trim();
-    if (!name) return showToast("Please provide a name to save the asset.", "warning");
+    if (!name) return showToast(i18next.t('toasts.pleaseProvideNameToSaveAsset'), "warning");
     // TODO: Send to Library Manager endpoint
-    showToast(`Saved asset '${name}' to library!`, "success");
+    showToast(i18next.t('toasts.savedAssetToLibrary', { name }), "success");
     assetSaveName.value = "";
     assetPreviewContainer.classList.add("hidden");
   });
