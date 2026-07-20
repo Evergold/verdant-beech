@@ -26,6 +26,7 @@
 *   **Action Constraint**: The Agent MUST always wait for context before taking action and MUST ONLY perform tasks related to assisting the cartographer/designer/photographer. Do not deviate from these domains.
 
 ## 7. Testing & Artifact Rules
+*   **Proactive Test Driven Development (TDD)**: Whenever you implement a new feature or logic in the backend, you MUST simultaneously write the corresponding tests in the test suite to ensure our coverage never drops below its current baseline.
 *   **Test Location**: All tests MUST be created and kept in the appropriate `tests/` directory.
 *   **Test Results**: NEVER include test results (e.g. coverage reports, test output logs) in git tracking or commits.
 *   **Temp Files**: NEVER include temp/intermediate/cache files (like python `__pycache__`, `.pytest_cache`, or OS temp files) in git tracking or commits.
