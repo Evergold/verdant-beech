@@ -1,3 +1,6 @@
+# test_backend.py (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>
+# Licensed under the MIT License (see LICENSE for details)
+
 import pytest
 from fastapi.testclient import TestClient
 from unittest.mock import patch, MagicMock, AsyncMock

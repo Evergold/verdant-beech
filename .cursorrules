@@ -29,3 +29,11 @@
 *   **Test Location**: All tests MUST be created and kept in the appropriate `tests/` directory.
 *   **Test Results**: NEVER include test results (e.g. coverage reports, test output logs) in git tracking or commits.
 *   **Temp Files**: NEVER include temp/intermediate/cache files (like python `__pycache__`, `.pytest_cache`, or OS temp files) in git tracking or commits.
+
+## 8. License Headers
+*   **MANDATORY**: Whenever you create a new file, you MUST automatically apply the following MIT license header at the top of the file (commented appropriately for the language):
+    ```
+    <filename> (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>
+    Licensed under the MIT License (see LICENSE for details)
+    ```
+*   **Third-Party Code**: If you import, vendor, or adapt files that already have an existing license header (such as an Apache 2.0 license), you MUST NOT overwrite or replace it. The pre-existing license header MUST be preserved at the top of the file to comply with third-party license requirements.

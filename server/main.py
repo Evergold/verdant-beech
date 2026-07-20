@@ -1,3 +1,6 @@
+# main.py (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>
+# Licensed under the MIT License (see LICENSE for details)
+
 from fastapi import FastAPI, Request, BackgroundTasks
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, StreamingResponse

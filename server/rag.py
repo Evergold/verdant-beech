@@ -1,3 +1,6 @@
+# rag.py (c) 2026 Evergold <261058386+Evergold@users.noreply.github.com>
+# Licensed under the MIT License (see LICENSE for details)
+
 import chromadb
 from chromadb.config import Settings
 import chromadb.utils.embedding_functions as embedding_functions
