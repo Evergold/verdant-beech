@@ -527,7 +527,7 @@ async function loadModels() {
       data.image_models.forEach(model => {
         const opt = document.createElement("option");
         opt.value = model.id;
-        opt.textContent = model.label;
+        opt.textContent = model.tier ? `${model.label} [${model.tier}]` : model.label;
         imgSelect.appendChild(opt);
       });
       
@@ -560,6 +560,10 @@ function renderImageModelControls(modelId) {
         <label for="img-seed" style="font-size: 0.85rem; color: var(--text-muted);" title="Set a specific seed for deterministic reproduction">Determinism (Seed)</label>
         <input type="number" id="img-seed" placeholder="Random" style="padding: 6px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);" />
       </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Guidance Scale (CFG)</label>
+        <input type="range" id="img-cfg" min="1" max="20" step="0.5" value="7.5" />
+      </div>
     `;
   } else if (modelId.includes("nano-banana")) {
     container.innerHTML = `
@@ -574,6 +578,10 @@ function renderImageModelControls(modelId) {
       <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
         <label for="nano-consistency" style="font-size: 0.85rem; color: var(--text-muted);" title="0 = Creative, 100 = Strict Consistency">Consistency Strength</label>
         <input type="range" id="nano-consistency" min="0" max="100" value="80" />
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+        <label for="nano-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="Low = Creative, High = Strict Prompt Adherence">Guidance Scale (CFG)</label>
+        <input type="range" id="nano-cfg" min="1" max="20" step="0.5" value="7.5" />
       </div>
     `;
     

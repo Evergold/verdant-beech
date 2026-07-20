@@ -97,18 +97,24 @@ assistant_models:
 
 image_models:
   - id: "gemini/imagen-4.0-generate"
-    label: "Imagen 4 (Gemini API)"
-  - id: "gemini/nano-banana-2"
-    label: "Nano Banana 2 (Gemini API)"
+    label: "Imagen 4"
+    tier: "Tier 1 (One-Shot)"
   - id: "gemini/nano-banana-pro"
-    label: "Nano Banana Pro (Gemini API)"
+    label: "Nano Banana Pro"
+    tier: "Tier 1 (Iterative)"
+  - id: "gemini/nano-banana-2"
+    label: "Nano Banana 2"
+    tier: "Tier 2 (Rapid)"
   # Template for other image providers:
   # - id: "openai/gpt-image-2"
   #   label: "GPT Image 2"
+  #   tier: "Tier 1"
   # - id: "huggingface/black-forest-labs/FLUX.2"
   #   label: "FLUX.2"
+  #   tier: "Tier 1"
   # - id: "bedrock/amazon.titan-image-generator-v1"
   #   label: "Amazon Titan"
+  #   tier: "Tier 2"
 
 embedding_models:
   - id: "ollama/embeddinggemma"
