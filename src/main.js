@@ -71,7 +71,8 @@ async function initBabylon() {
   const canvas = document.getElementById("renderCanvas");
   
   const webGPUSupported = await BABYLON.WebGPUEngine.IsSupportedAsync;
-  const forceWebGL = localStorage.getItem("verdant_force_webgl") === "true";
+  const urlParams = new URLSearchParams(window.location.search);
+  const forceWebGL = urlParams.get("webgl") === "1";
   console.log("Renderer Toggle State -> forceWebGL:", forceWebGL);
   
   let useWebGPU = false;
@@ -456,11 +457,16 @@ async function initBabylon() {
   
   const rendererBtn = document.getElementById("toggle-renderer-btn");
   if (rendererBtn) {
-    const isForced = localStorage.getItem("verdant_force_webgl") === "true";
+    const params = new URLSearchParams(window.location.search);
+    const isForced = params.get("webgl") === "1";
     rendererBtn.textContent = isForced ? "🚀 Restore WebGPU" : "🚀 Force WebGL (Fix Lag)";
     rendererBtn.addEventListener("click", () => {
-      localStorage.setItem("verdant_force_webgl", isForced ? "false" : "true");
-      window.location.reload();
+      if (isForced) {
+        params.delete("webgl");
+      } else {
+        params.set("webgl", "1");
+      }
+      window.location.search = params.toString();
     });
   }
 }
