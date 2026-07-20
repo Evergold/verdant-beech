@@ -26,7 +26,6 @@
     "ram": "RAM :",
     "vram": "VRAM :",
     "downloading": "Téléchargement du modèle...",
-    "pause": "Pause",
     "resume": "Reprendre"
   },
   "library": {
@@ -64,9 +63,8 @@
     "previewAlt": "Aperçu de l'asset",
     "namePlaceholder": "Nom de l'asset (ex: champignon_bleu)",
     "save": "Enregistrer dans la bibliothèque",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Guidage sans classificateur",
+    "guidanceScaleTitle": "Bas = Créatif, Haut = Respect strict du prompt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientation : Paysage",
@@ -75,9 +73,9 @@
     "zoomToolOn": "🔍 Outil Zoom : ACTIVÉ",
     "orientationTitle": "Basculer entre Portrait/Paysage",
     "zoomTitle": "Outil Zoom (Maintenir Ctrl pour zoomer en arrière)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Forcer WebGL",
+    "restoreWebGPU": "🖥️ Restaurer WebGPU",
+    "toggleRendererTitle": "Basculer l'accélération matérielle"
   },
   "toasts": {
     "prewarming": "Préchauffage de {{model}}...",

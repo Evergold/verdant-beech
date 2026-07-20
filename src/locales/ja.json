@@ -23,8 +23,6 @@
     "placeholder": "地図やスタイルに関するアドバイスを求める...",
     "send": "送信",
     "activeTasks": "アクティブなタスク:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "モデルをダウンロード中...",
     "pause": "一時停止",
     "resume": "再開"
@@ -64,9 +62,8 @@
     "previewAlt": "アセットのプレビュー",
     "namePlaceholder": "アセット名（例：blue_mushroom）",
     "save": "ライブラリに保存",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "分類器なしのガイダンス",
+    "guidanceScaleTitle": "低 = 創造的、高 = プロンプトへの厳格な準拠"
   },
   "canvas": {
     "orientationLandscape": "🔄 向き: 横",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 ズームツール: オン",
     "orientationTitle": "縦向き/横向きの切り替え",
     "zoomTitle": "ズームツール（Ctrlキーを押しながらズームアウト）",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGLを強制",
+    "restoreWebGPU": "🖥️ WebGPUを復元",
+    "toggleRendererTitle": "ハードウェアアクセラレーションの切り替え"
   },
   "toasts": {
     "prewarming": "{{model}}を事前準備中...",

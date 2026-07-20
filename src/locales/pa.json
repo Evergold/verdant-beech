@@ -23,8 +23,6 @@
     "placeholder": "ਨਕਸ਼ੇ ਜਾਂ ਸ਼ੈਲੀ ਦੀ ਸਲਾਹ ਲਈ ਪੁੱਛੋ...",
     "send": "ਭੇਜੋ",
     "activeTasks": "ਸਰਗਰਮ ਕਾਰਜ:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "ਮਾਡਲ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "pause": "ਰੋਕੋ",
     "resume": "ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ"
@@ -64,9 +62,8 @@
     "previewAlt": "ਸੰਪਤੀ ਦੀ ਪੂਰਵ-ਝਲਕ",
     "namePlaceholder": "ਸੰਪਤੀ ਦਾ ਨਾਮ (ਜਿਵੇਂ blue_mushroom)",
     "save": "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "ਕਲਾਸੀਫਾਇਰ-ਮੁਕਤ ਮਾਰਗਦਰਸ਼ਨ",
+    "guidanceScaleTitle": "ਘੱਟ = ਰਚਨਾਤਮਕ, ਉੱਚ = ਸਖਤ ਪ੍ਰੌਂਪਟ ਪਾਲਣਾ"
   },
   "canvas": {
     "orientationLandscape": "🔄 ਦਿਸ਼ਾ: ਲੈਂਡਸਕੇਪ",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 ਜ਼ੂਮ ਟੂਲ: ਚਾਲੂ",
     "orientationTitle": "ਪੋਰਟਰੇਟ/ਲੈਂਡਸਕੇਪ ਬਦਲੋ",
     "zoomTitle": "ਜ਼ੂਮ ਟੂਲ (ਜ਼ੂਮ ਆਊਟ ਕਰਨ ਲਈ Ctrl ਦਬਾ ਕੇ ਰੱਖੋ)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL ਮਜ਼ਬੂਰ ਕਰੋ",
+    "restoreWebGPU": "🖥️ WebGPU ਰੀਸਟੋਰ ਕਰੋ",
+    "toggleRendererTitle": "ਹਾਰਡਵੇਅਰ ਐਕਸਲਰੇਸ਼ਨ ਟੌਗਲ ਕਰੋ"
   },
   "toasts": {
     "prewarming": "{{model}} ਨੂੰ ਪ੍ਰੀ-ਵਾਰਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",

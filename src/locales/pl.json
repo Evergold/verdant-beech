@@ -23,8 +23,6 @@
     "placeholder": "Poproś o mapę lub poradę dotyczącą stylu...",
     "send": "Wyślij",
     "activeTasks": "AKTYWNE ZADANIA:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Pobieranie modelu...",
     "pause": "Wstrzymaj",
     "resume": "Wznów"
@@ -47,7 +45,6 @@
     "studio": "Studio (domyślne, 6500K)",
     "daylight": "Światło dzienne (5500K)",
     "goldenHour": "Złota godzina (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Silnik kompozycji terenu",
     "generateHills": "Generuj wzgórza",
     "flatten": "Spłaszcz",
@@ -64,9 +61,8 @@
     "previewAlt": "Podgląd zasobu",
     "namePlaceholder": "Nazwa zasobu (np. niebieski_grzyb)",
     "save": "Zapisz w bibliotece",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Wytyczne bez klasyfikatora",
+    "guidanceScaleTitle": "Niski = Kreatywny, Wysoki = Ścisłe przestrzeganie promptu"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacja: Pozioma",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Narzędzie powiększenia: WŁ.",
     "orientationTitle": "Przełącz pionowo/poziomo",
     "zoomTitle": "Narzędzie powiększenia (przytrzymaj Ctrl, aby pomniejszyć)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Wymuś WebGL",
+    "restoreWebGPU": "🖥️ Przywróć WebGPU",
+    "toggleRendererTitle": "Przełącz akcelerację sprzętową"
   },
   "toasts": {
     "prewarming": "Wstępne nagrzewanie {{model}}...",

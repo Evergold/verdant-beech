@@ -23,8 +23,6 @@
     "placeholder": "Zatražite kartu ili savjet o stilu...",
     "send": "Pošalji",
     "activeTasks": "AKTIVNI ZADACI:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Preuzimanje modela...",
     "pause": "Pauziraj",
     "resume": "Nastavi"
@@ -64,9 +62,8 @@
     "previewAlt": "Pregled resursa",
     "namePlaceholder": "Naziv resursa (npr. plava_gljiva)",
     "save": "Spremi u knjižnicu",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Vođenje bez klasifikatora",
+    "guidanceScaleTitle": "Nisko = Kreativno, Visoko = Strogo pridržavanje upita"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Vodoravno",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Alat za zumiranje: UKLJUČENO",
     "orientationTitle": "Promijeni okomito/vodoravno",
     "zoomTitle": "Alat za zumiranje (Držite Ctrl za smanjivanje)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Prisili WebGL",
+    "restoreWebGPU": "🖥️ Vrati WebGPU",
+    "toggleRendererTitle": "Prebaci hardversko ubrzanje"
   },
   "toasts": {
     "prewarming": "Prethodno zagrijavanje modela {{model}}...",

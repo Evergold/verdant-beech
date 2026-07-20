@@ -23,8 +23,6 @@
     "placeholder": "ขอแผนที่หรือคำแนะนำเกี่ยวกับสไตล์...",
     "send": "ส่ง",
     "activeTasks": "งานที่กำลังดำเนินการ:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "กำลังดาวน์โหลดโมเดล...",
     "pause": "หยุดชั่วคราว",
     "resume": "ดำเนินการต่อ"
@@ -64,9 +62,8 @@
     "previewAlt": "ตัวอย่างแอสเซท",
     "namePlaceholder": "ชื่อแอสเซท (เช่น blue_mushroom)",
     "save": "บันทึกลงคลัง",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "คำแนะนำแบบไม่มีตัวจำแนกประเภท",
+    "guidanceScaleTitle": "ต่ำ = สร้างสรรค์, สูง = ยึดตามคำสั่งอย่างเคร่งครัด"
   },
   "canvas": {
     "orientationLandscape": "🔄 ทิศทาง: แนวนอน",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 เครื่องมือซูม: เปิด",
     "orientationTitle": "สลับแนวตั้ง/แนวนอน",
     "zoomTitle": "เครื่องมือซูม (กด Ctrl ค้างไว้เพื่อซูมออก)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ บังคับใช้ WebGL",
+    "restoreWebGPU": "🖥️ กู้คืน WebGPU",
+    "toggleRendererTitle": "สลับการเร่งฮาร์ดแวร์"
   },
   "toasts": {
     "prewarming": "กำลังเตรียมความพร้อม {{model}}...",

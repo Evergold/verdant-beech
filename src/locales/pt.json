@@ -23,8 +23,6 @@
     "placeholder": "Peça um mapa ou conselhos de estilo...",
     "send": "Enviar",
     "activeTasks": "TAREFAS ATIVAS:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Baixando modelo...",
     "pause": "Pausar",
     "resume": "Retomar"
@@ -64,9 +62,8 @@
     "previewAlt": "Pré-visualização do Asset",
     "namePlaceholder": "Nome do Asset (ex: cogumelo_azul)",
     "save": "Salvar na Biblioteca",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Orientação sem classificador",
+    "guidanceScaleTitle": "Baixo = Criativo, Alto = Adesão estrita ao prompt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientação: Paisagem",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Ferramenta de Zoom: LIGADA",
     "orientationTitle": "Alternar Retrato/Paisagem",
     "zoomTitle": "Ferramenta de Zoom (Segure Ctrl para Afastar)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Forçar WebGL",
+    "restoreWebGPU": "🖥️ Restaurar WebGPU",
+    "toggleRendererTitle": "Alternar aceleração de hardware"
   },
   "toasts": {
     "prewarming": "Pré-aquecendo {{model}}...",

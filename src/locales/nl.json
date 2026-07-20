@@ -23,8 +23,6 @@
     "placeholder": "Vraag om een kaart of stijladvies...",
     "send": "Verzenden",
     "activeTasks": "ACTIEVE TAKEN:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Model downloaden...",
     "pause": "Pauzeren",
     "resume": "Hervatten"
@@ -64,9 +62,8 @@
     "previewAlt": "Asset-voorbeeld",
     "namePlaceholder": "Assetnaam (bijv. blauwe_paddenstoel)",
     "save": "Opslaan in bibliotheek",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Classificatievrije Begeleiding",
+    "guidanceScaleTitle": "Laag = Creatief, Hoog = Strikte Prompt-naleving"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oriëntatie: Liggend",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Zoomtool: AAN",
     "orientationTitle": "Wisselen tussen staand/liggend",
     "zoomTitle": "Zoomtool (Houd Ctrl ingedrukt om uit te zoomen)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL Forceren",
+    "restoreWebGPU": "🖥️ WebGPU Herstellen",
+    "toggleRendererTitle": "Hardwareversnelling Schakelen"
   },
   "toasts": {
     "prewarming": "Voorverwarmen van {{model}}...",

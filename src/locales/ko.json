@@ -23,8 +23,6 @@
     "placeholder": "지도나 스타일 조언을 요청하세요...",
     "send": "전송",
     "activeTasks": "활성 작업:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "모델 다운로드 중...",
     "pause": "일시 정지",
     "resume": "재개"
@@ -64,9 +62,8 @@
     "previewAlt": "에셋 미리보기",
     "namePlaceholder": "에셋 이름 (예: blue_mushroom)",
     "save": "라이브러리에 저장",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "분류기 없는 가이던스",
+    "guidanceScaleTitle": "낮음 = 창의적, 높음 = 엄격한 프롬프트 준수"
   },
   "canvas": {
     "orientationLandscape": "🔄 방향: 가로",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 줌 도구: 켜짐",
     "orientationTitle": "가로/세로 전환",
     "zoomTitle": "줌 도구 (Ctrl을 누른 채 축소)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL 강제",
+    "restoreWebGPU": "🖥️ WebGPU 복원",
+    "toggleRendererTitle": "하드웨어 가속 전환"
   },
   "toasts": {
     "prewarming": "{{model}} 예열 중...",

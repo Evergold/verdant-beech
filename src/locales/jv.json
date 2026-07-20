@@ -23,8 +23,6 @@
     "placeholder": "Takon babagan peta utawa saran gaya...",
     "send": "Kirim",
     "activeTasks": "TUGAS AKTIF:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Ngundhuh model...",
     "pause": "Jeda",
     "resume": "Lajengake"
@@ -46,8 +44,6 @@
     "overcast": "Mendhung (7000K)",
     "studio": "Studio (Gawan, 6500K)",
     "daylight": "Sinar Srengenge (5500K)",
-    "goldenHour": "Golden Hour (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Mesin Komposisi Medan",
     "generateHills": "Gawe Bukit",
     "flatten": "Ratakake",
@@ -64,9 +60,8 @@
     "previewAlt": "Pratinjau Aset",
     "namePlaceholder": "Jeneng Aset (tuladhane blue_mushroom)",
     "save": "Simpen menyang Pustaka",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Panduan Bebas Klasifikasi",
+    "guidanceScaleTitle": "Cendhek = Kreatif, Dhuwur = Manut Prompt sing Ketat"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",
@@ -75,9 +70,9 @@
     "zoomToolOn": "🔍 Piranti Zoom: URIP",
     "orientationTitle": "Ganti Potret/Lanskap",
     "zoomTitle": "Piranti Zoom (Tahan Ctrl kanggo Zoom Metu)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Peksa WebGL",
+    "restoreWebGPU": "🖥️ Pulihake WebGPU",
+    "toggleRendererTitle": "Ngalih Akselerasi Perangkat Keras"
   },
   "toasts": {
     "prewarming": "Nyiapake {{model}}...",

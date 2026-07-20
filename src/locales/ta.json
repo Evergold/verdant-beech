@@ -23,8 +23,6 @@
     "placeholder": "வரைபடம் அல்லது பாணி ஆலோசனை கேட்கவும்...",
     "send": "அனுப்பு",
     "activeTasks": "செயலில் உள்ள பணிகள்:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "மாதிரியைப் பதிவிறக்குகிறது...",
     "pause": "இடைநிறுத்து",
     "resume": "தொடர்"
@@ -64,9 +62,8 @@
     "previewAlt": "சொத்து மாதிரிக்காட்சி",
     "namePlaceholder": "சொத்தின் பெயர் (எ.கா. blue_mushroom)",
     "save": "நூலகத்தில் சேமி",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "வகைப்படுத்தி-இலவச வழிகாட்டுதல்",
+    "guidanceScaleTitle": "குறைவு = ஆக்கப்பூர்வமானது, அதிகம் = கடுமையான தூண்டுதல் பின்பற்றுதல்"
   },
   "canvas": {
     "orientationLandscape": "🔄 நோக்குநிலை: படுக்கைவாட்டம்",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 பெரிதாக்கும் கருவி: இயக்கப்பட்டுள்ளது",
     "orientationTitle": "நெடுக்கைவாட்டம்/படுக்கைவாட்டம் மாற்றவும்",
     "zoomTitle": "பெரிதாக்கும் கருவி (சிறிதாக்க Ctrl விசையை அழுத்தவும்)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL கட்டாயப்படுத்து",
+    "restoreWebGPU": "🖥️ WebGPU மீட்டெடு",
+    "toggleRendererTitle": "வன்பொருள் முடுக்கத்தை மாற்று"
   },
   "toasts": {
     "prewarming": "{{model}} முன்கூட்டியே தயார் செய்யப்படுகிறது...",

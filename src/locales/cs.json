@@ -23,8 +23,6 @@
     "placeholder": "Požádejte o mapu nebo radu ohledně stylu...",
     "send": "Odeslat",
     "activeTasks": "AKTIVNÍ ÚKOLY:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Stahování modelu...",
     "pause": "Pozastavit",
     "resume": "Obnovit"
@@ -47,7 +45,6 @@
     "studio": "Studio (výchozí, 6500K)",
     "daylight": "Denní světlo (5500K)",
     "goldenHour": "Zlatá hodinka (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Engine pro kompozici terénu",
     "generateHills": "Generovat kopce",
     "flatten": "Zploštit",
@@ -64,9 +61,8 @@
     "previewAlt": "Náhled prvku",
     "namePlaceholder": "Název prvku (např. modra_houba)",
     "save": "Uložit do knihovny",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Vedení bez klasifikátoru",
+    "guidanceScaleTitle": "Nízká = Kreativní, Vysoká = Přísné dodržení promptu"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientace: Na šířku",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Nástroj lupy: ZAPNUTO",
     "orientationTitle": "Přepnout na výšku/na šířku",
     "zoomTitle": "Nástroj lupy (podržte Ctrl pro oddálení)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Vynutit WebGL",
+    "restoreWebGPU": "🖥️ Obnovit WebGPU",
+    "toggleRendererTitle": "Přepnout hardwarovou akceleraci"
   },
   "toasts": {
     "prewarming": "Zahřívání {{model}}...",

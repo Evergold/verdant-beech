@@ -23,8 +23,6 @@
     "placeholder": "ମାନଚିତ୍ର କିମ୍ବା ଶୈଳୀ ପରାମର୍ଶ ପାଇଁ ପଚାରନ୍ତୁ...",
     "send": "ପଠାନ୍ତୁ",
     "activeTasks": "ସକ୍ରିୟ କାର୍ଯ୍ୟଗୁଡ଼ିକ:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "ମଡେଲ୍ ଡାଉନଲୋଡ୍ ହେଉଛି...",
     "pause": "ବିରତି",
     "resume": "ପୁନର୍ବାର ଆରମ୍ଭ କରନ୍ତୁ"
@@ -64,9 +62,8 @@
     "previewAlt": "ସମ୍ପତ୍ତି ପୂର୍ବାବଲୋକନ",
     "namePlaceholder": "ସମ୍ପତ୍ତି ନାମ (ଯେପରିକି blue_mushroom)",
     "save": "ଲାଇବ୍ରେରୀରେ ସଂରକ୍ଷଣ କରନ୍ତୁ",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "କ୍ଲାସିଫାୟର୍-ମୁକ୍ତ ମାର୍ଗଦର୍ଶନ",
+    "guidanceScaleTitle": "କମ୍ = ସୃଜନଶୀଳ, ଅଧିକ = କଠୋର ପ୍ରମ୍ପ୍ଟ ଅନୁପାଳନ"
   },
   "canvas": {
     "orientationLandscape": "🔄 ଆଭିମୁଖ୍ୟ: ଲ୍ୟାଣ୍ଡସ୍କେପ୍",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 ଜୁମ୍ ଟୁଲ୍: ଚାଲୁ",
     "orientationTitle": "ପୋର୍ଟ୍ରେଟ୍/ଲ୍ୟାଣ୍ଡସ୍କେପ୍ ବଦଳାନ୍ତୁ",
     "zoomTitle": "ଜୁମ୍ ଟୁଲ୍ (ଜୁମ୍ ଆଉଟ୍ କରିବା ପାଇଁ Ctrl ଦବାଇ ରଖନ୍ତୁ)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL ବାଧ୍ୟ କରନ୍ତୁ",
+    "restoreWebGPU": "🖥️ WebGPU ପୁନରୁଦ୍ଧାର କରନ୍ତୁ",
+    "toggleRendererTitle": "ହାର୍ଡୱେର୍ ତ୍ୱରଣ ଟୋଗଲ୍ କରନ୍ତୁ"
   },
   "toasts": {
     "prewarming": "{{model}} କୁ ପ୍ରି-ୱାର୍ମିଂ କରାଯାଉଛି...",

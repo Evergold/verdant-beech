@@ -23,8 +23,6 @@
     "placeholder": "Magtanong tungkol sa mapa o payo sa estilo...",
     "send": "Ipadala",
     "activeTasks": "MGA AKTIBONG GAWAIN:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Dina-download ang modelo...",
     "pause": "I-pause",
     "resume": "Ipagpatuloy"
@@ -39,15 +37,10 @@
     "title": "Mga Alituntunin sa Estilo",
     "description": "I-configure ang mga panuntunan sa pagbuo ng Verdant.",
     "envLighting": "Liwanag ng Kapaligiran",
-    "uniformStudio": "Uniform Studio (Default)",
-    "moodyCandlelit": "Moody Candlelit",
     "lightingTemp": "Temperatura ng Liwanag",
     "moonlight": "Liwanag ng Buwan (10000K)",
     "overcast": "Maulap (7000K)",
-    "studio": "Studio (Default, 6500K)",
     "daylight": "Liwanag ng Araw (5500K)",
-    "goldenHour": "Golden Hour (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Engine ng Pag-composite ng Terrain",
     "generateHills": "Bumuo ng mga Burol",
     "flatten": "Patagin",
@@ -57,16 +50,14 @@
   "asset": {
     "title": "Tagabuo ng Asset",
     "description": "Gumawa at pagbutihin ang mga pinasadyang asset.",
-    "exploratoryMode": "Exploratory Mode",
     "exploratoryDesc": "Laktawan ang Mga Alituntunin sa Estilo para malayang mag-eksperimento",
     "promptPlaceholder": "Ilarawan ang asset (hal. 'Isang kumikinang na asul na kabute')...",
     "generate": "Bumuo ng Asset",
     "previewAlt": "Preview ng Asset",
     "namePlaceholder": "Pangalan ng Asset (hal. blue_mushroom)",
     "save": "I-save sa Library",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Pag-gabay na Walang Tagapag-uri",
+    "guidanceScaleTitle": "Mababa = Malikhain, Mataas = Mahigpit na Pagsunod sa Prompt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oryentasyon: Landscape",
@@ -75,9 +66,9 @@
     "zoomToolOn": "🔍 Tool sa Pag-zoom: ON",
     "orientationTitle": "I-toggle ang Portrait/Landscape",
     "zoomTitle": "Tool sa Pag-zoom (Pindutin nang matagal ang Ctrl para Mag-zoom Out)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Pilitin ang WebGL",
+    "restoreWebGPU": "🖥️ Ibalik ang WebGPU",
+    "toggleRendererTitle": "I-toggle ang Hardware Acceleration"
   },
   "toasts": {
     "prewarming": "Pina-pre-warm ang {{model}}...",

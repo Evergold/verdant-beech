@@ -23,8 +23,6 @@
     "placeholder": "Zatraži mapu ili savet za stil...",
     "send": "Pošalji",
     "activeTasks": "AKTIVNI ZADACI:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Preuzimanje modela...",
     "pause": "Pauziraj",
     "resume": "Nastavi"
@@ -55,7 +53,6 @@
     "markerDesc": "Markeri se automatski prilagođavaju fizici i poravnavaju sa deformisanom geometrijom slojeva terena."
   },
   "asset": {
-    "title": "Asset Generator",
     "description": "Kreirajte i usavršite prilagođene elemente.",
     "exploratoryMode": "Istraživački režim",
     "exploratoryDesc": "Zaobiđite smernice za stil da biste slobodno eksperimentisali",
@@ -64,9 +61,8 @@
     "previewAlt": "Pregled elementa",
     "namePlaceholder": "Naziv elementa (npr. plava_pecurka)",
     "save": "Sačuvaj u biblioteku",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Вођење без класификатора",
+    "guidanceScaleTitle": "Ниско = Креативно, Високо = Строго придржавање упита"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Položeno",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Alat za zumiranje: UKLJUČEN",
     "orientationTitle": "Promeni uspravno/položeno",
     "zoomTitle": "Alat za zumiranje (Držite Ctrl za udaljavanje)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Присили WebGL",
+    "restoreWebGPU": "🖥️ Врати WebGPU",
+    "toggleRendererTitle": "Пребаци хардверско убрзање"
   },
   "toasts": {
     "prewarming": "Pripremanje modela {{model}}...",

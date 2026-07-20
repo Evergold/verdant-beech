@@ -21,12 +21,8 @@
   "chat": {
     "title": "Assistentværktøj",
     "placeholder": "Spørg efter et kort eller stilråd...",
-    "send": "Send",
     "activeTasks": "AKTIVE OPGAVER:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Downloader model...",
-    "pause": "Pause",
     "resume": "Genoptag"
   },
   "library": {
@@ -47,7 +43,6 @@
     "studio": "Studie (Standard, 6500K)",
     "daylight": "Dagslys (5500K)",
     "goldenHour": "Gylden time (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Terrænsammensætningsmotor",
     "generateHills": "Generer bakker",
     "flatten": "Flad ud",
@@ -64,9 +59,8 @@
     "previewAlt": "Forhåndsvisning af asset",
     "namePlaceholder": "Asset-navn (f.eks. blue_mushroom)",
     "save": "Gem i bibliotek",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Klassifikator-fri vejledning",
+    "guidanceScaleTitle": "Lav = Kreativ, Høj = Streng overholdelse af prompt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Retning: Liggende",
@@ -75,9 +69,9 @@
     "zoomToolOn": "🔍 Zoomværktøj: TIL",
     "orientationTitle": "Skift mellem stående/liggende",
     "zoomTitle": "Zoomværktøj (Hold Ctrl nede for at zoome ud)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Gennemtving WebGL",
+    "restoreWebGPU": "🖥️ Gendan WebGPU",
+    "toggleRendererTitle": "Skift hardwareacceleration"
   },
   "toasts": {
     "prewarming": "Forvarmer {{model}}...",

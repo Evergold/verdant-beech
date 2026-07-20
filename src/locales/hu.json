@@ -23,8 +23,6 @@
     "placeholder": "Kérj térképet vagy stílustanácsot...",
     "send": "Küldés",
     "activeTasks": "AKTÍV FELADATOK:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Modell letöltése...",
     "pause": "Szünet",
     "resume": "Folytatás"
@@ -64,9 +62,8 @@
     "previewAlt": "Eszköz előnézete",
     "namePlaceholder": "Eszköz neve (pl. kek_gomba)",
     "save": "Mentés a könyvtárba",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Osztályozó nélküli irányítás",
+    "guidanceScaleTitle": "Alacsony = Kreatív, Magas = Szigorú prompt betartása"
   },
   "canvas": {
     "orientationLandscape": "🔄 Tájolás: Fekvő",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Nagyító eszköz: BE",
     "orientationTitle": "Álló/Fekvő tájolás váltása",
     "zoomTitle": "Nagyító eszköz (Tartsd lenyomva a Ctrl billentyűt a kicsinyítéshez)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL kényszerítése",
+    "restoreWebGPU": "🖥️ WebGPU visszaállítása",
+    "toggleRendererTitle": "Hardveres gyorsítás váltása"
   },
   "toasts": {
     "prewarming": "{{model}} előmelegítése...",

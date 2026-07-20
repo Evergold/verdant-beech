@@ -23,8 +23,6 @@
     "placeholder": "Tanyakan tentang peta atau saran gaya...",
     "send": "Kirim",
     "activeTasks": "TUGAS AKTIF:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Mengunduh model...",
     "pause": "Jeda",
     "resume": "Lanjutkan"
@@ -44,10 +42,7 @@
     "lightingTemp": "Suhu Pencahayaan",
     "moonlight": "Cahaya Bulan (10000K)",
     "overcast": "Mendung (7000K)",
-    "studio": "Studio (Default, 6500K)",
     "daylight": "Cahaya Siang (5500K)",
-    "goldenHour": "Golden Hour (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Mesin Komposisi Medan",
     "generateHills": "Buat Perbukitan",
     "flatten": "Ratakan",
@@ -64,9 +59,8 @@
     "previewAlt": "Pratinjau Aset",
     "namePlaceholder": "Nama Aset (mis. blue_mushroom)",
     "save": "Simpan ke Pustaka",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Panduan Bebas Pengklasifikasi",
+    "guidanceScaleTitle": "Rendah = Kreatif, Tinggi = Kepatuhan Prompt yang Ketat"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",
@@ -75,9 +69,9 @@
     "zoomToolOn": "🔍 Alat Zoom: AKTIF",
     "orientationTitle": "Alihkan Potret/Lanskap",
     "zoomTitle": "Alat Zoom (Tahan Ctrl untuk Memperkecil)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Paksa WebGL",
+    "restoreWebGPU": "🖥️ Pulihkan WebGPU",
+    "toggleRendererTitle": "Alihkan Akselerasi Perangkat Keras"
   },
   "toasts": {
     "prewarming": "Memanaskan awal {{model}}...",

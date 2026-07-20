@@ -23,8 +23,6 @@
     "placeholder": "Kysy karttaa tai tyylivinkkejä...",
     "send": "Lähetä",
     "activeTasks": "AKTIIVISET TEHTÄVÄT:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Ladataan mallia...",
     "pause": "Keskeytä",
     "resume": "Jatka"
@@ -64,9 +62,8 @@
     "previewAlt": "Elementin esikatselu",
     "namePlaceholder": "Elementin nimi (esim. sininen_sieni)",
     "save": "Tallenna kirjastoon",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Luokittelematon ohjaus",
+    "guidanceScaleTitle": "Matala = Luova, Korkea = Tiukka kehotteen noudattaminen"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suunta: Vaaka",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Zoomaustyökalu: PÄÄLLÄ",
     "orientationTitle": "Vaihda pysty-/vaakasuuntaa",
     "zoomTitle": "Zoomaustyökalu (Pidä Ctrl painettuna loitontaaksesi)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Pakota WebGL",
+    "restoreWebGPU": "🖥️ Palauta WebGPU",
+    "toggleRendererTitle": "Vaihda laitteistokiihdytystä"
   },
   "toasts": {
     "prewarming": "Esilämmitetään {{model}}...",

@@ -64,9 +64,8 @@
     "previewAlt": "Предпросмотр ассета",
     "namePlaceholder": "Имя ассета (например, blue_mushroom)",
     "save": "Сохранить в библиотеку",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Наведение без классификатора",
+    "guidanceScaleTitle": "Низкий = Творческий, Высокий = Строгое соблюдение промпта"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Альбомная",
@@ -75,9 +74,9 @@
     "zoomToolOn": "🔍 Масштабирование: ВКЛ",
     "orientationTitle": "Переключить книжную/альбомную ориентацию",
     "zoomTitle": "Инструмент масштабирования (зажмите Ctrl для уменьшения)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Принудительный WebGL",
+    "restoreWebGPU": "🖥️ Восстановить WebGPU",
+    "toggleRendererTitle": "Переключить аппаратное ускорение"
   },
   "toasts": {
     "prewarming": "Предварительный прогрев {{model}}...",

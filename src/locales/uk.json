@@ -24,7 +24,6 @@
     "send": "Надіслати",
     "activeTasks": "АКТИВНІ ЗАВДАННЯ:",
     "ram": "ОЗП:",
-    "vram": "VRAM:",
     "downloading": "Завантаження моделі...",
     "pause": "Пауза",
     "resume": "Продовжити"
@@ -64,9 +63,8 @@
     "previewAlt": "Попередній перегляд асету",
     "namePlaceholder": "Назва асету (наприклад, blue_mushroom)",
     "save": "Зберегти до бібліотеки",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Вказівки без класифікатора",
+    "guidanceScaleTitle": "Низький = Творчий, Високий = Суворе дотримання промпту"
   },
   "canvas": {
     "orientationLandscape": "🔄 Орієнтація: Альбомна",
@@ -75,9 +73,9 @@
     "zoomToolOn": "🔍 Інструмент масштабування: УВІМК.",
     "orientationTitle": "Перемкнути Книжкова/Альбомна",
     "zoomTitle": "Інструмент масштабування (утримуйте Ctrl для зменшення)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Примусовий WebGL",
+    "restoreWebGPU": "🖥️ Відновити WebGPU",
+    "toggleRendererTitle": "Перемкнути апаратне прискорення"
   },
   "toasts": {
     "prewarming": "Попередній розігрів {{model}}...",

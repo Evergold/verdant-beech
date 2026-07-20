@@ -23,8 +23,6 @@
     "placeholder": "Požiadajte o mapu alebo radu ohľadom štýlu...",
     "send": "Odoslať",
     "activeTasks": "AKTÍVNE ÚLOHY:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Sťahuje sa model...",
     "pause": "Pozastaviť",
     "resume": "Pokračovať"
@@ -64,9 +62,8 @@
     "previewAlt": "Náhľad objektu",
     "namePlaceholder": "Názov objektu (napr. modra_huba)",
     "save": "Uložiť do knižnice",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Vedenie bez klasifikátora",
+    "guidanceScaleTitle": "Nízka = Kreatívne, Vysoká = Prísne dodržanie promptu"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientácia: Na šírku",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Nástroj lupy: ZAPNUTÝ",
     "orientationTitle": "Prepnúť na výšku/šírku",
     "zoomTitle": "Nástroj lupy (podržte Ctrl pre oddialenie)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Vynútiť WebGL",
+    "restoreWebGPU": "🖥️ Obnoviť WebGPU",
+    "toggleRendererTitle": "Prepnúť hardvérovú akceleráciu"
   },
   "toasts": {
     "prewarming": "Predhrieva sa {{model}}...",

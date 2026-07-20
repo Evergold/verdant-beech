@@ -23,8 +23,6 @@
     "placeholder": "Frage nach einer Karte oder Stilberatung...",
     "send": "Senden",
     "activeTasks": "AKTIVE AUFGABEN:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Modell wird heruntergeladen...",
     "pause": "Pausieren",
     "resume": "Fortsetzen"
@@ -47,7 +45,6 @@
     "studio": "Studio (Standard, 6500K)",
     "daylight": "Tageslicht (5500K)",
     "goldenHour": "Goldene Stunde (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Gelände-Compositing-Engine",
     "generateHills": "Hügel generieren",
     "flatten": "Abflachen",
@@ -64,9 +61,8 @@
     "previewAlt": "Asset-Vorschau",
     "namePlaceholder": "Asset-Name (z. B. blauer_pilz)",
     "save": "In Bibliothek speichern",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Klassifikator-freie Führung",
+    "guidanceScaleTitle": "Niedrig = Kreativ, Hoch = Strikte Prompt-Einhaltung"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ausrichtung: Querformat",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Zoom-Werkzeug: AN",
     "orientationTitle": "Hoch-/Querformat umschalten",
     "zoomTitle": "Zoom-Werkzeug (Strg gedrückt halten zum Auszoomen)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL erzwingen",
+    "restoreWebGPU": "🖥️ WebGPU wiederherstellen",
+    "toggleRendererTitle": "Hardwarebeschleunigung umschalten"
   },
   "toasts": {
     "prewarming": "{{model}} wird vorgewärmt...",

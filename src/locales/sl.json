@@ -23,8 +23,6 @@
     "placeholder": "Vprašajte za zemljevid ali nasvet glede sloga...",
     "send": "Pošlji",
     "activeTasks": "AKTIVNA OPRAVILA:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Prenos modela...",
     "pause": "Premor",
     "resume": "Nadaljuj"
@@ -64,9 +62,8 @@
     "previewAlt": "Predogled elementa",
     "namePlaceholder": "Ime elementa (npr. modra_goba)",
     "save": "Shrani v knjižnico",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Vodenje brez klasifikatorja",
+    "guidanceScaleTitle": "Nizko = Kreativno, Visoko = Strogo upoštevanje poziva"
   },
   "canvas": {
     "orientationLandscape": "🔄 Usmerjenost: Ležeče",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Orodje za povečavo: VKLOPLJENO",
     "orientationTitle": "Preklopi med pokončno/ležeče",
     "zoomTitle": "Orodje za povečavo (držite Ctrl za pomanjšavo)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Vsili WebGL",
+    "restoreWebGPU": "🖥️ Obnovi WebGPU",
+    "toggleRendererTitle": "Preklopi strojno pospeševanje"
   },
   "toasts": {
     "prewarming": "Predgrevanje modela {{model}}...",

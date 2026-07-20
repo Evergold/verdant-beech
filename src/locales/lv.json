@@ -23,8 +23,6 @@
     "placeholder": "Jautājiet pēc kartes vai stila padoma...",
     "send": "Sūtīt",
     "activeTasks": "AKTĪVIE UZDEVUMI:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Lejupielādē modeli...",
     "pause": "Pauzēt",
     "resume": "Turpināt"
@@ -64,9 +62,8 @@
     "previewAlt": "Resursa priekšskatījums",
     "namePlaceholder": "Resursa nosaukums (piem., zila_sene)",
     "save": "Saglabāt bibliotēkā",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Vadlīnijas bez klasifikatora",
+    "guidanceScaleTitle": "Zems = Radošs, Augsts = Stingra uzvednes ievērošana"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientācija: Ainava",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Tālummaiņas rīks: IESLĒGTS",
     "orientationTitle": "Pārslēgt portretu/ainavu",
     "zoomTitle": "Tālummaiņas rīks (turiet Ctrl, lai tālinātu)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Piespiest WebGL",
+    "restoreWebGPU": "🖥️ Atjaunot WebGPU",
+    "toggleRendererTitle": "Pārslēgt aparatūras paātrinājumu"
   },
   "toasts": {
     "prewarming": "Sagatavo {{model}}...",

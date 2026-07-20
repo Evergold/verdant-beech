@@ -23,8 +23,6 @@
     "placeholder": "Tanya tentang peta atau nasihat gaya...",
     "send": "Hantar",
     "activeTasks": "TUGAS AKTIF:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Memuat turun model...",
     "pause": "Jeda",
     "resume": "Sambung"
@@ -47,7 +45,6 @@
     "studio": "Studio (Lalai, 6500K)",
     "daylight": "Cahaya Siang (5500K)",
     "goldenHour": "Waktu Keemasan (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Enjin Penggubahan Rupa Bumi",
     "generateHills": "Janakan Bukit",
     "flatten": "Ratakan",
@@ -64,9 +61,8 @@
     "previewAlt": "Pratonton Aset",
     "namePlaceholder": "Nama Aset (cth. blue_mushroom)",
     "save": "Simpan ke Pustaka",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Panduan Tanpa Pengelas",
+    "guidanceScaleTitle": "Rendah = Kreatif, Tinggi = Pematuhan Prompt yang Ketat"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Landskap",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Alat Zum: HIDUP",
     "orientationTitle": "Tukar Potret/Landskap",
     "zoomTitle": "Alat Zum (Tahan Ctrl untuk Zum Keluar)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Paksa WebGL",
+    "restoreWebGPU": "🖥️ Pulihkan WebGPU",
+    "toggleRendererTitle": "Togol Pecutan Perkakasan"
   },
   "toasts": {
     "prewarming": "Prapemanasan {{model}}...",

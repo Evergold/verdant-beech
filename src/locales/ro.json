@@ -23,8 +23,6 @@
     "placeholder": "Cere o hartă sau sfaturi de stil...",
     "send": "Trimite",
     "activeTasks": "SARCINI ACTIVE:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Se descarcă modelul...",
     "pause": "Pauză",
     "resume": "Reluare"
@@ -47,7 +45,6 @@
     "studio": "Studio (Implicit, 6500K)",
     "daylight": "Lumină de zi (5500K)",
     "goldenHour": "Ora de aur (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Motor de compoziție a terenului",
     "generateHills": "Generează dealuri",
     "flatten": "Nivelează",
@@ -64,9 +61,8 @@
     "previewAlt": "Previzualizare element",
     "namePlaceholder": "Nume element (de ex. ciuperca_albastra)",
     "save": "Salvează în bibliotecă",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Ghidare fără clasificator",
+    "guidanceScaleTitle": "Scăzut = Creativ, Ridicat = Respectare strictă a promptului"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientare: Peisaj",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Instrument zoom: PORNIT",
     "orientationTitle": "Comută Portret/Peisaj",
     "zoomTitle": "Instrument zoom (Ține apăsat Ctrl pentru a micșora)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Forțează WebGL",
+    "restoreWebGPU": "🖥️ Restaurează WebGPU",
+    "toggleRendererTitle": "Comută accelerarea hardware"
   },
   "toasts": {
     "prewarming": "Se preîncălzește {{model}}...",

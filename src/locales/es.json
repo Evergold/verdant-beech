@@ -23,8 +23,6 @@
     "placeholder": "Pide un mapa o consejos de estilo...",
     "send": "Enviar",
     "activeTasks": "TAREAS ACTIVAS:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Descargando modelo...",
     "pause": "Pausar",
     "resume": "Reanudar"
@@ -64,9 +62,8 @@
     "previewAlt": "Vista previa del recurso",
     "namePlaceholder": "Nombre del recurso (p. ej., hongo_azul)",
     "save": "Guardar en la biblioteca",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Orientación sin clasificador",
+    "guidanceScaleTitle": "Bajo = Creativo, Alto = Cumplimiento estricto del prompt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientación: Horizontal",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Herramienta de zoom: ACTIVADA",
     "orientationTitle": "Alternar vertical/horizontal",
     "zoomTitle": "Herramienta de zoom (Mantén presionado Ctrl para alejar)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Forzar WebGL",
+    "restoreWebGPU": "🖥️ Restaurar WebGPU",
+    "toggleRendererTitle": "Alternar aceleración por hardware"
   },
   "toasts": {
     "prewarming": "Precalentando {{model}}...",

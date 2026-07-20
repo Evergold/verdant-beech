@@ -23,8 +23,6 @@
     "placeholder": "Попитайте за карта или съвет за стил...",
     "send": "Изпращане",
     "activeTasks": "АКТИВНИ ЗАДАЧИ:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Изтегляне на модел...",
     "pause": "Пауза",
     "resume": "Възобновяване"
@@ -64,9 +62,8 @@
     "previewAlt": "Преглед на ресурса",
     "namePlaceholder": "Име на ресурса (напр. blue_mushroom)",
     "save": "Запазване в библиотеката",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Насочване без класификатор",
+    "guidanceScaleTitle": "Ниско = Творческо, Високо = Строго спазване на промпта"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Пейзаж",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Инструмент за мащабиране: ВКЛ.",
     "orientationTitle": "Превключване между Портрет/Пейзаж",
     "zoomTitle": "Инструмент за мащабиране (Задръжте Ctrl за отдалечаване)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Принудително WebGL",
+    "restoreWebGPU": "🖥️ Възстановяване WebGPU",
+    "toggleRendererTitle": "Превключване на хардуерно ускорение"
   },
   "toasts": {
     "prewarming": "Предварително загряване на {{model}}...",

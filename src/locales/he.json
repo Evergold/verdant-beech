@@ -23,8 +23,6 @@
     "placeholder": "בקש מפה או עצת סגנון...",
     "send": "שלח",
     "activeTasks": "משימות פעילות:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "מוריד מודל...",
     "pause": "השהה",
     "resume": "המשך"
@@ -64,9 +62,8 @@
     "previewAlt": "תצוגה מקדימה של הנכס",
     "namePlaceholder": "שם הנכס (למשל blue_mushroom)",
     "save": "שמור לספרייה",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "הנחיה ללא מסווג",
+    "guidanceScaleTitle": "נמוך = יצירתי, גבוה = היצמדות קפדנית להנחיה"
   },
   "canvas": {
     "orientationLandscape": "🔄 כיוון: לרוחב",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 כלי זום: פעיל",
     "orientationTitle": "החלף בין לאורך/לרוחב",
     "zoomTitle": "כלי זום (החזק Ctrl כדי להקטין)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ אלץ WebGL",
+    "restoreWebGPU": "🖥️ שחזר WebGPU",
+    "toggleRendererTitle": "החלף האצת חומרה"
   },
   "toasts": {
     "prewarming": "מבצע חימום מוקדם ל-{{model}}...",

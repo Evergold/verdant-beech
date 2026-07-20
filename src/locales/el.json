@@ -23,8 +23,6 @@
     "placeholder": "Ζητήστε έναν χάρτη ή συμβουλές στυλ...",
     "send": "Αποστολή",
     "activeTasks": "ΕΝΕΡΓΕΣ ΕΡΓΑΣΙΕΣ:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Λήψη μοντέλου...",
     "pause": "Παύση",
     "resume": "Συνέχιση"
@@ -64,9 +62,8 @@
     "previewAlt": "Προεπισκόπηση Στοιχείου",
     "namePlaceholder": "Όνομα Στοιχείου (π.χ. blue_mushroom)",
     "save": "Αποθήκευση στη Βιβλιοθήκη",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Καθοδήγηση χωρίς ταξινομητή",
+    "guidanceScaleTitle": "Χαμηλό = Δημιουργικό, Υψηλό = Αυστηρή τήρηση της προτροπής"
   },
   "canvas": {
     "orientationLandscape": "🔄 Προσανατολισμός: Οριζόντιος",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Εργαλείο Εστίασης: ΕΝΕΡΓΟ",
     "orientationTitle": "Εναλλαγή Κατακόρυφου/Οριζόντιου",
     "zoomTitle": "Εργαλείο Εστίασης (Κρατήστε πατημένο το Ctrl για Σμίκρυνση)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Επιβολή WebGL",
+    "restoreWebGPU": "🖥️ Επαναφορά WebGPU",
+    "toggleRendererTitle": "Εναλλαγή επιτάχυνσης υλικού"
   },
   "toasts": {
     "prewarming": "Προθέρμανση {{model}}...",

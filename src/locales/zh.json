@@ -23,8 +23,6 @@
     "placeholder": "索取地图或风格建议...",
     "send": "发送",
     "activeTasks": "活动任务：",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "正在下载模型...",
     "pause": "暂停",
     "resume": "继续"
@@ -64,9 +62,8 @@
     "previewAlt": "资产预览",
     "namePlaceholder": "资产名称（例如 blue_mushroom）",
     "save": "保存到库",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "无分类器引导",
+    "guidanceScaleTitle": "低 = 富有创意，高 = 严格遵守提示词"
   },
   "canvas": {
     "orientationLandscape": "🔄 方向：横向",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 缩放工具：开启",
     "orientationTitle": "切换纵向/横向",
     "zoomTitle": "缩放工具（按住 Ctrl 缩小）",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ 强制 WebGL",
+    "restoreWebGPU": "🖥️ 恢复 WebGPU",
+    "toggleRendererTitle": "切换硬件加速"
   },
   "toasts": {
     "prewarming": "正在预热 {{model}}...",

@@ -23,8 +23,6 @@
     "placeholder": "Omba ramani au ushauri wa mtindo...",
     "send": "Tuma",
     "activeTasks": "KAZI ZINAZOENDELEA:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Inapakua muundo...",
     "pause": "Sitisha",
     "resume": "Endeleza"
@@ -64,9 +62,8 @@
     "previewAlt": "Hakiki ya Rasilimali",
     "namePlaceholder": "Jina la Rasilimali (k.m. blue_mushroom)",
     "save": "Hifadhi kwenye Maktaba",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Mwongozo usio na Kiainishi",
+    "guidanceScaleTitle": "Chini = Ubunifu, Juu = Kuzingatia Ujumbe kwa Uthabiti"
   },
   "canvas": {
     "orientationLandscape": "🔄 Mwelekeo: Mandhari",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Zana ya Kukuza: IMEWASHWA",
     "orientationTitle": "Badilisha Wima/Mandhari",
     "zoomTitle": "Zana ya Kukuza (Shikilia Ctrl ili Kukuza Nje)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Lazimisha WebGL",
+    "restoreWebGPU": "🖥️ Rejesha WebGPU",
+    "toggleRendererTitle": "Badilisha Kasi ya Maunzi"
   },
   "toasts": {
     "prewarming": "Inapasha moto {{model}}...",

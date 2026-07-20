@@ -23,8 +23,6 @@
     "placeholder": "Chiedi una mappa o consigli di stile...",
     "send": "Invia",
     "activeTasks": "ATTIVITÀ ATTIVE:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Download del modello in corso...",
     "pause": "Pausa",
     "resume": "Riprendi"
@@ -46,7 +44,6 @@
     "overcast": "Nuvoloso (7000K)",
     "studio": "Studio (Predefinito, 6500K)",
     "daylight": "Luce del Giorno (5500K)",
-    "goldenHour": "Golden Hour (4000K)",
     "halogen": "Alogena (3200K)",
     "terrainEngine": "Motore di Composizione Terreno",
     "generateHills": "Genera Colline",
@@ -64,9 +61,8 @@
     "previewAlt": "Anteprima Asset",
     "namePlaceholder": "Nome Asset (es. fungo_blu)",
     "save": "Salva nella Libreria",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Guida senza classificatore",
+    "guidanceScaleTitle": "Basso = Creativo, Alto = Rispetto rigoroso del prompt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientamento: Orizzontale",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Strumento Zoom: ON",
     "orientationTitle": "Alterna Verticale/Orizzontale",
     "zoomTitle": "Strumento Zoom (Tieni premuto Ctrl per rimpicciolire)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Forza WebGL",
+    "restoreWebGPU": "🖥️ Ripristina WebGPU",
+    "toggleRendererTitle": "Attiva/disattiva accelerazione hardware"
   },
   "toasts": {
     "prewarming": "Preriscaldamento di {{model}}...",

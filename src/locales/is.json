@@ -64,9 +64,8 @@
     "previewAlt": "Forskoðun eignar",
     "namePlaceholder": "Heiti eignar (t.d. blar_sveppur)",
     "save": "Vista í safn",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Leiðbeiningar án flokkara",
+    "guidanceScaleTitle": "Lágt = Skapandi, Hátt = Ströng fylgni við kvaðningu"
   },
   "canvas": {
     "orientationLandscape": "🔄 Stefna: Lárétt",
@@ -75,9 +74,9 @@
     "zoomToolOn": "🔍 Aðdráttartól: Á",
     "orientationTitle": "Skipta á milli lóðrétt/lárétt",
     "zoomTitle": "Aðdráttartól (Haltu Ctrl inni til að minnka)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Þvinga WebGL",
+    "restoreWebGPU": "🖥️ Endurheimta WebGPU",
+    "toggleRendererTitle": "Skipta um vélbúnaðarhröðun"
   },
   "toasts": {
     "prewarming": "Forhitar {{model}}...",

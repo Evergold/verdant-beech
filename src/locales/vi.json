@@ -23,8 +23,6 @@
     "placeholder": "Yêu cầu bản đồ hoặc lời khuyên về phong cách...",
     "send": "Gửi",
     "activeTasks": "NHIỆM VỤ ĐANG HOẠT ĐỘNG:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Đang tải xuống mô hình...",
     "pause": "Tạm dừng",
     "resume": "Tiếp tục"
@@ -64,9 +62,8 @@
     "previewAlt": "Xem trước Tài nguyên",
     "namePlaceholder": "Tên Tài nguyên (ví dụ: blue_mushroom)",
     "save": "Lưu vào Thư viện",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Hướng dẫn không có bộ phân loại",
+    "guidanceScaleTitle": "Thấp = Sáng tạo, Cao = Tuân thủ lời nhắc nghiêm ngặt"
   },
   "canvas": {
     "orientationLandscape": "🔄 Hướng: Ngang",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Công cụ Thu phóng: BẬT",
     "orientationTitle": "Chuyển đổi Dọc/Ngang",
     "zoomTitle": "Công cụ Thu phóng (Giữ Ctrl để Thu nhỏ)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Buộc WebGL",
+    "restoreWebGPU": "🖥️ Khôi phục WebGPU",
+    "toggleRendererTitle": "Chuyển đổi Tăng tốc Phần cứng"
   },
   "toasts": {
     "prewarming": "Đang khởi động trước {{model}}...",

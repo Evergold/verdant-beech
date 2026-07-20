@@ -23,8 +23,6 @@
     "placeholder": "Küsi kaarti või stiilinõu...",
     "send": "Saada",
     "activeTasks": "AKTIIVSED ÜLESANDED:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Mudeli allalaadimine...",
     "pause": "Paus",
     "resume": "Jätka"
@@ -64,9 +62,8 @@
     "previewAlt": "Vara eelvaade",
     "namePlaceholder": "Vara nimi (nt sinine_seen)",
     "save": "Salvesta teeki",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Klassifikaatorita juhendamine",
+    "guidanceScaleTitle": "Madal = Loominguline, Kõrge = Range viiba järgimine"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suund: Rõhtpaigutus",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Suurendustööriist: SEES",
     "orientationTitle": "Lülita püst-/rõhtpaigutust",
     "zoomTitle": "Suurendustööriist (vähendamiseks hoia all Ctrl-klahvi)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Sunnitud WebGL",
+    "restoreWebGPU": "🖥️ Taasta WebGPU",
+    "toggleRendererTitle": "Riistvaralise kiirenduse lülitamine"
   },
   "toasts": {
     "prewarming": "Mudeli {{model}} eelsoojendamine...",

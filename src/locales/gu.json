@@ -23,8 +23,6 @@
     "placeholder": "નકશો અથવા શૈલીની સલાહ માટે પૂછો...",
     "send": "મોકલો",
     "activeTasks": "સક્રિય કાર્યો:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "મોડેલ ડાઉનલોડ થઈ રહ્યું છે...",
     "pause": "થોભાવો",
     "resume": "ફરી શરૂ કરો"
@@ -64,9 +62,8 @@
     "previewAlt": "એસેટ પૂર્વાવલોકન",
     "namePlaceholder": "એસેટનું નામ (દા.ત. blue_mushroom)",
     "save": "લાઇબ્રેરીમાં સાચવો",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "વર્ગીકૃત-મુક્ત માર્ગદર્શન",
+    "guidanceScaleTitle": "નીચું = સર્જનાત્મક, ઊંચું = કડક પ્રોમ્પ્ટ પાલન"
   },
   "canvas": {
     "orientationLandscape": "🔄 ઓરિએન્ટેશન: આડું",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 ઝૂમ ટૂલ: ચાલુ",
     "orientationTitle": "ઊભું/આડું બદલો",
     "zoomTitle": "ઝૂમ ટૂલ (ઝૂમ આઉટ કરવા માટે Ctrl દબાવી રાખો)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL ફરજિયાત કરો",
+    "restoreWebGPU": "🖥️ WebGPU પુનઃસ્થાપિત કરો",
+    "toggleRendererTitle": "હાર્ડવેર પ્રવેગક ટૉગલ કરો"
   },
   "toasts": {
     "prewarming": "{{model}} ને પ્રી-વોર્મિંગ કરી રહ્યું છે...",

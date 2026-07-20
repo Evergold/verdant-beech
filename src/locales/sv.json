@@ -23,8 +23,6 @@
     "placeholder": "Fråga efter en karta eller stilråd...",
     "send": "Skicka",
     "activeTasks": "AKTIVA UPPGIFTER:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Laddar ner modell...",
     "pause": "Pausa",
     "resume": "Återuppta"
@@ -47,7 +45,6 @@
     "studio": "Studio (Standard, 6500K)",
     "daylight": "Dagsljus (5500K)",
     "goldenHour": "Gyllene timmen (4000K)",
-    "halogen": "Halogen (3200K)",
     "terrainEngine": "Terrängkomponeringsmotor",
     "generateHills": "Generera kullar",
     "flatten": "Platta till",
@@ -64,9 +61,8 @@
     "previewAlt": "Förhandsvisning av resurs",
     "namePlaceholder": "Resursnamn (t.ex. bla_svamp)",
     "save": "Spara i bibliotek",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Klassificerarfri vägledning",
+    "guidanceScaleTitle": "Låg = Kreativ, Hög = Strikt följsamhet till prompten"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientering: Liggande",
@@ -75,9 +71,9 @@
     "zoomToolOn": "🔍 Zoomverktyg: PÅ",
     "orientationTitle": "Växla stående/liggande",
     "zoomTitle": "Zoomverktyg (Håll Ctrl för att zooma ut)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Framtvinga WebGL",
+    "restoreWebGPU": "🖥️ Återställ WebGPU",
+    "toggleRendererTitle": "Växla maskinvaruacceleration"
   },
   "toasts": {
     "prewarming": "Förvärmer {{model}}...",

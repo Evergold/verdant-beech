@@ -23,8 +23,6 @@
     "placeholder": "Teirautis žemėlapio arba stiliaus patarimo...",
     "send": "Siųsti",
     "activeTasks": "AKTYVIOS UŽDUOTYS:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "Atsiunčiamas modelis...",
     "pause": "Pauzė",
     "resume": "Tęsti"
@@ -64,9 +62,8 @@
     "previewAlt": "Ištekliaus peržiūra",
     "namePlaceholder": "Ištekliaus pavadinimas (pvz., blue_mushroom)",
     "save": "Išsaugoti bibliotekoje",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "Gairės be klasifikatoriaus",
+    "guidanceScaleTitle": "Žemas = Kūrybingas, Aukštas = Griežtas užklausos laikymasis"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacija: Gulsčias",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 Mastelio įrankis: ĮJUNGTAS",
     "orientationTitle": "Perjungti statų / gulsčią",
     "zoomTitle": "Mastelio įrankis (laikykite Ctrl, kad nutolintumėte)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ Priverstinis WebGL",
+    "restoreWebGPU": "🖥️ Atkurti WebGPU",
+    "toggleRendererTitle": "Perjungti aparatinį spartinimą"
   },
   "toasts": {
     "prewarming": "Iš anksto pašildomas {{model}}...",

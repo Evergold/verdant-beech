@@ -23,8 +23,6 @@
     "placeholder": "ഒരു മാപ്പിനായോ ശൈലി ഉപദേശത്തിനായോ ചോദിക്കുക...",
     "send": "അയക്കുക",
     "activeTasks": "സജീവ ജോലികൾ:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "മോഡൽ ഡൗൺലോഡ് ചെയ്യുന്നു...",
     "pause": "താൽക്കാലികമായി നിർത്തുക",
     "resume": "പുനരാരംഭിക്കുക"
@@ -64,9 +62,8 @@
     "previewAlt": "അസറ്റ് പ്രിവ്യൂ",
     "namePlaceholder": "അസറ്റിന്റെ പേര് (ഉദാ. blue_mushroom)",
     "save": "ലൈബ്രറിയിലേക്ക് സംരക്ഷിക്കുക",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "ക്ലാസിഫയർ-രഹിത മാർഗ്ഗനിർദ്ദേശം",
+    "guidanceScaleTitle": "കുറവ് = സൃഷ്ടിപരം, കൂടുതൽ = കർശനമായ പ്രോംപ്റ്റ് പാലിക്കൽ"
   },
   "canvas": {
     "orientationLandscape": "🔄 ഓറിയന്റേഷൻ: ലാൻഡ്‌സ്‌കേപ്പ്",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 സൂം ടൂൾ: ഓൺ",
     "orientationTitle": "പോർട്രെയ്റ്റ്/ലാൻഡ്‌സ്‌കേപ്പ് മാറ്റുക",
     "zoomTitle": "സൂം ടൂൾ (സൂം ഔട്ട് ചെയ്യാൻ Ctrl അമർത്തിപ്പിടിക്കുക)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ WebGL നിർബന്ധമാക്കുക",
+    "restoreWebGPU": "🖥️ WebGPU പുനഃസ്ഥാപിക്കുക",
+    "toggleRendererTitle": "ഹാർഡ്‌വെയർ ആക്സിലറേഷൻ മാറ്റുക"
   },
   "toasts": {
     "prewarming": "{{model}} പ്രീ-വാം ചെയ്യുന്നു...",

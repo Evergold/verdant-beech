@@ -23,8 +23,6 @@
     "placeholder": "درخواست نقشه یا راهنمایی درباره سبک کنید...",
     "send": "ارسال",
     "activeTasks": "وظایف فعال:",
-    "ram": "RAM:",
-    "vram": "VRAM:",
     "downloading": "در حال دانلود مدل...",
     "pause": "توقف موقت",
     "resume": "ادامه"
@@ -64,9 +62,8 @@
     "previewAlt": "پیش‌نمایش دارایی",
     "namePlaceholder": "نام دارایی (مثلاً blue_mushroom)",
     "save": "ذخیره در کتابخانه",
-    "modelSelect": "Image Model",
-    "guidanceScale": "Classifier-Free Guidance",
-    "guidanceScaleTitle": "Low = Creative, High = Strict Prompt Adherence"
+    "guidanceScale": "راهنمایی بدون دسته‌بندی",
+    "guidanceScaleTitle": "پایین = خلاقانه، بالا = رعایت دقیق پرامپت"
   },
   "canvas": {
     "orientationLandscape": "🔄 جهت: افقی",
@@ -75,9 +72,9 @@
     "zoomToolOn": "🔍 ابزار بزرگنمایی: روشن",
     "orientationTitle": "تغییر حالت عمودی/افقی",
     "zoomTitle": "ابزار بزرگنمایی (برای کوچک‌نمایی Ctrl را نگه دارید)",
-    "forceWebGL": "🖥️ Force WebGL",
-    "restoreWebGPU": "🖥️ Restore WebGPU",
-    "toggleRendererTitle": "Toggle Hardware Acceleration"
+    "forceWebGL": "🖥️ اجبار WebGL",
+    "restoreWebGPU": "🖥️ بازیابی WebGPU",
+    "toggleRendererTitle": "تغییر شتاب سخت‌افزاری"
   },
   "toasts": {
     "prewarming": "در حال آماده‌سازی اولیه {{model}}...",
