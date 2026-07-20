@@ -335,3 +335,40 @@ def test_library_folders(mock_library_dir, tmp_path):
         response4 = client.get("/api/library/folders")
         assert response4.status_code == 200
         assert "test_portfolio_1" in response4.json().get("folders", [])
+
+@pytest.mark.asyncio
+@patch("litellm.acompletion")
+async def test_compact_memory(mock_acompletion):
+    from server.main import compact_memory
+    
+    # Mock LLM response
+    mock_res = MagicMock()
+    mock_choice = MagicMock()
+    mock_choice.message.content = "The user decided on a minimalist map of Mordor."
+    mock_res.choices = [mock_choice]
+    mock_acompletion.return_value = mock_res
+    
+    old_messages = [{"role": "user", "content": "Let's map Mordor."}]
+    
+    with patch("server.rag.rag_store") as mock_rag_store:
+        mock_collection = MagicMock()
+        mock_rag_store.client.get_or_create_collection.return_value = mock_collection
+        
+        await compact_memory("test_proj", old_messages, "test_model_123")
+        
+        # Verify litellm was called with the correct optimizations
+        mock_acompletion.assert_called_once()
+        kwargs = mock_acompletion.call_args.kwargs
+        assert kwargs["model"] == "test_model_123"
+        assert kwargs["reasoning_effort"] == "low"
+        assert kwargs["drop_params"] is True
+        
+        # Verify negative prompting is in the context
+        assert "CRITICAL INSTRUCTION" in kwargs["messages"][0]["content"]
+        assert "<think>" in kwargs["messages"][0]["content"]
+        
+        # Verify the result was saved to ChromaDB
+        mock_collection.upsert.assert_called_once()
+        upsert_kwargs = mock_collection.upsert.call_args.kwargs
+        assert upsert_kwargs["documents"] == ["The user decided on a minimalist map of Mordor."]
+        assert upsert_kwargs["metadatas"] == [{"type": "episodic_summary"}]
