@@ -646,9 +646,6 @@ async def generate_asset(req: AssetRequest):
     else:
         # Phase 2: High-Fidelity Asset Generation
         
-        # E. Verdant Brand Identity Lexicon (Applied in Phase 2 for consistency)
-        assembled_prompt += ", dark mode, deep charcoal background, translucent frosted layers, glassmorphism, neon green accents, rich polished mahogany wood"
-        
         # Inject Photography/Cinematography tokens
         assembled_prompt += ", premium high-end, sleek minimalist, cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
         
