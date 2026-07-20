@@ -54,7 +54,7 @@ Used for the actual tile stitching and map baking. Due to the high architectural
 #### Our Default & Templated Models:
 - **Primary [Tier 2]:** `gemini/imagen-4.0-generate` (Capabilities: *One-Shot, Photorealism*)
 - **Conversational Iteration [Tier 1]:** `gemini/nano-banana-pro` (Capabilities: *Iterative, Consistency*)
-- **Rapid Prototyping [Tier 0]:** `gemini/nano-banana-2` (Capabilities: *Rapid*)
+- **Rapid Prototyping [Tier 0]:** `gemini/nano-banana-2` (Capabilities: *Iterative, Rapid*)
 - **Alternatives:** `gpt-image-2` [Tier 1, *General*], `huggingface/black-forest-labs/FLUX.2` [Tier 1, *Optics*], and `bedrock/amazon.titan-image-generator-v1` [Tier 0, *Enterprise*] can be swapped via `models.yaml`.
 
 ### Embedding Models (Memory & RAG Retrieval)
