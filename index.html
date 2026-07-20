@@ -191,6 +191,18 @@
                 <span class="toggle-slider"></span>
                 <span data-i18n="asset.exploratoryMode">Exploratory Mode</span>
               </label>
+
+              <div class="model-selection">
+                <label for="image-model-select" data-i18n="asset.modelSelect">Image Model</label>
+                <select id="image-model-select" class="dropdown">
+                  <!-- Dynamically populated from models.yaml -->
+                </select>
+              </div>
+              
+              <div id="image-model-controls" style="margin-top: 10px; display: flex; flex-direction: column; gap: 8px;">
+                <!-- Dynamically populated based on selected model -->
+              </div>
+              
               
               <textarea id="asset-prompt-input" data-i18n-placeholder="asset.promptPlaceholder" placeholder="Describe the asset (e.g. 'A glowing blue mushroom')..." rows="3"></textarea>
               <button id="generate-asset-btn" class="primary-btn" data-i18n="asset.generate">Generate Asset</button>

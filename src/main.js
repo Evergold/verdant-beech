@@ -519,8 +519,72 @@ async function loadModels() {
         prewarmModel(select.value);
       }
     }
+    
+    // Load Image Models
+    if (data.image_models) {
+      const imgSelect = document.getElementById("image-model-select");
+      imgSelect.innerHTML = "";
+      data.image_models.forEach(model => {
+        const opt = document.createElement("option");
+        opt.value = model.id;
+        opt.textContent = model.label;
+        imgSelect.appendChild(opt);
+      });
+      
+      imgSelect.addEventListener("change", (e) => {
+        renderImageModelControls(e.target.value);
+      });
+      // Initial render
+      renderImageModelControls(imgSelect.value);
+    }
   } catch (e) {
     console.error("Failed to load models.yaml", e);
+  }
+}
+
+function renderImageModelControls(modelId) {
+  const container = document.getElementById("image-model-controls");
+  container.innerHTML = "";
+  
+  if (modelId.includes("imagen-4.0")) {
+    container.innerHTML = `
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="img-aspect-ratio" style="font-size: 0.85rem; color: var(--text-muted);">Aspect Ratio (One-Shot)</label>
+        <select id="img-aspect-ratio" class="dropdown">
+          <option value="1:1">1:1 (Square)</option>
+          <option value="16:9">16:9 (Landscape)</option>
+          <option value="9:16">9:16 (Portrait)</option>
+        </select>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <label for="img-seed" style="font-size: 0.85rem; color: var(--text-muted);" title="Set a specific seed for deterministic reproduction">Determinism (Seed)</label>
+        <input type="number" id="img-seed" placeholder="Random" style="padding: 6px; border-radius: 4px; border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-primary);" />
+      </div>
+    `;
+  } else if (modelId.includes("nano-banana")) {
+    container.innerHTML = `
+      <label class="toggle-container" title="Toggle between generating a new image vs conversational editing">
+        <input type="checkbox" id="nano-edit-mode">
+        <span class="toggle-slider"></span>
+        <span>Edit Mode (Reference Image)</span>
+      </label>
+      <div id="nano-edit-container" class="hidden" style="margin-top: 4px; display: flex; flex-direction: column; gap: 4px;">
+        <input type="file" id="nano-ref-image" accept="image/*" style="font-size: 0.8rem;" />
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+        <label for="nano-consistency" style="font-size: 0.85rem; color: var(--text-muted);" title="0 = Creative, 100 = Strict Consistency">Consistency Strength</label>
+        <input type="range" id="nano-consistency" min="0" max="100" value="80" />
+      </div>
+    `;
+    
+    document.getElementById("nano-edit-mode").addEventListener("change", (e) => {
+      const editContainer = document.getElementById("nano-edit-container");
+      if (e.target.checked) {
+        editContainer.classList.remove("hidden");
+      } else {
+        editContainer.classList.add("hidden");
+      }
+    });
   }
 }
 

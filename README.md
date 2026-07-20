@@ -36,7 +36,8 @@ Running the default local assistant model (`gemma4:e4b`) is highly optimized tha
 
 ### Image Generation Models (Verdant-persona)
 Used for the actual tile stitching and map baking. Due to the high architectural demands of topology, we strictly rely on cutting-edge 2026 models:
-- **Primary:** `gemini/imagen-4.0-generate` (Top-tier for photorealism and spatial accuracy).
+- **Primary:** `gemini/imagen-4.0-generate` (Top-tier for photorealism and zero-shot spatial accuracy).
+- **Conversational Iteration (Nano Banana):** `gemini/nano-banana-2` (for rapid iteration) and `gemini/nano-banana-pro` (for 4K production-grade consistency and complex editing).
 - **Alternatives:** `gpt-image-2` (OpenAI's DALL-E successor, excellent for general scene composition) or `huggingface/black-forest-labs/FLUX.2` (for camera-accurate optics) can be seamlessly swapped via `models.yaml`.
 
 ### Embedding Models (Memory & RAG Retrieval)
@@ -63,7 +64,7 @@ However, the backend utilizes `litellm` to interface with generative models, mea
 - **Mistral** (e.g., `mistral/mistral-large-latest`): `export MISTRAL_API_KEY="your_key"`
 
 **For Image Generation Models (Verdant-persona):**
-- **Google Gemini API** (e.g., `gemini/imagen-4.0-generate`): `export GEMINI_API_KEY="your_key"`
+- **Google Gemini API** (e.g., `gemini/imagen-4.0-generate`, `gemini/nano-banana-2`, `gemini/nano-banana-pro`): `export GEMINI_API_KEY="your_key"`
 - **Stability AI** (e.g., `stabilityai/stable-diffusion-3`): `export STABILITY_API_KEY="your_key"`
 - **OpenAI** (e.g., `gpt-image-2`): `export OPENAI_API_KEY="your_key"`
 - **Amazon Bedrock** (e.g., `bedrock/amazon.titan-image-generator-v1`): `export AWS_ACCESS_KEY_ID="your_id" AWS_SECRET_ACCESS_KEY="your_key" AWS_REGION_NAME="us-east-1"`

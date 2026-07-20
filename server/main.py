@@ -98,6 +98,10 @@ assistant_models:
 image_models:
   - id: "gemini/imagen-4.0-generate"
     label: "Imagen 4 (Gemini API)"
+  - id: "gemini/nano-banana-2"
+    label: "Nano Banana 2 (Gemini API)"
+  - id: "gemini/nano-banana-pro"
+    label: "Nano Banana Pro (Gemini API)"
   # Template for other image providers:
   # - id: "openai/gpt-image-2"
   #   label: "GPT Image 2"
