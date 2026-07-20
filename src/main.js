@@ -432,6 +432,7 @@ async function initBabylon() {
     });
 
     window.scene = scene;
+    window.light = light;
     return scene;
   };
 
@@ -847,14 +848,36 @@ async function handleSend() {
   appendMessage("user", messageText);
   chatInput.value = "";
   
-  // Temporary "thinking" message
+  // Temporary "thinking" message with Subconscious UI Tracker
   const thinkingId = "thinking-" + Date.now();
   const thinkingDiv = document.createElement("div");
   thinkingDiv.id = thinkingId;
   thinkingDiv.className = `chat-message message-assistant thinking`;
-  thinkingDiv.innerHTML = "<span class='typing-dot'>.</span><span class='typing-dot'>.</span><span class='typing-dot'>.</span>";
+  thinkingDiv.innerHTML = "<div style='display: flex; gap: 4px; align-items: center;'><span class='typing-dot'>.</span><span class='typing-dot'>.</span><span class='typing-dot'>.</span></div><div class='subconscious-tags' id='tags-" + thinkingId + "'></div>";
   chatHistory.appendChild(thinkingDiv);
   chatHistory.scrollTop = chatHistory.scrollHeight;
+  
+  const pollInterval = setInterval(async () => {
+    if (!document.getElementById(thinkingId)) {
+        clearInterval(pollInterval);
+        return;
+    }
+    try {
+        const res = await fetch(`http://localhost:8001/api/status/${activeProjectId}`);
+        if (!res.ok) return;
+        const status = await res.json();
+        const tagsContainer = document.getElementById(`tags-${thinkingId}`);
+        if (tagsContainer) {
+            tagsContainer.innerHTML = "";
+            if (status.gathering_thoughts) {
+                tagsContainer.innerHTML += `<span class="subconscious-tag tag-gather">Gathering thoughts...</span>`;
+            }
+            if (status.lost_in_revery) {
+                tagsContainer.innerHTML += `<span class="subconscious-tag tag-revery">Lost in revery...</span>`;
+            }
+        }
+    } catch(e) {}
+  }, 1000);
 
   updateTaskCount(1);
   try {
