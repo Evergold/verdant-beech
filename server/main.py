@@ -304,6 +304,7 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
             messages=[{"role": "user", "content": prompt}],
             max_tokens=150,
             reasoning_effort="low",
+            num_ctx=2048,
             drop_params=True
         )
         summary = res.choices[0].message.content.strip()
@@ -340,6 +341,7 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str, s
                 messages=[{"role": "user", "content": revery_prompt}],
                 max_tokens=150,
                 reasoning_effort="low",
+                num_ctx=2048,
                 drop_params=True
             )
             rev_out = rev_res.choices[0].message.content.strip()
@@ -548,7 +550,8 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
                 data["projects"][req.project_id]["compacted_idx"] = new_compacted_idx
                 save_projects(data)
                 
-                background_tasks.add_task(compact_memory, req.project_id, to_compact, req.model_name, compacted_idx, new_compacted_idx)
+                # Offload background tasks to the lightweight 2.3B model
+                background_tasks.add_task(compact_memory, req.project_id, to_compact, "ollama_chat/gemma4:e2b", compacted_idx, new_compacted_idx)
 
     # PRE-INJECTION RAG & ELASTIC WINDOW
     latest_user_msg = req.messages[-1].content if req.messages else ""
@@ -610,7 +613,8 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
     kwargs = {
         "model": req.model_name,
         "messages": messages,
-        "tools": CANVAS_TOOLS
+        "tools": CANVAS_TOOLS,
+        "num_ctx": 4096
     }
     
     if req.reasoning:
