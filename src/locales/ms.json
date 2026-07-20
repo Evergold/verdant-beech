@@ -25,7 +25,9 @@
     "activeTasks": "TUGAS AKTIF:",
     "downloading": "Memuat turun model...",
     "pause": "Jeda",
-    "resume": "Sambung"
+    "resume": "Sambung",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Pengurus Pustaka",
@@ -49,7 +51,8 @@
     "generateHills": "Janakan Bukit",
     "flatten": "Ratakan",
     "dropMarker": "📍 Letakkan Penanda Petempatan",
-    "markerDesc": "Penanda secara automatik melekat secara fizik pada geometri lapisan rupa bumi yang tersesar."
+    "markerDesc": "Penanda secara automatik melekat secara fizik pada geometri lapisan rupa bumi yang tersesar.",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Penjana Aset",
@@ -62,7 +65,8 @@
     "namePlaceholder": "Nama Aset (cth. blue_mushroom)",
     "save": "Simpan ke Pustaka",
     "guidanceScale": "Panduan Tanpa Pengelas",
-    "guidanceScaleTitle": "Rendah = Kreatif, Tinggi = Pematuhan Prompt yang Ketat"
+    "guidanceScaleTitle": "Rendah = Kreatif, Tinggi = Pematuhan Prompt yang Ketat",
+    "modelSelect": "Model Imej"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Landskap",

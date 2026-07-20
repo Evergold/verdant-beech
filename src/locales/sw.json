@@ -25,7 +25,9 @@
     "activeTasks": "KAZI ZINAZOENDELEA:",
     "downloading": "Inapakua muundo...",
     "pause": "Sitisha",
-    "resume": "Endeleza"
+    "resume": "Endeleza",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Msimamizi wa Maktaba",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Jina la Rasilimali (k.m. blue_mushroom)",
     "save": "Hifadhi kwenye Maktaba",
     "guidanceScale": "Mwongozo usio na Kiainishi",
-    "guidanceScaleTitle": "Chini = Ubunifu, Juu = Kuzingatia Ujumbe kwa Uthabiti"
+    "guidanceScaleTitle": "Chini = Ubunifu, Juu = Kuzingatia Ujumbe kwa Uthabiti",
+    "modelSelect": "Mfano wa Picha"
   },
   "canvas": {
     "orientationLandscape": "🔄 Mwelekeo: Mandhari",

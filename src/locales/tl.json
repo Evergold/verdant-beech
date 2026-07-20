@@ -25,7 +25,9 @@
     "activeTasks": "MGA AKTIBONG GAWAIN:",
     "downloading": "Dina-download ang modelo...",
     "pause": "I-pause",
-    "resume": "Ipagpatuloy"
+    "resume": "Ipagpatuloy",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Tagapamahala ng Library",
@@ -45,7 +47,12 @@
     "generateHills": "Bumuo ng mga Burol",
     "flatten": "Patagin",
     "dropMarker": "📍 Maglagay ng Marker ng Pamayanan",
-    "markerDesc": "Awtomatikong sumasapat ang mga marker sa displaced geometry ng mga layer ng terrain sa pamamagitan ng physics."
+    "markerDesc": "Awtomatikong sumasapat ang mga marker sa displaced geometry ng mga layer ng terrain sa pamamagitan ng physics.",
+    "uniformStudio": "Uniform Studio (Default)",
+    "moodyCandlelit": "Moody Candlelit",
+    "studio": "Studio (Default, 6500K)",
+    "goldenHour": "Golden Hour (4000K)",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Tagabuo ng Asset",
@@ -57,7 +64,9 @@
     "namePlaceholder": "Pangalan ng Asset (hal. blue_mushroom)",
     "save": "I-save sa Library",
     "guidanceScale": "Pag-gabay na Walang Tagapag-uri",
-    "guidanceScaleTitle": "Mababa = Malikhain, Mataas = Mahigpit na Pagsunod sa Prompt"
+    "guidanceScaleTitle": "Mababa = Malikhain, Mataas = Mahigpit na Pagsunod sa Prompt",
+    "exploratoryMode": "Exploratory Mode",
+    "modelSelect": "Modelo ng Larawan"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oryentasyon: Landscape",

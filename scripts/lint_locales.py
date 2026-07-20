@@ -30,6 +30,14 @@ auto_fix = "--fix" in sys.argv
 deleted_count = 0
 errors_found = False
 
+# Keys that are universally identical to English (acronyms, technical names, etc.)
+whitelist = {
+    "chat.ram", "chat.vram", "style.studio", "style.goldenHour",
+    "style.halogen", "style.uniformStudio", "style.moodyCandlelit",
+    "asset.exploratoryMode", "asset.title", "projects.newProject",
+    "chat.send", "chat.pause"
+}
+
 for file in os.listdir(locales_dir):
     if file.endswith(".json") and file != "en.json":
         filepath = os.path.join(locales_dir, file)
@@ -47,7 +55,8 @@ for file in os.listdir(locales_dir):
                         keys_to_delete.append(k)
                 elif full_key in en_strings and str(v) == en_strings[full_key]:
                     # Only flag if it contains alphabet characters (ignore pure symbols)
-                    if any(c.isalpha() for c in str(v)):
+                    # and if it is not explicitly whitelisted
+                    if full_key not in whitelist and any(c.isalpha() for c in str(v)):
                         if auto_fix:
                             keys_to_delete.append(k)
                         else:

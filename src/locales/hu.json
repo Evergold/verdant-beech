@@ -25,7 +25,9 @@
     "activeTasks": "AKTÍV FELADATOK:",
     "downloading": "Modell letöltése...",
     "pause": "Szünet",
-    "resume": "Folytatás"
+    "resume": "Folytatás",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Könyvtárkezelő",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Eszköz neve (pl. kek_gomba)",
     "save": "Mentés a könyvtárba",
     "guidanceScale": "Osztályozó nélküli irányítás",
-    "guidanceScaleTitle": "Alacsony = Kreatív, Magas = Szigorú prompt betartása"
+    "guidanceScaleTitle": "Alacsony = Kreatív, Magas = Szigorú prompt betartása",
+    "modelSelect": "Képmodell"
   },
   "canvas": {
     "orientationLandscape": "🔄 Tájolás: Fekvő",

@@ -25,7 +25,9 @@
     "activeTasks": "ਸਰਗਰਮ ਕਾਰਜ:",
     "downloading": "ਮਾਡਲ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ...",
     "pause": "ਰੋਕੋ",
-    "resume": "ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ"
+    "resume": "ਦੁਬਾਰਾ ਸ਼ੁਰੂ ਕਰੋ",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "ਲਾਇਬ੍ਰੇਰੀ ਮੈਨੇਜਰ",
@@ -63,7 +65,8 @@
     "namePlaceholder": "ਸੰਪਤੀ ਦਾ ਨਾਮ (ਜਿਵੇਂ blue_mushroom)",
     "save": "ਲਾਇਬ੍ਰੇਰੀ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਕਰੋ",
     "guidanceScale": "ਕਲਾਸੀਫਾਇਰ-ਮੁਕਤ ਮਾਰਗਦਰਸ਼ਨ",
-    "guidanceScaleTitle": "ਘੱਟ = ਰਚਨਾਤਮਕ, ਉੱਚ = ਸਖਤ ਪ੍ਰੌਂਪਟ ਪਾਲਣਾ"
+    "guidanceScaleTitle": "ਘੱਟ = ਰਚਨਾਤਮਕ, ਉੱਚ = ਸਖਤ ਪ੍ਰੌਂਪਟ ਪਾਲਣਾ",
+    "modelSelect": "ਚਿੱਤਰ ਮਾਡਲ"
   },
   "canvas": {
     "orientationLandscape": "🔄 ਦਿਸ਼ਾ: ਲੈਂਡਸਕੇਪ",

@@ -65,7 +65,8 @@
     "namePlaceholder": "अॅसेटचे नाव (उदा. blue_mushroom)",
     "save": "लायब्ररीमध्ये जतन करा",
     "guidanceScale": "क्लासिफायर-मुक्त मार्गदर्शन",
-    "guidanceScaleTitle": "कमी = सर्जनशील, जास्त = कठोर प्रॉम्प्ट पालन"
+    "guidanceScaleTitle": "कमी = सर्जनशील, जास्त = कठोर प्रॉम्प्ट पालन",
+    "modelSelect": "प्रतिमा मॉडेल"
   },
   "canvas": {
     "orientationLandscape": "🔄 अभिमुखता: लँडस्केप",

@@ -25,7 +25,9 @@
     "activeTasks": "AKTĪVIE UZDEVUMI:",
     "downloading": "Lejupielādē modeli...",
     "pause": "Pauzēt",
-    "resume": "Turpināt"
+    "resume": "Turpināt",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Bibliotēkas pārvaldnieks",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Resursa nosaukums (piem., zila_sene)",
     "save": "Saglabāt bibliotēkā",
     "guidanceScale": "Vadlīnijas bez klasifikatora",
-    "guidanceScaleTitle": "Zems = Radošs, Augsts = Stingra uzvednes ievērošana"
+    "guidanceScaleTitle": "Zems = Radošs, Augsts = Stingra uzvednes ievērošana",
+    "modelSelect": "Attēla modelis"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientācija: Ainava",

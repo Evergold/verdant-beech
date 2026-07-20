@@ -25,7 +25,9 @@
     "activeTasks": "AKTIIVSED ÜLESANDED:",
     "downloading": "Mudeli allalaadimine...",
     "pause": "Paus",
-    "resume": "Jätka"
+    "resume": "Jätka",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Teegihaldur",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Vara nimi (nt sinine_seen)",
     "save": "Salvesta teeki",
     "guidanceScale": "Klassifikaatorita juhendamine",
-    "guidanceScaleTitle": "Madal = Loominguline, Kõrge = Range viiba järgimine"
+    "guidanceScaleTitle": "Madal = Loominguline, Kõrge = Range viiba järgimine",
+    "modelSelect": "Pildimudel"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suund: Rõhtpaigutus",

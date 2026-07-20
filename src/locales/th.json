@@ -25,7 +25,9 @@
     "activeTasks": "งานที่กำลังดำเนินการ:",
     "downloading": "กำลังดาวน์โหลดโมเดล...",
     "pause": "หยุดชั่วคราว",
-    "resume": "ดำเนินการต่อ"
+    "resume": "ดำเนินการต่อ",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "ตัวจัดการคลัง",
@@ -63,7 +65,8 @@
     "namePlaceholder": "ชื่อแอสเซท (เช่น blue_mushroom)",
     "save": "บันทึกลงคลัง",
     "guidanceScale": "คำแนะนำแบบไม่มีตัวจำแนกประเภท",
-    "guidanceScaleTitle": "ต่ำ = สร้างสรรค์, สูง = ยึดตามคำสั่งอย่างเคร่งครัด"
+    "guidanceScaleTitle": "ต่ำ = สร้างสรรค์, สูง = ยึดตามคำสั่งอย่างเคร่งครัด",
+    "modelSelect": "โมเดลรูปภาพ"
   },
   "canvas": {
     "orientationLandscape": "🔄 ทิศทาง: แนวนอน",

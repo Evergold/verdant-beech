@@ -25,7 +25,9 @@
     "activeTasks": "TUGAS AKTIF:",
     "downloading": "Mengunduh model...",
     "pause": "Jeda",
-    "resume": "Lanjutkan"
+    "resume": "Lanjutkan",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Pengelola Pustaka",
@@ -47,7 +49,10 @@
     "generateHills": "Buat Perbukitan",
     "flatten": "Ratakan",
     "dropMarker": "📍 Letakkan Penanda Pemukiman",
-    "markerDesc": "Penanda secara otomatis menempel secara fisik (physics-snap) ke geometri lapisan medan yang bergeser."
+    "markerDesc": "Penanda secara otomatis menempel secara fisik (physics-snap) ke geometri lapisan medan yang bergeser.",
+    "studio": "Studio (Default, 6500K)",
+    "goldenHour": "Golden Hour (4000K)",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Pembuat Aset",
@@ -60,7 +65,8 @@
     "namePlaceholder": "Nama Aset (mis. blue_mushroom)",
     "save": "Simpan ke Pustaka",
     "guidanceScale": "Panduan Bebas Pengklasifikasi",
-    "guidanceScaleTitle": "Rendah = Kreatif, Tinggi = Kepatuhan Prompt yang Ketat"
+    "guidanceScaleTitle": "Rendah = Kreatif, Tinggi = Kepatuhan Prompt yang Ketat",
+    "modelSelect": "Model Gambar"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",

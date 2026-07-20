@@ -25,7 +25,9 @@
     "activeTasks": "TUGAS AKTIF:",
     "downloading": "Ngundhuh model...",
     "pause": "Jeda",
-    "resume": "Lajengake"
+    "resume": "Lajengake",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Pangatur Pustaka",
@@ -48,7 +50,9 @@
     "generateHills": "Gawe Bukit",
     "flatten": "Ratakake",
     "dropMarker": "📍 Selehake Penandha Pamukiman",
-    "markerDesc": "Penandha bakal otomatis nempel sacara fisika menyang geometri lapisan medan sing dipindhah."
+    "markerDesc": "Penandha bakal otomatis nempel sacara fisika menyang geometri lapisan medan sing dipindhah.",
+    "goldenHour": "Golden Hour (4000K)",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Generator Aset",
@@ -61,7 +65,8 @@
     "namePlaceholder": "Jeneng Aset (tuladhane blue_mushroom)",
     "save": "Simpen menyang Pustaka",
     "guidanceScale": "Panduan Bebas Klasifikasi",
-    "guidanceScaleTitle": "Cendhek = Kreatif, Dhuwur = Manut Prompt sing Ketat"
+    "guidanceScaleTitle": "Cendhek = Kreatif, Dhuwur = Manut Prompt sing Ketat",
+    "modelSelect": "Model Gambar"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientasi: Lanskap",

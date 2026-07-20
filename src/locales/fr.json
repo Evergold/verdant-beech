@@ -26,7 +26,8 @@
     "ram": "RAM :",
     "vram": "VRAM :",
     "downloading": "Téléchargement du modèle...",
-    "resume": "Reprendre"
+    "resume": "Reprendre",
+    "pause": "Pause"
   },
   "library": {
     "title": "Gestionnaire de bibliothèque",
@@ -64,7 +65,8 @@
     "namePlaceholder": "Nom de l'asset (ex: champignon_bleu)",
     "save": "Enregistrer dans la bibliothèque",
     "guidanceScale": "Guidage sans classificateur",
-    "guidanceScaleTitle": "Bas = Créatif, Haut = Respect strict du prompt"
+    "guidanceScaleTitle": "Bas = Créatif, Haut = Respect strict du prompt",
+    "modelSelect": "Modèle d'image"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientation : Paysage",

@@ -25,7 +25,9 @@
     "activeTasks": "משימות פעילות:",
     "downloading": "מוריד מודל...",
     "pause": "השהה",
-    "resume": "המשך"
+    "resume": "המשך",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "מנהל הספרייה",
@@ -63,7 +65,8 @@
     "namePlaceholder": "שם הנכס (למשל blue_mushroom)",
     "save": "שמור לספרייה",
     "guidanceScale": "הנחיה ללא מסווג",
-    "guidanceScaleTitle": "נמוך = יצירתי, גבוה = היצמדות קפדנית להנחיה"
+    "guidanceScaleTitle": "נמוך = יצירתי, גבוה = היצמדות קפדנית להנחיה",
+    "modelSelect": "מודל תמונה"
   },
   "canvas": {
     "orientationLandscape": "🔄 כיוון: לרוחב",

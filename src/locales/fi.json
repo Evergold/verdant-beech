@@ -25,7 +25,9 @@
     "activeTasks": "AKTIIVISET TEHTÄVÄT:",
     "downloading": "Ladataan mallia...",
     "pause": "Keskeytä",
-    "resume": "Jatka"
+    "resume": "Jatka",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Kirjastonhallinta",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Elementin nimi (esim. sininen_sieni)",
     "save": "Tallenna kirjastoon",
     "guidanceScale": "Luokittelematon ohjaus",
-    "guidanceScaleTitle": "Matala = Luova, Korkea = Tiukka kehotteen noudattaminen"
+    "guidanceScaleTitle": "Matala = Luova, Korkea = Tiukka kehotteen noudattaminen",
+    "modelSelect": "Kuvamalli"
   },
   "canvas": {
     "orientationLandscape": "🔄 Suunta: Vaaka",

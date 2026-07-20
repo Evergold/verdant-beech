@@ -25,7 +25,9 @@
     "activeTasks": "સક્રિય કાર્યો:",
     "downloading": "મોડેલ ડાઉનલોડ થઈ રહ્યું છે...",
     "pause": "થોભાવો",
-    "resume": "ફરી શરૂ કરો"
+    "resume": "ફરી શરૂ કરો",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "લાઇબ્રેરી મેનેજર",
@@ -63,7 +65,8 @@
     "namePlaceholder": "એસેટનું નામ (દા.ત. blue_mushroom)",
     "save": "લાઇબ્રેરીમાં સાચવો",
     "guidanceScale": "વર્ગીકૃત-મુક્ત માર્ગદર્શન",
-    "guidanceScaleTitle": "નીચું = સર્જનાત્મક, ઊંચું = કડક પ્રોમ્પ્ટ પાલન"
+    "guidanceScaleTitle": "નીચું = સર્જનાત્મક, ઊંચું = કડક પ્રોમ્પ્ટ પાલન",
+    "modelSelect": "છબી મોડેલ"
   },
   "canvas": {
     "orientationLandscape": "🔄 ઓરિએન્ટેશન: આડું",

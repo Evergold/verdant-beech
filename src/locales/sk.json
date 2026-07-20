@@ -25,7 +25,9 @@
     "activeTasks": "AKTÍVNE ÚLOHY:",
     "downloading": "Sťahuje sa model...",
     "pause": "Pozastaviť",
-    "resume": "Pokračovať"
+    "resume": "Pokračovať",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Správca knižnice",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Názov objektu (napr. modra_huba)",
     "save": "Uložiť do knižnice",
     "guidanceScale": "Vedenie bez klasifikátora",
-    "guidanceScaleTitle": "Nízka = Kreatívne, Vysoká = Prísne dodržanie promptu"
+    "guidanceScaleTitle": "Nízka = Kreatívne, Vysoká = Prísne dodržanie promptu",
+    "modelSelect": "Model obrázka"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientácia: Na šírku",

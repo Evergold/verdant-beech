@@ -25,7 +25,9 @@
     "activeTasks": "AKTYWNE ZADANIA:",
     "downloading": "Pobieranie modelu...",
     "pause": "Wstrzymaj",
-    "resume": "Wznów"
+    "resume": "Wznów",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Menedżer biblioteki",
@@ -49,7 +51,8 @@
     "generateHills": "Generuj wzgórza",
     "flatten": "Spłaszcz",
     "dropMarker": "📍 Umieść znacznik osady",
-    "markerDesc": "Znaczniki automatycznie dopasowują się fizycznie do przesuniętej geometrii warstw terenu."
+    "markerDesc": "Znaczniki automatycznie dopasowują się fizycznie do przesuniętej geometrii warstw terenu.",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Generator zasobów",
@@ -62,7 +65,8 @@
     "namePlaceholder": "Nazwa zasobu (np. niebieski_grzyb)",
     "save": "Zapisz w bibliotece",
     "guidanceScale": "Wytyczne bez klasyfikatora",
-    "guidanceScaleTitle": "Niski = Kreatywny, Wysoki = Ścisłe przestrzeganie promptu"
+    "guidanceScaleTitle": "Niski = Kreatywny, Wysoki = Ścisłe przestrzeganie promptu",
+    "modelSelect": "Model obrazu"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacja: Pozioma",

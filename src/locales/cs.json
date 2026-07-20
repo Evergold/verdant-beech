@@ -25,7 +25,9 @@
     "activeTasks": "AKTIVNÍ ÚKOLY:",
     "downloading": "Stahování modelu...",
     "pause": "Pozastavit",
-    "resume": "Obnovit"
+    "resume": "Obnovit",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Správce knihovny",
@@ -49,7 +51,8 @@
     "generateHills": "Generovat kopce",
     "flatten": "Zploštit",
     "dropMarker": "📍 Umístit značku osady",
-    "markerDesc": "Značky se automaticky přichytí pomocí fyziky k deformované geometrii vrstev terénu."
+    "markerDesc": "Značky se automaticky přichytí pomocí fyziky k deformované geometrii vrstev terénu.",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Generátor prvků",
@@ -62,7 +65,8 @@
     "namePlaceholder": "Název prvku (např. modra_houba)",
     "save": "Uložit do knihovny",
     "guidanceScale": "Vedení bez klasifikátoru",
-    "guidanceScaleTitle": "Nízká = Kreativní, Vysoká = Přísné dodržení promptu"
+    "guidanceScaleTitle": "Nízká = Kreativní, Vysoká = Přísné dodržení promptu",
+    "modelSelect": "Model obrázku"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientace: Na šířku",

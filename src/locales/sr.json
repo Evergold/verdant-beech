@@ -25,7 +25,9 @@
     "activeTasks": "AKTIVNI ZADACI:",
     "downloading": "Preuzimanje modela...",
     "pause": "Pauziraj",
-    "resume": "Nastavi"
+    "resume": "Nastavi",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Upravljač bibliotekom",
@@ -62,7 +64,9 @@
     "namePlaceholder": "Naziv elementa (npr. plava_pecurka)",
     "save": "Sačuvaj u biblioteku",
     "guidanceScale": "Вођење без класификатора",
-    "guidanceScaleTitle": "Ниско = Креативно, Високо = Строго придржавање упита"
+    "guidanceScaleTitle": "Ниско = Креативно, Високо = Строго придржавање упита",
+    "title": "Asset Generator",
+    "modelSelect": "Модел слике"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Položeno",

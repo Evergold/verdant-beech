@@ -65,7 +65,8 @@
     "namePlaceholder": "اسم الأصل (مثال: blue_mushroom)",
     "save": "حفظ في المكتبة",
     "guidanceScale": "التوجيه الخالي من المصنف",
-    "guidanceScaleTitle": "منخفض = إبداعي، عالي = التزام صارم بالموجه"
+    "guidanceScaleTitle": "منخفض = إبداعي، عالي = التزام صارم بالموجه",
+    "modelSelect": "نموذج الصورة"
   },
   "canvas": {
     "orientationLandscape": "🔄 الاتجاه: أفقي",

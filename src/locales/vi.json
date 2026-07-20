@@ -25,7 +25,9 @@
     "activeTasks": "NHIỆM VỤ ĐANG HOẠT ĐỘNG:",
     "downloading": "Đang tải xuống mô hình...",
     "pause": "Tạm dừng",
-    "resume": "Tiếp tục"
+    "resume": "Tiếp tục",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Quản lý Thư viện",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Tên Tài nguyên (ví dụ: blue_mushroom)",
     "save": "Lưu vào Thư viện",
     "guidanceScale": "Hướng dẫn không có bộ phân loại",
-    "guidanceScaleTitle": "Thấp = Sáng tạo, Cao = Tuân thủ lời nhắc nghiêm ngặt"
+    "guidanceScaleTitle": "Thấp = Sáng tạo, Cao = Tuân thủ lời nhắc nghiêm ngặt",
+    "modelSelect": "Mô hình hình ảnh"
   },
   "canvas": {
     "orientationLandscape": "🔄 Hướng: Ngang",

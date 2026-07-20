@@ -25,7 +25,9 @@
     "activeTasks": "ATTIVITÀ ATTIVE:",
     "downloading": "Download del modello in corso...",
     "pause": "Pausa",
-    "resume": "Riprendi"
+    "resume": "Riprendi",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Gestore Libreria",
@@ -49,7 +51,8 @@
     "generateHills": "Genera Colline",
     "flatten": "Appiattisci",
     "dropMarker": "📍 Posiziona Segnaposto Insediamento",
-    "markerDesc": "I segnaposto si agganciano automaticamente tramite fisica alla geometria spostata dei livelli del terreno."
+    "markerDesc": "I segnaposto si agganciano automaticamente tramite fisica alla geometria spostata dei livelli del terreno.",
+    "goldenHour": "Golden Hour (4000K)"
   },
   "asset": {
     "title": "Generatore di Asset",
@@ -62,7 +65,8 @@
     "namePlaceholder": "Nome Asset (es. fungo_blu)",
     "save": "Salva nella Libreria",
     "guidanceScale": "Guida senza classificatore",
-    "guidanceScaleTitle": "Basso = Creativo, Alto = Rispetto rigoroso del prompt"
+    "guidanceScaleTitle": "Basso = Creativo, Alto = Rispetto rigoroso del prompt",
+    "modelSelect": "Modello immagine"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientamento: Orizzontale",

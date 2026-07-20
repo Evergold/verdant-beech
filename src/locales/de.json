@@ -25,7 +25,9 @@
     "activeTasks": "AKTIVE AUFGABEN:",
     "downloading": "Modell wird heruntergeladen...",
     "pause": "Pausieren",
-    "resume": "Fortsetzen"
+    "resume": "Fortsetzen",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Bibliotheksverwaltung",
@@ -49,7 +51,8 @@
     "generateHills": "Hügel generieren",
     "flatten": "Abflachen",
     "dropMarker": "📍 Siedlungsmarker setzen",
-    "markerDesc": "Marker rasten automatisch per Physik an der verschobenen Geometrie der Geländeschichten ein."
+    "markerDesc": "Marker rasten automatisch per Physik an der verschobenen Geometrie der Geländeschichten ein.",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Asset-Generator",
@@ -62,7 +65,8 @@
     "namePlaceholder": "Asset-Name (z. B. blauer_pilz)",
     "save": "In Bibliothek speichern",
     "guidanceScale": "Klassifikator-freie Führung",
-    "guidanceScaleTitle": "Niedrig = Kreativ, Hoch = Strikte Prompt-Einhaltung"
+    "guidanceScaleTitle": "Niedrig = Kreativ, Hoch = Strikte Prompt-Einhaltung",
+    "modelSelect": "Bildmodell"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ausrichtung: Querformat",

@@ -65,7 +65,8 @@
     "namePlaceholder": "Имя ассета (например, blue_mushroom)",
     "save": "Сохранить в библиотеку",
     "guidanceScale": "Наведение без классификатора",
-    "guidanceScaleTitle": "Низкий = Творческий, Высокий = Строгое соблюдение промпта"
+    "guidanceScaleTitle": "Низкий = Творческий, Высокий = Строгое соблюдение промпта",
+    "modelSelect": "Модель изображения"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Альбомная",

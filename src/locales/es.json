@@ -25,7 +25,9 @@
     "activeTasks": "TAREAS ACTIVAS:",
     "downloading": "Descargando modelo...",
     "pause": "Pausar",
-    "resume": "Reanudar"
+    "resume": "Reanudar",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Gestor de biblioteca",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Nombre del recurso (p. ej., hongo_azul)",
     "save": "Guardar en la biblioteca",
     "guidanceScale": "Orientación sin clasificador",
-    "guidanceScaleTitle": "Bajo = Creativo, Alto = Cumplimiento estricto del prompt"
+    "guidanceScaleTitle": "Bajo = Creativo, Alto = Cumplimiento estricto del prompt",
+    "modelSelect": "Modelo de imagen"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientación: Horizontal",

@@ -25,7 +25,9 @@
     "activeTasks": "SARCINI ACTIVE:",
     "downloading": "Se descarcă modelul...",
     "pause": "Pauză",
-    "resume": "Reluare"
+    "resume": "Reluare",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Manager bibliotecă",
@@ -49,7 +51,8 @@
     "generateHills": "Generează dealuri",
     "flatten": "Nivelează",
     "dropMarker": "📍 Plasează marcaj de așezare",
-    "markerDesc": "Marcajele se fixează automat prin fizică pe geometria deplasată a straturilor de teren."
+    "markerDesc": "Marcajele se fixează automat prin fizică pe geometria deplasată a straturilor de teren.",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Generator de elemente",
@@ -62,7 +65,8 @@
     "namePlaceholder": "Nume element (de ex. ciuperca_albastra)",
     "save": "Salvează în bibliotecă",
     "guidanceScale": "Ghidare fără clasificator",
-    "guidanceScaleTitle": "Scăzut = Creativ, Ridicat = Respectare strictă a promptului"
+    "guidanceScaleTitle": "Scăzut = Creativ, Ridicat = Respectare strictă a promptului",
+    "modelSelect": "Model de imagine"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientare: Peisaj",

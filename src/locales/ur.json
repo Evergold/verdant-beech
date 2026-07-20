@@ -65,7 +65,8 @@
     "namePlaceholder": "اثاثہ کا نام (مثلاً blue_mushroom)",
     "save": "لائبریری میں محفوظ کریں",
     "guidanceScale": "کلاسیفائر سے پاک رہنمائی",
-    "guidanceScaleTitle": "کم = تخلیقی، زیادہ = پرامپٹ کی سختی سے پابندی"
+    "guidanceScaleTitle": "کم = تخلیقی، زیادہ = پرامپٹ کی سختی سے پابندی",
+    "modelSelect": "تصویری ماڈل"
   },
   "canvas": {
     "orientationLandscape": "🔄 رخ: لینڈ اسکیپ",

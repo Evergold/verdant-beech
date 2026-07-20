@@ -25,7 +25,9 @@
     "activeTasks": "АКТИВНИ ЗАДАЧИ:",
     "downloading": "Изтегляне на модел...",
     "pause": "Пауза",
-    "resume": "Възобновяване"
+    "resume": "Възобновяване",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Управление на библиотека",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Име на ресурса (напр. blue_mushroom)",
     "save": "Запазване в библиотеката",
     "guidanceScale": "Насочване без класификатор",
-    "guidanceScaleTitle": "Ниско = Творческо, Високо = Строго спазване на промпта"
+    "guidanceScaleTitle": "Ниско = Творческо, Високо = Строго спазване на промпта",
+    "modelSelect": "Модел на изображение"
   },
   "canvas": {
     "orientationLandscape": "🔄 Ориентация: Пейзаж",

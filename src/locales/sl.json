@@ -25,7 +25,9 @@
     "activeTasks": "AKTIVNA OPRAVILA:",
     "downloading": "Prenos modela...",
     "pause": "Premor",
-    "resume": "Nadaljuj"
+    "resume": "Nadaljuj",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Upravitelj knjižnice",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Ime elementa (npr. modra_goba)",
     "save": "Shrani v knjižnico",
     "guidanceScale": "Vodenje brez klasifikatorja",
-    "guidanceScaleTitle": "Nizko = Kreativno, Visoko = Strogo upoštevanje poziva"
+    "guidanceScaleTitle": "Nizko = Kreativno, Visoko = Strogo upoštevanje poziva",
+    "modelSelect": "Model slike"
   },
   "canvas": {
     "orientationLandscape": "🔄 Usmerjenost: Ležeče",

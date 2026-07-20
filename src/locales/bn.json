@@ -65,7 +65,8 @@
     "namePlaceholder": "অ্যাসেটের নাম (যেমন: blue_mushroom)",
     "save": "লাইব্রেরিতে সংরক্ষণ করুন",
     "guidanceScale": "ক্লাসিফায়ার-মুক্ত গাইডেন্স",
-    "guidanceScaleTitle": "নিম্ন = সৃজনশীল, উচ্চ = কঠোর প্রম্পট মেনে চলা"
+    "guidanceScaleTitle": "নিম্ন = সৃজনশীল, উচ্চ = কঠোর প্রম্পট মেনে চলা",
+    "modelSelect": "ইমেজ মডেল"
   },
   "canvas": {
     "orientationLandscape": "🔄 ওরিয়েন্টেশন: ল্যান্ডস্কেপ",

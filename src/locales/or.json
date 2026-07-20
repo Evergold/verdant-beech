@@ -25,7 +25,9 @@
     "activeTasks": "ସକ୍ରିୟ କାର୍ଯ୍ୟଗୁଡ଼ିକ:",
     "downloading": "ମଡେଲ୍ ଡାଉନଲୋଡ୍ ହେଉଛି...",
     "pause": "ବିରତି",
-    "resume": "ପୁନର୍ବାର ଆରମ୍ଭ କରନ୍ତୁ"
+    "resume": "ପୁନର୍ବାର ଆରମ୍ଭ କରନ୍ତୁ",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "ଲାଇବ୍ରେରୀ ପରିଚାଳକ",
@@ -63,7 +65,8 @@
     "namePlaceholder": "ସମ୍ପତ୍ତି ନାମ (ଯେପରିକି blue_mushroom)",
     "save": "ଲାଇବ୍ରେରୀରେ ସଂରକ୍ଷଣ କରନ୍ତୁ",
     "guidanceScale": "କ୍ଲାସିଫାୟର୍-ମୁକ୍ତ ମାର୍ଗଦର୍ଶନ",
-    "guidanceScaleTitle": "କମ୍ = ସୃଜନଶୀଳ, ଅଧିକ = କଠୋର ପ୍ରମ୍ପ୍ଟ ଅନୁପାଳନ"
+    "guidanceScaleTitle": "କମ୍ = ସୃଜନଶୀଳ, ଅଧିକ = କଠୋର ପ୍ରମ୍ପ୍ଟ ଅନୁପାଳନ",
+    "modelSelect": "ଚିତ୍ର ମଡେଲ୍"
   },
   "canvas": {
     "orientationLandscape": "🔄 ଆଭିମୁଖ୍ୟ: ଲ୍ୟାଣ୍ଡସ୍କେପ୍",

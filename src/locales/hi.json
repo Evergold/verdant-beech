@@ -65,7 +65,8 @@
     "namePlaceholder": "एसेट का नाम (जैसे blue_mushroom)",
     "save": "लाइब्रेरी में सहेजें",
     "guidanceScale": "क्लासिफायर-मुक्त मार्गदर्शन",
-    "guidanceScaleTitle": "निम्न = रचनात्मक, उच्च = सख्त प्रॉम्ट पालन"
+    "guidanceScaleTitle": "निम्न = रचनात्मक, उच्च = सख्त प्रॉम्ट पालन",
+    "modelSelect": "छवि मॉडल"
   },
   "canvas": {
     "orientationLandscape": "🔄 ओरिएंटेशन: लैंडस्केप",

@@ -25,7 +25,9 @@
     "activeTasks": "AKTIVNI ZADACI:",
     "downloading": "Preuzimanje modela...",
     "pause": "Pauziraj",
-    "resume": "Nastavi"
+    "resume": "Nastavi",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Upravitelj knjižnice",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Naziv resursa (npr. plava_gljiva)",
     "save": "Spremi u knjižnicu",
     "guidanceScale": "Vođenje bez klasifikatora",
-    "guidanceScaleTitle": "Nisko = Kreativno, Visoko = Strogo pridržavanje upita"
+    "guidanceScaleTitle": "Nisko = Kreativno, Visoko = Strogo pridržavanje upita",
+    "modelSelect": "Model slike"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orijentacija: Vodoravno",

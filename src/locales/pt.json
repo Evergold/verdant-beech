@@ -25,7 +25,9 @@
     "activeTasks": "TAREFAS ATIVAS:",
     "downloading": "Baixando modelo...",
     "pause": "Pausar",
-    "resume": "Retomar"
+    "resume": "Retomar",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Gerenciador de Biblioteca",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Nome do Asset (ex: cogumelo_azul)",
     "save": "Salvar na Biblioteca",
     "guidanceScale": "Orientação sem classificador",
-    "guidanceScaleTitle": "Baixo = Criativo, Alto = Adesão estrita ao prompt"
+    "guidanceScaleTitle": "Baixo = Criativo, Alto = Adesão estrita ao prompt",
+    "modelSelect": "Modelo de imagem"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientação: Paisagem",

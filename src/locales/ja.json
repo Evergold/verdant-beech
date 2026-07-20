@@ -25,7 +25,9 @@
     "activeTasks": "アクティブなタスク:",
     "downloading": "モデルをダウンロード中...",
     "pause": "一時停止",
-    "resume": "再開"
+    "resume": "再開",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "ライブラリマネージャー",
@@ -63,7 +65,8 @@
     "namePlaceholder": "アセット名（例：blue_mushroom）",
     "save": "ライブラリに保存",
     "guidanceScale": "分類器なしのガイダンス",
-    "guidanceScaleTitle": "低 = 創造的、高 = プロンプトへの厳格な準拠"
+    "guidanceScaleTitle": "低 = 創造的、高 = プロンプトへの厳格な準拠",
+    "modelSelect": "画像モデル"
   },
   "canvas": {
     "orientationLandscape": "🔄 向き: 横",

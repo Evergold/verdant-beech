@@ -25,7 +25,9 @@
     "activeTasks": "وظایف فعال:",
     "downloading": "در حال دانلود مدل...",
     "pause": "توقف موقت",
-    "resume": "ادامه"
+    "resume": "ادامه",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "مدیریت کتابخانه",
@@ -63,7 +65,8 @@
     "namePlaceholder": "نام دارایی (مثلاً blue_mushroom)",
     "save": "ذخیره در کتابخانه",
     "guidanceScale": "راهنمایی بدون دسته‌بندی",
-    "guidanceScaleTitle": "پایین = خلاقانه، بالا = رعایت دقیق پرامپت"
+    "guidanceScaleTitle": "پایین = خلاقانه، بالا = رعایت دقیق پرامپت",
+    "modelSelect": "مدل تصویر"
   },
   "canvas": {
     "orientationLandscape": "🔄 جهت: افقی",

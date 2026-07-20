@@ -25,7 +25,9 @@
     "activeTasks": "ΕΝΕΡΓΕΣ ΕΡΓΑΣΙΕΣ:",
     "downloading": "Λήψη μοντέλου...",
     "pause": "Παύση",
-    "resume": "Συνέχιση"
+    "resume": "Συνέχιση",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Διαχειριστής Βιβλιοθήκης",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Όνομα Στοιχείου (π.χ. blue_mushroom)",
     "save": "Αποθήκευση στη Βιβλιοθήκη",
     "guidanceScale": "Καθοδήγηση χωρίς ταξινομητή",
-    "guidanceScaleTitle": "Χαμηλό = Δημιουργικό, Υψηλό = Αυστηρή τήρηση της προτροπής"
+    "guidanceScaleTitle": "Χαμηλό = Δημιουργικό, Υψηλό = Αυστηρή τήρηση της προτροπής",
+    "modelSelect": "Μοντέλο εικόνας"
   },
   "canvas": {
     "orientationLandscape": "🔄 Προσανατολισμός: Οριζόντιος",

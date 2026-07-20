@@ -65,7 +65,8 @@
     "namePlaceholder": "Heiti eignar (t.d. blar_sveppur)",
     "save": "Vista í safn",
     "guidanceScale": "Leiðbeiningar án flokkara",
-    "guidanceScaleTitle": "Lágt = Skapandi, Hátt = Ströng fylgni við kvaðningu"
+    "guidanceScaleTitle": "Lágt = Skapandi, Hátt = Ströng fylgni við kvaðningu",
+    "modelSelect": "Myndamódel"
   },
   "canvas": {
     "orientationLandscape": "🔄 Stefna: Lárétt",

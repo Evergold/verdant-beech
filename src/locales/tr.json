@@ -25,7 +25,9 @@
     "activeTasks": "AKTİF GÖREVLER:",
     "downloading": "Model indiriliyor...",
     "pause": "Duraklat",
-    "resume": "Devam Et"
+    "resume": "Devam Et",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Kütüphane Yöneticisi",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Varlık Adı (örn. mavi_mantar)",
     "save": "Kütüphaneye Kaydet",
     "guidanceScale": "Sınıflandırıcı Olmayan Rehberlik",
-    "guidanceScaleTitle": "Düşük = Yaratıcı, Yüksek = İstem'e Sıkı Bağlılık"
+    "guidanceScaleTitle": "Düşük = Yaratıcı, Yüksek = İstem'e Sıkı Bağlılık",
+    "modelSelect": "Görüntü Modeli"
   },
   "canvas": {
     "orientationLandscape": "🔄 Yönlendirme: Yatay",

@@ -25,7 +25,9 @@
     "activeTasks": "ACTIEVE TAKEN:",
     "downloading": "Model downloaden...",
     "pause": "Pauzeren",
-    "resume": "Hervatten"
+    "resume": "Hervatten",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Bibliotheekbeheer",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Assetnaam (bijv. blauwe_paddenstoel)",
     "save": "Opslaan in bibliotheek",
     "guidanceScale": "Classificatievrije Begeleiding",
-    "guidanceScaleTitle": "Laag = Creatief, Hoog = Strikte Prompt-naleving"
+    "guidanceScaleTitle": "Laag = Creatief, Hoog = Strikte Prompt-naleving",
+    "modelSelect": "Afbeeldingsmodel"
   },
   "canvas": {
     "orientationLandscape": "🔄 Oriëntatie: Liggend",

@@ -23,7 +23,11 @@
     "placeholder": "Spørg efter et kort eller stilråd...",
     "activeTasks": "AKTIVE OPGAVER:",
     "downloading": "Downloader model...",
-    "resume": "Genoptag"
+    "resume": "Genoptag",
+    "send": "Send",
+    "ram": "RAM:",
+    "vram": "VRAM:",
+    "pause": "Pause"
   },
   "library": {
     "title": "Biblioteksstyring",
@@ -47,7 +51,8 @@
     "generateHills": "Generer bakker",
     "flatten": "Flad ud",
     "dropMarker": "📍 Placer bosættelsesmarkør",
-    "markerDesc": "Markører fastgøres automatisk via fysik til den forskudte geometri af terrænlagene."
+    "markerDesc": "Markører fastgøres automatisk via fysik til den forskudte geometri af terrænlagene.",
+    "halogen": "Halogen (3200K)"
   },
   "asset": {
     "title": "Asset-generator",
@@ -60,7 +65,8 @@
     "namePlaceholder": "Asset-navn (f.eks. blue_mushroom)",
     "save": "Gem i bibliotek",
     "guidanceScale": "Klassifikator-fri vejledning",
-    "guidanceScaleTitle": "Lav = Kreativ, Høj = Streng overholdelse af prompt"
+    "guidanceScaleTitle": "Lav = Kreativ, Høj = Streng overholdelse af prompt",
+    "modelSelect": "Billedmodel"
   },
   "canvas": {
     "orientationLandscape": "🔄 Retning: Liggende",

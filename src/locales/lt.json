@@ -25,7 +25,9 @@
     "activeTasks": "AKTYVIOS UŽDUOTYS:",
     "downloading": "Atsiunčiamas modelis...",
     "pause": "Pauzė",
-    "resume": "Tęsti"
+    "resume": "Tęsti",
+    "ram": "RAM:",
+    "vram": "VRAM:"
   },
   "library": {
     "title": "Bibliotekos valdyklė",
@@ -63,7 +65,8 @@
     "namePlaceholder": "Ištekliaus pavadinimas (pvz., blue_mushroom)",
     "save": "Išsaugoti bibliotekoje",
     "guidanceScale": "Gairės be klasifikatoriaus",
-    "guidanceScaleTitle": "Žemas = Kūrybingas, Aukštas = Griežtas užklausos laikymasis"
+    "guidanceScaleTitle": "Žemas = Kūrybingas, Aukštas = Griežtas užklausos laikymasis",
+    "modelSelect": "Vaizdo modelis"
   },
   "canvas": {
     "orientationLandscape": "🔄 Orientacija: Gulsčias",
