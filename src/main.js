@@ -642,7 +642,7 @@ function renderImageModelControls(modelId) {
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
         <label for="img-seed" style="font-size: 0.85rem; color: var(--text-muted);" title="Set a specific seed for deterministic reproduction">Determinism (Seed)</label>
-        <input type="number" id="img-seed" placeholder="Random" style="background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 10px 14px; font-size: 1rem; border-radius: 4px; font-family: inherit; width: 140px; box-sizing: border-box;" />
+        <input type="number" id="img-seed" placeholder="Random" oninput="if(this.value !== '' && this.value < 0) this.value = '';" style="background: var(--bg-color); color: var(--text-main); border: 1px solid var(--border-color); padding: 10px 14px; font-size: 1rem; border-radius: 4px; font-family: inherit; width: 140px; box-sizing: border-box;" />
       </div>
       <div style="display: flex; flex-direction: column; gap: 4px;">
         <label for="img-cfg" style="font-size: 0.85rem; color: var(--text-muted);" title="${i18next.t('asset.guidanceScaleTitle')}" data-i18n="asset.guidanceScale" data-i18n-title="asset.guidanceScaleTitle">${i18next.t('asset.guidanceScale')}</label>
