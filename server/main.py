@@ -7,7 +7,7 @@ from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 import litellm
 import yaml
 import httpx
