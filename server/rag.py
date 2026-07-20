@@ -114,8 +114,14 @@ class LiteLLMEmbeddingFunction(EmbeddingFunction):
         self.model_name = model_name
         
     def __call__(self, input: Documents) -> Embeddings:
-        response = litellm.embedding(model=self.model_name, input=input)
-        return [data["embedding"] for data in response.data]
+        # Batch requests to support Cloud APIs that have payload limits for performance/tokens
+        BATCH_SIZE = 32
+        all_embeddings = []
+        for i in range(0, len(input), BATCH_SIZE):
+            batch = input[i:i + BATCH_SIZE]
+            response = litellm.embedding(model=self.model_name, input=batch)
+            all_embeddings.extend([data["embedding"] for data in response.data])
+        return all_embeddings
 
 class CartographyRAG:
     def __init__(self, base_db_path="./chroma_db"):
