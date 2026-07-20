@@ -74,10 +74,12 @@ async function initBabylon() {
   let useWebGPU = false;
   if (webGPUSupported) {
     try {
-      engine = new BABYLON.WebGPUEngine(canvas, {
-        powerPreference: "high-performance",
-        antialias: true
-      });
+      const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+      const engineOptions = { antialias: true };
+      if (!isMobile) {
+        engineOptions.powerPreference = "high-performance";
+      }
+      engine = new BABYLON.WebGPUEngine(canvas, engineOptions);
       await engine.initAsync();
       console.log("Babylon.js initialized with WebGPU");
       useWebGPU = true;
