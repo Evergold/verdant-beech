@@ -109,6 +109,10 @@
     "generationFailed": "การสร้างล้มเหลว: {{error}}",
     "connectionErrorWhileGeneratingAsset": "การเชื่อมต่อขัดข้องขณะสร้างแอสเซท",
     "pleaseProvideNameToSaveAsset": "โปรดระบุชื่อเพื่อบันทึกแอสเซท",
-    "savedAssetToLibrary": "บันทึกแอสเซท '{{name}}' ลงในคลังแล้ว!"
+    "savedAssetToLibrary": "บันทึกแอสเซท '{{name}}' ลงในคลังแล้ว!",
+    "unloadingModels": "กำลังรอให้งานที่ทำงานอยู่เสร็จสมบูรณ์ก่อนที่จะยกเลิกการโหลด VRAM อย่างปลอดภัย...",
+    "waitingUnload": "กำลังรอให้การยกเลิกการโหลดอย่างปลอดภัยเสร็จสมบูรณ์ก่อนการอุ่นเครื่อง...",
+    "deferredPrewarm": "กำลังเปิดใช้งานการอุ่นเครื่องที่ถูกเลื่อนออกไป...",
+    "prewarming_e2b": "กำลังอุ่นเครื่อง {{model}}..."
   }
 }

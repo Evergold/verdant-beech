@@ -109,6 +109,10 @@
     "generationFailed": "A generálás sikertelen: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Kapcsolódási hiba az eszköz generálása közben.",
     "pleaseProvideNameToSaveAsset": "Kérjük, adj meg egy nevet az eszköz mentéséhez.",
-    "savedAssetToLibrary": "A(z) '{{name}}' eszköz mentve a könyvtárba!"
+    "savedAssetToLibrary": "A(z) '{{name}}' eszköz mentve a könyvtárba!",
+    "unloadingModels": "Várakozás az aktív feladatok befejezésére a VRAM biztonságos kiürítése előtt...",
+    "waitingUnload": "Várakozás a biztonságos kiürítés befejezésére az előmelegítés előtt...",
+    "deferredPrewarm": "Késleltetett előmelegítés aktiválása...",
+    "prewarming_e2b": "{{model}} előmelegítése..."
   }
 }

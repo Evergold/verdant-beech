@@ -109,6 +109,10 @@
     "generationFailed": "Luonti epäonnistui: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Yhteysvirhe elementtiä luodessa.",
     "pleaseProvideNameToSaveAsset": "Anna nimi elementin tallentamiseksi.",
-    "savedAssetToLibrary": "Elementti '{{name}}' tallennettu kirjastoon!"
+    "savedAssetToLibrary": "Elementti '{{name}}' tallennettu kirjastoon!",
+    "unloadingModels": "Odotetaan aktiivisten tehtävien valmistumista ennen VRAM:n turvallista purkamista...",
+    "waitingUnload": "Odotetaan turvallisen purkamisen valmistumista ennen esilämmitystä...",
+    "deferredPrewarm": "Aktivoidaan viivästetty esilämmitys...",
+    "prewarming_e2b": "Esilämmitetään {{model}}..."
   }
 }

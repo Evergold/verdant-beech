@@ -109,6 +109,10 @@
     "generationFailed": "生成失败：{{error}}",
     "connectionErrorWhileGeneratingAsset": "生成资产时连接错误。",
     "pleaseProvideNameToSaveAsset": "请提供名称以保存资产。",
-    "savedAssetToLibrary": "已将资产“{{name}}”保存到库！"
+    "savedAssetToLibrary": "已将资产“{{name}}”保存到库！",
+    "unloadingModels": "在安全卸载VRAM之前等待活动任务完成...",
+    "waitingUnload": "在预热之前等待安全卸载完成...",
+    "deferredPrewarm": "正在激活延迟的预热...",
+    "prewarming_e2b": "正在预热 {{model}}..."
   }
 }

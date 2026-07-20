@@ -109,6 +109,10 @@
     "generationFailed": "Pembuatan gagal: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Kesalahan koneksi saat membuat aset.",
     "pleaseProvideNameToSaveAsset": "Harap berikan nama untuk menyimpan aset.",
-    "savedAssetToLibrary": "Aset '{{name}}' berhasil disimpan ke pustaka!"
+    "savedAssetToLibrary": "Aset '{{name}}' berhasil disimpan ke pustaka!",
+    "unloadingModels": "Menunggu tugas aktif selesai sebelum mengosongkan VRAM dengan aman...",
+    "waitingUnload": "Menunggu pembongkaran aman selesai sebelum pemanasan awal...",
+    "deferredPrewarm": "Mengaktifkan pemanasan awal yang ditangguhkan...",
+    "prewarming_e2b": "Memanaskan awal {{model}}..."
   }
 }

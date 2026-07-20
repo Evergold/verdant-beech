@@ -109,6 +109,10 @@
     "generationFailed": "Generowanie nie powiodło się: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Błąd połączenia podczas generowania zasobu.",
     "pleaseProvideNameToSaveAsset": "Proszę podać nazwę, aby zapisać zasób.",
-    "savedAssetToLibrary": "Zapisano zasób „{{name}}” w bibliotece!"
+    "savedAssetToLibrary": "Zapisano zasób „{{name}}” w bibliotece!",
+    "unloadingModels": "Oczekiwanie na zakończenie aktywnych zadań przed bezpiecznym zwolnieniem VRAM...",
+    "waitingUnload": "Oczekiwanie na zakończenie bezpiecznego zwalniania przed podgrzewaniem...",
+    "deferredPrewarm": "Aktywacja opóźnionego podgrzewania...",
+    "prewarming_e2b": "Podgrzewanie {{model}}..."
   }
 }

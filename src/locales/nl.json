@@ -109,6 +109,10 @@
     "generationFailed": "Genereren mislukt: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Verbindingsfout tijdens genereren van asset.",
     "pleaseProvideNameToSaveAsset": "Geef een naam op om de asset op te slaan.",
-    "savedAssetToLibrary": "Asset '{{name}}' opgeslagen in bibliotheek!"
+    "savedAssetToLibrary": "Asset '{{name}}' opgeslagen in bibliotheek!",
+    "unloadingModels": "Wachten tot actieve taken zijn voltooid voordat VRAM veilig wordt ontladen...",
+    "waitingUnload": "Wachten tot veilig ontladen is voltooid voor het voorverwarmen...",
+    "deferredPrewarm": "Uitgesteld voorverwarmen activeren...",
+    "prewarming_e2b": "{{model}} voorverwarmen..."
   }
 }

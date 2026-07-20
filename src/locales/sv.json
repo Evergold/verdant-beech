@@ -109,6 +109,10 @@
     "generationFailed": "Generering misslyckades: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Anslutningsfel under generering av resurs.",
     "pleaseProvideNameToSaveAsset": "Vänligen ange ett namn för att spara resursen.",
-    "savedAssetToLibrary": "Sparade resursen '{{name}}' i biblioteket!"
+    "savedAssetToLibrary": "Sparade resursen '{{name}}' i biblioteket!",
+    "unloadingModels": "Väntar på att aktiva uppgifter ska slutföras innan VRAM laddas ur säkert...",
+    "waitingUnload": "Väntar på att säker urladdning ska slutföras innan förvärmning...",
+    "deferredPrewarm": "Aktiverar uppskjuten förvärmning...",
+    "prewarming_e2b": "Förvärmer {{model}}..."
   }
 }

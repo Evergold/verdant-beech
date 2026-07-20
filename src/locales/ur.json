@@ -109,6 +109,10 @@
     "generationFailed": "تیاری ناکام ہو گئی: {{error}}",
     "connectionErrorWhileGeneratingAsset": "اثاثہ تیار کرنے کے دوران کنکشن کی خرابی۔",
     "pleaseProvideNameToSaveAsset": "براہ کرم اثاثہ محفوظ کرنے کے لیے ایک نام فراہم کریں۔",
-    "savedAssetToLibrary": "اثاثہ '{{name}}' لائبریری میں محفوظ کر لیا گیا!"
+    "savedAssetToLibrary": "اثاثہ '{{name}}' لائبریری میں محفوظ کر لیا گیا!",
+    "unloadingModels": "VRAM کو محفوظ طریقے سے ان لوڈ کرنے سے پہلے فعال کاموں کے مکمل ہونے کا انتظار کیا جا رہا ہے...",
+    "waitingUnload": "پری وارمنگ سے پہلے محفوظ ان لوڈنگ کے مکمل ہونے کا انتظار کیا جا رہا ہے...",
+    "deferredPrewarm": "مؤخر شدہ پری وارمنگ کو فعال کیا جا رہا ہے...",
+    "prewarming_e2b": "{{model}} کو پری وارم کیا جا رہا ہے..."
   }
 }

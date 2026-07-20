@@ -109,6 +109,10 @@
     "generationFailed": "Ustvarjanje ni uspelo: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Napaka povezave med ustvarjanjem elementa.",
     "pleaseProvideNameToSaveAsset": "Prosimo, navedite ime za shranjevanje elementa.",
-    "savedAssetToLibrary": "Element '{{name}}' je shranjen v knjižnico!"
+    "savedAssetToLibrary": "Element '{{name}}' je shranjen v knjižnico!",
+    "unloadingModels": "Čakanje na dokončanje aktivnih nalog pred varnim praznjenjem VRAM-a...",
+    "waitingUnload": "Čakanje na dokončanje varnega praznjenja pred predgrevanjem...",
+    "deferredPrewarm": "Aktivacija odloženega predgrevanja...",
+    "prewarming_e2b": "Predgrevanje {{model}}..."
   }
 }

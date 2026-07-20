@@ -109,6 +109,10 @@
     "generationFailed": "Error de generación: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Error de conexión al generar el recurso.",
     "pleaseProvideNameToSaveAsset": "Por favor, proporciona un nombre para guardar el recurso.",
-    "savedAssetToLibrary": "¡Recurso '{{name}}' guardado en la biblioteca!"
+    "savedAssetToLibrary": "¡Recurso '{{name}}' guardado en la biblioteca!",
+    "unloadingModels": "Esperando a que se completen las tareas activas antes de descargar de forma segura la VRAM...",
+    "waitingUnload": "Esperando a que se complete la descarga segura antes del precalentamiento...",
+    "deferredPrewarm": "Activando precalentamiento diferido...",
+    "prewarming_e2b": "Precalentando {{model}}..."
   }
 }

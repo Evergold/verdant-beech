@@ -109,6 +109,10 @@
     "generationFailed": "Generiranje nije uspjelo: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Pogreška u povezivanju tijekom generiranja resursa.",
     "pleaseProvideNameToSaveAsset": "Navedite naziv za spremanje resursa.",
-    "savedAssetToLibrary": "Resurs '{{name}}' spremljen je u knjižnicu!"
+    "savedAssetToLibrary": "Resurs '{{name}}' spremljen je u knjižnicu!",
+    "unloadingModels": "Čekanje na završetak aktivnih zadataka prije sigurnog pražnjenja VRAM-a...",
+    "waitingUnload": "Čekanje na završetak sigurnog pražnjenja prije predgrijavanja...",
+    "deferredPrewarm": "Aktivacija odgođenog predgrijavanja...",
+    "prewarming_e2b": "Predgrijavanje {{model}}..."
   }
 }

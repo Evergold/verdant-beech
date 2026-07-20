@@ -109,6 +109,10 @@
     "generationFailed": "Penjanaan gagal: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Ralat sambungan semasa menjana aset.",
     "pleaseProvideNameToSaveAsset": "Sila berikan nama untuk menyimpan aset.",
-    "savedAssetToLibrary": "Aset '{{name}}' berjaya disimpan ke pustaka!"
+    "savedAssetToLibrary": "Aset '{{name}}' berjaya disimpan ke pustaka!",
+    "unloadingModels": "Menunggu tugas aktif selesai sebelum memunggah VRAM dengan selamat...",
+    "waitingUnload": "Menunggu pemunggahan selamat selesai sebelum prapemanasan...",
+    "deferredPrewarm": "Mengaktifkan prapemanasan tertunda...",
+    "prewarming_e2b": "Prapemanasan {{model}}..."
   }
 }

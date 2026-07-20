@@ -109,6 +109,10 @@
     "generationFailed": "فشل التوليد: {{error}}",
     "connectionErrorWhileGeneratingAsset": "خطأ في الاتصال أثناء توليد الأصل.",
     "pleaseProvideNameToSaveAsset": "يرجى تقديم اسم لحفظ الأصل.",
-    "savedAssetToLibrary": "تم حفظ الأصل '{{name}}' في المكتبة!"
+    "savedAssetToLibrary": "تم حفظ الأصل '{{name}}' في المكتبة!",
+    "unloadingModels": "انتظار اكتمال المهام النشطة قبل تفريغ VRAM بأمان...",
+    "waitingUnload": "انتظار اكتمال التفريغ الآمن قبل الإحماء المسبق...",
+    "deferredPrewarm": "تنشيط الإحماء المسبق المؤجل...",
+    "prewarming_e2b": "إحماء مسبق {{model}}..."
   }
 }

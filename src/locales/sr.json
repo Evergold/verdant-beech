@@ -109,6 +109,10 @@
     "generationFailed": "Generisanje nije uspelo: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Greška u vezi tokom generisanja elementa.",
     "pleaseProvideNameToSaveAsset": "Unesite naziv da biste sačuvali element.",
-    "savedAssetToLibrary": "Element '{{name}}' je sačuvan u biblioteci!"
+    "savedAssetToLibrary": "Element '{{name}}' je sačuvan u biblioteci!",
+    "unloadingModels": "Чекање да се активни задаци заврше пре безбедног пражњења VRAM-а...",
+    "waitingUnload": "Чекање да се безбедно пражњење заврши пре предгревања...",
+    "deferredPrewarm": "Активирање одложеног предгревања...",
+    "prewarming_e2b": "Предгревање {{model}}..."
   }
 }

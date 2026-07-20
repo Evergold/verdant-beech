@@ -109,6 +109,10 @@
     "generationFailed": "生成に失敗しました: {{error}}",
     "connectionErrorWhileGeneratingAsset": "アセットの生成中に接続エラーが発生しました。",
     "pleaseProvideNameToSaveAsset": "アセットを保存するための名前を入力してください。",
-    "savedAssetToLibrary": "アセット「{{name}}」をライブラリに保存しました！"
+    "savedAssetToLibrary": "アセット「{{name}}」をライブラリに保存しました！",
+    "unloadingModels": "VRAMを安全にアンロードする前に、アクティブなタスクの完了を待機しています...",
+    "waitingUnload": "プレウォームの前に安全なアンロードが完了するのを待機しています...",
+    "deferredPrewarm": "遅延プレウォームをアクティブ化しています...",
+    "prewarming_e2b": "{{model}}をプレウォーム中..."
   }
 }

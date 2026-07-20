@@ -109,6 +109,10 @@
     "generationFailed": "Genereerimine ebaõnnestus: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Ühenduse viga vara genereerimisel.",
     "pleaseProvideNameToSaveAsset": "Palun sisesta nimi vara salvestamiseks.",
-    "savedAssetToLibrary": "Vara '{{name}}' salvestati teeki!"
+    "savedAssetToLibrary": "Vara '{{name}}' salvestati teeki!",
+    "unloadingModels": "Oodatakse aktiivsete ülesannete lõpetamist enne VRAM-i ohutut tühjendamist...",
+    "waitingUnload": "Oodatakse ohutu tühjendamise lõpetamist enne eelsoojendamist...",
+    "deferredPrewarm": "Viivitatud eelsoojenduse aktiveerimine...",
+    "prewarming_e2b": "Eelsoojendatakse {{model}}..."
   }
 }

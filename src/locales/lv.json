@@ -109,6 +109,10 @@
     "generationFailed": "Ģenerēšana neizdevās: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Savienojuma kļūda resursa ģenerēšanas laikā.",
     "pleaseProvideNameToSaveAsset": "Lūdzu, norādiet nosaukumu, lai saglabātu resursu.",
-    "savedAssetToLibrary": "Resurss '{{name}}' saglabāts bibliotēkā!"
+    "savedAssetToLibrary": "Resurss '{{name}}' saglabāts bibliotēkā!",
+    "unloadingModels": "Gaidām aktīvo uzdevumu pabeigšanu pirms drošas VRAM izkraušanas...",
+    "waitingUnload": "Gaidām drošas izkraušanas pabeigšanu pirms iepriekšējas uzsildīšanas...",
+    "deferredPrewarm": "Aktivizē atlikto iepriekšējo uzsildīšanu...",
+    "prewarming_e2b": "Iepriekšēja uzsildīšana {{model}}..."
   }
 }

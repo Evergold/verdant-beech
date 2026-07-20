@@ -109,6 +109,10 @@
     "generationFailed": "Ошибка генерации: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Ошибка подключения при генерации ассета.",
     "pleaseProvideNameToSaveAsset": "Пожалуйста, укажите имя для сохранения ассета.",
-    "savedAssetToLibrary": "Ассет «{{name}}» сохранен в библиотеку!"
+    "savedAssetToLibrary": "Ассет «{{name}}» сохранен в библиотеку!",
+    "unloadingModels": "Ожидание завершения активных задач перед безопасной выгрузкой VRAM...",
+    "waitingUnload": "Ожидание завершения безопасной выгрузки перед предварительным нагревом...",
+    "deferredPrewarm": "Активация отложенного предварительного нагрева...",
+    "prewarming_e2b": "Предварительный нагрев {{model}}..."
   }
 }

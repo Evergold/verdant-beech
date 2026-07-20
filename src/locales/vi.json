@@ -109,6 +109,10 @@
     "generationFailed": "Tạo thất bại: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Lỗi kết nối trong khi tạo tài nguyên.",
     "pleaseProvideNameToSaveAsset": "Vui lòng cung cấp tên để lưu tài nguyên.",
-    "savedAssetToLibrary": "Đã lưu tài nguyên '{{name}}' vào thư viện!"
+    "savedAssetToLibrary": "Đã lưu tài nguyên '{{name}}' vào thư viện!",
+    "unloadingModels": "Đang chờ các tác vụ đang hoạt động hoàn tất trước khi dỡ VRAM an toàn...",
+    "waitingUnload": "Đang chờ dỡ tải an toàn hoàn tất trước khi làm nóng trước...",
+    "deferredPrewarm": "Đang kích hoạt làm nóng trước bị trì hoãn...",
+    "prewarming_e2b": "Đang làm nóng trước {{model}}..."
   }
 }

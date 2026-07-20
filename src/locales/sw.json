@@ -109,6 +109,10 @@
     "generationFailed": "Uzalishaji umeshindwa: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Hitilafu ya muunganisho wakati wa kuzalisha rasilimali.",
     "pleaseProvideNameToSaveAsset": "Tafadhali weka jina ili kuhifadhi rasilimali.",
-    "savedAssetToLibrary": "Imehifadhi rasilimali '{{name}}' kwenye maktaba!"
+    "savedAssetToLibrary": "Imehifadhi rasilimali '{{name}}' kwenye maktaba!",
+    "unloadingModels": "Inasubiri kazi zinazoendelea kukamilika kabla ya kupakua VRAM kwa usalama...",
+    "waitingUnload": "Inasubiri upakuaji salama ukamilike kabla ya kuongeza joto...",
+    "deferredPrewarm": "Inawasha ongezeko la joto lililocheleweshwa...",
+    "prewarming_e2b": "Inaongeza joto {{model}}..."
   }
 }

@@ -109,6 +109,10 @@
     "generationFailed": "Generovanie zlyhalo: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Chyba pripojenia počas generovania objektu.",
     "pleaseProvideNameToSaveAsset": "Zadajte názov na uloženie objektu.",
-    "savedAssetToLibrary": "Objekt „{{name}}“ bol uložený do knižnice!"
+    "savedAssetToLibrary": "Objekt „{{name}}“ bol uložený do knižnice!",
+    "unloadingModels": "Čakanie na dokončenie aktívnych úloh pred bezpečným uvoľnením VRAM...",
+    "waitingUnload": "Čakanie na dokončenie bezpečného uvoľnenia pred predhriatím...",
+    "deferredPrewarm": "Aktivácia odloženého predhriatia...",
+    "prewarming_e2b": "Predhrievanie {{model}}..."
   }
 }

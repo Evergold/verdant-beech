@@ -109,6 +109,10 @@
     "generationFailed": "Gagal nggawe: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Kasalahan sambungan nalika nggawe aset.",
     "pleaseProvideNameToSaveAsset": "Mangga wenehi jeneng kanggo nyimpen aset.",
-    "savedAssetToLibrary": "Aset '{{name}}' kasimpen menyang pustaka!"
+    "savedAssetToLibrary": "Aset '{{name}}' kasimpen menyang pustaka!",
+    "unloadingModels": "Ngenteni tugas aktif rampung sadurunge mbongkar VRAM kanthi aman...",
+    "waitingUnload": "Ngenteni pembongkaran aman rampung sadurunge prewarming...",
+    "deferredPrewarm": "Ngaktifake pre-warming sing ditundha...",
+    "prewarming_e2b": "Pra-pemanasan {{model}}..."
   }
 }

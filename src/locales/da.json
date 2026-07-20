@@ -109,6 +109,10 @@
     "generationFailed": "Generering mislykkedes: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Forbindelsesfejl under generering af asset.",
     "pleaseProvideNameToSaveAsset": "Angiv venligst et navn for at gemme dit asset.",
-    "savedAssetToLibrary": "Gemte asset '{{name}}' i biblioteket!"
+    "savedAssetToLibrary": "Gemte asset '{{name}}' i biblioteket!",
+    "unloadingModels": "Venter på at aktive opgaver fuldføres før VRAM tømmes sikkert...",
+    "waitingUnload": "Venter på at sikker tømning fuldføres før forvarmning...",
+    "deferredPrewarm": "Aktiverer udskudt forvarmning...",
+    "prewarming_e2b": "Forvarmer {{model}}..."
   }
 }

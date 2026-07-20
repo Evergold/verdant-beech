@@ -109,6 +109,10 @@
     "generationFailed": "જનરેશન નિષ્ફળ ગયું: {{error}}",
     "connectionErrorWhileGeneratingAsset": "એસેટ જનરેટ કરતી વખતે કનેક્શન ભૂલ.",
     "pleaseProvideNameToSaveAsset": "કૃપા કરીને એસેટ સાચવવા માટે નામ આપો.",
-    "savedAssetToLibrary": "એસેટ '{{name}}' લાઇબ્રેરીમાં સાચવવામાં આવી!"
+    "savedAssetToLibrary": "એસેટ '{{name}}' લાઇબ્રેરીમાં સાચવવામાં આવી!",
+    "unloadingModels": "VRAM સુરક્ષિત રીતે અનલોડ કરતા પહેલા સક્રિય કાર્યો પૂર્ણ થવાની રાહ જોઈ રહ્યા છીએ...",
+    "waitingUnload": "પ્રી-વૉર્મિંગ પહેલાં સુરક્ષિત અનલોડિંગ પૂર્ણ થવાની રાહ જોઈ રહ્યા છીએ...",
+    "deferredPrewarm": "વિલંબિત પ્રી-વૉર્મિંગ સક્રિય કરી રહ્યાં છીએ...",
+    "prewarming_e2b": "{{model}} પ્રી-વૉર્મ થઈ રહ્યું છે..."
   }
 }

@@ -109,6 +109,10 @@
     "generationFailed": "Помилка генерації: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Помилка з'єднання під час генерації асету.",
     "pleaseProvideNameToSaveAsset": "Будь ласка, вкажіть назву для збереження асету.",
-    "savedAssetToLibrary": "Асет '{{name}}' збережено до бібліотеки!"
+    "savedAssetToLibrary": "Асет '{{name}}' збережено до бібліотеки!",
+    "unloadingModels": "Очікування завершення активних завдань перед безпечним вивантаженням VRAM...",
+    "waitingUnload": "Очікування завершення безпечного вивантаження перед попереднім нагріванням...",
+    "deferredPrewarm": "Активація відкладеного попереднього нагрівання...",
+    "prewarming_e2b": "Попереднє нагрівання {{model}}..."
   }
 }

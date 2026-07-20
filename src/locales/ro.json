@@ -109,6 +109,10 @@
     "generationFailed": "Generarea a eșuat: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Eroare de conexiune în timpul generării elementului.",
     "pleaseProvideNameToSaveAsset": "Te rugăm să introduci un nume pentru a salva elementul.",
-    "savedAssetToLibrary": "Elementul „{{name}}” a fost salvat în bibliotecă!"
+    "savedAssetToLibrary": "Elementul „{{name}}” a fost salvat în bibliotecă!",
+    "unloadingModels": "Așteptând finalizarea sarcinilor active înainte de descărcarea în siguranță a VRAM-ului...",
+    "waitingUnload": "Așteptând finalizarea descărcării sigure înainte de preîncălzire...",
+    "deferredPrewarm": "Activarea preîncălzirii amânate...",
+    "prewarming_e2b": "Preîncălzire {{model}}..."
   }
 }

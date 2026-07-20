@@ -109,6 +109,10 @@
     "generationFailed": "تولید ناموفق بود: {{error}}",
     "connectionErrorWhileGeneratingAsset": "خطای اتصال در حین تولید دارایی.",
     "pleaseProvideNameToSaveAsset": "لطفاً نامی برای ذخیره دارایی وارد کنید.",
-    "savedAssetToLibrary": "دارایی '{{name}}' در کتابخانه ذخیره شد!"
+    "savedAssetToLibrary": "دارایی '{{name}}' در کتابخانه ذخیره شد!",
+    "unloadingModels": "در حال انتظار برای تکمیل وظایف فعال قبل از تخلیه ایمن VRAM...",
+    "waitingUnload": "در حال انتظار برای تکمیل تخلیه ایمن قبل از پیش‌گرمایش...",
+    "deferredPrewarm": "فعال‌سازی پیش‌گرمایش به تعویق افتاده...",
+    "prewarming_e2b": "پیش‌گرمایش {{model}}..."
   }
 }

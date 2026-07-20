@@ -109,6 +109,10 @@
     "generationFailed": "उत्पादन विफल रहा: {{error}}",
     "connectionErrorWhileGeneratingAsset": "एसेट उत्पन्न करते समय कनेक्शन त्रुटि।",
     "pleaseProvideNameToSaveAsset": "कृपया एसेट को सहेजने के लिए एक नाम प्रदान करें।",
-    "savedAssetToLibrary": "एसेट '{{name}}' को लाइब्रेरी में सहेजा गया!"
+    "savedAssetToLibrary": "एसेट '{{name}}' को लाइब्रेरी में सहेजा गया!",
+    "unloadingModels": "VRAM को सुरक्षित रूप से अनलोड करने से पहले सक्रिय कार्यों के पूरा होने की प्रतीक्षा की जा रही है...",
+    "waitingUnload": "प्रीवार्मिंग से पहले सुरक्षित अनलोडिंग के पूरा होने की प्रतीक्षा की जा रही है...",
+    "deferredPrewarm": "स्थगित प्री-वार्मिंग सक्रिय किया जा रहा है...",
+    "prewarming_e2b": "{{model}} को प्री-वार्म किया जा रहा है..."
   }
 }

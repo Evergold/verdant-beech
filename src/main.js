@@ -472,8 +472,17 @@ async function initBabylon() {
 }
 
 async function prewarmModel(modelId) {
+  if (window.unloadPromise) {
+    showToast(i18next.t('toasts.waitingUnload', "Waiting for safely unloading to complete before prewarming..."), "warning");
+    await window.unloadPromise;
+    window.unloadPromise = null;
+    showToast(i18next.t('toasts.deferredPrewarm', "Activating deferred pre-warming..."), "info");
+  }
   try {
     showToast(i18next.t('toasts.prewarming', { model: modelId.split("/")[1] }), "info");
+    if (modelId.includes("gemma4")) {
+      showToast(i18next.t('toasts.prewarming_e2b', { model: "gemma4:e2b (subconscious)" }), "info");
+    }
     const res = await fetch("http://localhost:8001/api/ollama/prewarm", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -749,9 +758,12 @@ function startOllamaPoll() {
 }
 
 async function unloadOllama() {
+  sendBtn.disabled = true;
   try {
+    showToast(i18next.t('toasts.unloadingModels', "Waiting for active tasks to complete before safely unloading VRAM..."), "warning");
     await fetch("http://localhost:8001/api/ollama/unload", { method: "POST" });
   } catch(e) {}
+  sendBtn.disabled = false;
 }
 
 async function streamDownload(tag) {
@@ -900,7 +912,7 @@ modelSelect.addEventListener("change", async (e) => {
     const hwMonitor = document.getElementById("hardware-monitor");
     if (hwMonitor) hwMonitor.classList.add("hidden");
     if (ollamaStatusInterval) clearInterval(ollamaStatusInterval);
-    await unloadOllama();
+    window.unloadPromise = unloadOllama();
   }
   
   if (newModel.includes("ollama_chat")) {

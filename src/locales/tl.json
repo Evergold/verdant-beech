@@ -109,6 +109,10 @@
     "generationFailed": "Bigo ang pagbuo: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Error sa koneksyon habang binubuo ang asset.",
     "pleaseProvideNameToSaveAsset": "Mangyaring magbigay ng pangalan para mai-save ang asset.",
-    "savedAssetToLibrary": "Nai-save ang asset na '{{name}}' sa library!"
+    "savedAssetToLibrary": "Nai-save ang asset na '{{name}}' sa library!",
+    "unloadingModels": "Naghihintay na makumpleto ang mga aktibong gawain bago ligtas na i-unload ang VRAM...",
+    "waitingUnload": "Naghihintay na makumpleto ang ligtas na pag-unload bago ang prewarming...",
+    "deferredPrewarm": "Ina-activate ang ipinagpalibang pre-warming...",
+    "prewarming_e2b": "Nagpe-pre-warm ng {{model}}..."
   }
 }

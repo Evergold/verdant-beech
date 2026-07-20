@@ -109,6 +109,10 @@
     "generationFailed": "היצירה נכשלה: {{error}}",
     "connectionErrorWhileGeneratingAsset": "שגיאת חיבור במהלך יצירת הנכס.",
     "pleaseProvideNameToSaveAsset": "אנא ספק שם כדי לשמור את הנכס.",
-    "savedAssetToLibrary": "הנכס '{{name}}' נשמר בספרייה!"
+    "savedAssetToLibrary": "הנכס '{{name}}' נשמר בספרייה!",
+    "unloadingModels": "ממתין להשלמת משימות פעילות לפני פריקה בטוחה של VRAM...",
+    "waitingUnload": "ממתין להשלמת הפריקה הבטוחה לפני חימום מראש...",
+    "deferredPrewarm": "מפעיל חימום מראש נדחה...",
+    "prewarming_e2b": "מחמם מראש {{model}}..."
   }
 }

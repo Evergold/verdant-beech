@@ -109,6 +109,10 @@
     "generationFailed": "Generazione non riuscita: {{error}}",
     "connectionErrorWhileGeneratingAsset": "Errore di connessione durante la generazione dell'asset.",
     "pleaseProvideNameToSaveAsset": "Fornisci un nome per salvare l'asset.",
-    "savedAssetToLibrary": "Asset '{{name}}' salvato nella libreria!"
+    "savedAssetToLibrary": "Asset '{{name}}' salvato nella libreria!",
+    "unloadingModels": "In attesa del completamento delle attività attive prima di scaricare in modo sicuro la VRAM...",
+    "waitingUnload": "In attesa del completamento dello scaricamento sicuro prima del preriscaldamento...",
+    "deferredPrewarm": "Attivazione del preriscaldamento differito...",
+    "prewarming_e2b": "Preriscaldamento di {{model}}..."
   }
 }
