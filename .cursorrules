@@ -11,8 +11,8 @@
 *   If you find yourself making a commit that logically could have been made 2-commits ago (e.g. fixing a typo in a previous feature while working on a new one), **ASK FOR CONFIRMATION** to rearrange the repo/git history (using interactive rebase or by squashing/ammending) rather than mingling unrelated changes.
 
 ## 3. i18n Auto-Update Rule
-*   **MANDATORY**: Whenever you modify or add user-facing text in the frontend HTML/JS files, you MUST automatically update the corresponding i18n JSON language files in `src/locales/` (e.g., `en.json`, `es.json`, etc.). 
-*   Never wait for a manual run of a localization script. The AI must manage the JSON keys and translations synchronously with UI changes.
+*   **MANDATORY**: Whenever you modify or add user-facing text (English is our development baseline) in the frontend HTML/JS files, you MUST automatically generate and update the corresponding i18n JSON language files in `src/locales/` across our 50 target languages: `ar`, `bg`, `bn`, `cs`, `da`, `de`, `el`, `en`, `es`, `et`, `fa`, `fi`, `fr`, `gu`, `he`, `hi`, `hr`, `hu`, `id`, `is`, `it`, `ja`, `jv`, `ko`, `lt`, `lv`, `ml`, `mr`, `ms`, `nl`, `or`, `pa`, `pl`, `pt`, `ro`, `ru`, `sk`, `sl`, `sr`, `sv`, `sw`, `ta`, `te`, `th`, `tl`, `tr`, `uk`, `ur`, `vi`, `zh`.
+*   Never wait for a manual run of a localization script. The AI must manage the JSON keys and synchronously translate the English baseline strings into the exactly specified 50 target languages alongside any UI changes.
 
 ## 4. UI Modular Design (roving-bard paradigm)
 *   Use a dark, premium, modular panel-based design for the UI. Ensure the Sidecar chat panel (for the proactive Cartography Agent) and the main Canvas remain visually distinct but cohesive.
