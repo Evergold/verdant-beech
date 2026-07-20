@@ -13,7 +13,7 @@ Verdant Beech is a next-generation map-making application powered by Agentic AI.
   - **Working Memory**: Kept tight (last 10 messages) to maintain focus.
   - **Episodic Memory**: Older conversation context is continuously compacted and summarized in the background by the agent, embedded into ChromaDB, and retrieved dynamically.
   - **Semantic Memory**: Generalized facts learned over time, specifically storing your overarching project preferences, stylistic choices, and creative goals. These are embedded alongside expert cartography rules to ensure the agent remains permanently aligned with your vision.
-- **Hardware-Accelerated WebGPU**: Uses Babylon.js v9 for buttery-smooth panning and zooming across stitched 4K textures, safely gracefully falling back to WebGL on older browsers.
+- **Hardware-Accelerated WebGPU**: Uses Babylon.js v9 for buttery-smooth panning and zooming across stitched 4K textures, safely gracefully falling back to WebGL on older browsers. Please see the [Browser WebGPU Configuration Guide](WEBGPU_GUIDE.md) for platform-specific tweaks (Firefox, Brave, Safari) to ensure maximum performance.
 - **Dynamic Canvas Tooling**: The agent can natively manipulate your scene lighting, apply post-processing filters, overlay hex grids, drop markers, and control weather effects.
 - **Real-Time VLM Sync (Coming Soon)**: A debounced local Vision-Language Model watches your canvas strokes to provide instant, context-aware feedback.
 
