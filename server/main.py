@@ -283,7 +283,9 @@ class ChatRequest(BaseModel):
     reasoning: str | None = None
     project_id: str | None = None
 
-async def compact_memory(project_id: str, old_messages: list, model_name: str):
+import time
+
+async def compact_memory(project_id: str, old_messages: list, model_name: str, start_idx: int, end_idx: int):
     if not old_messages:
         return
     try:
@@ -311,7 +313,7 @@ async def compact_memory(project_id: str, old_messages: list, model_name: str):
         )
         mem_collection.upsert(
             documents=[summary],
-            metadatas=[{"type": "episodic_summary"}],
+            metadatas=[{"type": "episodic_summary", "start_idx": start_idx, "end_idx": end_idx, "timestamp": time.time()}],
             ids=[str(uuid.uuid4())]
         )
         print(f"[MEMORY MANAGER] Compacted {len(old_messages)} messages into ChromaDB for project {project_id}.")
@@ -454,37 +456,6 @@ CANVAS_TOOLS = [
 
 @app.post("/api/chat")
 async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
-    # PRE-INJECTION RAG: Query both expert rules and dynamic episodic memory
-    latest_user_msg = req.messages[-1].content if req.messages else ""
-    rag_context = ""
-    episodic_context = ""
-    
-    if latest_user_msg:
-        # 1. Cartography Rules
-        rag_results = rag_store.query(latest_user_msg, n_results=2)
-        if rag_results:
-            rag_context = "\n\nEXPERT CARTOGRAPHY RULES TO FOLLOW FOR THIS REQUEST:\n- " + "\n- ".join(rag_results)
-            
-        # 2. Episodic Memory (Dynamic Topic Retrieval)
-        if req.project_id:
-            try:
-                mem_collection = rag_store.client.get_or_create_collection(
-                    name=f"memory_{req.project_id}",
-                    embedding_function=rag_store.embedding_function
-                )
-                mem_results = mem_collection.query(query_texts=[latest_user_msg], n_results=3)
-                if mem_results and mem_results['documents'] and mem_results['documents'][0]:
-                    episodic_context = "\n\nPAST CONVERSATIONAL MEMORY FOR THIS PROJECT:\n- " + "\n- ".join(mem_results['documents'][0])
-            except Exception as e:
-                print(f"[MEMORY] Error fetching episodic memory: {e}")
-            
-    system_prompt = CARTOGRAPHER_PROMPT + rag_context + episodic_context
-    messages = [{"role": "system", "content": system_prompt}]
-    
-    # CONTINUOUS COMPACTION & TIGHT SLIDING WINDOW:
-    # Instead of blinding keeping 150 messages, we shrink Working Memory to just the last 10 messages (5 turns).
-    # When the chat exceeds 20 messages, we scoop up the oldest uncompacted messages, send them to the
-    # BackgroundTasks memory manager, and store them in ChromaDB without blocking the user!
     total_msgs = len(req.messages)
     compacted_idx = 0
     
@@ -494,19 +465,65 @@ async def chat_endpoint(req: ChatRequest, background_tasks: BackgroundTasks):
             compacted_idx = data["projects"][req.project_id].get("compacted_idx", 0)
             
             if total_msgs - compacted_idx > 20:
-                # We leave the last 10 messages as working memory. Everything before that gets compacted.
                 to_compact = req.messages[compacted_idx : total_msgs - 10]
                 new_compacted_idx = total_msgs - 10
                 
-                # Update pointer
                 data["projects"][req.project_id]["compacted_idx"] = new_compacted_idx
                 save_projects(data)
                 
-                # Fire and forget memory manager
-                background_tasks.add_task(compact_memory, req.project_id, to_compact, req.model_name)
+                background_tasks.add_task(compact_memory, req.project_id, to_compact, req.model_name, compacted_idx, new_compacted_idx)
+
+    # PRE-INJECTION RAG & ELASTIC WINDOW
+    latest_user_msg = req.messages[-1].content if req.messages else ""
+    rag_context = ""
+    episodic_messages = []
     
-    recent_messages = req.messages[-10:] if total_msgs > 10 else req.messages
-    messages.extend([{"role": m.role, "content": m.content} for m in recent_messages])
+    if latest_user_msg:
+        # 1. Cartography Rules
+        rag_results = rag_store.query(latest_user_msg, n_results=2)
+        if rag_results:
+            rag_context = "\n\nEXPERT CARTOGRAPHY RULES TO FOLLOW:\n- " + "\n- ".join(rag_results)
+            
+        # 2. Elastic Window (Time-Aware Episodic Recall)
+        if req.project_id:
+            try:
+                mem_collection = rag_store.client.get_or_create_collection(
+                    name=f"memory_{req.project_id}",
+                    embedding_function=rag_store.embedding_function
+                )
+                mem_results = mem_collection.query(query_texts=[latest_user_msg], n_results=5)
+                if mem_results and mem_results.get('metadatas') and mem_results['metadatas'][0]:
+                    slices = mem_results['metadatas'][0]
+                    slices.sort(key=lambda x: x.get("timestamp", 0))
+                    
+                    for s in slices:
+                        start = s.get("start_idx")
+                        end = s.get("end_idx")
+                        if start is not None and end is not None and start < compacted_idx:
+                            actual_end = min(end, compacted_idx)
+                            episodic_messages.extend(req.messages[start:actual_end])
+            except Exception as e:
+                print(f"[MEMORY] Error fetching episodic memory: {e}")
+
+    # Build the final prompt structure (Bottom-Heavy Architecture)
+    messages = [{"role": "system", "content": CARTOGRAPHER_PROMPT}]
+    
+    if episodic_messages:
+        messages.append({"role": "system", "content": "--- TELEPORTED HISTORICAL CONTEXT ---"})
+        messages.extend([{"role": m.role, "content": m.content} for m in episodic_messages])
+        messages.append({"role": "system", "content": "--- END HISTORICAL CONTEXT ---"})
+    
+    recent_working = req.messages[-10:] if total_msgs > 10 else req.messages
+    if len(recent_working) > 1:
+        messages.extend([{"role": m.role, "content": m.content} for m in recent_working[:-1]])
+        
+    if rag_context:
+        bottom_context = "CRITICAL REFRESHER BEFORE RESPONDING:" + rag_context
+        messages.append({"role": "system", "content": bottom_context})
+        
+    if recent_working:
+        last_m = recent_working[-1]
+        messages.append({"role": last_m.role, "content": last_m.content})
     
     kwargs = {
         "model": req.model_name,

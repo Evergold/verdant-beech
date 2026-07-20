@@ -113,10 +113,10 @@ def test_project_name_increment(mock_save, mock_load):
 
 @pytest.mark.asyncio
 async def test_compact_memory_edge_cases():
-    await compact_memory("test", [], "model")
+    await compact_memory("test", [], "model", 0, 10)
     
     with patch("litellm.acompletion", side_effect=Exception("LLM Error")):
-        await compact_memory("test", [{"role": "user", "content": "hi"}], "model")
+        await compact_memory("test", [{"role": "user", "content": "hi"}], "model", 0, 10)
 
 @patch("server.main.httpx.AsyncClient")
 def test_ollama_errors(mock_client):
@@ -141,19 +141,25 @@ def test_chat_episodic_memory_injection(mock_completion):
     mock_response.choices = [mock_choice]
     mock_completion.return_value = mock_response
 
-    with patch("server.main.rag_store") as mock_rag:
+    with patch("server.main.rag_store") as mock_rag, patch("server.main.load_projects") as mock_lp:
         # Mock actual memory return
         mock_collection = MagicMock()
-        mock_collection.query.return_value = {"documents": [["past memory 1"]]}
+        mock_collection.query.return_value = {
+            "documents": [["past memory 1"]],
+            "metadatas": [[{"start_idx": 0, "end_idx": 1, "timestamp": 123}]]
+        }
         mock_rag.client.get_or_create_collection.return_value = mock_collection
+        mock_lp.return_value = {"projects": {"proj_mem": {"compacted_idx": 10}}}
         
+        messages_payload = [{"role": "user", "content": f"msg {i}"} for i in range(12)]
         res = client.post("/api/chat", json={
-            "messages": [{"role": "user", "content": "hello"}],
+            "messages": messages_payload,
             "project_id": "proj_mem"
         })
         assert res.status_code == 200
         # Line 477 should be executed, pushing context into the messages block
-        assert "PAST CONVERSATIONAL MEMORY" in mock_completion.call_args.kwargs["messages"][0]["content"]
+        messages = mock_completion.call_args.kwargs["messages"]
+        assert any("TELEPORTED HISTORICAL CONTEXT" in m["content"] for m in messages)
 
 def test_library_exceptions():
     with patch("server.main.os.scandir", side_effect=Exception("Scandir Failed")):

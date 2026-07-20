@@ -290,8 +290,8 @@ async def test_chat_endpoint_pre_injection_rag():
     def mock_completion(*args, **kwargs):
         messages = kwargs.get("messages", [])
         # Verify the system prompt got injected with the cartography rule
-        assert "EXPERT CARTOGRAPHY RULES" in messages[0]["content"]
-        assert "Lowlands are green" in messages[0]["content"]
+        assert any("EXPERT CARTOGRAPHY RULES" in m["content"] for m in messages)
+        assert any("Lowlands are green" in m["content"] for m in messages)
         return responses[0]
         
     with patch("server.main.litellm.completion", side_effect=mock_completion), \
@@ -354,7 +354,7 @@ async def test_compact_memory(mock_acompletion):
         mock_collection = MagicMock()
         mock_rag_store.client.get_or_create_collection.return_value = mock_collection
         
-        await compact_memory("test_proj", old_messages, "test_model_123")
+        await compact_memory("test_proj", old_messages, "test_model_123", 0, 10)
         
         # Verify litellm was called with the correct optimizations
         mock_acompletion.assert_called_once()
@@ -371,4 +371,7 @@ async def test_compact_memory(mock_acompletion):
         mock_collection.upsert.assert_called_once()
         upsert_kwargs = mock_collection.upsert.call_args.kwargs
         assert upsert_kwargs["documents"] == ["The user decided on a minimalist map of Mordor."]
-        assert upsert_kwargs["metadatas"] == [{"type": "episodic_summary"}]
+        assert upsert_kwargs["metadatas"][0]["type"] == "episodic_summary"
+        assert upsert_kwargs["metadatas"][0]["start_idx"] == 0
+        assert upsert_kwargs["metadatas"][0]["end_idx"] == 10
+        assert "timestamp" in upsert_kwargs["metadatas"][0]
