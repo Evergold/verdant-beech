@@ -225,9 +225,8 @@ async function initBabylon() {
     table.receiveShadows = true;
 
     // The Map Canvas (Parchment Paper resting on table)
-    // --- WebGPU Shader Math ---
+    // --- WebGPU / WebGL Shader Math ---
     BABYLON.Effect.ShadersStore["mapVertexShader"] = `
-        precision highp float;
         attribute vec3 position;
         attribute vec2 uv;
         attribute vec3 normal;
@@ -236,12 +235,12 @@ async function initBabylon() {
         // Procedural Tool Parameters
         uniform float noiseScale;
         uniform float elevation;
-        uniform int proceduralEnabled;
+        uniform float proceduralEnabled;
         
         varying vec2 vUV;
         varying vec3 vPosition;
 
-        // Simplex/Perlin noise approximation for WebGL/WebGPU
+        // Simplex/Perlin noise approximation for WebGL
         float rand(vec2 n) { return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453); }
         float noise(vec2 p){
             vec2 ip = floor(p);
@@ -254,7 +253,7 @@ async function initBabylon() {
 
         void main() {
             vec3 pos = position;
-            if (proceduralEnabled == 1) {
+            if (proceduralEnabled > 0.5) {
                 float n = noise(pos.xz * noiseScale);
                 n += noise(pos.xz * noiseScale * 2.0) * 0.5;
                 pos.y += (n * elevation);
@@ -266,19 +265,18 @@ async function initBabylon() {
     `;
 
     BABYLON.Effect.ShadersStore["mapFragmentShader"] = `
-        precision highp float;
         varying vec2 vUV;
         varying vec3 vPosition;
         
         uniform sampler2D diffuseTexture;
-        uniform int filterType; // 0=None, 1=Sepia, 2=Grayscale, 3=Vignette
-        uniform int proceduralEnabled;
+        uniform float filterType; // 0=None, 1=Sepia, 2=Grayscale, 3=Vignette
+        uniform float proceduralEnabled;
 
         void main() {
             vec4 color = texture2D(diffuseTexture, vUV);
             
             // Procedural Sandbox Biomes
-            if (proceduralEnabled == 1) {
+            if (proceduralEnabled > 0.5) {
                 float h = vPosition.y;
                 if (h < 0.5) color = mix(color, vec4(0.1, 0.3, 0.6, 1.0), 0.7); // Water
                 else if (h < 1.0) color = mix(color, vec4(0.8, 0.7, 0.4, 1.0), 0.7); // Sand
@@ -287,18 +285,18 @@ async function initBabylon() {
                 else color = mix(color, vec4(0.9, 0.9, 0.95, 1.0), 0.7); // Snow
             }
 
-            // Localized Canvas Theming & Filters (Not applied to workshop background)
-            if (filterType == 1) {
+            // Localized Canvas Theming & Filters
+            if (filterType > 0.5 && filterType < 1.5) {
                 // Sepia
                 float r = (color.r * 0.393) + (color.g * 0.769) + (color.b * 0.189);
                 float g = (color.r * 0.349) + (color.g * 0.686) + (color.b * 0.168);
                 float b = (color.r * 0.272) + (color.g * 0.534) + (color.b * 0.131);
                 color = vec4(r, g, b, color.a);
-            } else if (filterType == 2) {
+            } else if (filterType > 1.5 && filterType < 2.5) {
                 // Grayscale
                 float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
                 color = vec4(gray, gray, gray, color.a);
-            } else if (filterType == 3) {
+            } else if (filterType > 2.5 && filterType < 3.5) {
                 // Vignette
                 vec2 center = vUV - vec2(0.5);
                 float dist = length(center);
@@ -324,8 +322,8 @@ async function initBabylon() {
     });
     
     shaderMat.setTexture("diffuseTexture", new BABYLON.Texture("/placeholder_map.jpg", scene));
-    shaderMat.setInt("proceduralEnabled", 0);
-    shaderMat.setInt("filterType", 0);
+    shaderMat.setFloat("proceduralEnabled", 0.0);
+    shaderMat.setFloat("filterType", 0.0);
     
     baseMap.material = shaderMat;
     baseMap.receiveShadows = true;
@@ -1370,13 +1368,13 @@ function executeCanvasTools(toolCalls) {
         else if (args.filter_type === "vignette") filterId = 3;
         
         if (baseMap && baseMap.material && baseMap.material.getClassName() === "ShaderMaterial") {
-            baseMap.material.setInt("filterType", filterId);
+            baseMap.material.setFloat("filterType", filterId);
         }
         break;
 
       case "generate_procedural_land":
         if (baseMap && baseMap.material && baseMap.material.getClassName() === "ShaderMaterial") {
-            baseMap.material.setInt("proceduralEnabled", 1);
+            baseMap.material.setFloat("proceduralEnabled", 1.0);
             baseMap.material.setFloat("noiseScale", args.noise_scale || 2.0);
             baseMap.material.setFloat("elevation", args.elevation || 3.0);
         }
