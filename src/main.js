@@ -271,6 +271,7 @@ async function initBabylon() {
         varying vec3 vPosition;
         
         uniform sampler2D diffuseTexture;
+        uniform int filterType; // 0=None, 1=Sepia, 2=Grayscale, 3=Vignette
         uniform int proceduralEnabled;
 
         void main() {
@@ -284,6 +285,24 @@ async function initBabylon() {
                 else if (h < 2.5) color = mix(color, vec4(0.2, 0.5, 0.2, 1.0), 0.7); // Grass
                 else if (h < 4.0) color = mix(color, vec4(0.5, 0.5, 0.5, 1.0), 0.7); // Rock
                 else color = mix(color, vec4(0.9, 0.9, 0.95, 1.0), 0.7); // Snow
+            }
+
+            // Localized Canvas Theming & Filters (Not applied to workshop background)
+            if (filterType == 1) {
+                // Sepia
+                float r = (color.r * 0.393) + (color.g * 0.769) + (color.b * 0.189);
+                float g = (color.r * 0.349) + (color.g * 0.686) + (color.b * 0.168);
+                float b = (color.r * 0.272) + (color.g * 0.534) + (color.b * 0.131);
+                color = vec4(r, g, b, color.a);
+            } else if (filterType == 2) {
+                // Grayscale
+                float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+                color = vec4(gray, gray, gray, color.a);
+            } else if (filterType == 3) {
+                // Vignette
+                vec2 center = vUV - vec2(0.5);
+                float dist = length(center);
+                color.rgb *= smoothstep(0.8, 0.2, dist);
             }
 
             gl_FragColor = color;
@@ -301,11 +320,12 @@ async function initBabylon() {
         fragment: "map"
     }, {
         attributes: ["position", "normal", "uv"],
-        uniforms: ["worldViewProjection", "noiseScale", "elevation", "proceduralEnabled"]
+        uniforms: ["worldViewProjection", "noiseScale", "elevation", "proceduralEnabled", "filterType"]
     });
     
     shaderMat.setTexture("diffuseTexture", new BABYLON.Texture("/placeholder_map.jpg", scene));
     shaderMat.setInt("proceduralEnabled", 0);
+    shaderMat.setInt("filterType", 0);
     
     baseMap.material = shaderMat;
     baseMap.receiveShadows = true;
@@ -1343,6 +1363,17 @@ function executeCanvasTools(toolCalls) {
         }
         break;
         
+      case "apply_filter":
+        let filterId = 0;
+        if (args.filter_type === "sepia") filterId = 1;
+        else if (args.filter_type === "grayscale") filterId = 2;
+        else if (args.filter_type === "vignette") filterId = 3;
+        
+        if (baseMap && baseMap.material && baseMap.material.getClassName() === "ShaderMaterial") {
+            baseMap.material.setInt("filterType", filterId);
+        }
+        break;
+
       case "generate_procedural_land":
         if (baseMap && baseMap.material && baseMap.material.getClassName() === "ShaderMaterial") {
             baseMap.material.setInt("proceduralEnabled", 1);
