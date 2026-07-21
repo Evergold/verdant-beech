@@ -310,6 +310,9 @@ async function initBabylon() {
     baseMap.material = shaderMat;
     baseMap.receiveShadows = true;
 
+    // True 3D Layer Management Array
+    window.true3DLayers = [];
+
     // Initialize 3D Compositing Layer Manager
     const layerManager = new MapLayerManager(scene, baseMap);
     
@@ -1346,6 +1349,26 @@ function executeCanvasTools(toolCalls) {
             baseMap.material.setFloat("noiseScale", args.noise_scale || 2.0);
             baseMap.material.setFloat("elevation", args.elevation || 3.0);
         }
+        break;
+
+      case "add_3d_layer":
+        const layerMesh = BABYLON.MeshBuilder.CreateGround(args.layer_name || "layer", {width: 24, height: 16, subdivisions: 64}, scene);
+        const yOffset = args.z_index ? args.z_index * 0.5 : 1.0;
+        layerMesh.position.y = 0.02 + yOffset; 
+        layerMesh.position.z = -3;
+        
+        const layerMat = new BABYLON.StandardMaterial(args.layer_name + "Mat", scene);
+        layerMat.alpha = 0.4;
+        
+        if (args.layer_name && args.layer_name.includes("fog")) {
+            layerMat.diffuseColor = new BABYLON.Color3(0.8, 0.8, 0.9);
+            layerMat.emissiveColor = new BABYLON.Color3(0.2, 0.2, 0.3);
+        } else {
+            layerMat.diffuseColor = new BABYLON.Color3(1, 1, 1);
+        }
+        
+        layerMesh.material = layerMat;
+        window.true3DLayers.push(layerMesh);
         break;
 
       case "add_text_label":
