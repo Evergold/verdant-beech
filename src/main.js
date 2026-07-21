@@ -225,13 +225,89 @@ async function initBabylon() {
     table.receiveShadows = true;
 
     // The Map Canvas (Parchment Paper resting on table)
-    baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 24, height: 16, subdivisions: 128}, scene);
+    // --- WebGPU Shader Math ---
+    BABYLON.Effect.ShadersStore["mapVertexShader"] = `
+        precision highp float;
+        attribute vec3 position;
+        attribute vec2 uv;
+        attribute vec3 normal;
+        uniform mat4 worldViewProjection;
+        
+        // Procedural Tool Parameters
+        uniform float noiseScale;
+        uniform float elevation;
+        uniform int proceduralEnabled;
+        
+        varying vec2 vUV;
+        varying vec3 vPosition;
+
+        // Simplex/Perlin noise approximation for WebGL/WebGPU
+        float rand(vec2 n) { return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453); }
+        float noise(vec2 p){
+            vec2 ip = floor(p);
+            vec2 u = fract(p);
+            u = u*u*(3.0-2.0*u);
+            return mix(
+                mix(rand(ip),rand(ip+vec2(1.0,0.0)),u.x),
+                mix(rand(ip+vec2(0.0,1.0)),rand(ip+vec2(1.0,1.0)),u.x),u.y);
+        }
+
+        void main() {
+            vec3 pos = position;
+            if (proceduralEnabled == 1) {
+                float n = noise(pos.xz * noiseScale);
+                n += noise(pos.xz * noiseScale * 2.0) * 0.5;
+                pos.y += (n * elevation);
+            }
+            gl_Position = worldViewProjection * vec4(pos, 1.0);
+            vUV = uv;
+            vPosition = pos;
+        }
+    `;
+
+    BABYLON.Effect.ShadersStore["mapFragmentShader"] = `
+        precision highp float;
+        varying vec2 vUV;
+        varying vec3 vPosition;
+        
+        uniform sampler2D diffuseTexture;
+        uniform int proceduralEnabled;
+
+        void main() {
+            vec4 color = texture2D(diffuseTexture, vUV);
+            
+            // Procedural Sandbox Biomes
+            if (proceduralEnabled == 1) {
+                float h = vPosition.y;
+                if (h < 0.5) color = mix(color, vec4(0.1, 0.3, 0.6, 1.0), 0.7); // Water
+                else if (h < 1.0) color = mix(color, vec4(0.8, 0.7, 0.4, 1.0), 0.7); // Sand
+                else if (h < 2.5) color = mix(color, vec4(0.2, 0.5, 0.2, 1.0), 0.7); // Grass
+                else if (h < 4.0) color = mix(color, vec4(0.5, 0.5, 0.5, 1.0), 0.7); // Rock
+                else color = mix(color, vec4(0.9, 0.9, 0.95, 1.0), 0.7); // Snow
+            }
+
+            gl_FragColor = color;
+        }
+    `;
+
+    // High-density subdivisions required for procedural shader vertex displacement
+    baseMap = BABYLON.MeshBuilder.CreateGround("baseMap", {width: 24, height: 16, subdivisions: 256}, scene);
     baseMap.position.y = 0.02; // Hover slightly above table
     baseMap.position.z = -3;   // Shift lower on the table to make room for tools at the top
-    baseMat = new BABYLON.StandardMaterial("baseMat", scene);
-    baseMat.diffuseColor = new BABYLON.Color3(0.94, 0.9, 0.82); // Parchment
-    baseMat.specularColor = new BABYLON.Color3(0.05, 0.05, 0.05);
-    baseMap.material = baseMat;
+    
+    // Instantiate Shader Math
+    const shaderMat = new BABYLON.ShaderMaterial("shaderMat", scene, {
+        vertex: "map",
+        fragment: "map"
+    }, {
+        attributes: ["position", "normal", "uv"],
+        uniforms: ["worldViewProjection", "noiseScale", "elevation", "proceduralEnabled"]
+    });
+    
+    shaderMat.setTexture("diffuseTexture", new BABYLON.Texture("/placeholder_map.jpg", scene));
+    shaderMat.setInt("proceduralEnabled", 0);
+    
+    baseMap.material = shaderMat;
     baseMap.receiveShadows = true;
 
     // Initialize 3D Compositing Layer Manager
@@ -1264,6 +1340,14 @@ function executeCanvasTools(toolCalls) {
         }
         break;
         
+      case "generate_procedural_land":
+        if (baseMap && baseMap.material && baseMap.material.getClassName() === "ShaderMaterial") {
+            baseMap.material.setInt("proceduralEnabled", 1);
+            baseMap.material.setFloat("noiseScale", args.noise_scale || 2.0);
+            baseMap.material.setFloat("elevation", args.elevation || 3.0);
+        }
+        break;
+
       case "add_text_label":
         const labelPlane = BABYLON.MeshBuilder.CreatePlane("label", {width: 10, height: 2}, scene);
         labelPlane.position = new BABYLON.Vector3(args.x, 0.2, args.y);
