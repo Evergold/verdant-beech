@@ -113,25 +113,32 @@ async function initBabylon() {
     camera.panningSensibility = 250; // Lower number = faster/more sensitive panning
 
     // Restrict camera rotation to simulate a standing workshop view
-    // Pitch (beta): from directly overhead (0) to 45 degrees (Math.PI/4)
-    camera.lowerBetaLimit = 0.01; // Epsilon to avoid gimbal lock
-    camera.upperBetaLimit = Math.PI / 4;
-    // Yaw (alpha): max 45 degrees left or right from center (-Math.PI/2)
+    camera.lowerBetaLimit = 0.01; 
+    camera.upperBetaLimit = Math.PI / 4; // Restricted to at most 45 degrees from overhead
     camera.lowerAlphaLimit = -Math.PI / 2 - Math.PI / 4;
     camera.upperAlphaLimit = -Math.PI / 2 + Math.PI / 4;
 
-    // Create a pre-baked, heavily blurred cartography workshop background for a blazingly fast DOF effect
     const workshopDome = new BABYLON.PhotoDome(
         "workshopBackground",
-        "/blurred_workshop.jpg",
+        "/workshop_tmp.jpg",
         {
-            resolution: 32,
-            size: 1000
+            resolution: 64,
+            size: 80 // Scaled down to 80 units (radius 40)
         },
         scene
     );
-    // Align the dome so the image looks correct from the restricted camera angle
-    workshopDome.rotation.y = Math.PI;
+    // Physically anchor the dome to the room so it doesn't follow the camera.
+    // This allows the table to rest permanently on the floor of the 360 image!
+    workshopDome.mesh.infiniteDistance = false;
+    
+    // Size is 80, so radius is 40. 
+    // The furthest table legs are 22.7 units from the sphere center (Z=-3). 
+    // To keep the legs grounded at Y = -15 against the steep curve, we set the sphere center to Y = 17.9.
+    // Center it on the camera pivot (Z = -3).
+    workshopDome.mesh.position = new BABYLON.Vector3(0, 17.9, -3);
+    
+    // Rotate the dome so we face down the middle of the long loft hall, centering the table in the space
+    workshopDome.rotation.y = Math.PI / 2;
 
     // Custom animatable properties for safe panning without triggering ArcRotateCamera.setTarget orbital recalculations
     Object.defineProperty(camera, "targetX", {
@@ -162,9 +169,9 @@ async function initBabylon() {
     defaultPipeline.imageProcessing.vignetteEnabled = false;
     defaultPipeline.imageProcessing.vignetteBlendMode = BABYLON.ImageProcessingConfiguration.VIGNETTEMODE_MULTIPLY;
 
-    // Photographic Post-Processing Filters (Disabled by default)
+    // Photographic Post-Processing Filters
+    // Real-time DOF is disabled for performance. The background is pre-blurred instead.
     defaultPipeline.depthOfFieldEnabled = false;
-    defaultPipeline.depthOfField.focusDistance = 2000;
     defaultPipeline.depthOfField.focalLength = 50;
     defaultPipeline.depthOfField.fStop = 1.4;
 
@@ -194,16 +201,6 @@ async function initBabylon() {
     shadowGenerator.setDarkness(0.6); // Increased darkness so shadows aren't washed out by IBL
     shadowGenerator.bias = 0.0005; // Tiny bias to prevent acne but keep shadows grounded
 
-    // Candle Light (Moody)
-    const candleLight = new BABYLON.PointLight("candleLight", new BABYLON.Vector3(12, 1.5, 14), scene);
-    candleLight.intensity = 0.0; // Off by default
-    candleLight.diffuse = new BABYLON.Color3(1, 0.6, 0.2);
-    
-    const candleShadows = new BABYLON.ShadowGenerator(512, candleLight);
-    candleShadows.usePercentageCloserFiltering = true;
-    candleShadows.filteringQuality = BABYLON.ShadowGenerator.QUALITY_LOW;
-    candleShadows.setDarkness(0.5);
-
     // Lamp Mesh (Visual Representation)
     const lampMesh = BABYLON.MeshBuilder.CreateCylinder("lampMesh", {height: 2, diameterTop: 3, diameterBottom: 4}, scene);
     lampMesh.position = new BABYLON.Vector3(0, 19, 0);
@@ -212,20 +209,37 @@ async function initBabylon() {
     lampMat.emissiveColor = new BABYLON.Color3(0.5, 0.5, 0.4);
     lampMesh.material = lampMat;
 
-    // The Workshop Table (Thick Box for 3D realism, perfectly square)
-    const table = BABYLON.MeshBuilder.CreateBox("workshopTable", {width: 32, height: 2, depth: 32}, scene);
-    table.position.y = -1; // Top surface at y=0
+    // The Drafting Table (Thick Box for 3D realism, perfectly square)
+    const table = BABYLON.MeshBuilder.CreateBox("workshopTable", {width: 32, depth: 32, height: 2}, scene);
+    table.position.y = -1;
+    table.position.z = 0; 
+    
+    // Use the wood texture that was previously generated for a realistic table surface
     const tableMat = new BABYLON.StandardMaterial("tableMat", scene);
     const woodTex = new BABYLON.Texture("/wood.jpg", scene);
-    woodTex.uScale = 2;
+    woodTex.uScale = 2; // Restore UV scaling to prevent edge texture stretching or transparency bugs
     woodTex.vScale = 2;
     tableMat.diffuseTexture = woodTex;
-    tableMat.specularColor = new BABYLON.Color3(0.1, 0.05, 0.02);
+    tableMat.specularColor = new BABYLON.Color3(0.1, 0.1, 0.1);
     table.material = tableMat;
     table.receiveShadows = true;
 
-    // The Map Canvas (Parchment Paper resting on table)
-    // --- WebGPU / WebGL Shader Math ---
+    // Table Legs so it doesn't look like a slab lying on the floor
+    const legHeight = 24; // Extended further down through the floor curve without moving the room
+    const legPositions = [
+        new BABYLON.Vector3(-14.5, -1 - legHeight/2, -14.5),
+        new BABYLON.Vector3(14.5, -1 - legHeight/2, -14.5),
+        new BABYLON.Vector3(-14.5, -1 - legHeight/2, 14.5),
+        new BABYLON.Vector3(14.5, -1 - legHeight/2, 14.5),
+    ];
+    legPositions.forEach((pos, i) => {
+        const leg = BABYLON.MeshBuilder.CreateBox("leg"+i, {width: 1.5, depth: 1.5, height: legHeight}, scene);
+        leg.position = pos;
+        leg.material = tableMat;
+        leg.receiveShadows = true;
+    });
+
+// --- WebGPU / WebGL Shader Math ---
     BABYLON.Effect.ShadersStore["mapVertexShader"] = `
         attribute vec3 position;
         attribute vec2 uv;
@@ -321,7 +335,11 @@ async function initBabylon() {
         uniforms: ["worldViewProjection", "noiseScale", "elevation", "proceduralEnabled", "filterType"]
     });
     
-    shaderMat.setTexture("diffuseTexture", new BABYLON.Texture("/placeholder_map.jpg", scene));
+    const blankTex = new BABYLON.DynamicTexture("blankTex", {width: 2, height: 2}, scene);
+    blankTex.getContext().fillStyle = "#ffffff";
+    blankTex.getContext().fillRect(0, 0, 2, 2);
+    blankTex.update();
+    shaderMat.setTexture("diffuseTexture", blankTex);
     shaderMat.setFloat("proceduralEnabled", 0.0);
     shaderMat.setFloat("filterType", 0.0);
     
@@ -335,12 +353,11 @@ async function initBabylon() {
     const layerManager = new MapLayerManager(scene, baseMap);
     
     shadowGenerator.addShadowCaster(baseMap);
-    candleShadows.addShadowCaster(baseMap);
 
     // Generate the procedural cartography tools array and add shadows
-    const props = buildCartographyTools(scene, [shadowGenerator, candleShadows]);
+    const props = buildCartographyTools(scene, [shadowGenerator]);
 
-    // Flickering animation for candle and camera checks
+    // Camera checks
     let alpha = 0;
     scene.registerBeforeRender(() => {
       // Hide lamp mesh if camera is directly overhead (beta < 0.2 radians)
@@ -348,11 +365,6 @@ async function initBabylon() {
         lampMesh.isVisible = false;
       } else {
         lampMesh.isVisible = true;
-      }
-
-      if (candleLight.isEnabled()) {
-        alpha += 0.05;
-        candleLight.intensity = 0.4 + Math.random() * 0.1 + Math.sin(alpha) * 0.05;
       }
     });
 
@@ -363,11 +375,6 @@ async function initBabylon() {
         if (e.target.value === "uniform") {
           ambientLight.intensity = 0.5;
           light.intensity = 1.0;
-          candleLight.setEnabled(false);
-        } else if (e.target.value === "candle") {
-          ambientLight.intensity = 0.1;
-          light.intensity = 0.8;
-          candleLight.setEnabled(true);
         }
       });
     }
@@ -432,7 +439,6 @@ async function initBabylon() {
         const rz = (Math.random() - 0.5) * 10;
         const marker = layerManager.addMarker("settlements", `city_${settlementCount}`, rx, rz, markerMat);
         shadowGenerator.addShadowCaster(marker);
-        candleShadows.addShadowCaster(marker);
       });
     }
 
@@ -440,9 +446,7 @@ async function initBabylon() {
     const toggleBtn = document.getElementById("toggle-orientation-btn");
     if (toggleBtn) {
       toggleBtn.addEventListener("click", () => {
-        const renderWidth = canvas.clientWidth;
-        const renderHeight = canvas.clientHeight;
-        const isLandscape = renderWidth > renderHeight;
+        isLandscape = !isLandscape; // Toggle the outer variable state
         toggleBtn.textContent = isLandscape ? i18next.t("canvas.orientationLandscape") : i18next.t("canvas.orientationPortrait");
         engine.resize();
         
