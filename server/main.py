@@ -101,6 +101,7 @@ image_models:
     tier: 2
     capabilities: ["One-Shot", "Photorealism"]
     deprecated: "2026-08-17"
+    migration_target: "gemini/gemini-2.5-flash-image"
   - id: "gemini/nano-banana-pro"
     label: "Nano Banana Pro"
     tier: 2
@@ -114,6 +115,7 @@ image_models:
     tier: 1
     capabilities: ["One-Shot", "Photorealism"]
     deprecated: "2026-08-17"
+    migration_target: "gemini/gemini-2.5-flash-image"
   - id: "gemini/nano-banana-2"
     label: "Nano Banana 2"
     tier: 1
@@ -671,33 +673,69 @@ async def generate_asset(req: AssetRequest):
         negative_prompt = "device frames, laptops, phones, UI overlays, gradients on text, low quality, cartoonish, watermark"
 
     try:
-        # Execute via litellm
-        import litellm
-        
-        # Build litellm kwargs to ensure we don't drop structural RAG components
-        generation_kwargs = {
-            "prompt": assembled_prompt,
-            "model": req.model,
-            "n": 1,
-            "size": "1024x1024", # Fallback default
-        }
-        
-        if req.seed is not None:
-            generation_kwargs["seed"] = req.seed
+        # DEPRECATION MIGRATION: Auto-route dynamically using migration_target from models.yaml
+        try:
+            with open(MODELS_YAML_PATH, "r") as f:
+                config_models = yaml.safe_load(f).get("image_models", [])
+                target_info = next((m for m in config_models if m["id"] == req.model), None)
+                if target_info and "migration_target" in target_info:
+                    should_migrate = True
+                    if "deprecated" in target_info:
+                        import datetime
+                        try:
+                            dep_date = datetime.datetime.strptime(target_info["deprecated"], "%Y-%m-%d").date()
+                            if datetime.date.today() < dep_date:
+                                should_migrate = False
+                        except Exception:
+                            pass
+                    if should_migrate:
+                        req.model = target_info["migration_target"]
+        except Exception as e:
+            print(f"[ROUTER ERROR] Failed to fetch migration_target: {e}")
             
-        # Passing extended kwargs for provider-specific support
-        generation_kwargs["negative_prompt"] = negative_prompt
-        generation_kwargs["guidance_scale"] = req.guidance_scale
-        
-        # DEPRECATION MIGRATION: Imagen models shutdown Aug 17, 2026.
-        # When migrating to Nano Banana-based models (like gemini-2.5-flash-image):
-        # 1. Use 'gemini-2.5-flash-image' instead of Imagen model names.
-        # 2. Use 'client.models.generate_content' instead of 'client.models.generate_images' (or the litellm wrapper).
-        # 3. Nano Banana returns content parts (which may include image data) instead of a specific image response object.
-        response = litellm.image_generation(**generation_kwargs)
-        
-        # The Litellm response format returns the URL in data[0].url
-        image_url = response.data[0].url
+        # Support GenAI SDK natively for Nano Banana while defaulting to litellm project-wide
+        is_nano_banana = "flash-image" in req.model or "nano-banana" in req.model
+
+        if is_nano_banana:
+            from google import genai
+            import base64
+            client = genai.Client()
+            model_id = req.model.replace("gemini/", "") if req.model.startswith("gemini/") else req.model
+            
+            # (2) Use generate_content instead of generate_images for Nano Banana
+            response = client.models.generate_content(
+                model=model_id,
+                contents=assembled_prompt
+            )
+            
+            # (3) Parse content parts for image data instead of a specific image object
+            image_url = None
+            if response.candidates and response.candidates[0].content.parts:
+                for part in response.candidates[0].content.parts:
+                    if hasattr(part, "inline_data") and part.inline_data:
+                        b64_img = base64.b64encode(part.inline_data.data).decode('utf-8')
+                        mime = part.inline_data.mime_type
+                        image_url = f"data:{mime};base64,{b64_img}"
+                        break
+                        
+            if not image_url:
+                raise Exception("No image data found in Nano Banana response parts.")
+        else:
+            # Fallback to litellm for non-Gemini standard models
+            import litellm
+            generation_kwargs = {
+                "prompt": assembled_prompt,
+                "model": req.model,
+                "n": 1,
+                "size": "1024x1024",
+                "negative_prompt": negative_prompt,
+                "guidance_scale": req.guidance_scale
+            }
+            if req.seed is not None:
+                generation_kwargs["seed"] = req.seed
+                
+            response = litellm.image_generation(**generation_kwargs)
+            image_url = response.data[0].url
         
         return {
             "status": "success",
