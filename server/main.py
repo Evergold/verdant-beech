@@ -96,18 +96,32 @@ assistant_models:
   #   label: "Llama 4 Maverick (Groq)"
 
 image_models:
-  - id: "gemini/imagen-4.0-generate"
-    label: "Imagen 4"
+  - id: "gemini/imagen-4.0-ultra-generate-001"
+    label: "Imagen 4 Ultra"
     tier: 2
     capabilities: ["One-Shot", "Photorealism"]
+    deprecated: "2026-08-17"
   - id: "gemini/nano-banana-pro"
     label: "Nano Banana Pro"
+    tier: 2
+    capabilities: ["Iterative", "Consistency", "Photorealism"]
+  - id: "gemini/gemini-2.5-flash-image"
+    label: "Nano Banana"
     tier: 1
-    capabilities: ["Iterative", "Consistency"]
+    capabilities: ["Iterative", "Rapid"]
+  - id: "gemini/imagen-4.0-generate-001"
+    label: "Imagen 4 Standard"
+    tier: 1
+    capabilities: ["One-Shot", "Photorealism"]
+    deprecated: "2026-08-17"
   - id: "gemini/nano-banana-2"
     label: "Nano Banana 2"
+    tier: 1
+    capabilities: ["Iterative", "Rapid", "Photorealism"]
+  - id: "gemini/gemini-3.1-flash-lite-image"
+    label: "Nano Banana 2 Lite"
     tier: 0
-    capabilities: ["Iterative", "Rapid"]
+    capabilities: ["One-Shot", "Rapid"]
   # Template for other image providers:
   # - id: "openai/gpt-image-2"
   #   label: "GPT Image 2"
@@ -675,6 +689,11 @@ async def generate_asset(req: AssetRequest):
         generation_kwargs["negative_prompt"] = negative_prompt
         generation_kwargs["guidance_scale"] = req.guidance_scale
         
+        # DEPRECATION MIGRATION: Imagen models shutdown Aug 17, 2026.
+        # When migrating to Nano Banana-based models (like gemini-2.5-flash-image):
+        # 1. Use 'gemini-2.5-flash-image' instead of Imagen model names.
+        # 2. Use 'client.models.generate_content' instead of 'client.models.generate_images' (or the litellm wrapper).
+        # 3. Nano Banana returns content parts (which may include image data) instead of a specific image response object.
         response = litellm.image_generation(**generation_kwargs)
         
         # The Litellm response format returns the URL in data[0].url

@@ -52,9 +52,12 @@ Used for the actual tile stitching and map baking. Due to the high architectural
 - **`Enterprise`**: Built with commercial compliance, brand safety, and proprietary data protection in mind.
 
 #### Our Default & Templated Models:
-- **Primary [Tier 2]:** `gemini/imagen-4.0-generate` (Capabilities: *One-Shot, Photorealism*)
-- **Conversational Iteration [Tier 1]:** `gemini/nano-banana-pro` (Capabilities: *Iterative, Consistency*)
-- **Rapid Prototyping [Tier 0]:** `gemini/nano-banana-2` (Capabilities: *Iterative, Rapid*)
+- **Primary [Tier 2]:** `gemini/imagen-4.0-ultra-generate-001` (Capabilities: *One-Shot, Photorealism*) **[DEPRECATED: 2026-08-17]**
+- **Conversational Iteration [Tier 2]:** `gemini/nano-banana-pro` (Capabilities: *Iterative, Consistency, Photorealism*)
+- **Rapid Iteration [Tier 1]:** `gemini/gemini-2.5-flash-image` (Capabilities: *Iterative, Rapid*)
+- **Standard Photorealism [Tier 1]:** `gemini/imagen-4.0-generate-001` (Capabilities: *One-Shot, Photorealism*) **[DEPRECATED: 2026-08-17]**
+- **Rapid Prototyping [Tier 1]:** `gemini/nano-banana-2` (Capabilities: *Iterative, Rapid, Photorealism*)
+- **Rapid Prototyping [Tier 0]:** `gemini/gemini-3.1-flash-lite-image` (Capabilities: *One-Shot, Rapid*)
 - **Alternatives:** `gpt-image-2` [Tier 1, *General*], `huggingface/black-forest-labs/FLUX.2` [Tier 1, *Optics*], and `bedrock/amazon.titan-image-generator-v1` [Tier 0, *Enterprise*] can be swapped via `models.yaml`.
 
 ### Embedding Models (Memory & RAG Retrieval)
@@ -81,7 +84,7 @@ However, the backend utilizes `litellm` to interface with generative models, mea
 - **Mistral** (e.g., `mistral/mistral-large-latest`): `export MISTRAL_API_KEY="your_key"`
 
 **For Image Generation Models (Verdant-persona):**
-- **Google Gemini API** (e.g., `gemini/imagen-4.0-generate`, `gemini/nano-banana-2`, `gemini/nano-banana-pro`): `export GEMINI_API_KEY="your_key"`
+- **Google Gemini API** (e.g., `gemini/imagen-4.0-ultra-generate-001`, `gemini/nano-banana-2`, `gemini/nano-banana-pro`): `export GEMINI_API_KEY="your_key"`
 - **Stability AI** (e.g., `stabilityai/stable-diffusion-3`): `export STABILITY_API_KEY="your_key"`
 - **OpenAI** (e.g., `gpt-image-2`): `export OPENAI_API_KEY="your_key"`
 - **Amazon Bedrock** (e.g., `bedrock/amazon.titan-image-generator-v1`): `export AWS_ACCESS_KEY_ID="your_id" AWS_SECRET_ACCESS_KEY="your_key" AWS_REGION_NAME="us-east-1"`
