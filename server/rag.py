@@ -128,7 +128,8 @@ class CartographyRAG:
         # Read the embedding model from models.yaml first
         embedding_model_id = "ollama/embeddinggemma"  # fallback
         try:
-            with open("../models.yaml", "r") as f:
+            yaml_path = os.path.join(os.path.dirname(__file__), "..", "models.yaml")
+            with open(yaml_path, "r") as f:
                 models_config = yaml.safe_load(f)
                 if "embedding_models" in models_config and len(models_config["embedding_models"]) > 0:
                     embedding_model_id = models_config["embedding_models"][0]["id"]
