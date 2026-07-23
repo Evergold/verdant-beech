@@ -19,6 +19,35 @@ from server.rag import rag_store
 subconscious_state = {}
 
 app = FastAPI(title="Verdant Beech API", description="Backend for the Cartography Agent")
+
+# --- OBSERVABILITY SETUP (Zero Performance Regression) ---
+try:
+    from opentelemetry import trace
+    from opentelemetry.sdk.trace import TracerProvider
+    from opentelemetry.sdk.trace.export import BatchSpanProcessor
+    from opentelemetry.exporter.otlp.proto.grpc.trace_exporter import OTLPSpanExporter
+    from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+    
+    provider = TracerProvider()
+    # CRITICAL: We use BatchSpanProcessor to ensure tracing does not block the main thread.
+    # This offloads telemetry transmission to a background thread, preserving high-velocity generation.
+    otlp_exporter = OTLPSpanExporter() # Defaults to OTLP standard port if available
+    processor = BatchSpanProcessor(otlp_exporter)
+    provider.add_span_processor(processor)
+    trace.set_tracer_provider(provider)
+    
+    # Instrument FastAPI to capture the request trajectory
+    FastAPIInstrumentor.instrument_app(app)
+    
+    # Instrument Litellm to automatically capture prompt-response payloads and metrics
+    litellm.success_callback = ["opentelemetry"]
+    litellm.failure_callback = ["opentelemetry"]
+    print("[OBSERVABILITY] Tracing initialized with BatchSpanProcessor.")
+except ImportError:
+    print("[OBSERVABILITY] OpenTelemetry packages not installed yet. Skipping tracing setup.")
+except Exception as e:
+    print(f"[OBSERVABILITY] Failed to initialize tracing: {e}")
+
 OLLAMA_URL = "http://localhost:11434"
 
 # Allow CORS for development (Vite dev server)
