@@ -666,10 +666,37 @@ class AssetRequest(BaseModel):
     guidance_scale: float = 7.5
     aspect_ratio: str = "1:1"
 
+def assemble_prompt(user_intent: str, exploratory: bool) -> tuple[str, str]:
+    """Decoupled prompt assembly and RAG interceptor logic."""
+    assembled_prompt = user_intent
+    
+    # 1. Semantic Memory: RAG Retrieval
+    rag_context = rag_store.query(user_intent)
+    if rag_context:
+        assembled_prompt += f", Style constraints: {rag_context}"
+        
+    # 2. Episodic Memory: Brand Identity check
+    has_brand_intent = any(kw in user_intent.lower() for kw in ["verdant brand", "brand identity", "verdant style", "verdant aesthetic"])
+    brand_tokens = ", dark mode, deep charcoal background, neon green accents, verdant green glow, rich polished mahogany wood" if has_brand_intent else ""
+
+    if exploratory:
+        # Phase 0/1: Exploratory or Assembly
+        if "map" in user_intent.lower() or "terrain" in user_intent.lower():
+            assembled_prompt += ", bathymetric rendering, hypsometric tinting, isoline topography"
+        assembled_prompt += brand_tokens
+        negative_prompt = "low quality, blurry, text"
+    else:
+        # Phase 2: High-Fidelity Asset Generation
+        assembled_prompt += ", cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
+        assembled_prompt += brand_tokens
+        # Absolute rigid constraints for One-Shot models
+        negative_prompt = "device frames, laptops, phones, UI overlays, gradients on text, low quality, cartoonish, watermark"
+
+    return assembled_prompt, negative_prompt
+
 @app.post("/api/generate_asset")
 async def generate_asset(req: AssetRequest):
     # --- PHASE -1: VALIDATION & CLARIFICATION ---
-    # Here we simulate the LLM fast-check. If the prompt is too short/vague, we fail fast.
     if len(req.prompt.split()) < 3:
         return {
             "status": "clarification",
@@ -677,29 +704,7 @@ async def generate_asset(req: AssetRequest):
         }
 
     # --- RAG INTERCEPTOR: DYNAMIC PROMPT ASSEMBLY ---
-    assembled_prompt = req.prompt
-    
-    # Check for optional Verdant Brand Identity
-    has_brand_intent = any(kw in req.prompt.lower() for kw in ["verdant brand", "brand identity", "verdant style", "verdant aesthetic"])
-    brand_tokens = ", dark mode, deep charcoal background, neon green accents, verdant green glow, rich polished mahogany wood" if has_brand_intent else ""
-
-    if req.exploratory:
-        # Phase 0/1: Exploratory or Assembly
-        # Inject Cartography/Topology tokens if applicable
-        if "map" in req.prompt.lower() or "terrain" in req.prompt.lower():
-            assembled_prompt += ", bathymetric rendering, hypsometric tinting, isoline topography"
-        
-        assembled_prompt += brand_tokens
-        # Less restrictive constraints for iterative flexibility
-        negative_prompt = "low quality, blurry, text"
-    else:
-        # Phase 2: High-Fidelity Asset Generation
-        # Inject Photography/Cinematography tokens (Max 4 to prevent dilution)
-        assembled_prompt += ", cinematic lighting, f/1.4 aperture, Octane render, 8k resolution"
-        assembled_prompt += brand_tokens
-        
-        # Absolute rigid constraints for One-Shot models
-        negative_prompt = "device frames, laptops, phones, UI overlays, gradients on text, low quality, cartoonish, watermark"
+    assembled_prompt, negative_prompt = assemble_prompt(req.prompt, req.exploratory)
 
     try:
         # DEPRECATION MIGRATION: Auto-route dynamically using migration_target from models.yaml
